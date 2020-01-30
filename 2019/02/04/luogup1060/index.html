@@ -477,7 +477,7 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        673
+                        610
                     </div>
                     
 
@@ -501,7 +501,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="一、题目内容"><a href="#一、题目内容" class="headerlink" title="一、题目内容"></a>一、题目内容</h2><p><strong>【题目描述】</strong></p>
-<p>金明今天很开心，家里购置的新房就要领钥匙了，新房里有一间他自己专用的很宽敞的房间。更让他高兴的是，妈妈昨天对他说：“你的房间需要购买哪些物品，怎么布置，你说了算，只要不超过N元钱就行”。今天一早金明就开始做预算，但是他想买的东西太多了，肯定会超过妈妈限定的N元。于是，他把每件物品规定了一个重要度，分为5等：用整数1-5表示，第5等最重要。他还从因特网上查到了每件物品的价格（都是整数元）。他希望在不超过N元（可以等于N元）的前提下，使每件物品的价格与重要度的乘积的总和最大。<br>设第j件物品的价格为v[j], 重要度为w[j], 共选中了k件物品，编号一次为j1,j2,…jk,则所求总和为：v[j1] * w[j1] + v[j2] * w[j2] + … + v[jk] * w[jk]。<br>请你帮助金明设计一个满足要求的购物单。</p>
+<p>金明今天很开心，家里购置的新房就要领钥匙了，新房里有一间他自己专用的很宽敞的房间。更让他高兴的是，妈妈昨天对他说：“你的房间需要购买哪些物品，怎么布置，你说了算，只要不超过N元钱就行”。今天一早金明就开始做预算，但是他想买的东西太多了，肯定会超过妈妈限定的N元。于是，他把每件物品规定了一个重要度，分为5等：用整数1-5表示，第5等最重要。他还从因特网上查到了每件物品的价格（都是整数元）。他希望在不超过N元（可以等于N元）的前提下，使每件物品的价格与重要度的乘积的总和最大。<br>设第j件物品的价格为v[j], 重要度为w[j], 共选中了k件物品，编号一次为j1,j2,…jk,则所求总和为：v[j1] <em> w[j1] + v[j2] </em> w[j2] + … + v[jk] * w[jk]。<br>请你帮助金明设计一个满足要求的购物单。</p>
 <p><strong>【输入格式】</strong></p>
 <p>第一行，为2个正整数，用一个空格隔开：N m（其中 N &lt; 30000) 表示总钱数，(m &lt; 25) 为希望购买物品的个数。</p>
 <p>从第2行到第m+1行，第j行给出了编号为j−1的物品的基本数据，每行有2个非负整数 v p（其中v表示该物品的价格(v &lt;= 10000) p表示该物品的重要度(1-5)</p>
@@ -516,31 +516,31 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="https://www.luogu.org/problemnew/show/P1060" target="_blank" rel="noopener">luoguP1060</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>01背包模板题目，价格作为限制条件，等同于背包问题的体积，价格和重要度的乘积作为价值衡量，然后利用套用01背包模板解题。</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
 
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+using namespace std;
 
-<span class="token keyword">const</span> <span class="token keyword">int</span> maxm <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">30000</span> <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span>
+const int maxm = 30;
+const int maxn = 30000 + 10;
 
-<span class="token keyword">int</span> v<span class="token punctuation">[</span>maxm<span class="token punctuation">]</span><span class="token punctuation">,</span>w<span class="token punctuation">[</span>maxm<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> dp<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+int v[maxm],w[maxm];
+int dp[maxn];
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  <span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">,</span><span class="token operator">&amp;</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        w<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span><span class="token operator">=</span> v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> n<span class="token punctuation">;</span> j<span class="token operator">-</span>v<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span>
-                dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>j<span class="token operator">-</span>v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+int main()
+{
+  int n,m;
+    scanf("%d%d",&n,&m);
+    for(int i = 1; i <= m; i++)
+    {
+        scanf("%d%d",&v[i],&w[i]);
+        w[i] *= v[i];
+    }
+    for(int i = 1; i <= m; i++)
+      for(int j = n; j-v[i] >= 0; j--)
+                dp[j] = max(dp[j],dp[j-v[i]] + w[i]);
+    printf("%d\n",dp[n]);
+    return 0;
+}
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -1047,7 +1047,7 @@ uim神犇拿到了uoi的ra（镭牌）后，立刻拉着基友小A到了一家�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">69.4k</span>&nbsp;字
+                class="white-color">55.4k</span>&nbsp;字
             
             
             

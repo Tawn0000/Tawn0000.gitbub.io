@@ -589,7 +589,8 @@
       
         
         
-          &lt;pre class=&quot;line-numbers language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; PIL &lt;span class=&quot;token
+          &lt;pre class=&quot;line-numbers language-lang-python&quot;&gt;&lt;code class=&quot;language-lang-python&quot;&gt;from PIL import Image , ImageDraw, ImageFont
+import
         
       
     

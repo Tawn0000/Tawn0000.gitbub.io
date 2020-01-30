@@ -483,7 +483,7 @@ dp[0]">
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        152
+                        151
                     </div>
                     
 
@@ -506,18 +506,19 @@ dp[0]">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="最长上升子序列-nlogn"><a href="#最长上升子序列-nlogn" class="headerlink" title="最长上升子序列 nlogn"></a>最长上升子序列 nlogn</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// dp[k] 为长度为k时最小的 a[i]值;</span>
-<span class="token comment" spellcheck="true">//如果a[i] >= dp[j], 说明dp[j+1] = a[i];</span>
-<span class="token comment" spellcheck="true">//否则 二分查找dp{1-j} 中a[i] 所处的位置，并用a[i]取代。</span>
-dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>=</span> dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> dp<span class="token punctuation">[</span><span class="token operator">++</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-  <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> idx <span class="token operator">=</span> <span class="token function">lower_bound</span><span class="token punctuation">(</span>dp<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>dp<span class="token operator">+</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span> dp<span class="token punctuation">;</span>
-    dp<span class="token punctuation">[</span>idx<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token keyword">int</span> ans <span class="token operator">=</span> j<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h2 id="最长上升子序列-nlogn"><a href="#最长上升子序列-nlogn" class="headerlink" title="最长上升子序列 nlogn"></a>最长上升子序列 nlogn</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">// dp[k] 为长度为k时最小的 a[i]值;
+//如果a[i] >= dp[j], 说明dp[j+1] = a[i];
+//否则 二分查找dp{1-j} 中a[i] 所处的位置，并用a[i]取代。
+dp[0] = -1;
+int j = 0;
+for(int i = 0; i < n; i++)
+  if(a[i] >= dp[j]) dp[++j] = a[i];
+  else {
+    int idx = lower_bound(dp+1,dp+j+1,a[i]) - dp;
+    dp[idx] = a[i];
+  }
+int ans = j;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1024,7 +1025,7 @@ dp<span class="token punctuation">[</span><span class="token number">0</span><sp
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">69.4k</span>&nbsp;字
+                class="white-color">55.4k</span>&nbsp;字
             
             
             
