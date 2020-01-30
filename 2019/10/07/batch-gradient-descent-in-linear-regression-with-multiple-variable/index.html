@@ -38,8 +38,7 @@ import numpy as np
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -487,7 +486,7 @@ import numpy as np
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        525
+                        526
                     </div>
                     
 
@@ -514,7 +513,7 @@ import numpy as np
 <li><a href="https://www.cnblogs.com/ooon/p/4947688.html" target="_blank" rel="noopener">深入梯度下降(Gradient Descent)算法</a></li>
 <li><a href="https://www.cnblogs.com/pinard/p/5970503.html" target="_blank" rel="noopener">梯度下降（Gradient Descent）小结(by 刘建平Pinard)</a></li>
 </ol>
-<h2 id="二、代码实现"><a href="#二、代码实现" class="headerlink" title="二、代码实现"></a>二、代码实现</h2><pre class="line-numbers language-lang-python"><code class="language-lang-python">import pandas as pd
+<h2 id="二、代码实现"><a href="#二、代码实现" class="headerlink" title="二、代码实现"></a>二、代码实现</h2><pre><code class="python">import pandas as pd
 import numpy as np
 
 
@@ -570,7 +569,7 @@ a = 0.01
 loss = []
 import copy
 #BGD
-while np.abs(J-J0) > 1e-3:
+while np.abs(J-J0) &gt; 1e-3:
     loss.append(J)
     J0 = J
     for j in range(m):
@@ -598,7 +597,7 @@ pre_test_y = test_x.dot(h.T)
 #预测值与真实值进行比较
 plt.plot(np.arange(len(test_y)), test_y,pre_test_y)
 plt.show()
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <h2 id="三、实验结果"><a href="#三、实验结果" class="headerlink" title="三、实验结果"></a>三、实验结果</h2><p><img src="https://img-blog.csdnimg.cn/20190415000903356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Rhd24wMDAw,size_16,color_FFFFFF,t_70" alt="梯度下降过程中损失的变化趋势"></p>
 <p><img src="https://img-blog.csdnimg.cn/20190415002023426.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Rhd24wMDAw,size_16,color_FFFFFF,t_70" alt="训练数据预测值与真实值进行比较"></p>
 <p><img src="https://img-blog.csdnimg.cn/20190415000947956.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Rhd24wMDAw,size_16,color_FFFFFF,t_70" alt="测试数据预测值与真实值进行比较"></p>
@@ -620,8 +619,10 @@ plt.show()
 
 
  -->
+
+
 <h3 id="2-数据"><a href="#2-数据" class="headerlink" title="2. 数据"></a>2. 数据</h3><p>train_data: <a href="https://paste.ubuntu.com/p/XMZkb9Q5qt/" target="_blank" rel="noopener">传送门</a></p>
-<h3 id="3-代码"><a href="#3-代码" class="headerlink" title="3. 代码"></a>3. 代码</h3><pre class="line-numbers language-lang-python"><code class="language-lang-python">import pandas as pd
+<h3 id="3-代码"><a href="#3-代码" class="headerlink" title="3. 代码"></a>3. 代码</h3><pre><code class="python">import pandas as pd
 import numpy as np
 
 data = pd.read_csv('data1a.txt', header=None)
@@ -659,7 +660,7 @@ loss = []
 
 print("Initial Loss: ", J)
 
-while abs(J-J0) > 0.00001:
+while abs(J-J0) &gt; 0.00001:
     loss.append(J)
     J0 = J
     for i in range(0, n+1):
@@ -687,13 +688,12 @@ test_x[1][1] = 7
 test_y = test_x.dot(theta)
 
 print("A, B 的利润分别为: ", test_y[0][0], test_y[1][0])
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</code></pre>
 <pre><code>Initial Loss:  32.072733877455676
 Fianl Loss:  4.479729514503939
-Fianl theta:  -3.7217231514189435 1.175547657550631
-</code></pre><p><img src="https://i.loli.net/2019/10/07/DtCMIb6rqfxmH5u.png" alt="result.png"></p>
-<pre><code>A, B 的利润分别为:  0.39269365000826495 4.507110451435473
-</code></pre><script>
+Fianl theta:  -3.7217231514189435 1.175547657550631</code></pre><p><img src="https://i.loli.net/2019/10/07/DtCMIb6rqfxmH5u.png" alt="result.png"></p>
+<pre><code>A, B 的利润分别为:  0.39269365000826495 4.507110451435473</code></pre><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1198,7 +1198,7 @@ Fianl theta:  -3.7217231514189435 1.175547657550631
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

@@ -33,8 +33,7 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -482,14 +481,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        695
+                        831
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -525,7 +524,7 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="https://www.luogu.org/problemnew/show/P1129" target="_blank" rel="noopener">luoguP1129</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>二分图最大匹配变形，使用匈牙利算法。<br>行和列交换，问是否最终能使正对角线上的各自全为黑色，经过观察可以发现，对于任意2个黑色方块，如果它们初始状态时不在同一行（列），那么无论如何交换，它们都不会在同一行（列）。所以，只需要查看初始状态下，对于每一行是否有一列能与之匹配，再利用二分图最大匹配查看行和列的匹配数，如若等于n,则说明则可以满足题意。输出yes,否则输出No。</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 using namespace std;
 
 const int maxn = 200 + 10;
@@ -566,7 +565,7 @@ int Max_match(int n,int p)
 {
     int all = 0;
     memset(line,-1,sizeof(line));
-    for(int i = 1; i <= p; i++)
+    for(int i = 1; i &lt;= p; i++)
     {
         memset(vis,false,sizeof(vis));
         if(dfs(i,n)) all++;
@@ -580,17 +579,17 @@ int n;
 int main()
 {
   int T;
-  scanf("%d",&T);
+  scanf("%d",&amp;T);
   while(T--)
   {
   tot = 0;
-  scanf("%d",&n);
+  scanf("%d",&amp;n);
   memset(h,-1,sizeof(h));
-  for(int i = 1; i <= n; i++)
-    for(int j = 1; j <= n; j++)
+  for(int i = 1; i &lt;= n; i++)
+    for(int j = 1; j &lt;= n; j++)
       {
         int x;
-        scanf("%d",&x);
+        scanf("%d",&amp;x);
         if(x == 1)
            add_edge(i,j);
 
@@ -602,7 +601,7 @@ int main()
 }
   return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1111,7 +1110,7 @@ lxhgww最近迷上了一款游戏，在游戏里，他拥有很多的装备，�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

@@ -44,8 +44,7 @@ simhash主要流程是：
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -493,14 +492,14 @@ simhash主要流程是：
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        462
+                        1.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        5 分
                     </div>
                     
                 
@@ -542,16 +541,12 @@ simhash主要流程是：
 <li><p>jieba分词使用参考资料:<br><a href="https://blog.csdn.net/sinat_34022298/article/details/75943272" target="_blank" rel="noopener">Python的jieba分词及TF-IDF和TextRank 算法提取关键字</a></p>
 </li>
 </ul>
-<p>  优化tips：</p>
-<pre><code>- 数据插入mongo可采用批量插入(insert_many)提高速度
-- 对于短文本的数据效果不太好，可能会导致map中key=0的链表长度过长，可以进行一下特判
-- 可以采用两个进程并发进行hash去重和数据持久化
-- 数据实在太大并且冗余度过高的情况下可以批量跑，等数据量降下来在全量
-</code></pre><p>  一个不是很确定且暂未实现的优化：<br>    在将64位的hash值划分成4段时，建立四个hash_map, 然后依次对应存储由各自段对应所得的hash_value链表</p>
+<p>  优化tips：<br>    - 数据插入mongo可采用批量插入(insert_many)提高速度<br>    - 对于短文本的数据效果不太好，可能会导致map中key=0的链表长度过长，可以进行一下特判<br>    - 可以采用两个进程并发进行hash去重和数据持久化<br>    - 数据实在太大并且冗余度过高的情况下可以批量跑，等数据量降下来在全量</p>
+<p>  一个不是很确定且暂未实现的优化：<br>    在将64位的hash值划分成4段时，建立四个hash_map, 然后依次对应存储由各自段对应所得的hash_value链表</p>
 <h3 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h3><ul>
 <li><strong>simhash</strong></li>
 </ul>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+<pre><code class="python"># -*- coding: utf-8 -*-
 from jieba import lcut, analyse
 
 def count_diff_str(str1, str2):
@@ -566,9 +561,9 @@ def count_diff_int(value1, value2):
     value = value1 ^ value2
     x = 1
     for i in range(64):
-        if x & value != 0:
+        if x &amp; value != 0:
             res += 1
-        x <<= 1
+        x &lt;&lt;= 1
     return res
 
 def simhash_(sentence):
@@ -579,28 +574,28 @@ def simhash_(sentence):
         value = hash(item[0])
         x = 1
         for i in range(64):
-            if x & value == 0:
+            if x &amp; value == 0:
                 value_list[i] -= item[1]
             else:
                 value_list[i] += item[1]
-            x <<= 1
+            x &lt;&lt;= 1
     value_str = ''
     value_int = 0
     x = 1
     for item in value_list:
-        if item > 0:
+        if item &gt; 0:
             value_str += '1'
             value_int |= x
         else:
             value_str += '0'
-        x <<= 1
+        x &lt;&lt;= 1
 
     return value_str, value_int
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li><strong>去重</strong></li>
 </ul>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">import pymongo
+<pre><code class="python">import pymongo
 
 MONGO_CONNECT = 'xxx' # mongo uri
 MONGO_DBS = 'xxx' # mongo database name
@@ -615,15 +610,15 @@ def clean_ques(ques_txt):
     tmp = 0
     res = ""
     for ch in ques_txt:
-        if ch == '<':
+        if ch == '&lt;':
             tmp = tmp + 1
             continue
-        elif ch == '>':
+        elif ch == '&gt;':
             tmp = tmp - 1
             continue
         elif tmp == 0:
             res = res + ch
-    res = res.replace("&nbsp;", "")
+    res = res.replace("&amp;nbsp;", "")
     res = res.replace("\r\n", "")
     res = res[0: res.find("收录：")]
     return res
@@ -635,7 +630,7 @@ def str2int(data):
     for i in range(len(data)):
         if data[i] == '1':
             res |= x
-        x <<= 1
+        x &lt;&lt;= 1
     return res
 
 # 十进制的int转二进制的str
@@ -643,11 +638,11 @@ def int2str(data):
     res = ''
     x = 1
     for i in range(64):
-        if x & data == 0:
+        if x &amp; data == 0:
             res += '0'
         else:
             res += '1'
-        x <<= 1
+        x &lt;&lt;= 1
     return res
 
 
@@ -687,7 +682,7 @@ if __name__ == '__main__':
                 hash_map[key] = content_list
             else:
                 for item in content_list:
-                    if count_diff_int(item, hash_value_int) < THRESHOLD:
+                    if count_diff_int(item, hash_value_int) &lt; THRESHOLD:
                         flag = False
                         break
                 if not flag:
@@ -704,12 +699,11 @@ if __name__ == '__main__':
     print("repeated count: ", repeated_count)
     print("valid count: ", count - repeated_count)
     print("valid rate: ", 1 - repeated_count/count)
-    print("repeated rate: ", repeated_count/count)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print("repeated rate: ", repeated_count/count)</code></pre>
 <ul>
 <li><strong>simhash test</strong></li>
 </ul>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">sentence1 = "I don't like the first one．I like _________．（　　）A．twoB．secondC．the second "
+<pre><code class="python">sentence1 = "I don't like the first one．I like _________．（　　）A．twoB．secondC．the second "
 sentence2 = 'To stay awake， he coffee and ordered _______．（　　）A．．otherC．the othersD．another           '
 
 str1, _ = simhash_(sentence1)
@@ -717,8 +711,7 @@ str2, _ = simhash_(sentence2)
 print(str1)
 print(str2)
 
-print(count_diff_str(str1, str2))
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print(count_diff_str(str1, str2))</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1221,7 +1214,7 @@ print(count_diff_str(str1, str2))
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

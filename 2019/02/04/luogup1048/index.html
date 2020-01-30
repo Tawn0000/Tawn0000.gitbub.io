@@ -32,8 +32,7 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -477,7 +476,7 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        511
+                        571
                     </div>
                     
 
@@ -518,7 +517,7 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="https://www.luogu.org/problemnew/show/P1048" target="_blank" rel="noopener">luoguP1048</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>01背包模板题目，采药时间作为限制条件，等同于背包问题的体积，药品价值作为价值衡量，然后利用套用01背包模板解题。</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 const int maxn = 100 + 10;
@@ -529,16 +528,17 @@ int v[maxn],w[maxn];
 int main()
 {
     int T,M;
-  scanf("%d%d",&T,&M);
-    for(int i = 1; i <= M; i++)
-     scanf("%d%d",&v[i],&w[i]);
-    for(int i = 1; i <= M; i++)
-      for(int j = T; j >= v[i]; j--)
+  scanf("%d%d",&amp;T,&amp;M);
+    for(int i = 1; i &lt;= M; i++)
+     scanf("%d%d",&amp;v[i],&amp;w[i]);
+    for(int i = 1; i &lt;= M; i++)
+      for(int j = T; j &gt;= v[i]; j--)
            dp[j] = max(dp[j],dp[j-v[i]] + w[i]);
     printf("%d\n",dp[T]);
     return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1047,7 +1047,7 @@ uim神犇拿到了uoi的ra（镭牌）后，立刻拉着基友小A到了一家�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

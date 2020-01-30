@@ -33,8 +33,7 @@ uim神犇拿到了uoi的ra（镭牌）后，立刻拉着基友小A到了一家�
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -478,7 +477,7 @@ uim神犇拿到了uoi的ra（镭牌）后，立刻拉着基友小A到了一家�
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        540
+                        561
                     </div>
                     
 
@@ -520,7 +519,7 @@ uim神犇拿到了uoi的ra（镭牌）后，立刻拉着基友小A到了一家�
 <p><a href="https://www.luogu.org/problemnew/show/P1164" target="_blank" rel="noopener">luoguP1164</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>01背包模板题目。第二种01背包问题类型，设dp[i][j], 为考虑前i件物品用光j元的方案数。<br>（1）if(j==第i道菜的价格) dp[i][j] = dp[i-1][j]+1;<br>（2）if(j&gt;第i道菜的价格)  dp[i][j] = dp[i-1][j]+dp[i-1][j-第i道菜的价格];<br>（3）if(j&lt;第i道菜的价格) dp[i][j] = dp[i-1][j];</p>
 <p>也可用滚动数组优化，初始化时dp[] = {0}, dp[0] = 1;<br>动态转移方程为  dp[j] += dp[j-a[i]]; (j: m : a[i])</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 
@@ -534,17 +533,17 @@ int main()
 {
   int n,m;
     dp[0] = 1;
-    scanf("%d%d",&n,&m);
-    for(int i = 1; i <= n; i++)
+    scanf("%d%d",&amp;n,&amp;m);
+    for(int i = 1; i &lt;= n; i++)
     {
-        scanf("%d",&a[i]);
-      for(int j = m; j >= a[i]; j--)
+        scanf("%d",&amp;a[i]);
+      for(int j = m; j &gt;= a[i]; j--)
          dp[j] += dp[j-a[i]];
      }
     printf("%d\n",dp[m]);
      return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1049,7 +1048,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

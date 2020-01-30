@@ -34,8 +34,7 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -479,7 +478,7 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        591
+                        605
                     </div>
                     
 
@@ -515,7 +514,7 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3466" target="_blank" rel="noopener">HDU3466</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>因为每个物品都有一个限制q，而01背包dp是从前i个物品转移到前i+1个物品，所以必须保证转移时无后效性，即前面i个物品选择的结果不会影响到后面的选择.<br>在这里体现在前i个物品中会影响的范围为q-p;如果第i+1个物品的q-p &gt; 前i个物品的q-p,则可以保证如果选择第i个物品，那么前面i+1个物品的q的限制条件都能满足。 即 qi+1 在的位置&gt;qi</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 typedef long long LL;
@@ -531,24 +530,23 @@ struct Node
 
 bool cmp (Node a, Node b)
 {
-  return a.q - a.p < b.q - b.p;
+  return a.q - a.p &lt; b.q - b.p;
 }
 
 int main()
 {
-  while(~scanf("%d%d",&n,&m))
+  while(~scanf("%d%d",&amp;n,&amp;m))
   {
-    for(int i = 0; i < n; i++) scanf("%d%d%d",&a[i].p,&a[i].q,&a[i].v);
+    for(int i = 0; i &lt; n; i++) scanf("%d%d%d",&amp;a[i].p,&amp;a[i].q,&amp;a[i].v);
     sort(a,a+n,cmp);//排序
     memset(dp,0,sizeof(dp));//初始化dp数组
-    for(int i = 0; i < n; i++)
-       for(int j = m; j >= a[i].q; j--)
+    for(int i = 0; i &lt; n; i++)
+       for(int j = m; j &gt;= a[i].q; j--)
             dp[j] = max(dp[j],dp[j-a[i].p] + a[i].v);//无后效性dp
     printf("%d\n",dp[m]);
   }
   return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1055,7 +1053,7 @@ Fib先生是一所小学的数学老师。在下一课中，他计划教孩子�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

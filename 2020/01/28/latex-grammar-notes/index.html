@@ -37,8 +37,7 @@ Hello World !
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -478,7 +477,7 @@ Hello World !
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        981
+                        1k
                     </div>
                     
 
@@ -501,28 +500,27 @@ Hello World !
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-建立文档"><a href="#1-建立文档" class="headerlink" title="1. 建立文档"></a>1. 建立文档</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">% hello.tex
+                <h2 id="1-建立文档"><a href="#1-建立文档" class="headerlink" title="1. 建立文档"></a>1. 建立文档</h2><pre><code class="latex">% hello.tex
 \documentclass[a4paper]{zcpaper}
 \usepackage{multicol}
 \begin{document}
 Hello World !
 \end{document}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>在latex中%号表示注释</li>
-<li>用 \ 开始的字母串来表示一个命令</li>
-<li>的 \documentclass 是 LATEX 文档的基本命令，用于指明文档类。</li>
+<li>用 \\ 开始的字母串来表示一个命令</li>
+<li>的 \\documentclass 是 LATEX 文档的基本命令，用于指明文档类。</li>
 <li>命令后面用花括号 {} 包含的内容是该命令的参数，必不可少。</li>
 <li>命令后用方括号 [] 包含的内容是该命令的选项，选项可以省略，省略时必需连同方括号也去掉。如果选项省略，将会使用默认值。</li>
-<li>的 \usepackage 命令也是 LATEX 的基本命令，用于载入 LATEX 宏包。</li>
+<li>的 \\usepackage 命令也是 LATEX 的基本命令，用于载入 LATEX 宏包。</li>
 </ul>
-<h2 id="2-建立环境"><a href="#2-建立环境" class="headerlink" title="2. 建立环境"></a>2. 建立环境</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\begin{large}
-\end{large}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="2-建立环境"><a href="#2-建立环境" class="headerlink" title="2. 建立环境"></a>2. 建立环境</h2><pre><code class="latex">\begin{large}
+\end{large}</code></pre>
 <ul>
 <li>$\begin{}, \end{}$ 表示建立环境，如列表环境：无序列表（itemize）、<br>有序列表（enumerate）和描述列表（description）</li>
 </ul>
-<pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\begin{itemize}
+<pre><code class="latex">\begin{itemize}
 \item 无编号的列表
 \item 带编号的列表
 \item 带标签的列表
@@ -536,13 +534,11 @@ Hello World !
 \item[无序列表] 无编号的列表。
 \item[有序列表] 带编号的列表。
 \item[描述列表] 带标签的列表。
-\end{description}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+\end{description}</code></pre>
 <p><img src="https://i.loli.net/2020/01/28/mIvZL5UVgQcbzsJ.png" alt="效果"></p>
-<h2 id="3-多列排版"><a href="#3-多列排版" class="headerlink" title="3. 多列排版"></a>3. 多列排版</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\begin{multicols}{2}
-\end{multicols}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="4-加粗居中"><a href="#4-加粗居中" class="headerlink" title="4. 加粗居中"></a>4. 加粗居中</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">% 加粗
+<h2 id="3-多列排版"><a href="#3-多列排版" class="headerlink" title="3. 多列排版"></a>3. 多列排版</h2><pre><code class="latex">\begin{multicols}{2}
+\end{multicols}</code></pre>
+<h2 id="4-加粗居中"><a href="#4-加粗居中" class="headerlink" title="4. 加粗居中"></a>4. 加粗居中</h2><pre><code class="latex">% 加粗
 \textbf{Hello World!}
 % 加粗
 {\bfseries Hello World!}
@@ -553,20 +549,17 @@ Hello World!
 % 居中
 \centering{Hello World!}
 % 加粗并居中
-\centering{\textbf{Hello World!}}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="5-罗马数字"><a href="#5-罗马数字" class="headerlink" title="5. 罗马数字"></a>5. 罗马数字</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\textbf{\large{\uppercase\expandafter{\romannumeral 1}}}
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="6-空格缩进"><a href="#6-空格缩进" class="headerlink" title="6. 空格缩进"></a>6. 空格缩进</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">% 空格
+\centering{\textbf{Hello World!}}</code></pre>
+<h2 id="5-罗马数字"><a href="#5-罗马数字" class="headerlink" title="5. 罗马数字"></a>5. 罗马数字</h2><pre><code class="latex">\textbf{\large{\uppercase\expandafter{\romannumeral 1}}}</code></pre>
+<h2 id="6-空格缩进"><a href="#6-空格缩进" class="headerlink" title="6. 空格缩进"></a>6. 空格缩进</h2><pre><code class="latex">% 空格
 \quad
 % 缩进
-\indent
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+\indent</code></pre>
 <h2 id="7-添加表格"><a href="#7-添加表格" class="headerlink" title="7. 添加表格"></a>7. 添加表格</h2><ul>
-<li>\multirow \multicol \hline \cline 可以用来合并行或者列</li>
-<li>\resizebox{200pt}{150pt}{} 用来调整表格大小</li>
+<li>\\multirow \\multicol \\hline \\cline 可以用来合并行或者列</li>
+<li>\\resizebox{200pt}{150pt}{} 用来调整表格大小</li>
 </ul>
-<pre class="line-numbers language-lang-latex"><code class="language-lang-latex">% \usepackage{multirow}
+<pre><code class="latex">% \usepackage{multirow}
 % \usepackage{multicol}
 
 \begin{table}[H]
@@ -577,84 +570,73 @@ Hello World!
 \begin{tabular}{ccc}
 \toprule  %添加表格头部粗线
 \toprule  %添加表格头部粗线
-字段名& 字段数据& 标记 \\
+字段名&amp; 字段数据&amp; 标记 \\
 \midrule  %添加表格中横线
-房子代码& 1010088440& \\
-\multirow{2}{*}{姓名} &  Run Qian Qiu\\
-                        & Jia Yuan \\
-年代& 2006 \\
-\multirow{2}{*}{学校数量} & \multirow{2}{*}{12} & 北京大学, \\ & & 61 幼儿园, 海淀小学... \\
-\multirow{2}{*}{设施数量} & \multirow{2}{*}{2} & 颐和园, \\ & & 百望山森林公园...\\
-...& ...& ... \\
-公交站数量 & 17 & 328路公交车...\\
-地铁数量 & 1 & 马连贵地铁\\
-地理位置 & 5 & 五环至六环\\
-X & 116.269981...& \\
-Y & 40.0336799...& \\
-房价 & 84533 &单位: 元/平方\\
+房子代码&amp; 1010088440&amp; \\
+\multirow{2}{*}{姓名} &amp;  Run Qian Qiu\\
+                        &amp; Jia Yuan \\
+年代&amp; 2006 \\
+\multirow{2}{*}{学校数量} &amp; \multirow{2}{*}{12} &amp; 北京大学, \\ &amp; &amp; 61 幼儿园, 海淀小学... \\
+\multirow{2}{*}{设施数量} &amp; \multirow{2}{*}{2} &amp; 颐和园, \\ &amp; &amp; 百望山森林公园...\\
+...&amp; ...&amp; ... \\
+公交站数量 &amp; 17 &amp; 328路公交车...\\
+地铁数量 &amp; 1 &amp; 马连贵地铁\\
+地理位置 &amp; 5 &amp; 五环至六环\\
+X &amp; 116.269981...&amp; \\
+Y &amp; 40.0336799...&amp; \\
+房价 &amp; 84533 &amp;单位: 元/平方\\
 \bottomrule %添加表格底部粗线
 \end{tabular}
 }
 \end{center}
-\end{table}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+\end{table}</code></pre>
 <p><img src="https://i.loli.net/2020/01/29/WNHKebSn9ohl4XZ.png" alt="效果图"></p>
 <h2 id="8-添加公式"><a href="#8-添加公式" class="headerlink" title="8. 添加公式"></a>8. 添加公式</h2><ul>
-<li>\eqno{((1))} 添加公式标号</li>
+<li>\\eqno{((1))} 添加公式标号</li>
 <li><a href="https://www.jianshu.com/p/df2792fc9c9f" target="_blank" rel="noopener">latex特殊字符汇总</a></li>
 </ul>
-<pre class="line-numbers language-lang-latex"><code class="language-lang-latex">$$x = \frac{x-\mu}{\sigma^2}\eqno{(1)}$$
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<script type="math/tex; mode=display">x = \frac{x-\mu}{\sigma^2}  \quad \quad (1)</script><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">$$
+<pre><code class="latex">$$x = \frac{x-\mu}{\sigma^2}\eqno{(1)}$$</code></pre>
+<p>$$x = \frac{x-\mu}{\sigma^2}  \quad \quad (1) $$</p>
+<pre><code class="latex">$$
 f(x) =
 \begin{cases}
-1 & x > 0  \\
-0 & x \leq 0\\
+1 &amp; x &gt; 0  \\
+0 &amp; x \leq 0\\
 \end{cases}
 \eqno{(2)}
-$$
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<script type="math/tex; mode=display">
-f(x) =
-\begin{cases}
-1 & x > 0\\\\
-0 & x \leq 0
-\end{cases}
-\quad \quad (2)</script><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">$$i_t = g\big(W_{xi} x_t + W_{hi} h_{t-1} + b_i\big) \eqno{(3)}$$
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<script type="math/tex; mode=display">i_t = g\big(W_{xi} x_t + W_{hi} h_{t-1} + b_i\big) \quad \quad (3)</script><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\begin{gather*}
+$$</code></pre>
+<p>$$<br>f(x) =<br>\begin{cases}<br>1 &amp; x &gt; 0\\\<br>0 &amp; x \leq 0<br>\end{cases}<br>\quad \quad (2)$$</p>
+<pre><code class="latex">$$i_t = g\big(W_{xi} x_t + W_{hi} h_{t-1} + b_i\big) \eqno{(3)}$$</code></pre>
+<p>$$i_t = g\big(W_{xi} x_t + W_{hi} h_{t-1} + b_i\big) \quad \quad (3)$$</p>
+<pre><code class="latex">\begin{gather*}
 Z_t = \varphi_1Z_{t-1} + \varphi_2Z_{t-2} + \varphi_{p}Z_{t-p} \\
 + \alpha_t - \theta_1\alpha_{t-1} - ... - \theta_q\alpha_{t-q}
 \eqno{(4)}
-\end{gather*}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<script type="math/tex; mode=display">
-Z_t = \varphi_1Z_{t-1} + \varphi_2Z_{t-2} + \varphi_{p}Z_{t-p} \\\\
-+\alpha_t - \theta_1\alpha_{t-1} - ... - \theta_q\alpha_{t-q} \quad(4)</script><h2 id="9-添加图片"><a href="#9-添加图片" class="headerlink" title="9. 添加图片"></a>9. 添加图片</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\begin{figure}[H] %H表示图强制在下面，想设置浮动环境用htp
+\end{gather*}</code></pre>
+<p>$$<br>Z_t = \varphi_1Z_{t-1} + \varphi_2Z_{t-2} + \varphi_{p}Z_{t-p} \\\<br>+\alpha_t - \theta_1\alpha_{t-1} - … - \theta_q\alpha_{t-q} \quad(4)$$</p>
+<h2 id="9-添加图片"><a href="#9-添加图片" class="headerlink" title="9. 添加图片"></a>9. 添加图片</h2><pre><code class="latex">\begin{figure}[H] %H表示图强制在下面，想设置浮动环境用htp
     \centering  %插入的图片居中表示
     \includegraphics[scale=0.9]{pic/Relationship between location and housing price.png} %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下,相对路径
     \caption{位置与房价的关系}  %图片的名称
 %     \label{fig2}
-\end{figure}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+\end{figure}</code></pre>
 <p><img src="https://i.loli.net/2020/01/29/7oMmRnjP4LONTIg.png" alt="效果图"></p>
 <h2 id="10-参考文献"><a href="#10-参考文献" class="headerlink" title="10. 参考文献"></a>10. 参考文献</h2><ul>
 <li><a href="https://blog.csdn.net/beta_2187/article/details/79994441" target="_blank" rel="noopener">LaTeX中的参考文献</a></li>
 </ul>
-<pre class="line-numbers language-lang-latex"><code class="language-lang-latex">% 引用： \cite{1}
+<pre><code class="latex">% 引用： \cite{1}
 \newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}  % 引用
 \begin{thebibliography}{3}%宽度
 \small
 \bibitem{1} xxx
 \bibitem{2} xxx
 \bibitem{3} xxx
-\end{thebibliography}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+\end{thebibliography}</code></pre>
 <h2 id="11-页眉页脚"><a href="#11-页眉页脚" class="headerlink" title="11.页眉页脚"></a>11.页眉页脚</h2><ul>
 <li><a href="https://blog.csdn.net/robertchenguangzhi/article/details/48187119" target="_blank" rel="noopener">LATEX中的页眉设置术语</a></li>
 <li><a href="https://blog.csdn.net/zhangyunfei_happy/article/details/44460903" target="_blank" rel="noopener">在LATEX中设置页眉页脚以及页码</a></li>
 </ul>
-<pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\usepackage{lastpage}%获得总页数
+<pre><code class="latex">\usepackage{lastpage}%获得总页数
 
 \pagestyle{fancy}
 % \lhead{xxx}
@@ -666,8 +648,7 @@ Z_t = \varphi_1Z_{t-1} + \varphi_2Z_{t-2} + \varphi_{p}Z_{t-p} \\\\
 \renewcommand{\headrulewidth}{0pt}%改为0pt即可去掉页眉下面的横线
 \renewcommand{\footrulewidth}{0pt}%改为0pt即可去掉页脚上面的横线
 
-\cfoot{\thepage\ / \pageref{LastPage}}%当前页 of 总页数
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+\cfoot{\thepage\ / \pageref{LastPage}}%当前页 of 总页数</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1178,7 +1159,7 @@ Z_t = \varphi_1Z_{t-1} + \varphi_2Z_{t-2} + \varphi_{p}Z_{t-p} \\\\
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

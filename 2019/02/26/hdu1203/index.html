@@ -32,8 +32,7 @@ Speakless很早就想出国，现在他已经考完了所有需要的考试，�
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -477,7 +476,7 @@ Speakless很早就想出国，现在他已经考完了所有需要的考试，�
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        583
+                        658
                     </div>
                     
 
@@ -515,10 +514,10 @@ Speakless很早就想出国，现在他已经考完了所有需要的考试，�
 <p><strong>【测试网站】</strong></p>
 <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1203" target="_blank" rel="noopener">HDU1203</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>概率dp问题<br>由于概率很小，直接相乘会导致浮点数误差。<br>所以 取对数，化乘法为加法。</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
-typedef pair<int,int> P;
+typedef pair&lt;int,int&gt; P;
 typedef long long LL;
 const int maxn = 11000;
 const int INF = 0x3f3f3f3f;
@@ -527,21 +526,20 @@ int vol[maxn];
 double val0[maxn],val[maxn],dp[maxn];
 int main()
 {
-    while(scanf("%d%d",&v,&n) && (v || n))
+    while(scanf("%d%d",&amp;v,&amp;n) &amp;&amp; (v || n))
     {
-    for(int i = 0; i <= v; i++) dp[i] = 0; 初始化dp 数组
-    for(int i = 0; i < n; i++) scanf("%d%lf",&vol[i],&val0[i]);
-    for(int i = 0; i < n; i++)  val[i] = log2(1-val0[i]);  取对数
-    for(int i = 0; i < n; i++)
-      for(int j = v; j-vol[i] >= 0; j--)
+    for(int i = 0; i &lt;= v; i++) dp[i] = 0; 初始化dp 数组
+    for(int i = 0; i &lt; n; i++) scanf("%d%lf",&amp;vol[i],&amp;val0[i]);
+    for(int i = 0; i &lt; n; i++)  val[i] = log2(1-val0[i]);  取对数
+    for(int i = 0; i &lt; n; i++)
+      for(int j = v; j-vol[i] &gt;= 0; j--)
          dp[j] = min(dp[j],dp[j-vol[i]]+val[i]);  概率dp状态转移
     double ans = 1-pow(2,dp[v]);
     printf("%.1lf",ans*100);
     printf("%%\n");
   }
   return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1046,7 +1044,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

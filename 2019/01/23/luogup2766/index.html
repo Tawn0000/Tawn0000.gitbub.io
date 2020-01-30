@@ -36,8 +36,7 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -485,14 +484,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        514
+                        978
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        5 分
                     </div>
                     
                 
@@ -530,10 +529,10 @@
 <p><a href="https://www.luogu.org/problemnew/show/P2766" target="_blank" rel="noopener">luoguP2766</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>先用 dp 求得最长上升子序列  解决题（1）</p>
 <p>然后每个数拆点，连一个流量为1 的边， 对于 a[i] &lt;= a[j] 且 i &lt; j,且 dp[i] + 1 = dp[j]  连一条 i - j+n 流量为 1 的边,</p>
-<p>对于 dp[i] = 1,  s ——-INF—&gt;i    对于dp[i] = LIS  i+n ——INF—-&gt; t,  ans = dinic(s,t); 解决题（2）</p>
+<p>对于 dp[i] = 1,  s —–INF–&gt;i    对于dp[i] = LIS  i+n —-INF—&gt; t,  ans = dinic(s,t); 解决题（2）</p>
 <p>对于题（3）  将 1 和 n 拆点自边 的流量从1 改成 INF 就可以了， ans += dinic(s,t); 解决题(3)</p>
 <p>注意特判一下 LIS = 1 的情况</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 
@@ -561,25 +560,25 @@ void add_edge(int u, int v, int c)
     h[u] = tot++;
     es[tot] = edge(u,0,h[v]);
     h[v] = tot++;
-    //cout << u <<" " <<v << " " << c<<endl;
+    //cout &lt;&lt; u &lt;&lt;" " &lt;&lt;v &lt;&lt; " " &lt;&lt; c&lt;&lt;endl;
 }
 
 bool bfs(int s, int t)
 {
    memset(l,0,sizeof(l));
    l[s] = 1;
-   queue <int> q;
+   queue &lt;int&gt; q;
    q.push(s);
    while(!q.empty())
    {
     int u = q.front();
-    //cout  << u <<endl;
+    //cout  &lt;&lt; u &lt;&lt;endl;
     q.pop();
     if(u == t)  return true;
     for(int i = h[u]; i != -1; i = es[i].next)
         {
          int v = es[i].to;
-         if(!l[v] && es[i].c) {l[v] = l[u] + 1; q.push(v);}
+         if(!l[v] &amp;&amp; es[i].c) {l[v] = l[u] + 1; q.push(v);}
         }
    }
    return false;
@@ -589,9 +588,9 @@ int dfs(int x, int t, int mf)
 {
     if(x == t) return mf;
     int ret = 0;
-    for(int &i = cur[x]; i != -1; i = es[i].next)
+    for(int &amp;i = cur[x]; i != -1; i = es[i].next)
     {
-      if(es[i].c && l[x] == l[es[i].to] - 1)
+      if(es[i].c &amp;&amp; l[x] == l[es[i].to] - 1)
       {
         int f = dfs(es[i].to,t,min(es[i].c,mf - ret));
         es[i].c -= f;
@@ -608,7 +607,7 @@ int dinic(int s, int t)
   int ans = 0;
   while(bfs(s,t))
   {
-   for(int i = 0; i <= t; i++) cur[i] = h[i];
+   for(int i = 0; i &lt;= t; i++) cur[i] = h[i];
    ans += dfs(s,t,INF);
    }
   return ans;
@@ -619,15 +618,15 @@ int dp[510];
 
 int main()
 {
-   scanf("%d",&n);
-   for(int i = 1; i <= n; i++)
-      scanf("%d",&a[i]);
+   scanf("%d",&amp;n);
+   for(int i = 1; i &lt;= n; i++)
+      scanf("%d",&amp;a[i]);
    int maxa = 0;
-   for(int i = 1; i <= n; i++)
+   for(int i = 1; i &lt;= n; i++)
     {
        dp[i] = 1;
-       for(int j = 1; j < i; j++)
-       if(a[i] >= a[j]) dp[i] = max(dp[i],dp[j]+1);
+       for(int j = 1; j &lt; i; j++)
+       if(a[i] &gt;= a[j]) dp[i] = max(dp[i],dp[j]+1);
        maxa = max(maxa,dp[i]);
     }
    tot = 0;
@@ -635,13 +634,13 @@ int main()
    int s = 0, t = 2*n+1;
    add_edge(1,1+n,1);
    add_edge(n,n+n,1);
-   for(int i = 1; i <= n; i++)
+   for(int i = 1; i &lt;= n; i++)
    {
-       if(i != 1 && i != n) add_edge(i,i+n,1);
+       if(i != 1 &amp;&amp; i != n) add_edge(i,i+n,1);
        if(dp[i] == 1) add_edge(s,i,INF);
        if(dp[i] == maxa) add_edge(i+n,t,INF);
-       for(int j = i+1; j <= n; j++)
-        if(dp[j] == dp[i]+1 &&a[i] <= a[j]) add_edge(i+n,j,1);
+       for(int j = i+1; j &lt;= n; j++)
+        if(dp[j] == dp[i]+1 &amp;&amp;a[i] &lt;= a[j]) add_edge(i+n,j,1);
    }
    if(n == 1) {printf("1\n1\n1\n");return 0;}
    if(maxa == 1) {printf("%d\n%d\n%d\n",1,n,n);return 0;}
@@ -654,7 +653,7 @@ int main()
    printf("%d\n",res);
    return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1163,7 +1162,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

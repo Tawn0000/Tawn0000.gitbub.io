@@ -32,8 +32,7 @@ Fib先生是一所小学的数学老师。在下一课中，他计划教孩子�
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -477,14 +476,14 @@ Fib先生是一所小学的数学老师。在下一课中，他计划教孩子�
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        567
+                        813
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -513,35 +512,35 @@ Fib先生是一所小学的数学老师。在下一课中，他计划教孩子�
 <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=5890" target="_blank" rel="noopener">HDU5890</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>题目大意是 给出n个数和q次询问，每次删除1到3个数，问使否能从剩下的数中选10个数和为87</p>
 <p>因为N只有50所以可以先预处理所有情况</p>
-<p>然后用bitset &lt;90&gt; dp[11] 进行二维背包dp  dp[i][j] 为1 代表在取i个数时能加和到 j ；<!--90--></p>
+<p>然后用bitset &lt;90&gt; dp[11] 进行二维背包dp  dp[i][j] 为1 代表在取i个数时能加和到 j ；</p>
 <p><a href="https://blog.csdn.net/snowy_smile/article/details/79120063" target="_blank" rel="noopener">bitset 用法</a></p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <iostream>
-#include <cstdio>
-#include <algorithm>
-#include <queue>
-#include <cstring>
-#include <map>
-#include <bitset>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+#include &lt;cstring&gt;
+#include &lt;map&gt;
+#include &lt;bitset&gt;
 using namespace std;
 const int INF = 0x3f3f3f3f;
 const int maxn = 508 + 10;
 const int maxm = 10000 + 10;
-typedef pair<int,int> P;
+typedef pair&lt;int,int&gt; P;
 typedef long long LL;
 int n,Q;
 int a[maxn];
-bitset<90> dp[11];  // dp[i][j] 为1 代表在取i个数时能加和到 j
+bitset&lt;90&gt; dp[11];  // dp[i][j] 为1 代表在取i个数时能加和到 j
 bool ans[55][55][55]; // ans[i][j][k]表示然后i,j,k后是否能组成87
 bool check(int x,int y, int z)
 {
-  for(int i = 0; i < 11; i++)
+  for(int i = 0; i &lt; 11; i++)
   dp[i].reset();
   dp[0][0] = 1;
-  for(int i = 1; i <= n; i++)
+  for(int i = 1; i &lt;= n; i++)
   {
-    if(i != x && i != y && i != z)
-    for(int j = 9; j >= 0; j--)
-    dp[j+1] |= (dp[j] << a[i]);//二维dp + bitset优化
+    if(i != x &amp;&amp; i != y &amp;&amp; i != z)
+    for(int j = 9; j &gt;= 0; j--)
+    dp[j+1] |= (dp[j] &lt;&lt; a[i]);//二维dp + bitset优化
    }
   if(dp[10][87] == 1) return true;
   else return false;
@@ -550,16 +549,16 @@ bool check(int x,int y, int z)
 int main()
 {
   int T;
-  scanf("%d",&T);
+  scanf("%d",&amp;T);
   while(T--)
   {
-    scanf("%d",&n);
-    for(int i = 1; i <= n; i++) scanf("%d",&a[i]);
+    scanf("%d",&amp;n);
+    for(int i = 1; i &lt;= n; i++) scanf("%d",&amp;a[i]);
     memset(ans,false,sizeof(ans));
     //预处理
-    for(int i = 1; i <= n; i++)
-    for(int j = i; j <= n; j++)
-    for(int k = j; k <= n; k++)
+    for(int i = 1; i &lt;= n; i++)
+    for(int j = i; j &lt;= n; j++)
+    for(int k = j; k &lt;= n; k++)
   {
     if(check(i,j,k))
   {
@@ -568,19 +567,18 @@ int main()
     ans[k][i][j] = ans[k][j][i] = true;
     }
   }
-  scanf("%d",&Q);
+  scanf("%d",&amp;Q);
   while(Q--)
   {
     int i,j,k;
-    scanf("%d%d%d",&i,&j,&k);
+    scanf("%d%d%d",&amp;i,&amp;j,&amp;k);
     if(ans[i][j][k])
     printf("Yes\n");
     else printf("No\n");
   }
  }
   return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1088,7 +1086,7 @@ Fib先生是一所小学的数学老师。在下一课中，他计划教孩子�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

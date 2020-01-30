@@ -36,8 +36,7 @@ class Transform:
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -508,7 +507,7 @@ class Transform:
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="利用json进行MongoDB文件转移"><a href="#利用json进行MongoDB文件转移" class="headerlink" title="利用json进行MongoDB文件转移"></a>利用json进行MongoDB文件转移</h2><pre class="line-numbers language-lang-python"><code class="language-lang-python">import pymongo
+                <h2 id="利用json进行MongoDB文件转移"><a href="#利用json进行MongoDB文件转移" class="headerlink" title="利用json进行MongoDB文件转移"></a>利用json进行MongoDB文件转移</h2><pre><code class="python">import pymongo
 import json
 
 class Transform:
@@ -545,9 +544,8 @@ if __name__ == '__main__':
 #     transform.count()
 #     transform.read("json/record_1.json")
     for i in range(0, 85):
-        transform.write(i*10000, 10000, "json/record_%03d.json" % i)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="python-多进程的简单使用"><a href="#python-多进程的简单使用" class="headerlink" title="python 多进程的简单使用"></a>python 多进程的简单使用</h2><pre class="line-numbers language-lang-python"><code class="language-lang-python">import pymongo
+        transform.write(i*10000, 10000, "json/record_%03d.json" % i)</code></pre>
+<h2 id="python-多进程的简单使用"><a href="#python-多进程的简单使用" class="headerlink" title="python 多进程的简单使用"></a>python 多进程的简单使用</h2><pre><code class="python">import pymongo
 import json   
 import multiprocessing
 import sys
@@ -571,8 +569,7 @@ if __name__ == '__main__':
     process_num = int(sys.argv[3])
     x = int((ed-st)/process_num)
     for i in range(0, process_num):
-        multiprocessing.Process(target=worker, args=(st+x*i, x)).start()
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+        multiprocessing.Process(target=worker, args=(st+x*i, x)).start()</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1074,7 +1071,7 @@ if __name__ == '__main__':
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

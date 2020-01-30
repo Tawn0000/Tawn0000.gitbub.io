@@ -7,11 +7,10 @@
     <meta name="keywords" content="Graph Theory Template, Tawn&#39;s blog">
     <meta name="baidu-site-verification" content="Yo66Ak5SKh">
     <meta name="google-site-verification" content="Yo66Ak5SKh">
-    <meta name="description" content="拓扑排序  queue Q;
-  for(int i = 1; i  low[v])  low[x] = low[v];
-    }
-    else if(ins[v] &amp;&amp; dfn[v] &lt; low[x])
-     low[x] = ">
+    <meta name="description" content="拓扑排序  queue&amp;lt;int&amp;gt; Q;
+  for(int i = 1; i &amp;lt;= n; i++)
+    if(d[i] == 0) {Q.push(i);cmp[i] = 1;}
+  while(!Q.empty())">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -35,8 +34,7 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -484,14 +482,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        57
+                        6.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        36 分
                     </div>
                     
                 
@@ -507,14 +505,14 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">  queue<int> Q;
-  for(int i = 1; i <= n; i++)
+                <h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><pre><code class="cpp">  queue&lt;int&gt; Q;
+  for(int i = 1; i &lt;= n; i++)
     if(d[i] == 0) {Q.push(i);cmp[i] = 1;}
   while(!Q.empty())
   {
     int v = Q.front();
     Q.pop();
-    for(int i = 0; i < G[v].size(); i++)
+    for(int i = 0; i &lt; G[v].size(); i++)
       {
         d[G[v][i]]--;
         if(!d[G[v][i]])
@@ -523,21 +521,20 @@
           Q.push(G[v][i]);
         }
       }
-  }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  }</code></pre>
 <h2 id="2-sat-amp-强联通分量分解"><a href="#2-sat-amp-强联通分量分解" class="headerlink" title="2-sat &amp; 强联通分量分解"></a>2-sat &amp; 强联通分量分解</h2><h3 id="kosaraju"><a href="#kosaraju" class="headerlink" title="kosaraju"></a>kosaraju</h3><p>两遍 dfs  kosaraju 比tarjan慢</p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//vector存边比较慢，可以考虑用链式前向星
+<pre><code class="cpp">//vector存边比较慢，可以考虑用链式前向星
 int n,m;
-vector <int> G[maxn];//正向邻接表
-vector <int> rG[maxn];//反向邻接表
-vector <int> vs;     //拓扑序存点
+vector &lt;int&gt; G[maxn];//正向邻接表
+vector &lt;int&gt; rG[maxn];//反向邻接表
+vector &lt;int&gt; vs;     //拓扑序存点
 int cmp[maxn]; //标号
 bool used[maxn];
 
 void dfs(int x)
 {
   used[x] = true;
-  for(int i = 0; i < G[x].size(); i++)
+  for(int i = 0; i &lt; G[x].size(); i++)
    if(!used[G[x][i]])  dfs(G[x][i]);
   vs.push_back(x);
 }
@@ -546,7 +543,7 @@ void rdfs(int x, int k)
 {
   used[x] = true;
   cmp[x] = k;
-  for(int i = 0; i < rG[x].size(); i++)
+  for(int i = 0; i &lt; rG[x].size(); i++)
     if(!used[rG[x][i]]) rdfs(rG[x][i],k);
 }
 
@@ -554,16 +551,15 @@ int scc()
 {
   memset(used, false , sizeof(used));
   vs.clear();
-  for(int i = 1; i <= n; i++)
+  for(int i = 1; i &lt;= n; i++)
      if(!used[i]) dfs(i);
   memset(used, false ,sizeof(used));
   int k = 0;
-  for(int i = vs.size()-1; i >= 0; i--)
+  for(int i = vs.size()-1; i &gt;= 0; i--)
      if(!used[vs[i]])  rdfs(vs[i],++k);
   return k;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Tarjan"><a href="#Tarjan" class="headerlink" title="Tarjan"></a>Tarjan</h3><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">int n,m,tot,top,cnt,cnts;
+}</code></pre>
+<h3 id="Tarjan"><a href="#Tarjan" class="headerlink" title="Tarjan"></a>Tarjan</h3><pre><code class="cpp">int n,m,tot,top,cnt,cnts;
 // top 栈顶 cnts 强连通分量数量 cnt 时间戳
 int sta[maxn],h[maxn],dfn[maxn],low[maxn],cmp[maxn];
 //sta[] 堆栈， h[] 链式前向星  dfn[]dfs次序数组 cmp[]强连通分量标号
@@ -600,9 +596,9 @@ void Tarjan(int x)
     if(!dfn[v])
     {
       Tarjan(v);
-      if(low[x] > low[v])  low[x] = low[v];
+      if(low[x] &gt; low[v])  low[x] = low[v];
     }
-    else if(ins[v] && dfn[v] < low[x])
+    else if(ins[v] &amp;&amp; dfn[v] &lt; low[x])
      low[x] = dfn[v];
   }
   if(dfn[x] == low[x])
@@ -619,15 +615,14 @@ void Tarjan(int x)
 
 void scc()
 {
-  for(int i = 1; i <= n; i++)
+  for(int i = 1; i &lt;= n; i++)
     if(!dfn[i]) Tarjan(i);
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="有序输出"><a href="#有序输出" class="headerlink" title="有序输出"></a>有序输出</h3><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+}</code></pre>
+<h3 id="有序输出"><a href="#有序输出" class="headerlink" title="有序输出"></a>有序输出</h3><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 const int maxn = 8000 * 2 + 100;
-vector <int> G[maxn];
+vector &lt;int&gt; G[maxn];
 bool used[maxn];
 int n,m,top;
 int sta[maxn];
@@ -638,7 +633,7 @@ bool dfs(int x)
     if(used[x])   return true;
     used[x] = true;
     sta[top++] = x;
-    for(int i = 0; i < G[x].size(); i++)
+    for(int i = 0; i &lt; G[x].size(); i++)
       if(!dfs(G[x][i])) return false;
     return true;
 }
@@ -646,14 +641,14 @@ bool dfs(int x)
 bool judge()
 {
     memset(used,false,sizeof(used));
-    for(int i = 0; i < 2*n; i++)
+    for(int i = 0; i &lt; 2*n; i++)
     {
-        if(!used[i] && !used[i^1])
+        if(!used[i] &amp;&amp; !used[i^1])
         {
             top = 0;
             if(!dfs(i))
             {
-                for(int j = 0; j < top; j++)
+                for(int j = 0; j &lt; top; j++)
                    used[sta[j]] = false;
                 top = 0;
                 if(!dfs(i^1)) return false;
@@ -667,27 +662,26 @@ void solve()
 {
   if(judge())
     {
-      for(int i = 0; i < 2*n; i++)
+      for(int i = 0; i &lt; 2*n; i++)
       if(used[i]) printf("%d\n",i+1);
     }
   else puts("NIE");
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="LCA"><a href="#LCA" class="headerlink" title="LCA"></a>LCA</h2><h3 id="倍增"><a href="#倍增" class="headerlink" title="倍增"></a>倍增</h3><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">int fa[maxn][32];
+}</code></pre>
+<h2 id="LCA"><a href="#LCA" class="headerlink" title="LCA"></a>LCA</h2><h3 id="倍增"><a href="#倍增" class="headerlink" title="倍增"></a>倍增</h3><pre><code class="cpp">int fa[maxn][32];
 int depth[maxn];
 //depth[root] = 1, dfs(root)
 void dfs(int x)
 {
 
-    for(int i = 1; i <= 18; i++)
+    for(int i = 1; i &lt;= 18; i++)
     {
-        if(depth[x] < (1<<(i-1))) break;
+        if(depth[x] &lt; (1&lt;&lt;(i-1))) break;
         fa[x][i] = fa[fa[x][i-1]][i-1];
     }
     for(int i = h[x]; ~i; i = es[i].next)
     {
       int v = es[i].to;
-      if(depth[v] >= 0) continue;
+      if(depth[v] &gt;= 0) continue;
        fa[v][0] = x;
        depth[v] = depth[x] + 1;
        dfs(v);
@@ -696,34 +690,33 @@ void dfs(int x)
 
 int lca(int x, int y)
 {
-    if(depth[x] < depth[y]) swap(x,y);
+    if(depth[x] &lt; depth[y]) swap(x,y);
     int d = depth[x] - depth[y];
-    for(int i = 0; i <= 18; i++)
-        if(d & (1<<i)) x = fa[x][i];
+    for(int i = 0; i &lt;= 18; i++)
+        if(d &amp; (1&lt;&lt;i)) x = fa[x][i];
     if(x == y) return x;
-    for(int i = 18; i >= 0; i--)
+    for(int i = 18; i &gt;= 0; i--)
         if(fa[x][i] != fa[y][i]) x = fa[x][i], y = fa[y][i];
     return fa[x][0];
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <h2 id="求树的直径"><a href="#求树的直径" class="headerlink" title="求树的直径"></a>求树的直径</h2><ul>
 <li>两遍dfs</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//Codeforces 592 D. Super M
+<pre><code class="cpp">//Codeforces 592 D. Super M
 
-#include <bits/stdc++/h>
+#include &lt;bits/stdc++/h&gt;
 
-#define r(a) scanf("%d",&a)
+#define r(a) scanf("%d",&amp;a)
 #define p(a) printf("%d",a)
 const int INF = 0x3f3f3f3f;
 const int maxn = 123456 + 100;
 using namespace std;
 
-vector <int> g[maxn];
+vector &lt;int&gt; g[maxn];
 int a[maxn];
 int b[maxn];
 bool vis[maxn];
-set <int> cnt;
+set &lt;int&gt; cnt;
 int st;
 int ed;
 int len_max;
@@ -731,7 +724,7 @@ int len_max;
 void dfs_1(int x,int num)
 {
     int rt = 0;
-    for(int i = 0; i < g[x].size();i++)
+    for(int i = 0; i &lt; g[x].size();i++)
     {
         int t = g[x][i];
         if(cnt.count(t) == 0 || vis[t]) continue;
@@ -739,7 +732,7 @@ void dfs_1(int x,int num)
         dfs_1(t,num+1);
                 rt++;
     }
-    if(rt == 0 && num >= len_max)
+    if(rt == 0 &amp;&amp; num &gt;= len_max)
     {
         if(len_max == num) st = min(st,x);
         else st = x;
@@ -750,13 +743,13 @@ void dfs_1(int x,int num)
 bool dfs(int f,int x)
 {
     bool rt = false;
-    for(int i = 0; i < g[x].size(); i++)
+    for(int i = 0; i &lt; g[x].size(); i++)
     {
         int t = g[x][i];
         if(t == f) continue;
         if( dfs(x,t)||cnt.count(t)) vis[t] = rt = true;
     }
-//  if(rt) cout << "##" << x<<endl;
+//  if(rt) cout &lt;&lt; "##" &lt;&lt; x&lt;&lt;endl;
     return rt;
 }
 
@@ -764,7 +757,7 @@ void get_tree()
 {
   memset(vis,false,sizeof(vis));
   vis[a[0]] = true;
- // cout << "##"<<a[0]<<endl;
+ // cout &lt;&lt; "##"&lt;&lt;a[0]&lt;&lt;endl;
     dfs(0,a[0]);
 }
 
@@ -772,21 +765,21 @@ int main()
 {
     int n,m;
         r(n); r(m);
-    for(int i = 1; i < n; i++)
+    for(int i = 1; i &lt; n; i++)
     {
         int v,u;
         r(v); r(u);
         g[v].push_back(u);
         g[u].push_back(v);
     }
-        for(int i = 0; i < m; i++)
+        for(int i = 0; i &lt; m; i++)
     {  r(a[i]);  cnt.insert(a[i]);}
 
     get_tree();
     int len = 0;
-    for(int i = 1; i <= n; i++)
+    for(int i = 1; i &lt;= n; i++)
            if(vis[i]) {b[++len] = i; cnt.insert(i);}
-//  cout << endl;
+//  cout &lt;&lt; endl;
 
        memset(vis,false,sizeof(vis));
        st = INF;
@@ -802,12 +795,11 @@ int main()
        dfs_1(ed,1);
        printf("%d %d\n",min(st,ed),2*(len-1)-(len_max-1));
        return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <h2 id="生成树"><a href="#生成树" class="headerlink" title="生成树"></a>生成树</h2><h3 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h3><ul>
 <li>Kruskal / 并查集  O(ElgE)</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 using namespace std;
 const int maxn = 1e6 + 10;
 const int maxm = 1e6 + 10;
@@ -820,14 +812,14 @@ struct edge{
     edge(int u = 0, int v = 0, int c = 0) : u(u), v(v), c(c) {}
 }es[maxm];
 
-bool cmp(const edge &a,const edge &b)
+bool cmp(const edge &amp;a,const edge &amp;b)
 {
-     return a.c < b.c;
+     return a.c &lt; b.c;
 }
 
 void init()
 {
-    for(int i = 0; i <= n; i++) f[i] = i;
+    for(int i = 0; i &lt;= n; i++) f[i] = i;
 }
 
 int find(int x)
@@ -849,17 +841,17 @@ bool same(int x,int y)
 
 int main()
 {
-   scanf("%d%d",&n,&m);
+   scanf("%d%d",&amp;n,&amp;m);
    init();
-   for(int i = 0; i < m; i++)
+   for(int i = 0; i &lt; m; i++)
    {
      int u,v,c;
-     scanf("%d%d%d",&u,&v,&c);
+     scanf("%d%d%d",&amp;u,&amp;v,&amp;c);
      es[i] = edge(u,v,c);
    }
    sort(es,es+m,cmp);
    int ans = 0,cnt = 0;
-   for(int i = 0; i < m; i++)
+   for(int i = 0; i &lt; m; i++)
    {
      if(!same(es[i].u,es[i].v))
      {
@@ -871,8 +863,8 @@ int main()
    printf("%d\n",ans);
    return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="次小生成树"><a href="#次小生成树" class="headerlink" title="次小生成树"></a>次小生成树</h3><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//O(VElogE)
+</code></pre>
+<h3 id="次小生成树"><a href="#次小生成树" class="headerlink" title="次小生成树"></a>次小生成树</h3><pre><code class="cpp">//O(VElogE)
 int n,m;
 int g[maxn][maxn];
 bool in[maxn][maxn];//标记其是否是最小生成树上的边
@@ -883,9 +875,9 @@ int vis[maxn];
 void dfs(int s,int x, int dis)
 {
    vis[x] = true;
-   for(int i = 1; i <= n; i++)
+   for(int i = 1; i &lt;= n; i++)
     {
-       if(g[x][i] != -1 && !vis[i] && in[x][i])
+       if(g[x][i] != -1 &amp;&amp; !vis[i] &amp;&amp; in[x][i])
             {
              md[s][i] = max(dis,g[x][i]);
              dfs(s,i,max(dis,g[x][i]));
@@ -898,16 +890,16 @@ int Unique_MST()
   init();
   memset(g,-1,sizeof(g));
   memset(in,false,sizeof(in));
-  for(int i = 0; i < m; i++)
+  for(int i = 0; i &lt; m; i++)
    {
       int u,v,c;
-      scanf("%d%d%d",&u,&v,&c);
+      scanf("%d%d%d",&amp;u,&amp;v,&amp;c);
       es[i] = edge(u,v,c);
       g[u][v] = g[v][u] = c;
    }
  sort(es,es+m,cmp);
  int res = 0, cnt = 0;
- for(int i = 0; i < m; i++)
+ for(int i = 0; i &lt; m; i++)
   {
      if(!same(es[i].u,es[i].v))
        {
@@ -917,40 +909,38 @@ int Unique_MST()
           if(++cnt == n-1) break;
        }
   }
- for(int i = 1; i <= n; i++)
+ for(int i = 1; i &lt;= n; i++)
     {
        memset(vis,false,sizeof(vis));
        dfs(i,i,0);
     }
- //cout << res << endl;
+ //cout &lt;&lt; res &lt;&lt; endl;
  int ans = INF;
- for(int i = 0; i < m; i++)
+ for(int i = 0; i &lt; m; i++)
        {
           if(in[es[i].u][es[i].v]) continue;
           ans = min(ans,res-md[es[i].u][es[i].v] + es[i].c);
-          //cout << es[i].u << " " << es[i].v << " " << md[es[i].u][es[i].v] << endl;
+          //cout &lt;&lt; es[i].u &lt;&lt; " " &lt;&lt; es[i].v &lt;&lt; " " &lt;&lt; md[es[i].u][es[i].v] &lt;&lt; endl;
        }
  return ans;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <h3 id="最小树形图"><a href="#最小树形图" class="headerlink" title="最小树形图"></a>最小树形图</h3><ul>
 <li>朱刘算法 O(VM)</li>
 </ul>
 <p>不定根最小树形图就再加一个超级源点，源点与所有节点连边，边权 = sum + 1(sum = c1 + ..cm)即可。<br>然后最后与原点相连的就是root.主要修改下面两个地方</p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">   if(es[i].c < in[v] && u != v)
+<pre><code class="cpp">   if(es[i].c &lt; in[v] &amp;&amp; u != v)
        {
          in[v] = es[i].c,pre[v] = u;
          if(u == root) rt = i; //利用边m - m+n-1 与点1-n的映射关系
        }
 
 
-    for(int i = 1; i <= n; i++)
+    for(int i = 1; i &lt;= n; i++)
         es[m+i-1] = edge(n+1,i,sum);
     type ans = MTG(n+1,n+1,m+n);
-    if(ans >= 2*sum) printf("impossible\n\n");
-    else printf("%lld %d\n\n",ans-sum,rt-m);
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">const double eps = 1e-8;
+    if(ans &gt;= 2*sum) printf("impossible\n\n");
+    else printf("%lld %d\n\n",ans-sum,rt-m);</code></pre>
+<pre><code class="cpp">const double eps = 1e-8;
 #define type double
 type in[maxn];
 int id[maxn],used[maxn],pre[maxn];
@@ -967,25 +957,25 @@ type MTG(int root, int n, int m)
   type res = 0;
   while(1)
   {
-    for(int i = 1; i <= n; i++)  in[i] = INF,id[i] = used[i] = -1;
-    for(int i = 0; i < m; i++)
+    for(int i = 1; i &lt;= n; i++)  in[i] = INF,id[i] = used[i] = -1;
+    for(int i = 0; i &lt; m; i++)
      {
        int u = es[i].u;
        int v = es[i].v;
-       if(es[i].c < in[v] && u != v)  in[v] = es[i].c,pre[v] = u;
+       if(es[i].c &lt; in[v] &amp;&amp; u != v)  in[v] = es[i].c,pre[v] = u;
      }//找最小的入边
-    for(int i = 1; i <= n; i++)
+    for(int i = 1; i &lt;= n; i++)
      {
        if(i == root) continue;
        res += in[i];
-       if(fabs(in[i] - INF) < eps) return -1;
+       if(fabs(in[i] - INF) &lt; eps) return -1;
      }//加入所有的入边权到答案中
     int cnt = 0;
-    for(int i = 1; i <= n; i++)//枚举每个点为起点进行找环
+    for(int i = 1; i &lt;= n; i++)//枚举每个点为起点进行找环
     {
       int v = i;
-      while(v != root && used[v] != i && id[v] == -1)  used[v] = i,v = pre[v];
-      if(v != root && id[v] == -1)//找到环的时候进行缩点编号
+      while(v != root &amp;&amp; used[v] != i &amp;&amp; id[v] == -1)  used[v] = i,v = pre[v];
+      if(v != root &amp;&amp; id[v] == -1)//找到环的时候进行缩点编号
        {
          ++cnt;
          id[v] = cnt;
@@ -993,10 +983,10 @@ type MTG(int root, int n, int m)
        }
     }
     if(cnt == 0) break;//无环则退出
-    for(int i = 1; i <= n; i++)
+    for(int i = 1; i &lt;= n; i++)
        if(id[i] == -1)  id[i] = ++cnt;
 
-    for(int i = 0; i < m; i++)//更新边
+    for(int i = 0; i &lt; m; i++)//更新边
      {
        int u = es[i].u;
        int v = es[i].v;
@@ -1008,13 +998,12 @@ type MTG(int root, int n, int m)
      root = id[root];
      }
      return res;
-  }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  }</code></pre>
 <h3 id="生成树计数"><a href="#生成树计数" class="headerlink" title="生成树计数"></a>生成树计数</h3><ul>
 <li>基尔霍夫矩阵树定理</li>
 </ul>
 <p>无向图的基尔霍夫矩阵: 对角线上表示每个点的度数,若ij之间有边则矩阵ij处为-1<br>无向图的生成树的数目为: 任意一个n-1阶主子式的行列式的绝对值.</p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#define type long long
+<pre><code class="cpp">#define type long long
 int n,m;
 int d[maxn];//记录度数
 int g[maxn][maxn];//邻接矩阵
@@ -1024,17 +1013,17 @@ type c[maxn][maxn];//基尔霍夫矩阵
 type det(type a[][maxn], int n)
 {  
   type ret=1;
-  for(int i=1;i<=n;i++)
+  for(int i=1;i&lt;=n;i++)
   {
-    for(int j=i+1;j<=n;j++)
+    for(int j=i+1;j&lt;=n;j++)
     {
       while(a[j][i])
       {
         type t=a[i][i]/a[j][i];
-        for(int k=i;k<=n;k++)
+        for(int k=i;k&lt;=n;k++)
             a[i][k]=a[i][k]-a[j][k] * t;
 
-        for(int k=i;k<=n;k++)
+        for(int k=i;k&lt;=n;k++)
             swap(a[i][k],a[j][k]);
         ret=-ret;
       }
@@ -1042,32 +1031,31 @@ type det(type a[][maxn], int n)
     if(a[i][i]==0)  return 0;
     ret=ret*a[i][i];
   }
-  if(ret<0)   ret=-ret;
+  if(ret&lt;0)   ret=-ret;
   return ret;
 }
 
 type num_st(int n, int m)
 {
-     for(int i = 1; i <= n; i++)
-       for(int j = 1; j <= n; j++)
+     for(int i = 1; i &lt;= n; i++)
+       for(int j = 1; j &lt;= n; j++)
          {
            if(i == j) c[i][j] = d[i];
            else c[i][j] = -g[i][j];
          }
 
-    // for(int i = 1; i <= n; i++)
-    //  for(int j = 1; j <= n; j++)
+    // for(int i = 1; i &lt;= n; i++)
+    //  for(int j = 1; j &lt;= n; j++)
     //     printf("%lld%c",c[i][j],j == n ? '\n' : ' ');
 
     return det(c,n-1);
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <h2 id="单源最短路"><a href="#单源最短路" class="headerlink" title="单源最短路"></a>单源最短路</h2><h3 id="dijkstra"><a href="#dijkstra" class="headerlink" title="dijkstra"></a>dijkstra</h3><p>O(ElgV) 适合不含非负权边最短路</p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 typedef long long LL;
-typedef pair <int,int> P;
+typedef pair &lt;int,int&gt; P;
 const int maxn = 100+10;
 const int INF = 0x3f3f3f3f;
 int n,m;
@@ -1079,13 +1067,13 @@ struct edge
     edge(int u = 0,int d = 0) : to(u),cost(d) {}
 };
 
-vector <edge> G[maxn];
+vector &lt;edge&gt; G[maxn];
 
 void dijkstra()
 {
     memset(d,INF,sizeof(d));
     d[1] = 0;
-    priority_queue < P,vector<P>,greater<P> >  Q;//P.first 是距离，.P.second 是顶点
+    priority_queue &lt; P,vector&lt;P&gt;,greater&lt;P&gt; &gt;  Q;//P.first 是距离，.P.second 是顶点
     Q.push(P(0,1));
     while(!Q.empty())
     {
@@ -1094,11 +1082,11 @@ void dijkstra()
         int dist = x.first;
         int u = x.second;
 
-        if(d[u] < dist) continue;//排除u相同时, dist不同的情况。
-        for(int i = 0; i < G[u].size(); i++)
+        if(d[u] &lt; dist) continue;//排除u相同时, dist不同的情况。
+        for(int i = 0; i &lt; G[u].size(); i++)
         {
             edge e = G[u][i];
-            if(d[e.to] > d[u] + e.cost)
+            if(d[e.to] &gt; d[u] + e.cost)
             {
                 d[e.to] = d[u]+ e.cost;
                 Q.push(P(d[e.to],e.to));
@@ -1110,12 +1098,12 @@ void dijkstra()
 
 void input()
 {
-    for(int i = 0; i <= n; i++ )
+    for(int i = 0; i &lt;= n; i++ )
         G[i].clear();
-    for(int i = 0; i < m; i++)
+    for(int i = 0; i &lt; m; i++)
     {
       int u,v,dist;
-      scanf("%d%d%d",&u,&v,&dist);
+      scanf("%d%d%d",&amp;u,&amp;v,&amp;dist);
       G[u].push_back(edge(v,dist));
       G[v].push_back(edge(u,dist));
     }
@@ -1123,24 +1111,23 @@ void input()
 
 int main()
 {
-    while(scanf("%d%d",&n,&m) && n && m)
+    while(scanf("%d%d",&amp;n,&amp;m) &amp;&amp; n &amp;&amp; m)
     {
         input();
         dijkstra();
         printf("%d\n",d[n]);
      }
     return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <h3 id="spfa"><a href="#spfa" class="headerlink" title="spfa"></a>spfa</h3><ul>
 <li>bfs O(KE - VE)</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">bool spfa()
+<pre><code class="cpp">bool spfa()
 {
     memset(d,INF,sizeof(d));
     memset(cnt,0,sizeof(cnt));
     memset(inq,false,sizeof(inq));
-    queue <int> Q;
+    queue &lt;int&gt; Q;
     Q.push(1);
     d[1] = 0;
     cnt[1] = 1;
@@ -1150,14 +1137,14 @@ int main()
         int t = Q.front();
         Q.pop();
         inq[t] = false;
-        for(int i = 0; i < G[t].size(); i++)
+        for(int i = 0; i &lt; G[t].size(); i++)
         {
             edge e = G[t][i];
-            if(d[e.to] > d[t] + e.cost)
+            if(d[e.to] &gt; d[t] + e.cost)
             {
                 d[e.to] = d[t] + e.cost;
                 if(!inq[e.to]) {
-                    if(++cnt[e.to] > n)  return false;
+                    if(++cnt[e.to] &gt; n)  return false;
                     Q.push(e.to);
                     inq[e.to] = true;
                 }
@@ -1166,11 +1153,11 @@ int main()
     }
     return true;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>dfs + spfa 找负环 O(KM)</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//  memset(vis,false,sizeof(vis));
+<pre><code class="cpp">//  memset(vis,false,sizeof(vis));
 //  memset(d,INF,sizeof(d));
 //   d[0] = 0;
 int d[maxn];
@@ -1182,7 +1169,7 @@ bool spfa(int u)
   for(int i = h[u]; ~i ; i = es[i].next)
   {
     int v = es[i].to;
-    if(d[v] > d[u] + es[i].c)
+    if(d[v] &gt; d[u] + es[i].c)
     {
       d[v] = d[u] + es[i].c;
       if(vis[v]) return false;
@@ -1191,13 +1178,12 @@ bool spfa(int u)
   }
   vis[u] = false;
   return true;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="Bellman-Ford-O-VE"><a href="#Bellman-Ford-O-VE" class="headerlink" title="Bellman_Ford  O(VE)"></a>Bellman_Ford  O(VE)</h3><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+}</code></pre>
+<h3 id="Bellman-Ford-O-VE"><a href="#Bellman-Ford-O-VE" class="headerlink" title="Bellman_Ford  O(VE)"></a>Bellman_Ford  O(VE)</h3><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 typedef long long LL;
-typedef pair <int,int> P;
+typedef pair &lt;int,int&gt; P;
 const int maxn = 100+10;
 const int maxm = 1e4 + 100;
 const int INF = 0x3f3f3f3f;
@@ -1214,25 +1200,25 @@ void Bellman_Ford()
 {
     memset(d,INF,sizeof(d));
     d[1] = 0;
-    for(int i = 1; i < n; i++)
+    for(int i = 1; i &lt; n; i++)
     {
-        for(int j = 1; j <= 2*m; j++)
+        for(int j = 1; j &lt;= 2*m; j++)
         {
             edge e = es[j];
-            if(d[e.from] < INF && d[e.to] > d[e.from] + e.cost)  d[e.to] = d[e.from] + e.cost;
+            if(d[e.from] &lt; INF &amp;&amp; d[e.to] &gt; d[e.from] + e.cost)  d[e.to] = d[e.from] + e.cost;
         }
     }
 }
 
 int main()
 {
-    while(scanf("%d%d",&n,&m)&& n && m)
+    while(scanf("%d%d",&amp;n,&amp;m)&amp;&amp; n &amp;&amp; m)
     {
         int j = 1;
-        for(int i = 1; i <= m; i++)
+        for(int i = 1; i &lt;= m; i++)
         {
             int u,v,dist;
-            scanf("%d%d%d",&u,&v,&dist);
+            scanf("%d%d%d",&amp;u,&amp;v,&amp;dist);
             edge e1,e2;
             e1.from = u,e1.to = v,e1.cost = dist;
             e2.from = v,e2.to = u,e2.cost = dist;
@@ -1242,16 +1228,15 @@ int main()
         Bellman_Ford();
         printf("%d\n",d[n]);
     }
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <h2 id="多源最短路"><a href="#多源最短路" class="headerlink" title="多源最短路"></a>多源最短路</h2><h3 id="Floyd"><a href="#Floyd" class="headerlink" title="Floyd"></a>Floyd</h3><ul>
 <li>O(V^3)</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 typedef long long LL;
-typedef pair <int,int> P;
+typedef pair &lt;int,int&gt; P;
 const int maxn = 100+10;
 const int maxm = 1e4 + 100;
 const int INF = 0x3f3f3f3f;
@@ -1260,22 +1245,22 @@ int mp[maxn][maxn];
 
 void Floyd()
 {
-    for(int k = 1; k <= n; k++)
-        for(int i = 1; i <= n; i++)
-          for(int j = 1; j <= n; j++)
+    for(int k = 1; k &lt;= n; k++)
+        for(int i = 1; i &lt;= n; i++)
+          for(int j = 1; j &lt;= n; j++)
                mp[i][j] = min(mp[i][j],mp[i][k]+mp[k][j]);
 }
 
 int main()
 {
-    while(scanf("%d%d",&n,&m)&& n && m)
+    while(scanf("%d%d",&amp;n,&amp;m)&amp;&amp; n &amp;&amp; m)
     {
         memset(mp,INF,sizeof(mp));
         int j = 1;
-        for(int i = 1; i <= m; i++)
+        for(int i = 1; i &lt;= m; i++)
         {
             int u,v,dist;
-            scanf("%d%d%d",&u,&v,&dist);
+            scanf("%d%d%d",&amp;u,&amp;v,&amp;dist);
             mp[u][v] = dist;
             mp[v][u] = dist;
         }
@@ -1283,13 +1268,12 @@ int main()
         printf("%d\n",mp[1][n]);
     }
     return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h2><h3 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h3><h4 id="EK"><a href="#EK" class="headerlink" title="EK"></a>EK</h4><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//Max_flow
+}</code></pre>
+<h2 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h2><h3 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h3><h4 id="EK"><a href="#EK" class="headerlink" title="EK"></a>EK</h4><pre><code class="cpp">//Max_flow
 //@2018/05/02 Wednesday
 //EK algorithm [Edmonds Karp] O(V*E^2) O(v^2)
 //by Tawn
-#include <bits/stdc++.h>
+#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 const int maxn = 1e3;
@@ -1299,7 +1283,7 @@ int n,m; //n - Vertices  m - edges
 int pre[maxn]; //record predecesor and sign if it is visited
 int cap[maxn][maxn]; //record the capacity of residual network
 int flow[maxn]; //record the residual flow from starting vertex to current vertex
-queue <int> q;
+queue &lt;int&gt; q;
 
 int bfs(int st, int ed)
 {
@@ -1313,9 +1297,9 @@ int bfs(int st, int ed)
       int t = q.front();
       q.pop();
       if(t == ed) break;
-      for(int i = 1; i <= n; i++)
+      for(int i = 1; i &lt;= n; i++)
       {
-          if(pre[i] == -1 && cap[t][i] > 0)
+          if(pre[i] == -1 &amp;&amp; cap[t][i] &gt; 0)
           {
               pre[i] = t;
               flow[i] = min(flow[t],cap[t][i]);
@@ -1349,27 +1333,26 @@ int EK(int st, int ed)
 int main()
 {
    int s,t,c;
-   scanf("%d%d",&n,&m);
+   scanf("%d%d",&amp;n,&amp;m);
    memset(cap,0,sizeof(cap));
-   for(int i = 0; i < m; i++)
+   for(int i = 0; i &lt; m; i++)
    {
-       scanf("%d%d%d",&s,&t,&c);
+       scanf("%d%d%d",&amp;s,&amp;t,&amp;c);
        cap[s][t] = c;
    }
    int ans = EK(1,n);
    printf("%d\n",ans);
    return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h4><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//Max_flow
+}</code></pre>
+<h4 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h4><pre><code class="cpp">//Max_flow
 //@2018/05/04 Friday
 //Dinic  O(n^2 * m)  O(m*3*2)
 //by Tawn
-#include <iostream>
-#include <cstdio>
-#include <algorithm>
-#include <queue>
-#include <cstring>
+#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+#include &lt;cstring&gt;
 
 using namespace std;
 const int INF = 0x3f3f3f3f;
@@ -1402,7 +1385,7 @@ bool bfs(int s, int t)
 {
    memset(l,0,sizeof(l));
    l[s] = 1;
-   queue <int> q;
+   queue &lt;int&gt; q;
    q.push(s);
    while(!q.empty())
    {
@@ -1412,7 +1395,7 @@ bool bfs(int s, int t)
     for(int i = h[u]; i != -1; i = es[i].next)
         {
          int v = es[i].to;
-         if(!l[v] && es[i].c) {l[v] = l[u] + 1; q.push(v);}
+         if(!l[v] &amp;&amp; es[i].c) {l[v] = l[u] + 1; q.push(v);}
         }
    }
    return false;
@@ -1422,9 +1405,9 @@ int dfs(int x, int t, int mf)
 {
     if(x == t) return mf;
     int ret = 0;
-    for(int &i = cur[x]; i != -1; i = es[i].next)
+    for(int &amp;i = cur[x]; i != -1; i = es[i].next)
     {
-      if(es[i].c && l[x] == l[es[i].to] - 1)
+      if(es[i].c &amp;&amp; l[x] == l[es[i].to] - 1)
       {
         int f = dfs(es[i].to,t,min(es[i].c,mf - ret));
         es[i].c -= f;
@@ -1441,7 +1424,7 @@ int dinic(int s, int t)
   int ans = 0;
   while(bfs(s,t))
   {
-   for(int i = 0; i <= t; i++) cur[i] = h[i];
+   for(int i = 0; i &lt;= t; i++) cur[i] = h[i];
    ans += dfs(s,t,INF);
    }
   return ans;
@@ -1450,31 +1433,30 @@ int dinic(int s, int t)
 
 int main()
 {
-   while(~scanf("%d%d",&n,&m))
+   while(~scanf("%d%d",&amp;n,&amp;m))
    {
    tot = 0;
    memset(h,-1,sizeof(h));
    int u,v,c;
-   for(int i = 0; i < m; i++)
+   for(int i = 0; i &lt; m; i++)
    {
-    scanf("%d%d%d",&u,&v,&c);
+    scanf("%d%d%d",&amp;u,&amp;v,&amp;c);
     add_edge(u,v,c);
    }
    int ans = dinic(1,n);
    printf("%d\n",ans);
    }
    return 0;   
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="SAP"><a href="#SAP" class="headerlink" title="SAP"></a>SAP</h4><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//Max_flow
+}</code></pre>
+<h4 id="SAP"><a href="#SAP" class="headerlink" title="SAP"></a>SAP</h4><pre><code class="cpp">//Max_flow
 //@2018/05/04 Friday
 //SAP  O(n^2 * m)  O(m*3*2)
 //by Tawn
-#include <iostream>
-#include <cstdio>
-#include <algorithm>
-#include <queue>
-#include <cstring>
+#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;queue&gt;
+#include &lt;cstring&gt;
 
 using namespace std;
 const int INF = 0x3f3f3f3f;
@@ -1508,10 +1490,10 @@ int SAP(int s, int t)
    memset(h,0,sizeof(h));
    memset(numh,0,sizeof(numh));
    memset(pre,-1,sizeof(pre));
-   for(i = 1; i <= n; i++)  ce[i] = head[i];
+   for(i = 1; i &lt;= n; i++)  ce[i] = head[i];
    numh[0] = n;
    u = s;
-   while(h[s] < n)
+   while(h[s] &lt; n)
    {
        //寻找增广路
        if(u == t)
@@ -1519,7 +1501,7 @@ int SAP(int s, int t)
            f = INF;
            for(i = s; i != t; i = es[ce[i]].to)
            {
-               if(f > es[ce[i]].c)
+               if(f &gt; es[ce[i]].c)
                {
                    neck = i;
                    f = es[ce[i]].c;
@@ -1537,7 +1519,7 @@ int SAP(int s, int t)
 
        //寻找可行弧
        for(i = ce[u]; i != -1; i = es[i].next)
-           if(es[i].c && h[u] == h[es[i].to] + 1)  break;
+           if(es[i].c &amp;&amp; h[u] == h[es[i].to] + 1)  break;
 
       //寻找增广路
        if(i != -1)
@@ -1564,14 +1546,14 @@ int SAP(int s, int t)
 
 int main()
 {
-  while(~scanf("%d%d",&n,&m))
+  while(~scanf("%d%d",&amp;n,&amp;m))
   {
   tot = 0;
   memset(head,-1,sizeof(head));
   int u,v,c;
-  for(int i = 0; i < m; i++)
+  for(int i = 0; i &lt; m; i++)
   {
-   scanf("%d%d%d",&u,&v,&c);
+   scanf("%d%d%d",&amp;u,&amp;v,&amp;c);
    add_edge(u,v,c);
    add_edge(v,u,0);//增加反向边
   }
@@ -1579,26 +1561,25 @@ int main()
   printf("%d\n",ans);
   }
   return 0;   
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="最小费用最大流"><a href="#最小费用最大流" class="headerlink" title="最小费用最大流"></a>最小费用最大流</h3><h4 id="EK-amp-Spfa"><a href="#EK-amp-Spfa" class="headerlink" title="EK &amp; Spfa"></a>EK &amp; Spfa</h4><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+}</code></pre>
+<h3 id="最小费用最大流"><a href="#最小费用最大流" class="headerlink" title="最小费用最大流"></a>最小费用最大流</h3><h4 id="EK-amp-Spfa"><a href="#EK-amp-Spfa" class="headerlink" title="EK &amp; Spfa"></a>EK &amp; Spfa</h4><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 const int maxn = 100  + 100;
 const int maxm = 100 + 100;
 const int INF = 0x3f3f3f3f;
 typedef long long LL;
-typedef pair<int,int> P;
+typedef pair&lt;int,int&gt; P;
 //const LL mod = 1e9 + 7;
 
 #define PI 3.1415926
-#define sc(x)  scanf("%d",&x)
+#define sc(x)  scanf("%d",&amp;x)
 #define pf(x)  printf("%d",x)
 #define pfn(x) printf("%d\n",x)
 #define pfln(x) printf("%lld\n",x)
 #define pfs(x) printf("%d ",x)
-#define rep(n) for(int i = 0; i < n; i++)
-#define per(n) for(int i = n-1; i >= 0; i--)
+#define rep(n) for(int i = 0; i &lt; n; i++)
+#define per(n) for(int i = n-1; i &gt;= 0; i--)
 #define mem(a,x) memset(a,x,sizeof(a))
 
 struct edge
@@ -1608,8 +1589,8 @@ struct edge
 };
 
 int tot = 0;
-vector<edge> E;
-vector<int> G[maxn];
+vector&lt;edge&gt; E;
+vector&lt;int&gt; G[maxn];
 int inq[maxn];
 int d[maxn];
 int p[maxn];
@@ -1625,21 +1606,21 @@ void addedge(int from, int to, int cap, int cost)
   G[to].push_back(tot-1);
 }
 
-bool spfa(int s, int t, int &flow, int &cost)
+bool spfa(int s, int t, int &amp;flow, int &amp;cost)
 {
   mem(d,INF);
   mem(inq,0);
   d[s] = 0,inq[s] = 1; p[s] = 0, a[s] = INF;
-  queue<int> Q;
+  queue&lt;int&gt; Q;
   Q.push(s);
   while(!Q.empty())
   {
     int u = Q.front();Q.pop();
     inq[u] = 0;
-    for(int i = 0; i < G[u].size(); i++)
+    for(int i = 0; i &lt; G[u].size(); i++)
     {
       edge e = E[G[u][i]];
-      if(e.cap > e.flow && d[e.to] > d[u] + e.cost)
+      if(e.cap &gt; e.flow &amp;&amp; d[e.to] &gt; d[u] + e.cost)
       {
         d[e.to] = d[u] + e.cost;
         p[e.to] = G[u][i];
@@ -1674,9 +1655,8 @@ int main()
    //记得初始化各个变量
    int s,t;
    mcf(s,t);
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="上下界网络流"><a href="#上下界网络流" class="headerlink" title="上下界网络流"></a>上下界网络流</h3><h4 id="无源汇可行流"><a href="#无源汇可行流" class="headerlink" title="无源汇可行流"></a>无源汇可行流</h4><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">// 此处省略dinic板子
+}</code></pre>
+<h3 id="上下界网络流"><a href="#上下界网络流" class="headerlink" title="上下界网络流"></a>上下界网络流</h3><h4 id="无源汇可行流"><a href="#无源汇可行流" class="headerlink" title="无源汇可行流"></a>无源汇可行流</h4><pre><code class="cpp">// 此处省略dinic板子
 
 int B[maxm];
 int in[maxn];
@@ -1685,17 +1665,17 @@ int main()
 {
 
  int T;
- scanf("%d",&T);
+ scanf("%d",&amp;T);
  while(T--)
  {
-   scanf("%d%d",&n,&m);
+   scanf("%d%d",&amp;n,&amp;m);
    tot = 0;
    memset(h,-1,sizeof(h));
    memset(in,0,sizeof(in));
-   for(int i = 0; i < m; i++)
+   for(int i = 0; i &lt; m; i++)
    {
       int u,v,b,c;
-      scanf("%d%d%d%d",&u,&v,&b,&c);
+      scanf("%d%d%d%d",&amp;u,&amp;v,&amp;b,&amp;c);
       add_edge(u,v,c-b);
       B[i] = b;
       in[u] -= b;
@@ -1703,26 +1683,25 @@ int main()
    }
   int s = 0, t = n+1;
   int res = 0;
-  for(int i = 1; i <= n; i++)
+  for(int i = 1; i &lt;= n; i++)
   {
-     if(in[i] > 0) {res += in[i]; add_edge(s,i,in[i]);}
-     if(in[i] < 0) {add_edge(i,t,-in[i]);}
+     if(in[i] &gt; 0) {res += in[i]; add_edge(s,i,in[i]);}
+     if(in[i] &lt; 0) {add_edge(i,t,-in[i]);}
   }
   int ans = dinic(s,t);
   if(ans != res) printf("NO\n");
   else {
       printf("YES\n");
-      for(int i = 0; i < m; i++)
+      for(int i = 0; i &lt; m; i++)
       {
               printf("%d\n",B[i] + es[2*i+1].c);
       }
     }
  }
  return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <h4 id="有源汇可行流"><a href="#有源汇可行流" class="headerlink" title="有源汇可行流"></a>有源汇可行流</h4><p>新增超级源点超级汇点  &amp;&amp;  t -INF-&gt; s</p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//2018/10/04
+<pre><code class="cpp">//2018/10/04
 //by Tawn in JNU
 // 此处省略dinic板子
 int B[maxn][30];
@@ -1733,10 +1712,10 @@ int main()
 {
  //freopen("in.txt","r",stdin);
  int T;
- scanf("%d",&T);
+ scanf("%d",&amp;T);
  while(T--)
  {
-   scanf("%d%d",&n,&m);
+   scanf("%d%d",&amp;n,&amp;m);
    int s = n+m+1, t = n+m+2,ss = 0,tt=t+1;
    tot = 0;
    memset(h,-1,sizeof(h));
@@ -1744,26 +1723,26 @@ int main()
 
   add_edge(t,s,INF);
   int res = 0;  
-  for(int i = 1; i <= t; i++)
+  for(int i = 1; i &lt;= t; i++)
    {
-   if(in[i] > 0)  {add_edge(ss,i,in[i]);res += in[i];}
-   if(in[i] < 0)  add_edge(i,tt,-in[i]);
+   if(in[i] &gt; 0)  {add_edge(ss,i,in[i]);res += in[i];}
+   if(in[i] &lt; 0)  add_edge(i,tt,-in[i]);
    }
 
   int ans = dinic(ss,tt);
   if(ans != res) printf("IMPOSSIBLE\n");
   else {
          int k = 1;
-     for(int i = 1; i <= n; i++)
-       for(int j = 1; j <= m; j++,k+=2)
+     for(int i = 1; i &lt;= n; i++)
+       for(int j = 1; j &lt;= m; j++,k+=2)
          printf("%d%c",B[i][j]+es[k].c, j == m? '\n':' ');
     }
  printf("\n");
  }
  return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="有源汇最大流"><a href="#有源汇最大流" class="headerlink" title="有源汇最大流"></a>有源汇最大流</h4><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">// 此处省略dinic板子
+</code></pre>
+<h4 id="有源汇最大流"><a href="#有源汇最大流" class="headerlink" title="有源汇最大流"></a>有源汇最大流</h4><pre><code class="cpp">// 此处省略dinic板子
 
 int in[maxn];
 int g[maxn];
@@ -1772,7 +1751,7 @@ int b[maxm*2];//该边下界
 
 int main()
 {
-   while(~scanf("%d%d",&n,&m))
+   while(~scanf("%d%d",&amp;n,&amp;m))
   {
    memset(h,-1,sizeof(h));
    memset(in,0,sizeof(in));
@@ -1782,10 +1761,10 @@ int main()
    add_edge(t,s,INF);
 
    int res = 0;
-   for(int i = 1; i <= t; i++)
+   for(int i = 1; i &lt;= t; i++)
    {
-      if(in[i] > 0) {add_edge(ss,i,in[i]); res += in[i];}
-      if(in[i] < 0) add_edge(i,tt,-in[i]);
+      if(in[i] &gt; 0) {add_edge(ss,i,in[i]); res += in[i];}
+      if(in[i] &lt; 0) add_edge(i,tt,-in[i]);
    }
    int ans = dinic(ss,tt);
    if(ans == res)
@@ -1793,41 +1772,40 @@ int main()
       add_edge(t,s,-INF);
       int _ans = dinic(s,t);
       printf("%d\n",_ans);
-      for(int i = 1; i < totc; i += 2)
+      for(int i = 1; i &lt; totc; i += 2)
         printf("%d\n",es[i].c + b[i]);
    }
    else printf("-1\n");
    printf("\n");
   }
    return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="有源汇最小流"><a href="#有源汇最小流" class="headerlink" title="有源汇最小流"></a>有源汇最小流</h4><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">// 此处省略dinic板子
+}               </code></pre>
+<h4 id="有源汇最小流"><a href="#有源汇最小流" class="headerlink" title="有源汇最小流"></a>有源汇最小流</h4><pre><code class="cpp">// 此处省略dinic板子
 
 int in[maxn];
 
 int main()
 {
-  while(~scanf("%d%d",&n,&m) && (n||m))
+  while(~scanf("%d%d",&amp;n,&amp;m) &amp;&amp; (n||m))
   {
     tot = 0;
     memset(h,-1,sizeof(h));
     memset(in,0,sizeof(in));
     int s = n+1, t = n+2, ss = 0, tt = t+1;
-    for(int i = 0; i < m; i++)
+    for(int i = 0; i &lt; m; i++)
     {
       string s1,s2;
       int u,v,p;
-      scanf("%d%d%d",&u,&v,&p);
+      scanf("%d%d%d",&amp;u,&amp;v,&amp;p);
       in[u] -= p;
       in[v] += p;
       add_edge(u,v,INF);
     }
     int res = 0;
-    for(int i = 1; i <= t; i++)
+    for(int i = 1; i &lt;= t; i++)
     {
-      if(in[i] > 0) {res += in[i]; add_edge(ss,i,in[i]);}
-      if(in[i] < 0)  add_edge(i,tt,-in[i]);
+      if(in[i] &gt; 0) {res += in[i]; add_edge(ss,i,in[i]);}
+      if(in[i] &lt; 0)  add_edge(i,tt,-in[i]);
     }
     int ans = dinic(ss,tt);
     add_edge(t,s,INF);
@@ -1836,51 +1814,49 @@ int main()
     else printf("impossible\n");
   }
   return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h2><h3 id="判断是否二分图"><a href="#判断是否二分图" class="headerlink" title="判断是否二分图"></a>判断是否二分图</h3><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">bool g[maxn][maxn];
+}</code></pre>
+<h2 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h2><h3 id="判断是否二分图"><a href="#判断是否二分图" class="headerlink" title="判断是否二分图"></a>判断是否二分图</h3><pre><code class="cpp">bool g[maxn][maxn];
 int col[maxn];
 //利用0，1染色，层序遍历，用同色则为false
 bool bfs(int n)
 {
     memset(col,-1,sizeof(col));
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i &lt; n; i++)
     {
         if(col[i] != -1) continue;
-        queue<int> q;
+        queue&lt;int&gt; q;
         col[i] = 1;
         q.push(i);
         while(!q.empty())
         {
             int from = q.front();
             q.pop();
-            for(int to = 0; to < n; to++)
+            for(int to = 0; to &lt; n; to++)
             {
-                if(g[from][to] && col[to] == -1)
+                if(g[from][to] &amp;&amp; col[to] == -1)
                 {
                     col[to] = !col[from];
                     q.push(to);
                 }
-                if(g[from][to] && col[to] == col[from])
+                if(g[from][to] &amp;&amp; col[to] == col[from])
                     return false;
             }
         }
     }
     return true;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <h3 id="二分图匹配"><a href="#二分图匹配" class="headerlink" title="二分图匹配"></a>二分图匹配</h3><ul>
 <li>匈牙利算法</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">bool g[maxn][maxn];
+<pre><code class="cpp">bool g[maxn][maxn];
 bool vis[maxn];
 int line[maxn];
 //寻找增广路O(VE)
 bool dfs(int u,int n)
 {
-    for(int v = 0; v < n; v++)
+    for(int v = 0; v &lt; n; v++)
     {
-        if(g[u][v] && !vis[v])
+        if(g[u][v] &amp;&amp; !vis[v])
         {
         vis[v] = true;
         if(line[v] == -1 || dfs(line[v],n))
@@ -1894,18 +1870,17 @@ int Max_match(int n,int p)
 {
     int all = 0;
     memset(line,-1,sizeof(line));
-    for(int i = 0; i < p; i++)
+    for(int i = 0; i &lt; p; i++)
     {
         memset(vis,false,sizeof(vis));
         if(dfs(i,n)) all++;
     }
     return all;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <ul>
 <li>Hopcroft-Carp</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">// O(sqrt(n)*e)
+<pre><code class="cpp">// O(sqrt(n)*e)
 typedef long long LL;
 using namespace std;
 const int maxn = 3010;
@@ -1926,8 +1901,8 @@ bool bfs(int n,int m)
     dis = INF;
     memset(dx,-1,sizeof(dx));
     memset(dy,-1,sizeof(dy));
-    queue <int> que;
-    for(int i = 0; i < n; i++)
+    queue &lt;int&gt; que;
+    for(int i = 0; i &lt; n; i++)
     {
         if(Mx[i] == -1)
             {
@@ -1940,10 +1915,10 @@ bool bfs(int n,int m)
     {
         int u = que.front();
         que.pop();
-        if(dx[u] > dis)  break;
-        for(int v = 0; v < m; v ++)
+        if(dx[u] &gt; dis)  break;
+        for(int v = 0; v &lt; m; v ++)
         {
-            if(g[u][v] && dy[v] == -1)
+            if(g[u][v] &amp;&amp; dy[v] == -1)
             {
                 dy[v] = dx[u] + 1;
                 if(My[v] == -1) dis = dy[v];
@@ -1960,12 +1935,12 @@ bool bfs(int n,int m)
 
 bool dfs(int u,int m)
 {
-   for(int v = 0; v < m; v++)
+   for(int v = 0; v &lt; m; v++)
    {
-      if(g[u][v] && !vis[v] && dy[v] == dx[u] + 1)
+      if(g[u][v] &amp;&amp; !vis[v] &amp;&amp; dy[v] == dx[u] + 1)
       {
           vis[v] = true;
-          if(My[v] != -1 && dy[v] == dis) continue;
+          if(My[v] != -1 &amp;&amp; dy[v] == dis) continue;
 
           if(My[v] == -1 || dfs(My[v],m))
           {
@@ -1988,17 +1963,16 @@ int Max_match(int n,int m)
     while(bfs(n,m))
     {
        memset(vis,false,sizeof(vis));
-       for(int i = 0; i < n; i++)
-            if(Mx[i] == -1 && dfs(i,m))
+       for(int i = 0; i &lt; n; i++)
+            if(Mx[i] == -1 &amp;&amp; dfs(i,m))
             all++;
     }
     return all;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <h3 id="最小路径覆盖"><a href="#最小路径覆盖" class="headerlink" title="最小路径覆盖"></a>最小路径覆盖</h3><ul>
 <li>最小路径覆盖 = n-二分图最大匹配数  拆点建二分图</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">/*
+<pre><code class="cpp">/*
      int f = dfs(es[i].to,t,min(es[i].c,mf - ret));
         if(f) nxt[x] = es[i].to;
 */
@@ -2008,40 +1982,39 @@ int vis[maxn];//查找路径时标记点
 
 void solve()
 {
-   scanf("%d%d",&n,&m);
+   scanf("%d%d",&amp;n,&amp;m);
    tot = 0;
    memset(nxt,-1,sizeof(nxt));
    memset(h,-1,sizeof(h));
    memset(vis,false,sizeof(vis));
 
    int s = 0, t = 2*n+1,u,v;
-   for(int i = 1; i <= n; i++)
+   for(int i = 1; i &lt;= n; i++)
      add_edge(s,i,1),add_edge(i+n,t,1);
 
-   for(int i = 0; i < m; i++)
+   for(int i = 0; i &lt; m; i++)
    {
-       scanf("%d%d",&u,&v);
+       scanf("%d%d",&amp;u,&amp;v);
        add_edge(u,v+n,1);
    }
 
    int res = dinic(s,t);
 
    printf("%d\n",n-res); //最小路径覆盖 = n - 二分图最大匹配
-   for(int i = 1; i <= n; i++)
+   for(int i = 1; i &lt;= n; i++)
        if(!vis[i])
        {
-           vector <int> v;
+           vector &lt;int&gt; v;
            int t = i;
            do{
             vis[t] = true;
             v.push_back(t);
             t = nxt[t]-n;
-           }while(t > 0);
-           for(int j = 0; j < v.size(); j++)
+           }while(t &gt; 0);
+           for(int j = 0; j &lt; v.size(); j++)
              printf("%d%c",v[j], j == v.size() -1 ? '\n' : ' ');
        }
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>二分图最小点权覆盖集 = 最小割 = 最大流，  最大点权独立集 = 总权 - 最小点权覆盖集</p>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -2556,7 +2529,7 @@ void solve()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

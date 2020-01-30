@@ -35,8 +35,7 @@ import oss2
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -504,7 +503,7 @@ import oss2
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="一、官方接口文档"><a href="#一、官方接口文档" class="headerlink" title="一、官方接口文档"></a>一、官方接口文档</h2><p><a href="https://help.aliyun.com/product/31815.html" target="_blank" rel="noopener">aliyun oss</a></p>
-<h2 id="二、实例操作"><a href="#二、实例操作" class="headerlink" title="二、实例操作"></a>二、实例操作</h2><h3 id="1-获取特定文件夹下的文件数量"><a href="#1-获取特定文件夹下的文件数量" class="headerlink" title="1. 获取特定文件夹下的文件数量"></a>1. 获取特定文件夹下的文件数量</h3><pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+<h2 id="二、实例操作"><a href="#二、实例操作" class="headerlink" title="二、实例操作"></a>二、实例操作</h2><h3 id="1-获取特定文件夹下的文件数量"><a href="#1-获取特定文件夹下的文件数量" class="headerlink" title="1. 获取特定文件夹下的文件数量"></a>1. 获取特定文件夹下的文件数量</h3><pre><code class="python"># -*- coding: utf-8 -*-
 import oss2
 
 # 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
@@ -517,9 +516,8 @@ res = 0
 for obj in oss2.ObjectIterator(bucket, prefix = '文件名'):
   #  print(obj.key)
     res += 1
-print(res)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="2-获取特定文件夹的大小，平均文件大小"><a href="#2-获取特定文件夹的大小，平均文件大小" class="headerlink" title="2. 获取特定文件夹的大小，平均文件大小"></a>2. 获取特定文件夹的大小，平均文件大小</h3><pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+print(res)</code></pre>
+<h3 id="2-获取特定文件夹的大小，平均文件大小"><a href="#2-获取特定文件夹的大小，平均文件大小" class="headerlink" title="2. 获取特定文件夹的大小，平均文件大小"></a>2. 获取特定文件夹的大小，平均文件大小</h3><pre><code class="python"># -*- coding: utf-8 -*-
 import oss2
 
 # 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
@@ -536,8 +534,7 @@ for obj in oss2.ObjectIterator(bucket, prefix = '文件名'):
     length += obj.size
 print('directory: 文件名' + '  length:' + str(length / 1024 / 1024) + "MB")
 print('the number of file: ' + str(res))
-print('average length: ' + str(length/res/1024/1024) + "MB")
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print('average length: ' + str(length/res/1024/1024) + "MB")</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1044,7 +1041,7 @@ print('average length: ' + str(length/res/1024/1024) + "MB")
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

@@ -34,8 +34,7 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -483,14 +482,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.1k
+                        1.2k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        6 分
                     </div>
                     
                 
@@ -522,7 +521,7 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="https://www.luogu.org/problemnew/show/P2604" target="_blank" rel="noopener">luoguP2604</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>首先题意很明显，第一问是求最大流，直接用Dinic求最大流即可，不知道怎么求最大流请先学习如何求最大流，第二问是求最小花费下使最大流增长k，所以其本质是最小费用最大流，只需要建图时注意，将一条边分别拆成一条费用为0容量为c的边和一条费用为w容量为INF的边，然后再用EK&amp;Spfa跑最小费用最大流的增广时，如果当前flow + a[t] &gt;= k(需要增加的流) + maxflow(dinic所求)， 则不需要再增广，并且使cost加上相应的最后部分流增广的费用，然后返回退出即可。详见代码。</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 const int INF = 0x3f3f3f3f;
@@ -555,7 +554,7 @@ bool bfs(int s, int t)
 {
    memset(l,0,sizeof(l));
    l[s] = 1;
-   queue <int> q;
+   queue &lt;int&gt; q;
    q.push(s);
    while(!q.empty())
    {
@@ -565,7 +564,7 @@ bool bfs(int s, int t)
     for(int i = h[u]; i != -1; i = es[i].next)
         {
          int v = es[i].to;
-         if(!l[v] && es[i].c) {l[v] = l[u] + 1; q.push(v);}
+         if(!l[v] &amp;&amp; es[i].c) {l[v] = l[u] + 1; q.push(v);}
         }
    }
    return false;
@@ -575,9 +574,9 @@ int dfs(int x, int t, int mf)
 {
     if(x == t) return mf;
     int ret = 0;
-    for(int &i = cur[x]; i != -1; i = es[i].next)
+    for(int &amp;i = cur[x]; i != -1; i = es[i].next)
     {
-      if(es[i].c && l[x] == l[es[i].to] - 1)
+      if(es[i].c &amp;&amp; l[x] == l[es[i].to] - 1)
       {
         int f = dfs(es[i].to,t,min(es[i].c,mf - ret));
         es[i].c -= f;
@@ -594,24 +593,24 @@ int dinic(int s, int t)
   int ans = 0;
   while(bfs(s,t))
   {
-   for(int i = 0; i <= t; i++) cur[i] = h[i];
+   for(int i = 0; i &lt;= t; i++) cur[i] = h[i];
    ans += dfs(s,t,INF);
    }
   return ans;
 }
 
 typedef long long LL;
-typedef pair<int,int> P;
+typedef pair&lt;int,int&gt; P;
 //const LL mod = 1e9 + 7;
 
 #define PI 3.1415926
-#define sc(x)  scanf("%d",&x)
+#define sc(x)  scanf("%d",&amp;x)
 #define pf(x)  printf("%d",x)
 #define pfn(x) printf("%d\n",x)
 #define pfln(x) printf("%lld\n",x)
 #define pfs(x) printf("%d ",x)
-#define rep(n) for(int i = 0; i < n; i++)
-#define per(n) for(int i = n-1; i >= 0; i--)
+#define rep(n) for(int i = 0; i &lt; n; i++)
+#define per(n) for(int i = n-1; i &gt;= 0; i--)
 #define mem(a,x) memset(a,x,sizeof(a))
 
 struct edge1
@@ -621,8 +620,8 @@ struct edge1
 };
 
 int tot1 = 0;
-vector<edge1> E;
-vector<int> G[maxn];
+vector&lt;edge1&gt; E;
+vector&lt;int&gt; G[maxn];
 int inq[maxn];
 int d[maxn];
 int p[maxn];
@@ -638,21 +637,21 @@ void addedge(int from, int to, int cap, int cost)
   G[to].push_back(tot1-1);
 }
 
-bool spfa(int s, int t, int &flow, int &cost)
+bool spfa(int s, int t, int &amp;flow, int &amp;cost)
 {
   mem(d,INF);
   mem(inq,0);
   d[s] = 0,inq[s] = 1; p[s] = 0, a[s] = INF;
-  queue<int> Q;
+  queue&lt;int&gt; Q;
   Q.push(s);
   while(!Q.empty())
   {
     int u = Q.front();Q.pop();
     inq[u] = 0;
-    for(int i = 0; i < G[u].size(); i++)
+    for(int i = 0; i &lt; G[u].size(); i++)
     {
       edge1 e = E[G[u][i]];
-      if(e.cap > e.flow && d[e.to] > d[u] + e.cost)
+      if(e.cap &gt; e.flow &amp;&amp; d[e.to] &gt; d[u] + e.cost)
       {
         d[e.to] = d[u] + e.cost;
         p[e.to] = G[u][i];
@@ -663,7 +662,7 @@ bool spfa(int s, int t, int &flow, int &cost)
   }
 
   if(d[t] == INF) return false;
-  if(flow + a[t] >= k)
+  if(flow + a[t] &gt;= k)
   {
     cost += d[t] * (k-flow);
     return false;
@@ -690,14 +689,14 @@ int mcf(int s, int t)
 
 int main()
 {
-   scanf("%d%d%d",&n,&m,&k);
+   scanf("%d%d%d",&amp;n,&amp;m,&amp;k);
    tot = 0;
    memset(h,-1,sizeof(h));
    int u,v,c;
-   for(int i = 0; i < m; i++)
+   for(int i = 0; i &lt; m; i++)
    {
      int x;
-    scanf("%d%d%d%d",&u,&v,&c,&x);
+    scanf("%d%d%d%d",&amp;u,&amp;v,&amp;c,&amp;x);
     add_edge(u,v,c);
     addedge(u,v,c,0);
     addedge(u,v,INF,x);
@@ -710,7 +709,7 @@ int main()
    printf(" %d\n",mcf(s,t));
    return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1223,7 +1222,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

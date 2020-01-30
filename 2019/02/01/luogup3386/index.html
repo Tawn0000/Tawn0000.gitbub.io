@@ -39,8 +39,7 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -488,7 +487,7 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        443
+                        462
                     </div>
                     
 
@@ -528,7 +527,7 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="https://www.luogu.org/problemnew/show/P3386" target="_blank" rel="noopener">luoguP3386</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>二分图匹配的最大匹配问题，裸题。由于n,m都在1000以内，所以可以选用匈牙利算法(O(VE))。</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 using namespace std;
 
 const int maxn = 1000 + 10;
@@ -539,9 +538,9 @@ int line[maxn];//记录匹配方案
 //寻找增广路O(VE)
 bool dfs(int u,int n)
 {
-    for(int v = 0; v < n; v++)
+    for(int v = 0; v &lt; n; v++)
     {
-        if(g[u][v] && !vis[v])
+        if(g[u][v] &amp;&amp; !vis[v])
         {
         vis[v] = true;
         if(line[v] == -1 || dfs(line[v],n))
@@ -555,7 +554,7 @@ int Max_match(int n,int p)
 {
     int all = 0;
     memset(line,-1,sizeof(line));  
-    for(int i = 0; i < p; i++)
+    for(int i = 0; i &lt; p; i++)
     {
         memset(vis,false,sizeof(vis));
         if(dfs(i,n)) all++;
@@ -567,13 +566,13 @@ int n,m,e;
 
 int main()
 {
-  scanf("%d%d%d",&n,&m,&e);
+  scanf("%d%d%d",&amp;n,&amp;m,&amp;e);
   memset(g,false,sizeof(g));
-  for(int i = 0; i < e; i++)
+  for(int i = 0; i &lt; e; i++)
   {
     int u,v;
-    scanf("%d%d",&u,&v);
-    if(u < 1 || u > n || v < 1 || v > m) continue;
+    scanf("%d%d",&amp;u,&amp;v);
+    if(u &lt; 1 || u &gt; n || v &lt; 1 || v &gt; m) continue;
     u--,v--;
     g[u][v] = true;
   }
@@ -581,7 +580,7 @@ int main()
   printf("%d\n",ans);
   return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1090,7 +1089,7 @@ lxhgww最近迷上了一款游戏，在游戏里，他拥有很多的装备，�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

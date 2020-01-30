@@ -34,8 +34,7 @@ Roy想要抢劫银行，每家银行都有一定的金额和被抓到的概率�
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -479,14 +478,14 @@ Roy想要抢劫银行，每家银行都有一定的金额和被抓到的概率�
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        572
+                        662
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -515,7 +514,7 @@ Roy想要抢劫银行，每家银行都有一定的金额和被抓到的概率�
 <p><strong>【测试网站】</strong></p>
 <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2955" target="_blank" rel="noopener">HDU2955</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>到达性dp问题。<br>状态转移方程为 <b> dp[j] = max(dp[j],dp[j-v[i]] * (1-p[i])); </b> dp[i] 表示能抢到i个百万不被抓到的最大概率。<br>套用01背包模板，把银行里的总钱数当作总容量，概率当作价值 ，最后再根据概率判断其能不能到达该钱数。<br><b>被抓到的最小概率 = 1-不被抓到的最大概率</b></p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
 
 using namespace std;
 const int maxn = 110;
@@ -530,26 +529,25 @@ double dp[10005]; //dp数组，dp[i] 代表能抢到i个百万不被抓到的最
 int main()
 {
    int T;
-   scanf("%d",&T);
+   scanf("%d",&amp;T);
    while(T--)
    {
-    scanf("%lf%d",&P,&n);
+    scanf("%lf%d",&amp;P,&amp;n);
     int sum = 0;
-    for(int i = 0; i < n; i++)  scanf("%d%lf",&v[i],&p[i]), sum += v[i]; //统计总钱数
-    for(int i = 0; i <= sum; i++) dp[i] = 0; //初始化dp 数组
+    for(int i = 0; i &lt; n; i++)  scanf("%d%lf",&amp;v[i],&amp;p[i]), sum += v[i]; //统计总钱数
+    for(int i = 0; i &lt;= sum; i++) dp[i] = 0; //初始化dp 数组
     dp[0] = 1;  //抢到0个百万的概率总是为1
-    for(int i = 0; i < n; i++)
-      for(int j = sum; j-v[i] >= 0; j--)
+    for(int i = 0; i &lt; n; i++)
+      for(int j = sum; j-v[i] &gt;= 0; j--)
          dp[j] = max(dp[j],dp[j-v[i]] * (1-p[i]));  //状态转移
     int ans;
-    for(int i = sum; i >= 0; i--)
-            if(1-dp[i] <= P)  //被抓到的最小概率 = 1-不被抓到的最大概率
+    for(int i = sum; i &gt;= 0; i--)
+            if(1-dp[i] &lt;= P)  //被抓到的最小概率 = 1-不被抓到的最大概率
               {ans = i;break;}
     printf("%d\n",ans);
    }
    return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1060,7 +1058,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

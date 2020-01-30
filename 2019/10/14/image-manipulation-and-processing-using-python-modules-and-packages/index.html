@@ -36,8 +36,7 @@ lib：抽象概念">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -518,21 +517,19 @@ lib：抽象概念">
 <li>PIL.Image =&gt; Numpy.array : img = np.array(img)</li>
 </ul>
 <h4 id="PIL-Image-gt-Bytes"><a href="#PIL-Image-gt-Bytes" class="headerlink" title="PIL.Image => Bytes:"></a>PIL.Image =&gt; Bytes:</h4><p><a href="https://stackoverflow.com/a/56055505/12214101" target="_blank" rel="noopener">source</a></p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">from PIL import Image
+<pre><code class="python">from PIL import Image
 import io
 
 def image_to_byte_array(image:Image):
   imgByteArr = io.BytesIO()
   image.save(imgByteArr, format=image.format)
   imgByteArr = imgByteArr.getvalue()
-  return imgByteArr
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="Bytes-gt-Numpy-array"><a href="#Bytes-gt-Numpy-array" class="headerlink" title="Bytes => Numpy.array"></a>Bytes =&gt; Numpy.array</h4><pre class="line-numbers language-lang-python"><code class="language-lang-python">import requests
+  return imgByteArr</code></pre>
+<h4 id="Bytes-gt-Numpy-array"><a href="#Bytes-gt-Numpy-array" class="headerlink" title="Bytes => Numpy.array"></a>Bytes =&gt; Numpy.array</h4><pre><code class="python">import requests
 import matplotlib.pyplot as plt
 img = requests.get(url).content
-img = plt.imread(BytesIO(img), "jpg")
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="GIF-gt-PNG"><a href="#GIF-gt-PNG" class="headerlink" title="GIF ==> PNG"></a>GIF ==&gt; PNG</h4><pre class="line-numbers language-lang-python"><code class="language-lang-python">def iter_frames(gif):
+img = plt.imread(BytesIO(img), "jpg")</code></pre>
+<h4 id="GIF-gt-PNG"><a href="#GIF-gt-PNG" class="headerlink" title="GIF ==> PNG"></a>GIF ==&gt; PNG</h4><pre><code class="python">def iter_frames(gif):
     try:
         i= 0
         while 1:
@@ -553,21 +550,18 @@ img = plt.imread(BytesIO(img), "jpg")
 
 gif = Image.open('captcha.gif')
 for i, frame in enumerate(iter_frames(gif)):
-  pass
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  pass</code></pre>
 <h4 id="3-分离文件名与扩展名"><a href="#3-分离文件名与扩展名" class="headerlink" title="3. 分离文件名与扩展名"></a>3. 分离文件名与扩展名</h4><p><a href="https://blog.csdn.net/u011509971/article/details/70244688" target="_blank" rel="noopener">source</a></p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">import os
+<pre><code class="python">import os
 path_01='D:/User/wgy/workplace/data/notMNIST_large.tar.png'
 path_02='D:/User/wgy/workplace/data/notMNIST_large'
 root_01=os.path.splitext(path_01)
 root_02=os.path.splitext(path_02)
 print(root_01)
-print(root_02)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print(root_02)</code></pre>
 <p>结果：</p>
 <pre><code>('D:/User/wgy/workplace/data/notMNIST_large.tar', '.png')
-('D:/User/wgy/workplace/data/notMNIST_large', '')
-</code></pre><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h2 id="PIL"><a href="#PIL" class="headerlink" title="PIL"></a>PIL</h2><h2 id="Scipy"><a href="#Scipy" class="headerlink" title="Scipy"></a>Scipy</h2><h2 id="Open-cv"><a href="#Open-cv" class="headerlink" title="Open-cv"></a>Open-cv</h2><script>
+('D:/User/wgy/workplace/data/notMNIST_large', '')</code></pre><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h2 id="PIL"><a href="#PIL" class="headerlink" title="PIL"></a>PIL</h2><h2 id="Scipy"><a href="#Scipy" class="headerlink" title="Scipy"></a>Scipy</h2><h2 id="Open-cv"><a href="#Open-cv" class="headerlink" title="Open-cv"></a>Open-cv</h2><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1060,7 +1054,7 @@ print(root_02)
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

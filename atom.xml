@@ -29,7 +29,7 @@
       
         
         
-          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-lang-latex&quot;&gt;&lt;code
+          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre&gt;&lt;code class=&quot;latex&quot;&gt;%
         
       
     
@@ -56,7 +56,7 @@
       
         
         
-          &lt;h2 id=&quot;利用json进行MongoDB文件转移&quot;&gt;&lt;a href=&quot;#利用json进行MongoDB文件转移&quot; class=&quot;headerlink&quot; title=&quot;利用json进行MongoDB文件转移&quot;&gt;&lt;/a&gt;利用json进行MongoDB文件转移&lt;/h2&gt;&lt;pre
+          &lt;h2 id=&quot;利用json进行MongoDB文件转移&quot;&gt;&lt;a href=&quot;#利用json进行MongoDB文件转移&quot; class=&quot;headerlink&quot;
         
       
     
@@ -589,8 +589,10 @@
       
         
         
-          &lt;pre class=&quot;line-numbers language-lang-python&quot;&gt;&lt;code class=&quot;language-lang-python&quot;&gt;from PIL import Image , ImageDraw, ImageFont
-import
+          &lt;pre&gt;&lt;code class=&quot;python&quot;&gt;from PIL import Image , ImageDraw, ImageFont
+import os
+
+def ttp(text, fone_type_file, font_size, font_color,
         
       
     

@@ -34,8 +34,7 @@ def ttp(text, fone_type_file, font_size, font_color, position, r">
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -479,7 +478,7 @@ def ttp(text, fone_type_file, font_size, font_color, position, r">
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        252
+                        253
                     </div>
                     
 
@@ -502,7 +501,7 @@ def ttp(text, fone_type_file, font_size, font_color, position, r">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre class="line-numbers language-lang-python"><code class="language-lang-python">from PIL import Image , ImageDraw, ImageFont
+                <pre><code class="python">from PIL import Image , ImageDraw, ImageFont
 import os
 
 def ttp(text, fone_type_file, font_size, font_color, position, row_lens):
@@ -527,7 +526,7 @@ def ttp(text, fone_type_file, font_size, font_color, position, row_lens):
         for i in range(0, lend, row_lens):
             tempd = tempd + d[i:i+row_lens] + '\n\n'
 
-        # elif len(d) > 60:
+        # elif len(d) &gt; 60:
         #     d1 = d[:60] + '\n'
         #     d2 = d[60:]
         #     d = d1 + ' \n'+ d2
@@ -554,8 +553,7 @@ if __name__=="__main__":
     target_file = ttp(str, './FangZhengHeiTiJianTi-1.ttf',20,'#000000', (20, 10), 50)
 
     target_file.show()
-    target_file.save("res.png",'PNG')
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    target_file.save("res.png",'PNG')</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1058,7 +1056,7 @@ if __name__=="__main__":
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             

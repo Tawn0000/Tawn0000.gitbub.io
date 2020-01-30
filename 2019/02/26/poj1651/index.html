@@ -32,8 +32,7 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+</head>
 
 
 <body>
@@ -477,14 +476,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        331
+                        395
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -513,8 +512,8 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="http://poj.org/problem?id=1651" target="_blank" rel="noopener">poj1651</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>区间DP,dp[i][j] 表示拿出i-j的牌的最小得分<br>dp[i][j] = min(dp[i][k-1] + dp[k+1][j] + a[i-1] x a[k] x a[j+1])   (i&lt;=k&lt;=j)</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <iostream>
-#include <cstdio>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
 using namespace std;
 const int maxn = 100 + 10;
 const int INF = 0x3f3f3f3f;
@@ -524,19 +523,19 @@ long long dp[maxn][maxn] = {0};
 
 int main()
 {
-  scanf("%d",&n);
-  for(int i = 1; i <= n; i++) scanf("%d",&a[i]);
-  for(int i = n-1; i > 1; i--)
-     for(int j = i; j < n; j++)
+  scanf("%d",&amp;n);
+  for(int i = 1; i &lt;= n; i++) scanf("%d",&amp;a[i]);
+  for(int i = n-1; i &gt; 1; i--)
+     for(int j = i; j &lt; n; j++)
          {
            dp[i][j] = 1e18;
-           for(int k = i; k <= j; k++)
+           for(int k = i; k &lt;= j; k++)
              dp[i][j] = min(dp[i][j],dp[i][k-1] + dp[k+1][j] + a[i-1]*a[j+1]*a[k]);
           }
   printf("%d\n",dp[2][n-1]);
   return 0;
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1048,7 +1047,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">55.4k</span>&nbsp;字
+                class="white-color">69.6k</span>&nbsp;字
             
             
             
