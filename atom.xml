@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-01-11T10:57:47.399Z</updated>
+  <updated>2020-01-30T15:21:27.521Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Latex Grammar Notes</title>
+    <link href="https://tawn0000.github.io/2020/01/28/latex-grammar-notes/"/>
+    <id>https://tawn0000.github.io/2020/01/28/latex-grammar-notes/</id>
+    <published>2020-01-28T10:31:46.000Z</published>
+    <updated>2020-01-30T15:21:27.521Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-lang-latex&quot;&gt;&lt;code
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Others" scheme="https://tawn0000.github.io/categories/Others/"/>
+    
+    
+      <category term="Latex" scheme="https://tawn0000.github.io/tags/Latex/"/>
+    
+  </entry>
   
   <entry>
     <title>Some useful scripts</title>
@@ -228,7 +255,7 @@
     <link href="https://tawn0000.github.io/2019/10/18/useful-articles/"/>
     <id>https://tawn0000.github.io/2019/10/18/useful-articles/</id>
     <published>2019-10-18T07:23:03.000Z</published>
-    <updated>2020-01-27T14:26:50.520Z</updated>
+    <updated>2020-01-30T15:23:30.060Z</updated>
     
     <summary type="html">
     
@@ -246,6 +273,8 @@
     
       <category term="Others" scheme="https://tawn0000.github.io/categories/Others/"/>
     
+    
+      <category term="Latex" scheme="https://tawn0000.github.io/tags/Latex/"/>
     
       <category term="htop" scheme="https://tawn0000.github.io/tags/htop/"/>
     
@@ -573,35 +602,6 @@
       <category term="CV" scheme="https://tawn0000.github.io/tags/CV/"/>
     
       <category term="Scripts" scheme="https://tawn0000.github.io/tags/Scripts/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Some operation for Aliyun oss</title>
-    <link href="https://tawn0000.github.io/2019/10/08/some-operation-for-aliyun-oss/"/>
-    <id>https://tawn0000.github.io/2019/10/08/some-operation-for-aliyun-oss/</id>
-    <published>2019-10-08T04:36:57.000Z</published>
-    <updated>2020-01-11T10:57:47.399Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;一、官方接口文档&quot;&gt;&lt;a href=&quot;#一、官方接口文档&quot; class=&quot;headerlink&quot; title=&quot;一、官方接口文档&quot;&gt;&lt;/a&gt;一、官方接口文档&lt;/h2&gt;&lt;p&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Scripts" scheme="https://tawn0000.github.io/categories/Scripts/"/>
-    
-    
-      <category term="Scripts" scheme="https://tawn0000.github.io/tags/Scripts/"/>
-    
-      <category term="oss" scheme="https://tawn0000.github.io/tags/oss/"/>
     
   </entry>
   
