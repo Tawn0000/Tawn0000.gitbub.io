@@ -29,7 +29,7 @@
       
         
         
-          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre&gt;&lt;code class=&quot;latex&quot;&gt;%
+          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-latex&quot;&gt;&lt;code
         
       
     
@@ -56,7 +56,7 @@
       
         
         
-          &lt;h2 id=&quot;利用json进行MongoDB文件转移&quot;&gt;&lt;a href=&quot;#利用json进行MongoDB文件转移&quot; class=&quot;headerlink&quot;
+          &lt;h2 id=&quot;利用json进行MongoDB文件转移&quot;&gt;&lt;a href=&quot;#利用json进行MongoDB文件转移&quot; class=&quot;headerlink&quot; title=&quot;利用json进行MongoDB文件转移&quot;&gt;&lt;/a&gt;利用json进行MongoDB文件转移&lt;/h2&gt;&lt;pre
         
       
     
@@ -129,11 +129,11 @@
       <category term="Algorithm" scheme="https://tawn0000.github.io/categories/Algorithm/"/>
     
     
+      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
+    
       <category term="DP" scheme="https://tawn0000.github.io/tags/DP/"/>
     
       <category term="Graph Theory" scheme="https://tawn0000.github.io/tags/Graph-Theory/"/>
-    
-      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
     
   </entry>
   
@@ -589,10 +589,7 @@
       
         
         
-          &lt;pre&gt;&lt;code class=&quot;python&quot;&gt;from PIL import Image , ImageDraw, ImageFont
-import os
-
-def ttp(text, fone_type_file, font_size, font_color,
+          &lt;pre class=&quot;line-numbers language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; PIL &lt;span class=&quot;token
         
       
     

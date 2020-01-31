@@ -33,7 +33,8 @@
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -442,12 +443,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/DP/">
-                                <span class="chip bg-color">DP</span>
-                            </a>
-                        
                             <a href="/tags/Algorithm/">
                                 <span class="chip bg-color">Algorithm</span>
+                            </a>
+                        
+                            <a href="/tags/DP/">
+                                <span class="chip bg-color">DP</span>
                             </a>
                         
                     </div>
@@ -477,7 +478,7 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        555
+                        554
                     </div>
                     
 
@@ -515,45 +516,45 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="https://www.luogu.org/problemnew/show/P880" target="_blank" rel="noopener">luoguP1880</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><p>因为石子是围成一圈的，所以将n堆石子展开成2<em>n,再进行区间dp<br>从长度为2开始，一直到n，n-2</em>n 的部分也需要进行dp, dp状态转移方程为：<br>dp[i][j] = max(dp[i][k] + dp[k+1][j] + sum[j]-sum[i-1]) (i&lt;k&lt;j-1)<br>最后答案max(dp[i][i+n-1])。<br>最小得分亦然。</p>
-<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
 
-using namespace std;
-const int maxn = 200 + 10;
-const int INF = 0x3f3f3f3f;
-int dp1[maxn][maxn],dp2[maxn][maxn];
-int a[maxn],sum[maxn] = {0};
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">200</span> <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> INF <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> dp1<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span>dp2<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span>sum<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-int main()
-{
-   int n;
-   scanf("%d",&amp;n);
-   for(int i = 1; i &lt;= n; i++)
-    {
-      scanf("%d",&amp;a[i]);
-      a[n+i] = a[i];
-    }
-   for(int i = 1; i &lt;= 2*n; i++) sum[i] = sum[i-1] + a[i];
-   memset(dp1,INF,sizeof(dp1));
-   memset(dp2,0,sizeof(dp2));
-   for(int i = 0; i &lt;= 2*n; i++) dp1[i][i] = dp2[i][i] = 0;
-   for(int len = 2; len &lt;= n; len++)
-       for(int i = 1, j = len; j &lt;= 2*n; i++,j++) // !j &lt;= 2*n!
-          for(int k = i; k &lt; j; k++)
-         {
-           dp1[i][j] = min(dp1[i][j],dp1[i][k] + dp1[k+1][j] + sum[j]-sum[i-1]);
-           dp2[i][j] = max(dp2[i][j],dp2[i][k] + dp2[k+1][j] + sum[j]-sum[i-1]);
-         }
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+   <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+   <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      a<span class="token punctuation">[</span>n<span class="token operator">+</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+   <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">2</span><span class="token operator">*</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> sum<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">+</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+   <span class="token function">memset</span><span class="token punctuation">(</span>dp1<span class="token punctuation">,</span>INF<span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>dp1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token function">memset</span><span class="token punctuation">(</span>dp2<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>dp2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">2</span><span class="token operator">*</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> dp1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> dp2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+   <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> len <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> len<span class="token operator">++</span><span class="token punctuation">)</span>
+       <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> j <span class="token operator">=</span> len<span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token number">2</span><span class="token operator">*</span>n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">,</span>j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// !j &lt;= 2*n!</span>
+          <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> i<span class="token punctuation">;</span> k <span class="token operator">&lt;</span> j<span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span>
+         <span class="token punctuation">{</span>
+           dp1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>dp1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">+</span> dp1<span class="token punctuation">[</span>k<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> sum<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           dp2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>dp2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">+</span> dp2<span class="token punctuation">[</span>k<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> sum<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">-</span>sum<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
 
-  int ans1 = INF,ans2 = 0;
-  for(int i = 1; i &lt;= n; i++)
-  {
-    ans1 = min(ans1,dp1[i][i+n-1]);
-    ans2 = max(ans2,dp2[i][i+n-1]);
-  }
-  printf("%d\n%d\n",ans1,ans2);
-  return 0;
-}
-</code></pre>
+  <span class="token keyword">int</span> ans1 <span class="token operator">=</span> INF<span class="token punctuation">,</span>ans2 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    ans1 <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>ans1<span class="token punctuation">,</span>dp1<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token operator">+</span>n<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ans2 <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>ans2<span class="token punctuation">,</span>dp2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token operator">+</span>n<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n%d\n"</span><span class="token punctuation">,</span>ans1<span class="token punctuation">,</span>ans2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -836,12 +837,12 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/DP/">
-                        <span class="chip bg-color">DP</span>
-                    </a>
-                    
                     <a href="/tags/Algorithm/">
                         <span class="chip bg-color">Algorithm</span>
+                    </a>
+                    
+                    <a href="/tags/DP/">
+                        <span class="chip bg-color">DP</span>
                     </a>
                     
                 </div>
@@ -891,12 +892,12 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/DP/">
-                        <span class="chip bg-color">DP</span>
-                    </a>
-                    
                     <a href="/tags/Algorithm/">
                         <span class="chip bg-color">Algorithm</span>
+                    </a>
+                    
+                    <a href="/tags/DP/">
+                        <span class="chip bg-color">DP</span>
                     </a>
                     
                 </div>
@@ -1060,7 +1061,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">69.6k</span>&nbsp;字
+                class="white-color">69.4k</span>&nbsp;字
             
             
             

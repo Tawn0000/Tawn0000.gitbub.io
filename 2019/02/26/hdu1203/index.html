@@ -32,7 +32,8 @@ Speakless很早就想出国，现在他已经考完了所有需要的考试，�
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 
-</head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 <body>
@@ -441,12 +442,12 @@ Speakless很早就想出国，现在他已经考完了所有需要的考试，�
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/DP/">
-                                <span class="chip bg-color">DP</span>
-                            </a>
-                        
                             <a href="/tags/Algorithm/">
                                 <span class="chip bg-color">Algorithm</span>
+                            </a>
+                        
+                            <a href="/tags/DP/">
+                                <span class="chip bg-color">DP</span>
                             </a>
                         
                     </div>
@@ -476,7 +477,7 @@ Speakless很早就想出国，现在他已经考完了所有需要的考试，�
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        658
+                        655
                     </div>
                     
 
@@ -514,32 +515,32 @@ Speakless很早就想出国，现在他已经考完了所有需要的考试，�
 <p><strong>【测试网站】</strong></p>
 <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1203" target="_blank" rel="noopener">HDU1203</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>概率dp问题<br>由于概率很小，直接相乘会导致浮点数误差。<br>所以 取对数，化乘法为加法。</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
 
-using namespace std;
-typedef pair&lt;int,int&gt; P;
-typedef long long LL;
-const int maxn = 11000;
-const int INF = 0x3f3f3f3f;
-int n,v;
-int vol[maxn];
-double val0[maxn],val[maxn],dp[maxn];
-int main()
-{
-    while(scanf("%d%d",&amp;v,&amp;n) &amp;&amp; (v || n))
-    {
-    for(int i = 0; i &lt;= v; i++) dp[i] = 0; 初始化dp 数组
-    for(int i = 0; i &lt; n; i++) scanf("%d%lf",&amp;vol[i],&amp;val0[i]);
-    for(int i = 0; i &lt; n; i++)  val[i] = log2(1-val0[i]);  取对数
-    for(int i = 0; i &lt; n; i++)
-      for(int j = v; j-vol[i] &gt;= 0; j--)
-         dp[j] = min(dp[j],dp[j-vol[i]]+val[i]);  概率dp状态转移
-    double ans = 1-pow(2,dp[v]);
-    printf("%.1lf",ans*100);
-    printf("%%\n");
-  }
-  return 0;
-}</code></pre>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> P<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> LL<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">11000</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> INF <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>v<span class="token punctuation">;</span>
+<span class="token keyword">int</span> vol<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">double</span> val0<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span>val<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>v<span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>v <span class="token operator">||</span> n<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> v<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> 初始化dp 数组
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%lf"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>vol<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>val0<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>  val<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">log2</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>val0<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  取对数
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> v<span class="token punctuation">;</span> j<span class="token operator">-</span>vol<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span>
+         dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>j<span class="token operator">-</span>vol<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">+</span>val<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  概率dp状态转移
+    <span class="token keyword">double</span> ans <span class="token operator">=</span> <span class="token number">1</span><span class="token operator">-</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%.1lf"</span><span class="token punctuation">,</span>ans<span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%%\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1044,7 +1045,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">69.6k</span>&nbsp;字
+                class="white-color">69.4k</span>&nbsp;字
             
             
             
