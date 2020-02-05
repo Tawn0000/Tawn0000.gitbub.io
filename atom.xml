@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-01-30T15:21:27.521Z</updated>
+  <updated>2020-02-05T03:11:04.582Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Listening Vocabulary</title>
+    <link href="https://tawn0000.github.io/2020/02/05/listening-vocabulary/"/>
+    <id>https://tawn0000.github.io/2020/02/05/listening-vocabulary/</id>
+    <published>2020-02-05T01:04:33.000Z</published>
+    <updated>2020-02-05T03:11:04.582Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;名词&quot;&gt;&lt;a href=&quot;#名词&quot; class=&quot;headerlink&quot; title=&quot;名词&quot;&gt;&lt;/a&gt;名词&lt;/h2&gt;&lt;h3 id=&quot;预测试&quot;&gt;&lt;a href=&quot;#预测试&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Latex Grammar Notes</title>
@@ -573,35 +596,6 @@
       <category term="English" scheme="https://tawn0000.github.io/tags/English/"/>
     
       <category term="IELTS" scheme="https://tawn0000.github.io/tags/IELTS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Text Convert to Pic</title>
-    <link href="https://tawn0000.github.io/2019/10/08/text-convert-to-pic/"/>
-    <id>https://tawn0000.github.io/2019/10/08/text-convert-to-pic/</id>
-    <published>2019-10-08T04:53:59.000Z</published>
-    <updated>2020-01-11T10:57:47.401Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;pre class=&quot;line-numbers language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; PIL &lt;span class=&quot;token
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Scripts" scheme="https://tawn0000.github.io/categories/Scripts/"/>
-    
-    
-      <category term="CV" scheme="https://tawn0000.github.io/tags/CV/"/>
-    
-      <category term="Scripts" scheme="https://tawn0000.github.io/tags/Scripts/"/>
     
   </entry>
   
