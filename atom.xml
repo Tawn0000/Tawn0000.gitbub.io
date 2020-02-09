@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-02-05T03:11:04.582Z</updated>
+  <updated>2020-02-08T14:27:11.276Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -17,11 +17,65 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Daily Schedule</title>
+    <link href="https://tawn0000.github.io/2020/02/08/daily-schedule/"/>
+    <id>https://tawn0000.github.io/2020/02/08/daily-schedule/</id>
+    <published>2020-02-08T06:32:23.000Z</published>
+    <updated>2020-02-08T14:27:11.276Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;2020-02-08&quot;&gt;&lt;a href=&quot;#2020-02-08&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Others" scheme="https://tawn0000.github.io/categories/Others/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode Week Contest</title>
+    <link href="https://tawn0000.github.io/2020/02/08/leetcode-week-contest/"/>
+    <id>https://tawn0000.github.io/2020/02/08/leetcode-week-contest/</id>
+    <published>2020-02-08T06:04:21.000Z</published>
+    <updated>2020-02-09T08:30:06.339Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Contest-175&quot;&gt;&lt;a href=&quot;#Contest-175&quot; class=&quot;headerlink&quot; title=&quot;Contest 175&quot;&gt;&lt;/a&gt;Contest 175&lt;/h2&gt;&lt;h3 id=&quot;5332-检查整数及其两倍数是否存在&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://tawn0000.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="Leetcode" scheme="https://tawn0000.github.io/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Listening Vocabulary</title>
     <link href="https://tawn0000.github.io/2020/02/05/listening-vocabulary/"/>
     <id>https://tawn0000.github.io/2020/02/05/listening-vocabulary/</id>
     <published>2020-02-05T01:04:33.000Z</published>
-    <updated>2020-02-05T03:11:04.582Z</updated>
+    <updated>2020-02-08T06:53:44.626Z</updated>
     
     <summary type="html">
     
@@ -36,6 +90,14 @@
     </summary>
     
     
+      <category term="English" scheme="https://tawn0000.github.io/categories/English/"/>
+    
+    
+      <category term="English" scheme="https://tawn0000.github.io/tags/English/"/>
+    
+      <category term="Vocabulary" scheme="https://tawn0000.github.io/tags/Vocabulary/"/>
+    
+      <category term="IELTS" scheme="https://tawn0000.github.io/tags/IELTS/"/>
     
   </entry>
   
@@ -165,7 +227,7 @@
     <link href="https://tawn0000.github.io/2019/11/03/daily-new-words/"/>
     <id>https://tawn0000.github.io/2019/11/03/daily-new-words/</id>
     <published>2019-11-03T05:51:36.000Z</published>
-    <updated>2020-02-04T14:54:30.471Z</updated>
+    <updated>2020-02-09T11:11:06.003Z</updated>
     
     <summary type="html">
     
@@ -173,7 +235,7 @@
       
         
         
-          &lt;h2 id=&quot;4-Feb&quot;&gt;&lt;a href=&quot;#4-Feb&quot; class=&quot;headerlink&quot; title=&quot;4 Feb&quot;&gt;&lt;/a&gt;4 Feb&lt;/h2&gt;&lt;h3 id=&quot;hoarse&quot;&gt;&lt;a href=&quot;#hoarse&quot; class=&quot;headerlink&quot;
+          &lt;h2 id=&quot;9-Feb&quot;&gt;&lt;a href=&quot;#9-Feb&quot; class=&quot;headerlink&quot; title=&quot;9 Feb&quot;&gt;&lt;/a&gt;9 Feb&lt;/h2&gt;&lt;h3 id=&quot;anticipate&quot;&gt;&lt;a href=&quot;#anticipate&quot; class=&quot;headerlink&quot;
         
       
     
@@ -186,6 +248,8 @@
       <category term="English" scheme="https://tawn0000.github.io/tags/English/"/>
     
       <category term="Vocabulary" scheme="https://tawn0000.github.io/tags/Vocabulary/"/>
+    
+      <category term="IELTS" scheme="https://tawn0000.github.io/tags/IELTS/"/>
     
   </entry>
   
@@ -214,32 +278,6 @@
     
     
       <category term="Kafka" scheme="https://tawn0000.github.io/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Daily Tasks</title>
-    <link href="https://tawn0000.github.io/2019/10/19/daily-tasks/"/>
-    <id>https://tawn0000.github.io/2019/10/19/daily-tasks/</id>
-    <published>2019-10-19T13:49:18.000Z</published>
-    <updated>2020-01-11T10:57:47.395Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;25th-Oct&quot;&gt;&lt;a href=&quot;#25th-Oct&quot; class=&quot;headerlink&quot; title=&quot;25th Oct&quot;&gt;&lt;/a&gt;25th Oct&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;You love me. I love you
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Others" scheme="https://tawn0000.github.io/categories/Others/"/>
-    
     
   </entry>
   
@@ -544,7 +582,7 @@
     <link href="https://tawn0000.github.io/2019/10/10/massive-text-de-duplication-based-on-simhash-algorithm/"/>
     <id>https://tawn0000.github.io/2019/10/10/massive-text-de-duplication-based-on-simhash-algorithm/</id>
     <published>2019-10-10T06:59:25.000Z</published>
-    <updated>2020-01-11T10:57:47.398Z</updated>
+    <updated>2020-02-08T08:45:14.249Z</updated>
     
     <summary type="html">
     
@@ -567,35 +605,6 @@
       <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
     
       <category term="NLP" scheme="https://tawn0000.github.io/tags/NLP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IELTS Speaking</title>
-    <link href="https://tawn0000.github.io/2019/10/09/ielts-speaking/"/>
-    <id>https://tawn0000.github.io/2019/10/09/ielts-speaking/</id>
-    <published>2019-10-08T16:26:08.000Z</published>
-    <updated>2020-01-14T14:28:40.076Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;2019年9月换题季口语题卡完整版&quot;&gt;&lt;a href=&quot;#2019年9月换题季口语题卡完整版&quot; class=&quot;headerlink&quot; title=&quot;2019年9月换题季口语题卡完整版&quot;&gt;&lt;/a&gt;2019年9月换题季口语题卡完整版&lt;/h2&gt;&lt;p&gt;题卡包括： 
-        
-      
-    
-    </summary>
-    
-    
-      <category term="English" scheme="https://tawn0000.github.io/categories/English/"/>
-    
-    
-      <category term="English" scheme="https://tawn0000.github.io/tags/English/"/>
-    
-      <category term="IELTS" scheme="https://tawn0000.github.io/tags/IELTS/"/>
     
   </entry>
   
