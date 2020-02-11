@@ -7,7 +7,7 @@
     <meta name="keywords" content="LeetCode Week Contest, Tawn&#39;s blog">
     <meta name="baidu-site-verification" content="Yo66Ak5SKh">
     <meta name="google-site-verification" content="Yo66Ak5SKh">
-    <meta name="description" content="Contest 1755332. 检查整数及其两倍数是否存在题解
+    <meta name="description" content="Contest 1751346. 检查整数及其两倍数是否存在题解
 遍历记录各个数是否出现
 遍历查询其倍数是否出现
 标记0的个数，特判
@@ -505,7 +505,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Contest-175"><a href="#Contest-175" class="headerlink" title="Contest 175"></a><a href="https://leetcode-cn.com/contest/weekly-contest-175/" target="_blank" rel="noopener">Contest 175</a></h2><h3 id="5332-检查整数及其两倍数是否存在"><a href="#5332-检查整数及其两倍数是否存在" class="headerlink" title="5332. 检查整数及其两倍数是否存在"></a><a href="https://leetcode-cn.com/problems/check-if-n-and-its-double-exist/" target="_blank" rel="noopener">5332. 检查整数及其两倍数是否存在</a></h3><h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><ul>
+                <h2 id="Contest-175"><a href="#Contest-175" class="headerlink" title="Contest 175"></a><a href="https://leetcode-cn.com/contest/weekly-contest-175/" target="_blank" rel="noopener">Contest 175</a></h2><h3 id="1346-检查整数及其两倍数是否存在"><a href="#1346-检查整数及其两倍数是否存在" class="headerlink" title="1346. 检查整数及其两倍数是否存在"></a><a href="https://leetcode-cn.com/problems/check-if-n-and-its-double-exist/" target="_blank" rel="noopener">1346. 检查整数及其两倍数是否存在</a></h3><h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><ul>
 <li>遍历记录各个数是否出现</li>
 <li>遍历查询其倍数是否出现</li>
 <li>标记0的个数，特判</li>
@@ -528,7 +528,7 @@
         <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="5333-制造字母异位词的最小步骤数"><a href="#5333-制造字母异位词的最小步骤数" class="headerlink" title="5333. 制造字母异位词的最小步骤数"></a><a href="https://leetcode-cn.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/" target="_blank" rel="noopener">5333. 制造字母异位词的最小步骤数</a></h3><h4 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h4><ul>
+<h3 id="1347-制造字母异位词的最小步骤数"><a href="#1347-制造字母异位词的最小步骤数" class="headerlink" title="1347. 制造字母异位词的最小步骤数"></a><a href="https://leetcode-cn.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/" target="_blank" rel="noopener">1347. 制造字母异位词的最小步骤数</a></h3><h4 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h4><ul>
 <li>按字母统计</li>
 <li>累计差额</li>
 </ul>
@@ -548,8 +548,11 @@
         <span class="token keyword">return</span> res<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="1348-推文计数"><a href="#1348-推文计数" class="headerlink" title="1348. 推文计数"></a><a href="https://leetcode-cn.com/problems/tweet-counts-per-frequency/" target="_blank" rel="noopener">1348. 推文计数</a></h3><h4 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h4><pre><code>+ 直接模拟， map映射 + 动态数组统计排序
-+ 注意只统计startTime - endTime， $ 最大区间数 = （endTime - startTime）/ interval $</code></pre><h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">TweetCounts</span> <span class="token punctuation">{</span>
+<h3 id="1348-推文计数"><a href="#1348-推文计数" class="headerlink" title="1348. 推文计数"></a><a href="https://leetcode-cn.com/problems/tweet-counts-per-frequency/" target="_blank" rel="noopener">1348. 推文计数</a></h3><h4 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h4><ul>
+<li>直接模拟， map映射 + 动态数组统计排序</li>
+<li>注意只统计startTime - endTime， $ 最大区间数 = （endTime - startTime）/ interval $</li>
+</ul>
+<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">TweetCounts</span> <span class="token punctuation">{</span>
 <span class="token keyword">public</span><span class="token operator">:</span>
     map <span class="token operator">&lt;</span>string<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">></span> mp<span class="token punctuation">;</span>
     vector<span class="token operator">&lt;</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token operator">></span> vs<span class="token punctuation">;</span>
@@ -596,7 +599,7 @@
  * obj->recordTweet(tweetName,time);
  * vector&lt;int> param_2 = obj->getTweetCountsPerFrequency(freq,tweetName,startTime,endTime);
  */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="5335-参加考试的最大学生数"><a href="#5335-参加考试的最大学生数" class="headerlink" title="5335. 参加考试的最大学生数"></a><a href="https://leetcode-cn.com/problems/maximum-students-taking-exam/" target="_blank" rel="noopener">5335. 参加考试的最大学生数</a></h3><h4 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h4><ul>
+<h3 id="1349-参加考试的最大学生数"><a href="#1349-参加考试的最大学生数" class="headerlink" title="1349. 参加考试的最大学生数"></a><a href="https://leetcode-cn.com/problems/maximum-students-taking-exam/" target="_blank" rel="noopener">1349. 参加考试的最大学生数</a></h3><h4 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h4><ul>
 <li>状压DP</li>
 <li>$dp[i][j]$ 表示统计前i行，（且第i行状态为j时的）所坐的最大学生数。</li>
 <li>状态转移方程： $$ dp[i][j] = max(dp[i-1][k] + count(j))\\ k 为第i-1行的状态, count(j) 为状态j的学生数，即二进制1的个数  $$</li>
@@ -1177,7 +1180,7 @@ dp<span class="token punctuation">[</span>i<span class="token punctuation">]</sp
                         <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
                     </ul>
                     <div id="alipay">
-                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
                     </div>
                     <div id="wechat">
                         <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
