@@ -10,13 +10,8 @@
     <meta name="description" content="数学行列式求值
 高斯消元
 
-#define type long long
-type det(type a[][maxn],int n)
-{
-  type ret=1;
-  for(int i=1;i&amp;lt;=n;i++)
-  {
-    f">
+```cpp
+define type long longtype det(type a[][maxn],int n){  type ret=1;  for(int i=1;i&amp;lt;=n;i++)  {    f">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -515,31 +510,16 @@ type det(type a[][maxn],int n)
                 <h1 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h1><h2 id="行列式求值"><a href="#行列式求值" class="headerlink" title="行列式求值"></a>行列式求值</h2><ul>
 <li>高斯消元</li>
 </ul>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">define</span> type long long</span>
-type <span class="token function">det</span><span class="token punctuation">(</span>type a<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  type ret<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
-  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-      <span class="token keyword">while</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
-      <span class="token punctuation">{</span>
-        type t<span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">/</span>a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span>i<span class="token punctuation">;</span>k<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>k<span class="token operator">++</span><span class="token punctuation">)</span>
-            a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">-</span>a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">*</span>t<span class="token punctuation">;</span>
-
-        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span>i<span class="token punctuation">;</span>k<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>k<span class="token operator">++</span><span class="token punctuation">)</span>
-            <span class="token function">swap</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">,</span>a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        ret<span class="token operator">=</span><span class="token operator">-</span>ret<span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    ret<span class="token operator">=</span>ret<span class="token operator">*</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>ret<span class="token operator">&lt;</span><span class="token number">0</span><span class="token punctuation">)</span>   ret<span class="token operator">=</span><span class="token operator">-</span>ret<span class="token punctuation">;</span>
-  <span class="token keyword">return</span> ret<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>```cpp</p>
+<h1 id="define-type-long-long"><a href="#define-type-long-long" class="headerlink" title="define type long long"></a>define type long long</h1><p>type det(type a[][maxn],int n)<br>{<br>  type ret=1;<br>  for(int i=1;i&lt;=n;i++)<br>  {<br>    for(int j=i+1;j&lt;=n;j++)<br>    {<br>      while(a[j][i])<br>      {<br>        type t=a[i][i]/a[j][i];<br>        for(int k=i;k&lt;=n;k++)<br>            a[i][k]=a[i][k]-a[j][k]*t;</p>
+<pre><code>    for(int k=i;k&lt;=n;k++)
+        swap(a[i][k],a[j][k]);
+    ret=-ret;
+  }
+}
+if(a[i][i]==0)  return 0;
+ret=ret*a[i][i];
+</code></pre><p>  }<br>  if(ret&lt;0)   ret=-ret;<br>  return ret;<br>}</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1049,7 +1029,7 @@ type <span class="token function">det</span><span class="token punctuation">(</s
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">80.7k</span>&nbsp;字
+                class="white-color">63.1k</span>&nbsp;字
             
             
             
