@@ -481,14 +481,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        503
+                        600
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -511,8 +511,7 @@
 
 2.在它的左边加上一个自然数,但该自然数不能超过原数的一半;
 
-3.加上数后,继续按此规则进行处理,直到不能再加自然数为止.
-</code></pre><p><strong>【输入格式】</strong></p>
+3.加上数后,继续按此规则进行处理,直到不能再加自然数为止.</code></pre><p><strong>【输入格式】</strong></p>
 <p>1个自然数 n (n ≤ 1000)</p>
 <p><strong>【输出格式】</strong></p>
 <p>1个整数，表示具有该性质数的个数。</p>
@@ -526,34 +525,34 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="https://www.luogu.org/problemnew/show/P1028" target="_blank" rel="noopener">luoguP1028</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>题目给出一个n, 然后根据题目给的操作我们可以得到一些数，题目求总共得到的数的个数。所以我们可以递归的求出所有得到的数。为了不重复进行递归操作，我们用num[i] 数组来记录从 i 递归下去可以得到的数的个数，包括它本身。num数组开始时全部初始化为-1，num[i] ==  -1 表示 i 还未被递归求过。num[i] != -1 则说明 i 已经被递归过了，则不需要递归，直接返回num[i] 即可。</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <iostream>
-#include <cstring> // memset函数的头文件
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstring></span> </span><span class="token comment" spellcheck="true">// memset函数的头文件</span>
 
-using namespace std;
-const int maxn = 1000 + 10;
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">1000</span> <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span>
 
-int num[maxn];
+<span class="token keyword">int</span> num<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-int dfs(int x)
-{
-  //num[x] != -1 则说明 x 已经被递归过了，则不需要递归，直接返回num[x] 即可。
-  if(num[x] != -1) return num[x];
-  //num[x] ==  -1 表示 x 还未被递归求过
-  num[x] = 1;//代表自己的 1
-  // 搜索小于等于自己一半的数，统计通过这些数可以得到的数的个数
-  for(int i = 1; i <= x/2; i++)  num[x] += dfs(i);
-  return num[x]; //统计完所有的把num[x]返回到上一层
-}
+<span class="token keyword">int</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">//num[x] != -1 则说明 x 已经被递归过了，则不需要递归，直接返回num[x] 即可。</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>num<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> num<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">//num[x] ==  -1 表示 x 还未被递归求过</span>
+  num<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//代表自己的 1</span>
+  <span class="token comment" spellcheck="true">// 搜索小于等于自己一半的数，统计通过这些数可以得到的数的个数</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> x<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>  num<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> <span class="token function">dfs</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> num<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//统计完所有的把num[x]返回到上一层</span>
+<span class="token punctuation">}</span>
 
-int main()
-{
-  int n,ans = 0;
-  memset(num,-1,sizeof(num)); // memset函数 ： 将num数组中的所有元素赋值为-1
-  cin >> n; // 输入n
-  dfs(n);  //递归计算从n出发能得到的数的总数
-  cout << num[n] << endl;
-  return 0;
-}
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">int</span> n<span class="token punctuation">,</span>ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token function">memset</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// memset函数 ： 将num数组中的所有元素赋值为-1</span>
+  cin <span class="token operator">>></span> n<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 输入n</span>
+  <span class="token function">dfs</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//递归计算从n出发能得到的数的总数</span>
+  cout <span class="token operator">&lt;&lt;</span> num<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -1067,7 +1066,7 @@ Roy想要抢劫银行，每家银行都有一定的金额和被抓到的概率�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">62.9k</span>&nbsp;字
+                class="white-color">80.5k</span>&nbsp;字
             
             
             
