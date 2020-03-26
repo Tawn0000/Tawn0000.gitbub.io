@@ -445,12 +445,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Algorithm/">
-                                <span class="chip bg-color">Algorithm</span>
-                            </a>
-                        
                             <a href="/tags/DP/">
                                 <span class="chip bg-color">DP</span>
+                            </a>
+                        
+                            <a href="/tags/Algorithm/">
+                                <span class="chip bg-color">Algorithm</span>
                             </a>
                         
                     </div>
@@ -480,14 +480,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        393
+                        409
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -518,36 +518,36 @@
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>dp[i][j]代表从区间i到区间j所匹配的括号的最大个数，首先，假设不匹配，那么dp[i][j]=dp[i+1][j]；然后查找i+1~~j有木有与第i个括号匹配的</p>
 <p>假设存在：<br>dp[i][j]=max(dp[i][j],dp[i+1][k-1]+dp[k][j]+2)…..</p>
 <p>注意有多组数据，dp数组不能开得太大，开2000*2000 TLE了</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <string>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstdio></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstring></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
 
-using namespace std;
-const int maxn = 1000 + 10;
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">1000</span> <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span>
 
-int dp[maxn][maxn];
+<span class="token keyword">int</span> dp<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-int main()
-{
-  char str[maxn];
-  while(~scanf("%s",str) && str[0] != 'e')
-  {
-  int n = strlen(str);
-//  dp[i][j] = max(dp[i+1][j-1] + 1, dp[i+1][j], dp[i][j-1]);
-  memset(dp,0,sizeof(dp));
-  for(int i = n-1; i >= 0; i--)
-    for(int j = i+1; j < n; j++)
-      {
-        if((str[i] == '(' && str[j] == ')') || (str[i] == '[' && str[j] == ']'))
-        dp[i][j] = max(dp[i][j],dp[i+1][j-1]+1);
-        for(int k = i+1; k < j; k++)
-        dp[i][j] = max(dp[i][j],dp[i][k]+dp[k][j]);
-      }
-  printf("%d\n",2*dp[0][n-1]);
-}
-return 0;
-}
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">char</span> str<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">~</span><span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s"</span><span class="token punctuation">,</span>str<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token string">'e'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token function">strlen</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//  dp[i][j] = max(dp[i+1][j-1] + 1, dp[i+1][j], dp[i][j-1]);</span>
+  <span class="token function">memset</span><span class="token punctuation">(</span>dp<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>dp<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> n<span class="token number">-1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'('</span> <span class="token operator">&amp;&amp;</span> str<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">')'</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'['</span> <span class="token operator">&amp;&amp;</span> str<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">']'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> k <span class="token operator">&lt;</span> j<span class="token punctuation">;</span> k<span class="token operator">++</span><span class="token punctuation">)</span>
+        dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">+</span>dp<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token operator">*</span>dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>n<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -830,12 +830,12 @@ return 0;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
-                    </a>
-                    
                     <a href="/tags/DP/">
                         <span class="chip bg-color">DP</span>
+                    </a>
+                    
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
                     </a>
                     
                 </div>
@@ -886,12 +886,12 @@ return 0;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
-                    </a>
-                    
                     <a href="/tags/DP/">
                         <span class="chip bg-color">DP</span>
+                    </a>
+                    
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
                     </a>
                     
                 </div>
@@ -1055,7 +1055,7 @@ return 0;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">67k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             

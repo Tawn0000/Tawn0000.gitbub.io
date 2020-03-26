@@ -529,14 +529,22 @@
 </ul>
 <h2 id="四、Scrapy-运行流程"><a href="#四、Scrapy-运行流程" class="headerlink" title="四、Scrapy 运行流程"></a>四、Scrapy 运行流程</h2><p>Scrapy 数据流转流程，结合架构图。</p>
 <ol>
-<li><strong>Spider</strong> 生成 Requests 发送到 Engine, 中间经过 SpiderMiddleware处理。</li>
-<li><strong>Engine</strong> 将从 Spider 处获得的 Requests 发送给 Schedule, 并向其获取待下载请求（异步）。Schedule 将Requests 整理，按一定顺序入队。</li>
-<li><strong>Schedule</strong>  将处理好的需要下载的请求发送给Engine。</li>
-<li><strong>Engine</strong> 得到需下载的请求后，将其发送到Downloader，中间经过DownloadMiddleware, 例如代理中间件，UA中间件等。</li>
-<li><strong>Downloader</strong> 将请求下载后，生成响应Responses, 送到Engine, 中间经过DownloadMiddleware。</li>
-<li><strong>Engine</strong> 将Responses 返回到Spider进行处理。中间经过一系列SpiderMiddleware。</li>
-<li><strong>Spider</strong> 提取Responses 中信息构造Item 和生成新的Requests, 送到Engine，中间经过一系列SpiderMiddleware。</li>
-<li><strong>Engine</strong> 将Item 送到Item Pipelines进行处理，将Requests 送到Schedule进行处理。</li>
+<li><p><strong>Spider</strong> 生成 Requests 发送到 Engine, 中间经过 SpiderMiddleware处理。</p>
+</li>
+<li><p><strong>Engine</strong> 将从 Spider 处获得的 Requests 发送给 Schedule, 并向其获取待下载请求（异步）。Schedule 将Requests 整理，按一定顺序入队。</p>
+</li>
+<li><p><strong>Schedule</strong>  将处理好的需要下载的请求发送给Engine。</p>
+</li>
+<li><p><strong>Engine</strong> 得到需下载的请求后，将其发送到Downloader，中间经过DownloadMiddleware, 例如代理中间件，UA中间件等。</p>
+</li>
+<li><p><strong>Downloader</strong> 将请求下载后，生成响应Responses, 送到Engine, 中间经过DownloadMiddleware。</p>
+</li>
+<li><p><strong>Engine</strong> 将Responses 返回到Spider进行处理。中间经过一系列SpiderMiddleware。</p>
+</li>
+<li><p><strong>Spider</strong> 提取Responses 中信息构造Item 和生成新的Requests, 送到Engine，中间经过一系列SpiderMiddleware。</p>
+</li>
+<li><p><strong>Engine</strong> 将Item 送到Item Pipelines进行处理，将Requests 送到Schedule进行处理。</p>
+</li>
 <li><p>循环往复，直至结束。</p>
 <p>【声明】：本文部分内容源自Scrapy<a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/tutorial.html" target="_blank" rel="noopener">官网</a> 和<a href="https://www.runoob.com/w3cnote/scrapy-detail.html" target="_blank" rel="noopener">菜鸟教程</a>，侵删。</p>
 </li>
@@ -820,12 +828,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
-                    </a>
-                    
                     <a href="/tags/Graph-Theory/">
                         <span class="chip bg-color">Graph Theory</span>
+                    </a>
+                    
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
                     </a>
                     
                     <a href="/tags/Problem-Set/">
@@ -1046,7 +1054,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">67k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             

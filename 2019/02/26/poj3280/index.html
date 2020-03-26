@@ -444,12 +444,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Algorithm/">
-                                <span class="chip bg-color">Algorithm</span>
-                            </a>
-                        
                             <a href="/tags/DP/">
                                 <span class="chip bg-color">DP</span>
+                            </a>
+                        
+                            <a href="/tags/Algorithm/">
+                                <span class="chip bg-color">Algorithm</span>
                             </a>
                         
                     </div>
@@ -479,14 +479,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        570
+                        697
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -517,46 +517,46 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="http://poj.org/problem?id=3280" target="_blank" rel="noopener">poj3280</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>dp[i][j]代表区间i到区间j成为回文串的最小代价，那么对于dp[i][j]有三种情况：<br>1、dp[i+1][j]表示区间i到区间j已经是回文串了的最小代价，那么对于s[i]这个字母，我们有两种操作，删除与添加，对应有两种代价，dp[i+1][j]+add[s[i]],dp[i+1][j]+del[s[i]]，取这两种代价的最小值；<br>2、dp[i][j-1]表示区间i到区间j-1已经是回文串了的最小代价，那么对于s[j]这个字母，同样有两种操作，dp[i][j-1]+add[s[j]],dp[i][j-1]+del[s[j]]，取最小值<br>3、若是s[i]==s[j]，dp[i+1][j-1]表示区间i+1到区间j-1已经是回文串的最小代价，那么对于这种情况，我们考虑dp[i][j]与dp[i+1][j-1]的大小<br>然后dp[i][j]取上面这些情况的最小值</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <string>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstdio></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstring></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string></span></span>
 
-using namespace std;
-const int maxn = 2000 + 10;
-int n,m;
-int a[26],b[26],dp[maxn][maxn];
-string str;
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">2000</span> <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">26</span><span class="token punctuation">]</span><span class="token punctuation">,</span>b<span class="token punctuation">[</span><span class="token number">26</span><span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+string str<span class="token punctuation">;</span>
 
-int main()
-{
-  scanf("%d%d",&n,&m);
-  cin >> str;
-  for(int i = 1; i <= n; i++)
-  {
-    getchar();
-    char c;
-    int x,y;
-    scanf("%c%d%d",&c,&x,&y);
-    a[c-'a'] = x; b[c-'a'] = y;
-  }
-  for(int i = m-1; i >= 0; i--)
-   {
-     dp[i][i] = 0;
-     for(int j = i+1; j <= m; j++)
-   {
-     dp[i][j] = 0x3f3f3f3f;
-     if(str[i] == str[j])
-     {  if(i == j-1) dp[i][j] = 0;
-        else dp[i][j] = dp[i+1][j-1];
-     }
-     dp[i][j] = min(dp[i][j],dp[i+1][j] + min(a[str[i]-'a'], b[str[i]-'a']));
-     dp[i][j] = min(dp[i][j],dp[i][j-1] + min(a[str[j]-'a'], b[str[j]-'a']));
-   }
- }
- printf("%d\n",dp[0][m-1]);
-   return 0;
-}
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">,</span><span class="token operator">&amp;</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  cin <span class="token operator">>></span> str<span class="token punctuation">;</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">char</span> c<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> x<span class="token punctuation">,</span>y<span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%c%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>c<span class="token punctuation">,</span><span class="token operator">&amp;</span>x<span class="token punctuation">,</span><span class="token operator">&amp;</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    a<span class="token punctuation">[</span>c<span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">;</span> b<span class="token punctuation">[</span>c<span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span> <span class="token operator">=</span> y<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> m<span class="token number">-1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span>
+   <span class="token punctuation">{</span>
+     dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+     <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> m<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+   <span class="token punctuation">{</span>
+     dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+     <span class="token keyword">if</span><span class="token punctuation">(</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> str<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span>
+     <span class="token punctuation">{</span>  <span class="token keyword">if</span><span class="token punctuation">(</span>i <span class="token operator">==</span> j<span class="token number">-1</span><span class="token punctuation">)</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> dp<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token function">min</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> b<span class="token punctuation">[</span>str<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token function">min</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>str<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> b<span class="token punctuation">[</span>str<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">-</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+ <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>m<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -842,12 +842,12 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
-                    </a>
-                    
                     <a href="/tags/DP/">
                         <span class="chip bg-color">DP</span>
+                    </a>
+                    
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
                     </a>
                     
                 </div>
@@ -897,12 +897,12 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
-                    </a>
-                    
                     <a href="/tags/DP/">
                         <span class="chip bg-color">DP</span>
+                    </a>
+                    
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
                     </a>
                     
                 </div>
@@ -1066,7 +1066,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">67k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             

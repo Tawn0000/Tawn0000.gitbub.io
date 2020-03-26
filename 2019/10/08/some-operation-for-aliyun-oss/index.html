@@ -504,40 +504,38 @@ import oss2
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="一、官方接口文档"><a href="#一、官方接口文档" class="headerlink" title="一、官方接口文档"></a>一、官方接口文档</h2><p><a href="https://help.aliyun.com/product/31815.html" target="_blank" rel="noopener">aliyun oss</a></p>
-<h2 id="二、实例操作"><a href="#二、实例操作" class="headerlink" title="二、实例操作"></a>二、实例操作</h2><h3 id="1-获取特定文件夹下的文件数量"><a href="#1-获取特定文件夹下的文件数量" class="headerlink" title="1. 获取特定文件夹下的文件数量"></a>1. 获取特定文件夹下的文件数量</h3><pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
-import oss2
+<h2 id="二、实例操作"><a href="#二、实例操作" class="headerlink" title="二、实例操作"></a>二、实例操作</h2><h3 id="1-获取特定文件夹下的文件数量"><a href="#1-获取特定文件夹下的文件数量" class="headerlink" title="1. 获取特定文件夹下的文件数量"></a>1. 获取特定文件夹下的文件数量</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
+<span class="token keyword">import</span> oss2
 
-# 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
-auth = oss2.Auth('keyid', 'secret')
-# Endpoint以杭州为例，其它Region请按实际情况填写。
-bucket = oss2.Bucket(auth, 'endpoint', 'bucket名称')
+<span class="token comment" spellcheck="true"># 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。</span>
+auth <span class="token operator">=</span> oss2<span class="token punctuation">.</span>Auth<span class="token punctuation">(</span><span class="token string">'keyid'</span><span class="token punctuation">,</span> <span class="token string">'secret'</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># Endpoint以杭州为例，其它Region请按实际情况填写。</span>
+bucket <span class="token operator">=</span> oss2<span class="token punctuation">.</span>Bucket<span class="token punctuation">(</span>auth<span class="token punctuation">,</span> <span class="token string">'endpoint'</span><span class="token punctuation">,</span> <span class="token string">'bucket名称'</span><span class="token punctuation">)</span>
 
-# 列举包含指定前缀的文件。默认列举100个文件。
-res = 0
-for obj in oss2.ObjectIterator(bucket, prefix = '文件名'):
-  #  print(obj.key)
-    res += 1
-print(res)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="2-获取特定文件夹的大小，平均文件大小"><a href="#2-获取特定文件夹的大小，平均文件大小" class="headerlink" title="2. 获取特定文件夹的大小，平均文件大小"></a>2. 获取特定文件夹的大小，平均文件大小</h3><pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
-import oss2
+<span class="token comment" spellcheck="true"># 列举包含指定前缀的文件。默认列举100个文件。</span>
+res <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">for</span> obj <span class="token keyword">in</span> oss2<span class="token punctuation">.</span>ObjectIterator<span class="token punctuation">(</span>bucket<span class="token punctuation">,</span> prefix <span class="token operator">=</span> <span class="token string">'文件名'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  <span class="token comment" spellcheck="true">#  print(obj.key)</span>
+    res <span class="token operator">+=</span> <span class="token number">1</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-获取特定文件夹的大小，平均文件大小"><a href="#2-获取特定文件夹的大小，平均文件大小" class="headerlink" title="2. 获取特定文件夹的大小，平均文件大小"></a>2. 获取特定文件夹的大小，平均文件大小</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
+<span class="token keyword">import</span> oss2
 
-# 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。
-auth = oss2.Auth('keyid', 'secret')
-# Endpoint以杭州为例，其它Region请按实际情况填写。
-bucket = oss2.Bucket(auth, 'endpoint', 'bucket名称')
+<span class="token comment" spellcheck="true"># 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建RAM账号。</span>
+auth <span class="token operator">=</span> oss2<span class="token punctuation">.</span>Auth<span class="token punctuation">(</span><span class="token string">'keyid'</span><span class="token punctuation">,</span> <span class="token string">'secret'</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># Endpoint以杭州为例，其它Region请按实际情况填写。</span>
+bucket <span class="token operator">=</span> oss2<span class="token punctuation">.</span>Bucket<span class="token punctuation">(</span>auth<span class="token punctuation">,</span> <span class="token string">'endpoint'</span><span class="token punctuation">,</span> <span class="token string">'bucket名称'</span><span class="token punctuation">)</span>
 
-# 列举包含指定前缀的文件。默认列举100个文件。
-res = 0
-length = 0
-for obj in oss2.ObjectIterator(bucket, prefix = '文件名'):
-    # print(obj.key)
-    res += 1
-    length += obj.size
-print('directory: 文件名' + '  length:' + str(length / 1024 / 1024) + "MB")
-print('the number of file: ' + str(res))
-print('average length: ' + str(length/res/1024/1024) + "MB")
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment" spellcheck="true"># 列举包含指定前缀的文件。默认列举100个文件。</span>
+res <span class="token operator">=</span> <span class="token number">0</span>
+length <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">for</span> obj <span class="token keyword">in</span> oss2<span class="token punctuation">.</span>ObjectIterator<span class="token punctuation">(</span>bucket<span class="token punctuation">,</span> prefix <span class="token operator">=</span> <span class="token string">'文件名'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># print(obj.key)</span>
+    res <span class="token operator">+=</span> <span class="token number">1</span>
+    length <span class="token operator">+=</span> obj<span class="token punctuation">.</span>size
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'directory: 文件名'</span> <span class="token operator">+</span> <span class="token string">'  length:'</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>length <span class="token operator">/</span> <span class="token number">1024</span> <span class="token operator">/</span> <span class="token number">1024</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"MB"</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'the number of file: '</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'average length: '</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>length<span class="token operator">/</span>res<span class="token operator">/</span><span class="token number">1024</span><span class="token operator">/</span><span class="token number">1024</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"MB"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1044,7 +1042,7 @@ print('average length: ' + str(length/res/1024/1024) + "MB")
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">67k</span>&nbsp;字
+                class="white-color">84.7k</span>&nbsp;字
             
             
             
