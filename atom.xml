@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-03-26T13:52:13.246Z</updated>
+  <updated>2020-03-26T14:36:05.790Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://tawn0000.github.io/2020/03/26/installation-and-configuration-of-spark/"/>
     <id>https://tawn0000.github.io/2020/03/26/installation-and-configuration-of-spark/</id>
     <published>2020-03-26T03:19:45.000Z</published>
-    <updated>2020-03-26T13:52:13.246Z</updated>
+    <updated>2020-03-26T14:36:05.790Z</updated>
     
     <summary type="html">
     
@@ -31,7 +31,6 @@
         
           &lt;blockquote&gt;
 &lt;p&gt;系统：mac os， 需要提前安装好jdk,scala等，如果已经安装好，检查版本和安装位置即可&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;h3 id=&quot;一、安装JDK&quot;&gt;&lt;a href=&quot;#一、安装JDK&quot; class=&quot;headerlink&quot;
         
       
@@ -246,11 +245,11 @@
       <category term="Algorithm" scheme="https://tawn0000.github.io/categories/Algorithm/"/>
     
     
+      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
+    
       <category term="DP" scheme="https://tawn0000.github.io/tags/DP/"/>
     
       <category term="Graph Theory" scheme="https://tawn0000.github.io/tags/Graph-Theory/"/>
-    
-      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
     
   </entry>
   
