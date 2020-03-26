@@ -489,7 +489,7 @@ N&amp;lt;=25
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        372
+                        333
                     </div>
                     
 
@@ -527,29 +527,28 @@ N&amp;lt;=25
 <p><strong>【测试网站】</strong></p>
 <p><a href="https://www.luogu.org/problemnew/show/P2789" target="_blank" rel="noopener">luoguP2789</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>题目求不同交点数的方案数，那么我们可以将所有情况的交点数都求出，然后查重统计答案。可以根据是否平行划分成不同的情况，比如，对于n个点，我们考虑，n条直线相互平行、n-1条直线相互平行、n-2条直线相互平行、、、，即n-r条直线相互平行，那个这r条相互平行的直线与剩下的直线的交点数 = r(n-r), 然后我们再递归到下一层来讨论n-r的情况，依次类推下去。请结合代码理解！</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
 
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">3000</span><span class="token punctuation">;</span>
+using namespace std;
+const int maxn = 3000;
 
-<span class="token keyword">int</span> n<span class="token punctuation">,</span>ans <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token keyword">bool</span> vis<span class="token punctuation">[</span><span class="token number">1000</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+int n,ans = 0;
+bool vis[1000];
 
-<span class="token keyword">void</span> <span class="token function">fun</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>x <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>vis<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">)</span> ans<span class="token operator">++</span><span class="token punctuation">;</span> vis<span class="token punctuation">[</span>y<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token keyword">return</span> <span class="token punctuation">;</span><span class="token punctuation">}</span>
-  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> x<span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span>  <span class="token function">fun</span><span class="token punctuation">(</span>x<span class="token operator">-</span>i<span class="token punctuation">,</span>i<span class="token operator">*</span><span class="token punctuation">(</span>x<span class="token operator">-</span>i<span class="token punctuation">)</span> <span class="token operator">+</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+void fun(int x, int y)
+{
+  if(x == 0) {if(!vis[y]) ans++; vis[y] = true; return ;}
+  for(int i = x; i >= 1; i--)  fun(x-i,i*(x-i) + y);
+}
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  cin <span class="token operator">>></span> n<span class="token punctuation">;</span>
-  <span class="token function">memset</span><span class="token punctuation">(</span>vis<span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>vis<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">fun</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  cout <span class="token operator">&lt;&lt;</span> ans <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+int main()
+{
+  cin >> n;
+  memset(vis,false,sizeof(vis));
+  fun(n,0);
+  cout << ans << endl;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1054,7 +1053,7 @@ N&amp;lt;=25
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">84.4k</span>&nbsp;字
+                class="white-color">67k</span>&nbsp;字
             
             
             

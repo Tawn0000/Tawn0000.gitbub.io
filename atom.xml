@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-03-26T12:49:12.640Z</updated>
+  <updated>2020-03-26T13:52:13.246Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://tawn0000.github.io/2020/03/26/installation-and-configuration-of-spark/"/>
     <id>https://tawn0000.github.io/2020/03/26/installation-and-configuration-of-spark/</id>
     <published>2020-03-26T03:19:45.000Z</published>
-    <updated>2020-03-26T12:49:12.640Z</updated>
+    <updated>2020-03-26T13:52:13.246Z</updated>
     
     <summary type="html">
     
@@ -31,6 +31,7 @@
         
           &lt;blockquote&gt;
 &lt;p&gt;系统：mac os， 需要提前安装好jdk,scala等，如果已经安装好，检查版本和安装位置即可&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&quot;一、安装JDK&quot;&gt;&lt;a href=&quot;#一、安装JDK&quot; class=&quot;headerlink&quot;
         
       
@@ -145,7 +146,7 @@
       
         
         
-          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-latex&quot;&gt;&lt;code
+          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-lang-latex&quot;&gt;&lt;code
         
       
     
