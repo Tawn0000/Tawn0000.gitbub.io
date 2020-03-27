@@ -4,15 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="luoguP2766 最长不下降子序列问题, Tawn&#39;s blog">
+    <meta name="keywords" content=" Captcha Identification through Baidu OCR API (IMG, GIF), Tawn&#39;s blog">
     <meta name="baidu-site-verification" content="Yo66Ak5SKh">
     <meta name="google-site-verification" content="Yo66Ak5SKh">
-    <meta name="description" content="一、题目内容【题目描述】
-«问题描述：
-给定正整数序列x1,…,xn 。
-（1）计算其最长不下降子序列的长度s。
-（2）计算从给定的序列中最多可取出多少个长度为s的不下降子序列。
-（3）如果允许在取出的序列中多次使用x1和xn，则从给定序列">
+    <meta name="description" content="
+
+在做爬虫的时候，当访问量累计到一定量或者访问速度的过快的时候，网站会出现验证码的反爬措施。
+此时可以手动输入验证码，也可以利用算法来识别自动验证
+本文调用的是免费的API只能识别简单的由数字或者字母组成的验证码，可以购买百度的服务或者自">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>luoguP2766 最长不下降子序列问题 | Tawn&#39;s blog</title>
+    <title> Captcha Identification through Baidu OCR API (IMG, GIF) | Tawn&#39;s blog</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/medias/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -328,13 +327,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        luoguP2766 最长不下降子序列问题
+                         Captcha Identification through Baidu OCR API (IMG, GIF)
                     </div>
                 </div>
             </div>
@@ -446,16 +445,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Graph-Theory/">
-                                <span class="chip bg-color">Graph Theory</span>
-                            </a>
-                        
-                            <a href="/tags/Algorithm/">
-                                <span class="chip bg-color">Algorithm</span>
-                            </a>
-                        
-                            <a href="/tags/Network-flows/">
-                                <span class="chip bg-color">Network-flows</span>
+                            <a href="/tags/Scripts/">
+                                <span class="chip bg-color">Scripts</span>
                             </a>
                         
                     </div>
@@ -466,8 +457,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Algorithm/" class="post-category">
-                                Algorithm
+                            <a href="/categories/Scripts/" class="post-category">
+                                Scripts
                             </a>
                         
                     </div>
@@ -478,21 +469,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-01-23
+                    2020-03-28
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        514
+                        901
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        4 分
                     </div>
                     
                 
@@ -508,153 +499,174 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、题目内容"><a href="#一、题目内容" class="headerlink" title="一、题目内容"></a>一、题目内容</h2><p><strong>【题目描述】</strong></p>
-<p>«问题描述：</p>
-<p>给定正整数序列x1,…,xn 。</p>
-<p>（1）计算其最长不下降子序列的长度s。</p>
-<p>（2）计算从给定的序列中最多可取出多少个长度为s的不下降子序列。</p>
-<p>（3）如果允许在取出的序列中多次使用x1和xn，则从给定序列中最多可取出多少个长度为s的不下降子序列。</p>
-<p>«编程任务：</p>
-<p>设计有效算法完成（1）（2）（3）提出的计算任务。</p>
-<p><strong>【输入格式】</strong></p>
-<p>第1 行有1个正整数n，表示给定序列的长度。接下来的1 行有n个正整数n:x1, …, xn。</p>
-<p><strong>【输出格式】</strong></p>
-<p>第1 行是最长不下降子序列的长度s。第2行是可取出的长度为s 的不下降子序列个数。第3行是允许在取出的序列中多次使用x1和xn时可取出的长度为s 的不下降子序列个数。</p>
-<p><strong>【输入样例】</strong></p>
-<p>4<br>3 6 2 5</p>
-<p><strong>【输出样例】</strong></p>
-<p>2<br>2<br>3  </p>
-<p><strong>【说明】</strong></p>
-<p>n≤500</p>
-<p><strong>【测试网站】</strong></p>
-<p><a href="https://www.luogu.org/problemnew/show/P2766" target="_blank" rel="noopener">luoguP2766</a></p>
-<h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>先用 dp 求得最长上升子序列  解决题（1）</p>
-<p>然后每个数拆点，连一个流量为1 的边， 对于 a[i] &lt;= a[j] 且 i &lt; j,且 dp[i] + 1 = dp[j]  连一条 i - j+n 流量为 1 的边,</p>
-<p>对于 dp[i] = 1,  s ——-INF—&gt;i    对于dp[i] = LIS  i+n ——INF—-&gt; t,  ans = dinic(s,t); 解决题（2）</p>
-<p>对于题（3）  将 1 和 n 拆点自边 的流量从1 改成 INF 就可以了， ans += dinic(s,t); 解决题(3)</p>
-<p>注意特判一下 LIS = 1 的情况</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+                <blockquote>
+<ul>
+<li>在做爬虫的时候，当访问量累计到一定量或者访问速度的过快的时候，网站会出现验证码的反爬措施。</li>
+<li>此时可以手动输入验证码，也可以利用算法来识别自动验证</li>
+<li>本文调用的是免费的API只能识别简单的由数字或者字母组成的验证码，可以购买百度的服务或者自己训练模型来满足自己不同的需求。</li>
+</ul>
+</blockquote>
+<h3 id="一、注册"><a href="#一、注册" class="headerlink" title="一、注册"></a>一、注册</h3><ol>
+<li>点击-&gt; <a href="https://login.bce.baidu.com/" target="_blank" rel="noopener">官网</a> 注册一个账号，然后登陆。</li>
+<li>点击右上角控制管理台，找到文字识别，进入，然后新建一个应用。</li>
+<li>获得应用的 AppID API Key Secret Key。<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd8zxsgnabj31nb0u0ajg.jpg" alt="控制管理台"><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd8zejn9rjj31hm0u0wnr.jpg" alt="文字识别"></li>
+</ol>
+<h3 id="二、说明"><a href="#二、说明" class="headerlink" title="二、说明"></a>二、说明</h3><ol>
+<li><p>对于单纯的一张验证码图片,,先通过一些简单的图像处理方法处理，如二值化，开运算，然后调用API。<img src="http://search.fang.com/captcha-3d0d30cb941cad4469/captcha-image" alt="img"></p>
+</li>
+<li><p>对于GIP动图验证码，先将gif拆帧，变成多张图片，再对每张图片分别识别，投票决定最后的结果。<img src="http://www.manfen5.com/api/VCode.aspx?id=SYS201910300844276110692994&amp;t=Wed%20Oct%2030%202019%2011:29:54%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)" alt="gif"></p>
+</li>
+<li><p>具体实现请看代码</p>
+</li>
+</ol>
+<h3 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> cv2
+<span class="token keyword">import</span> pytesseract
+<span class="token keyword">import</span> requests
+<span class="token keyword">import</span> string
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> io <span class="token keyword">import</span> BytesIO
+<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+<span class="token keyword">from</span> aip <span class="token keyword">import</span> AipOcr
+<span class="token keyword">from</span> skimage <span class="token keyword">import</span> measure<span class="token punctuation">,</span> morphology
 
-using namespace std;
+<span class="token keyword">class</span> <span class="token class-name">CaptchaIdentify</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
 
-const int INF = 0x3f3f3f3f;
-const int maxn = 1500 + 10;
-const int maxm = 1000000 + 10;
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># 填写自己的应用的 AppID API Key Secret Key</span>
+        APP_ID <span class="token operator">=</span> <span class="token string">'xxx'</span>
+        API_KEY <span class="token operator">=</span> <span class="token string">'xxx'</span>
+        SECRET_KEY <span class="token operator">=</span> <span class="token string">'xxx'</span>
+        self<span class="token punctuation">.</span>client <span class="token operator">=</span> AipOcr<span class="token punctuation">(</span>APP_ID<span class="token punctuation">,</span> API_KEY<span class="token punctuation">,</span> SECRET_KEY<span class="token punctuation">)</span>
 
-int n,m,k;
-int l[maxn];//记录层数
-int h[maxn];//链式前向星
-int cur[maxn];
-int tot = 0;
+    <span class="token comment" spellcheck="true"># 识别图片</span>
+    <span class="token keyword">def</span> <span class="token function">recognize_img</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        img <span class="token operator">=</span> self<span class="token punctuation">.</span>clarify<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+        img <span class="token operator">=</span> self<span class="token punctuation">.</span>clear<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#baidu ocr</span>
+        options <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        options<span class="token punctuation">[</span><span class="token string">"language_type"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"ENG"</span>
+        success<span class="token punctuation">,</span> encoded_image <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imencode<span class="token punctuation">(</span><span class="token string">'.png'</span><span class="token punctuation">,</span> img<span class="token punctuation">)</span>
+        img <span class="token operator">=</span> encoded_image<span class="token punctuation">.</span>tobytes<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        msg <span class="token operator">=</span> self<span class="token punctuation">.</span>client<span class="token punctuation">.</span>basicGeneral<span class="token punctuation">(</span>img<span class="token punctuation">,</span> options<span class="token punctuation">)</span>
+        result <span class="token operator">=</span> msg<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'words_result'</span><span class="token punctuation">)</span>    
+        <span class="token keyword">if</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            temp <span class="token operator">=</span> result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'words'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            res <span class="token operator">=</span> <span class="token string">''</span>
+            <span class="token keyword">for</span> c <span class="token keyword">in</span> temp<span class="token punctuation">:</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">>=</span> <span class="token string">'0'</span> <span class="token operator">and</span> c <span class="token operator">&lt;=</span> <span class="token string">'9'</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token punctuation">(</span>c <span class="token operator">>=</span> <span class="token string">'A'</span> <span class="token operator">and</span> c <span class="token operator">&lt;=</span> <span class="token string">'Z'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    res <span class="token operator">+=</span> c
+            <span class="token keyword">return</span> res
+        <span class="token keyword">return</span> <span class="token string">''</span>
 
-struct edge
-{
-  int to;
-  int c;
-  int next;
-  edge(int x = 0, int y = 0, int z = 0) : to(x), c(y), next(z) {}
- }es[maxm*2];//记录边 注意是2倍
+    <span class="token comment" spellcheck="true"># 识别动图</span>
+    <span class="token keyword">def</span> <span class="token function">recognize_gif</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> gif<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        vote <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">]</span>
+        res_img <span class="token operator">=</span> None
+        <span class="token keyword">for</span> i<span class="token punctuation">,</span> frame <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>self<span class="token punctuation">.</span>iter_frames<span class="token punctuation">(</span>gif<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            res_img <span class="token operator">=</span> frame
+            img <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>frame<span class="token punctuation">)</span>
+            res <span class="token operator">=</span> self<span class="token punctuation">.</span>recognize_img<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> len<span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">:</span>
+                <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    vote<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> res<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
 
-void add_edge(int u, int v, int c)
-{
-    es[tot] = edge(v,c,h[u]);
-    h[u] = tot++;
-    es[tot] = edge(u,0,h[v]);
-    h[v] = tot++;
-    //cout << u <<" " <<v << " " << c<<endl;
-}
+        res <span class="token operator">=</span> <span class="token string">''</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> vote<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                res <span class="token operator">+=</span> max<span class="token punctuation">(</span>string<span class="token punctuation">.</span>digits <span class="token operator">+</span> string<span class="token punctuation">.</span>ascii_uppercase<span class="token punctuation">,</span> key<span class="token operator">=</span>vote<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>count<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">,</span> res_img
 
-bool bfs(int s, int t)
-{
-   memset(l,0,sizeof(l));
-   l[s] = 1;
-   queue <int> q;
-   q.push(s);
-   while(!q.empty())
-   {
-    int u = q.front();
-    //cout  << u <<endl;
-    q.pop();
-    if(u == t)  return true;
-    for(int i = h[u]; i != -1; i = es[i].next)
-        {
-         int v = es[i].to;
-         if(!l[v] && es[i].c) {l[v] = l[u] + 1; q.push(v);}
-        }
-   }
-   return false;
-}
+    <span class="token comment" spellcheck="true"># gif2png</span>
+    <span class="token keyword">def</span> <span class="token function">iter_frames</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> gif<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            i<span class="token operator">=</span> <span class="token number">0</span>
+            <span class="token keyword">while</span> <span class="token number">1</span><span class="token punctuation">:</span>
+                gif<span class="token punctuation">.</span>seek<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+                imframe <span class="token operator">=</span> gif<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                    palette <span class="token operator">=</span> imframe<span class="token punctuation">.</span>getpalette<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    imframe<span class="token punctuation">.</span>putpalette<span class="token punctuation">(</span>palette<span class="token punctuation">)</span>
+                <span class="token keyword">yield</span> imframe
+                i <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">except</span> EOFError<span class="token punctuation">:</span>
+            <span class="token keyword">pass</span>
 
-int dfs(int x, int t, int mf)
-{
-    if(x == t) return mf;
-    int ret = 0;
-    for(int &i = cur[x]; i != -1; i = es[i].next)
-    {
-      if(es[i].c && l[x] == l[es[i].to] - 1)
-      {
-        int f = dfs(es[i].to,t,min(es[i].c,mf - ret));
-        es[i].c -= f;
-        es[i^1].c += f;
-        ret += f;
-        if(ret == mf) return ret;
-      }
-    }
-    return ret;
-}
+    <span class="token comment" spellcheck="true"># 初步处理图片</span>
+    <span class="token keyword">def</span> <span class="token function">clarify</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> src<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        gray <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>src<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_GRAY2BGR<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 二值化</span>
+        gray <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>gray<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_BGR2GRAY<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 二值化</span>
+        ret<span class="token punctuation">,</span> binary <span class="token operator">=</span> cv2<span class="token punctuation">.</span>threshold<span class="token punctuation">(</span>src<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>THRESH_BINARY_INV <span class="token operator">|</span> cv2<span class="token punctuation">.</span>THRESH_OTSU<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 过滤浅色</span>
+        kernel <span class="token operator">=</span> cv2<span class="token punctuation">.</span>getStructuringElement<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>MORPH_RECT<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        binary <span class="token operator">=</span> cv2<span class="token punctuation">.</span>morphologyEx<span class="token punctuation">(</span>binary<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>MORPH_OPEN<span class="token punctuation">,</span> kernel<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"># 开运算</span>
+        kernel <span class="token operator">=</span> cv2<span class="token punctuation">.</span>getStructuringElement<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>MORPH_RECT<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        binary <span class="token operator">=</span> cv2<span class="token punctuation">.</span>morphologyEx<span class="token punctuation">(</span>binary<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>MORPH_OPEN<span class="token punctuation">,</span> kernel<span class="token punctuation">)</span>
+        cv2<span class="token punctuation">.</span>bitwise_not<span class="token punctuation">(</span>binary<span class="token punctuation">,</span> binary<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> binary
 
-int dinic(int s, int t)
-{
-  int ans = 0;
-  while(bfs(s,t))
-  {
-   for(int i = 0; i <= t; i++) cur[i] = h[i];
-   ans += dfs(s,t,INF);
-   }
-  return ans;
-}
+    <span class="token comment" spellcheck="true"># 一个简单处理干扰线的方法</span>
+    <span class="token keyword">def</span> <span class="token function">clear</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        fx <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+        fy <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span>
+        h <span class="token operator">=</span> img<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        w <span class="token operator">=</span> img<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+        data <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span>w<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>h<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                count <span class="token operator">=</span> <span class="token number">1</span>
+                num <span class="token operator">=</span> <span class="token number">0</span>
+                <span class="token keyword">for</span> k <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                    ix <span class="token operator">=</span> i <span class="token operator">+</span> fx<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+                    iy <span class="token operator">=</span> j <span class="token operator">+</span> fy<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
+                    <span class="token keyword">if</span> ix <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> ix <span class="token operator">&lt;</span> h <span class="token operator">and</span> iy <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> iy <span class="token operator">&lt;</span> w<span class="token punctuation">:</span>
+                        count <span class="token operator">+=</span> <span class="token number">1</span>
+                        <span class="token keyword">if</span> img<span class="token punctuation">[</span>ix<span class="token punctuation">]</span><span class="token punctuation">[</span>iy<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+                            num <span class="token operator">+=</span> <span class="token number">1</span>
+                <span class="token keyword">if</span> num <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token punctuation">:</span>
+                    data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">255</span>
+        <span class="token keyword">return</span> data
 
-int a[510];
-int dp[510];
+    <span class="token comment" spellcheck="true"># 下载动图</span>
+    <span class="token keyword">def</span> <span class="token function">download</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">'''
+        https://stackoverflow.com/questions/39534830/how-to-download-this-gifdynamic-by-python
+        '''</span>
+        url <span class="token operator">=</span> <span class="token string">'xxx'</span> <span class="token comment" spellcheck="true"># 图片链接</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">'captcha/%d.gif'</span><span class="token punctuation">,</span> <span class="token string">'wb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>content<span class="token punctuation">)</span>
 
-int main()
-{
-   scanf("%d",&n);
-   for(int i = 1; i <= n; i++)
-      scanf("%d",&a[i]);
-   int maxa = 0;
-   for(int i = 1; i <= n; i++)
-    {
-       dp[i] = 1;
-       for(int j = 1; j < i; j++)
-       if(a[i] >= a[j]) dp[i] = max(dp[i],dp[j]+1);
-       maxa = max(maxa,dp[i]);
-    }
-   tot = 0;
-   memset(h,-1,sizeof(h));
-   int s = 0, t = 2*n+1;
-   add_edge(1,1+n,1);
-   add_edge(n,n+n,1);
-   for(int i = 1; i <= n; i++)
-   {
-       if(i != 1 && i != n) add_edge(i,i+n,1);
-       if(dp[i] == 1) add_edge(s,i,INF);
-       if(dp[i] == maxa) add_edge(i+n,t,INF);
-       for(int j = i+1; j <= n; j++)
-        if(dp[j] == dp[i]+1 &&a[i] <= a[j]) add_edge(i+n,j,1);
-   }
-   if(n == 1) {printf("1\n1\n1\n");return 0;}
-   if(maxa == 1) {printf("%d\n%d\n%d\n",1,n,n);return 0;}
-   printf("%d\n",maxa);
-   int res = dinic(s,t);
-   printf("%d\n",res);
-   es[0].c = INF;
-   es[2].c = INF;
-   res += dinic(s,t);
-   printf("%d\n",res);
-   return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">def</span> <span class="token function">test_img</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        captcha <span class="token operator">=</span> CaptchaIdentify<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        img <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string">'img/stdoutput1.png'</span><span class="token punctuation">)</span>
+        img <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+        ans <span class="token operator">=</span> captcha<span class="token punctuation">.</span>recognize_img<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">test_gif</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        captcha <span class="token operator">=</span> CaptchaIdentify<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        plt<span class="token punctuation">.</span>tight_layout<span class="token punctuation">(</span>pad<span class="token operator">=</span><span class="token number">1.08</span><span class="token punctuation">,</span> h_pad<span class="token operator">=</span><span class="token number">1.5</span><span class="token punctuation">,</span> w_pad<span class="token operator">=</span>None<span class="token punctuation">,</span> rect<span class="token operator">=</span>None<span class="token punctuation">)</span>
+        plt<span class="token punctuation">.</span>axis<span class="token punctuation">(</span><span class="token string">'off'</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            gif <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string">'captcha/%d.gif'</span> <span class="token operator">%</span> i<span class="token punctuation">)</span>
+            ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+            ans<span class="token punctuation">,</span> img <span class="token operator">=</span> captcha<span class="token punctuation">.</span>recognize_gif<span class="token punctuation">(</span>gif<span class="token punctuation">)</span>
+            ax<span class="token punctuation">.</span>set_title<span class="token punctuation">(</span>ans<span class="token punctuation">)</span>
+            plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'%2d:'</span> <span class="token operator">%</span> i <span class="token operator">+</span> ans<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">recognize_gif_url</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> url<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        url <span class="token operator">=</span> <span class="token string">'xxx'</span><span class="token comment" spellcheck="true"># 图片链接</span>
+        res<span class="token punctuation">,</span> img <span class="token operator">=</span> captcha<span class="token punctuation">.</span>recognize_gif<span class="token punctuation">(</span>Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>BytesIO<span class="token punctuation">(</span>requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#         plt.imshow(img)</span>
+<span class="token comment" spellcheck="true">#         plt.axis('off')</span>
+        <span class="token keyword">return</span> res
+
+
+<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    captcha <span class="token operator">=</span> CaptchaIdentify<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    url <span class="token operator">=</span> <span class="token string">'xxx'</span><span class="token comment" spellcheck="true"># 图片链接</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>captcha<span class="token punctuation">.</span>recognize_gif_url<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -833,8 +845,8 @@ int main()
                 </a>
             </div>
             <br/>
-            <a  href="/2019/01/23/luogup2766/">
-                    《luoguP2766 最长不下降子序列问题》
+            <a  href="/2020/03/28/captcha-identification-through-baidu-ocr-api-img-gif/">
+                    《 Captcha Identification through Baidu OCR API (IMG, GIF)》
             </a> 由
             <a href="https://tawn0000.github.io">
                 Tawn
@@ -876,7 +888,7 @@ int main()
         repo: 'tawn0000.github.io',
         owner: 'tawn0000',
         admin: "tawn0000",
-        id: '2019-01-23T11-54-34',
+        id: '2020-03-28T00-53-56',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -897,51 +909,48 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fas fa-chevron-left"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/01/23/nowcoder317c/">
+                <a href="/2020/03/28/captcha-identification-through-baidu-ocr-api-img-gif/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="nowcoder317C 小a与星际探索">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt=" Captcha Identification through Baidu OCR API (IMG, GIF)">
                         
-                        <span class="card-title">nowcoder317C 小a与星际探索</span>
+                        <span class="card-title"> Captcha Identification through Baidu OCR API (IMG, GIF)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一、题目内容【题目描述】
-小a正在玩一款星际探索游戏，小a需要驾驶着飞船从1号星球出发前往n号星球。其中每个星球有一个能量指数p。星球i能到达星球j当且仅当 pi &gt; pj 。同时小a的飞船还有一个耐久度 t，初始时为 1号点的能量指
+                            通过调用百度OCR API进行验证码识别(IMG, GIF)
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-01-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Algorithm/" class="post-category">
-                                    Algorithm
+                            <a href="/categories/Scripts/" class="post-category">
+                                    Scripts
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/DP/">
-                        <span class="chip bg-color">DP</span>
-                    </a>
-                    
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
+                    <a href="/tags/Scripts/">
+                        <span class="chip bg-color">Scripts</span>
                     </a>
                     
                 </div>
@@ -955,32 +964,30 @@ int main()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/01/23/luogup3171/">
+                <a href="/2020/03/26/installation-and-configuration-of-spark/">
                     <div class="card-image">
                         
+                        <img src="https://tva1.sinaimg.cn/large/00831rSTly1gd7pusa1scj30xc0ku7al.jpg" class="responsive-img" alt="Installation and configuration of Spark">
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="luoguP3171 [CQOI2015]网络吞吐量">
-                        
-                        <span class="card-title">luoguP3171 [CQOI2015]网络吞吐量</span>
+                        <span class="card-title">Installation and configuration of Spark</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一、题目内容【题目描述】
-路由是指通过计算机网络把信息从源地址传输到目的地址的活动，也是计算机网络设计中的重点和难点。网络中实现路由转发的硬件设备称为路由器。为了使数据包最快的到达目的地，路由器需要选择最优的路径转发数据包。例如在常用的路由
+                            Spark 的安装和配置
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-01-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-26
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Algorithm/" class="post-category">
-                                    Algorithm
+                            <a href="/categories/Big-Data/" class="post-category">
+                                    Big Data
                                 </a>
                             
                             
@@ -990,16 +997,8 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Graph-Theory/">
-                        <span class="chip bg-color">Graph Theory</span>
-                    </a>
-                    
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
-                    </a>
-                    
-                    <a href="/tags/Network-flows/">
-                        <span class="chip bg-color">Network-flows</span>
+                    <a href="/tags/Spark/">
+                        <span class="chip bg-color">Spark</span>
                     </a>
                     
                 </div>

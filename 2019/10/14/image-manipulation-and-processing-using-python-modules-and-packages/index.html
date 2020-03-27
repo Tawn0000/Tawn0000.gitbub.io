@@ -518,51 +518,56 @@ lib：抽象概念">
 <li>PIL.Image =&gt; Numpy.array : img = np.array(img)</li>
 </ul>
 <h4 id="PIL-Image-gt-Bytes"><a href="#PIL-Image-gt-Bytes" class="headerlink" title="PIL.Image => Bytes:"></a>PIL.Image =&gt; Bytes:</h4><p><a href="https://stackoverflow.com/a/56055505/12214101" target="_blank" rel="noopener">source</a></p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
-<span class="token keyword">import</span> io
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">from PIL import Image
+import io
 
-<span class="token keyword">def</span> <span class="token function">image_to_byte_array</span><span class="token punctuation">(</span>image<span class="token punctuation">:</span>Image<span class="token punctuation">)</span><span class="token punctuation">:</span>
-  imgByteArr <span class="token operator">=</span> io<span class="token punctuation">.</span>BytesIO<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  image<span class="token punctuation">.</span>save<span class="token punctuation">(</span>imgByteArr<span class="token punctuation">,</span> format<span class="token operator">=</span>image<span class="token punctuation">.</span>format<span class="token punctuation">)</span>
-  imgByteArr <span class="token operator">=</span> imgByteArr<span class="token punctuation">.</span>getvalue<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> imgByteArr<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="Bytes-gt-Numpy-array"><a href="#Bytes-gt-Numpy-array" class="headerlink" title="Bytes => Numpy.array"></a>Bytes =&gt; Numpy.array</h4><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> requests
-<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
-img <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>content
-img <span class="token operator">=</span> plt<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>BytesIO<span class="token punctuation">(</span>img<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"jpg"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="GIF-gt-PNG"><a href="#GIF-gt-PNG" class="headerlink" title="GIF ==> PNG"></a>GIF ==&gt; PNG</h4><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">iter_frames</span><span class="token punctuation">(</span>gif<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">try</span><span class="token punctuation">:</span>
-        i<span class="token operator">=</span> <span class="token number">0</span>
-        <span class="token keyword">while</span> <span class="token number">1</span><span class="token punctuation">:</span>
-            gif<span class="token punctuation">.</span>seek<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
-            imframe <span class="token operator">=</span> gif<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                palette <span class="token operator">=</span> imframe<span class="token punctuation">.</span>getpalette<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                imframe<span class="token punctuation">.</span>putpalette<span class="token punctuation">(</span>palette<span class="token punctuation">)</span>
-            <span class="token keyword">yield</span> imframe
-            i <span class="token operator">+=</span> <span class="token number">1</span>
-    <span class="token keyword">except</span> EOFError<span class="token punctuation">:</span>
-        <span class="token keyword">pass</span>
-<span class="token comment" spellcheck="true"># http://cn.voidcc.com/question/p-ecfkyjoi-bks.html</span>
-<span class="token comment" spellcheck="true"># Bytes to GIF</span>
-<span class="token comment" spellcheck="true"># url = 'xxx'</span>
-<span class="token comment" spellcheck="true"># gif = Image.open(BytesIO(requests.get(url).content)))</span>
+def image_to_byte_array(image:Image):
+  imgByteArr = io.BytesIO()
+  image.save(imgByteArr, format=image.format)
+  imgByteArr = imgByteArr.getvalue()
+  return imgByteArr
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Bytes-gt-Numpy-array"><a href="#Bytes-gt-Numpy-array" class="headerlink" title="Bytes => Numpy.array"></a>Bytes =&gt; Numpy.array</h4><pre class="line-numbers language-lang-python"><code class="language-lang-python">import requests
+import matplotlib.pyplot as plt
+img = requests.get(url).content
+img = plt.imread(BytesIO(img), "jpg")
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="GIF-gt-PNG"><a href="#GIF-gt-PNG" class="headerlink" title="GIF ==> PNG"></a>GIF ==&gt; PNG</h4><pre class="line-numbers language-lang-python"><code class="language-lang-python">def iter_frames(gif):
+    try:
+        i= 0
+        while 1:
+            gif.seek(i)
+            imframe = gif.copy()
+            if i == 0:
+                palette = imframe.getpalette()
+            else:
+                imframe.putpalette(palette)
+            yield imframe
+            i += 1
+    except EOFError:
+        pass
+# http://cn.voidcc.com/question/p-ecfkyjoi-bks.html
+# Bytes to GIF
+# url = 'xxx'
+# gif = Image.open(BytesIO(requests.get(url).content)))
 
-gif <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string">'captcha.gif'</span><span class="token punctuation">)</span>
-<span class="token keyword">for</span> i<span class="token punctuation">,</span> frame <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>iter_frames<span class="token punctuation">(</span>gif<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-  <span class="token keyword">pass</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+gif = Image.open('captcha.gif')
+for i, frame in enumerate(iter_frames(gif)):
+  pass
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="3-分离文件名与扩展名"><a href="#3-分离文件名与扩展名" class="headerlink" title="3. 分离文件名与扩展名"></a>3. 分离文件名与扩展名</h4><p><a href="https://blog.csdn.net/u011509971/article/details/70244688" target="_blank" rel="noopener">source</a></p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> os
-path_01<span class="token operator">=</span><span class="token string">'D:/User/wgy/workplace/data/notMNIST_large.tar.png'</span>
-path_02<span class="token operator">=</span><span class="token string">'D:/User/wgy/workplace/data/notMNIST_large'</span>
-root_01<span class="token operator">=</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>splitext<span class="token punctuation">(</span>path_01<span class="token punctuation">)</span>
-root_02<span class="token operator">=</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>splitext<span class="token punctuation">(</span>path_02<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>root_01<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>root_02<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">import os
+path_01='D:/User/wgy/workplace/data/notMNIST_large.tar.png'
+path_02='D:/User/wgy/workplace/data/notMNIST_large'
+root_01=os.path.splitext(path_01)
+root_02=os.path.splitext(path_02)
+print(root_01)
+print(root_02)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>结果：</p>
 <pre><code>('D:/User/wgy/workplace/data/notMNIST_large.tar', '.png')
-('D:/User/wgy/workplace/data/notMNIST_large', '')</code></pre><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h2 id="PIL"><a href="#PIL" class="headerlink" title="PIL"></a>PIL</h2><h2 id="Scipy"><a href="#Scipy" class="headerlink" title="Scipy"></a>Scipy</h2><h2 id="Open-cv"><a href="#Open-cv" class="headerlink" title="Open-cv"></a>Open-cv</h2><script>
+('D:/User/wgy/workplace/data/notMNIST_large', '')
+</code></pre><h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h2 id="PIL"><a href="#PIL" class="headerlink" title="PIL"></a>PIL</h2><h2 id="Scipy"><a href="#Scipy" class="headerlink" title="Scipy"></a>Scipy</h2><h2 id="Open-cv"><a href="#Open-cv" class="headerlink" title="Open-cv"></a>Open-cv</h2><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1055,7 +1060,7 @@ root_02<span class="token operator">=</span>os<span class="token punctuation">.<
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">84.7k</span>&nbsp;字
+                class="white-color">68k</span>&nbsp;字
             
             
             

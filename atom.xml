@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-03-26T14:56:48.264Z</updated>
+  <updated>2020-03-27T17:26:30.840Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -17,11 +17,42 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title> Captcha Identification through Baidu OCR API (IMG, GIF)</title>
+    <link href="https://tawn0000.github.io/2020/03/28/captcha-identification-through-baidu-ocr-api-img-gif/"/>
+    <id>https://tawn0000.github.io/2020/03/28/captcha-identification-through-baidu-ocr-api-img-gif/</id>
+    <published>2020-03-27T16:53:56.000Z</published>
+    <updated>2020-03-27T17:26:30.840Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;在做爬虫的时候，当访问量累计到一定量或者访问速度的过快的时候，网站会出现验证码的反爬措施。&lt;/li&gt;
+&lt;li&gt;此时可以手动输入验证码，也可以利用算法来识别自动验证&lt;/li&gt;
+&lt;li&gt;本文调用的是免费的API只能识别简单的由数字或者字母组
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Scripts" scheme="https://tawn0000.github.io/categories/Scripts/"/>
+    
+    
+      <category term="Scripts" scheme="https://tawn0000.github.io/tags/Scripts/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Installation and configuration of Spark</title>
     <link href="https://tawn0000.github.io/2020/03/26/installation-and-configuration-of-spark/"/>
     <id>https://tawn0000.github.io/2020/03/26/installation-and-configuration-of-spark/</id>
     <published>2020-03-26T03:19:45.000Z</published>
-    <updated>2020-03-26T14:56:48.264Z</updated>
+    <updated>2020-03-27T16:06:20.569Z</updated>
     
     <summary type="html">
     
@@ -96,9 +127,9 @@
       <category term="Algorithm" scheme="https://tawn0000.github.io/categories/Algorithm/"/>
     
     
-      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="https://tawn0000.github.io/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
     
   </entry>
   
@@ -146,7 +177,7 @@
       
         
         
-          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-latex&quot;&gt;&lt;code
+          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-lang-latex&quot;&gt;&lt;code
         
       
     
@@ -564,36 +595,6 @@
         
         
           &lt;h1 id=&quot;雅思口语替换句型&quot;&gt;&lt;a href=&quot;#雅思口语替换句型&quot; class=&quot;headerlink&quot; title=&quot;雅思口语替换句型&quot;&gt;&lt;/a&gt;雅思口语替换句型&lt;/h1&gt;&lt;h2 id=&quot;1-Talking-About-Personal-Habits&quot;&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="English" scheme="https://tawn0000.github.io/categories/English/"/>
-    
-    
-      <category term="IELTS" scheme="https://tawn0000.github.io/tags/IELTS/"/>
-    
-      <category term="English" scheme="https://tawn0000.github.io/tags/English/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>雅思口语和写作的100个替换词</title>
-    <link href="https://tawn0000.github.io/2019/10/10/ya-si-kou-yu-he-xie-zuo-de-100-ge-ti-huan-ci/"/>
-    <id>https://tawn0000.github.io/2019/10/10/ya-si-kou-yu-he-xie-zuo-de-100-ge-ti-huan-ci/</id>
-    <published>2019-10-10T15:17:06.000Z</published>
-    <updated>2020-01-11T10:57:47.407Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;雅思口语和写作的100个替换词&quot;&gt;&lt;a href=&quot;#雅思口语和写作的100个替换词&quot; class=&quot;headerlink&quot; title=&quot;雅思口语和写作的100个替换词&quot;&gt;&lt;/a&gt;雅思口语和写作的100个替换词&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;important =
         
       
     
