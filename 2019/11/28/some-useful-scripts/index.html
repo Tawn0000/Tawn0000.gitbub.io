@@ -508,71 +508,69 @@ class Transform:
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="利用json进行MongoDB文件转移"><a href="#利用json进行MongoDB文件转移" class="headerlink" title="利用json进行MongoDB文件转移"></a>利用json进行MongoDB文件转移</h2><pre class="line-numbers language-lang-python"><code class="language-lang-python">import pymongo
-import json
+                <h2 id="利用json进行MongoDB文件转移"><a href="#利用json进行MongoDB文件转移" class="headerlink" title="利用json进行MongoDB文件转移"></a>利用json进行MongoDB文件转移</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> pymongo
+<span class="token keyword">import</span> json
 
-class Transform:
-    def __init__(self):
-        self.MONGO_URI = 'mongodb://127.0.0.1:27017'
-        self.client = pymongo.MongoClient(self.MONGO_URI)
-        self.database = self.client['test']
-        self.collection = self.database['your_collection_name']
+<span class="token keyword">class</span> <span class="token class-name">Transform</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>MONGO_URI <span class="token operator">=</span> <span class="token string">'mongodb://127.0.0.1:27017'</span>
+        self<span class="token punctuation">.</span>client <span class="token operator">=</span> pymongo<span class="token punctuation">.</span>MongoClient<span class="token punctuation">(</span>self<span class="token punctuation">.</span>MONGO_URI<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>database <span class="token operator">=</span> self<span class="token punctuation">.</span>client<span class="token punctuation">[</span><span class="token string">'test'</span><span class="token punctuation">]</span>
+        self<span class="token punctuation">.</span>collection <span class="token operator">=</span> self<span class="token punctuation">.</span>database<span class="token punctuation">[</span><span class="token string">'your_collection_name'</span><span class="token punctuation">]</span>
 
-    def write(self, st, num, file_path):
-        cur = self.collection.find().skip(st).limit(num)
-        with open(file_path.format(), "w") as f:
-            for item in cur:
-                del item['_id']
-                json.dump(item, f, ensure_ascii=False)
-                f.write('\n')
-            print("{}条数据加载入{}文件完成...".format(num, file_path))
+    <span class="token keyword">def</span> <span class="token function">write</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> st<span class="token punctuation">,</span> num<span class="token punctuation">,</span> file_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        cur <span class="token operator">=</span> self<span class="token punctuation">.</span>collection<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>skip<span class="token punctuation">(</span>st<span class="token punctuation">)</span><span class="token punctuation">.</span>limit<span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+        <span class="token keyword">with</span> open<span class="token punctuation">(</span>file_path<span class="token punctuation">.</span>format<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+            <span class="token keyword">for</span> item <span class="token keyword">in</span> cur<span class="token punctuation">:</span>
+                <span class="token keyword">del</span> item<span class="token punctuation">[</span><span class="token string">'_id'</span><span class="token punctuation">]</span>
+                json<span class="token punctuation">.</span>dump<span class="token punctuation">(</span>item<span class="token punctuation">,</span> f<span class="token punctuation">,</span> ensure_ascii<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"{}条数据加载入{}文件完成..."</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>num<span class="token punctuation">,</span> file_path<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    def read(self, file_path):
-        with open(file_path,'r') as load_f:
-            while True:
-                line = load_f.readline()
-                if line:
-                    r = json.loads(line)
-                    print(r)
-                else:
-                    break
+    <span class="token keyword">def</span> <span class="token function">read</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> file_path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">with</span> open<span class="token punctuation">(</span>file_path<span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> load_f<span class="token punctuation">:</span>
+            <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                line <span class="token operator">=</span> load_f<span class="token punctuation">.</span>readline<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> line<span class="token punctuation">:</span>
+                    r <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+                    <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span>
+                    <span class="token keyword">break</span>
 
-    def count(self):
-        print(collection.count())
+    <span class="token keyword">def</span> <span class="token function">count</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>collection<span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-if __name__ == '__main__':
-    transform = Transform()
-#     transform.count()
-#     transform.read("json/record_1.json")
-    for i in range(0, 85):
-        transform.write(i*10000, 10000, "json/record_%03d.json" % i)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="python-多进程的简单使用"><a href="#python-多进程的简单使用" class="headerlink" title="python 多进程的简单使用"></a>python 多进程的简单使用</h2><pre class="line-numbers language-lang-python"><code class="language-lang-python">import pymongo
-import json   
-import multiprocessing
-import sys
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    transform <span class="token operator">=</span> Transform<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#     transform.count()</span>
+<span class="token comment" spellcheck="true">#     transform.read("json/record_1.json")</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">85</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        transform<span class="token punctuation">.</span>write<span class="token punctuation">(</span>i<span class="token operator">*</span><span class="token number">10000</span><span class="token punctuation">,</span> <span class="token number">10000</span><span class="token punctuation">,</span> <span class="token string">"json/record_%03d.json"</span> <span class="token operator">%</span> i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="python-多进程的简单使用"><a href="#python-多进程的简单使用" class="headerlink" title="python 多进程的简单使用"></a>python 多进程的简单使用</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> pymongo
+<span class="token keyword">import</span> json   
+<span class="token keyword">import</span> multiprocessing
+<span class="token keyword">import</span> sys
 
-def worker(st, num):
-    # 注意父子进程不能共用同一MongoDB connection
-    MONGO_URI = 'mongodb://127.0.0.1:27017'
-    client = pymongo.MongoClient(MONGO_URI)
-    database = client['test']
-    col1 = database['your_collection_name1']
-    col2 = database['your_collection_name2']
-    cur = col1.find().skip(st).limit(num)
-    for item in cur:
-        del item['_id']
-        raw_key = item['raw_key'] = item['year'] + item['area'] + item['college'] + item['major']
-        col2.update_many({'raw_key': raw_key}, {'$set': dict(item)}, upsert=True)
+<span class="token keyword">def</span> <span class="token function">worker</span><span class="token punctuation">(</span>st<span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># 注意父子进程不能共用同一MongoDB connection</span>
+    MONGO_URI <span class="token operator">=</span> <span class="token string">'mongodb://127.0.0.1:27017'</span>
+    client <span class="token operator">=</span> pymongo<span class="token punctuation">.</span>MongoClient<span class="token punctuation">(</span>MONGO_URI<span class="token punctuation">)</span>
+    database <span class="token operator">=</span> client<span class="token punctuation">[</span><span class="token string">'test'</span><span class="token punctuation">]</span>
+    col1 <span class="token operator">=</span> database<span class="token punctuation">[</span><span class="token string">'your_collection_name1'</span><span class="token punctuation">]</span>
+    col2 <span class="token operator">=</span> database<span class="token punctuation">[</span><span class="token string">'your_collection_name2'</span><span class="token punctuation">]</span>
+    cur <span class="token operator">=</span> col1<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>skip<span class="token punctuation">(</span>st<span class="token punctuation">)</span><span class="token punctuation">.</span>limit<span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> item <span class="token keyword">in</span> cur<span class="token punctuation">:</span>
+        <span class="token keyword">del</span> item<span class="token punctuation">[</span><span class="token string">'_id'</span><span class="token punctuation">]</span>
+        raw_key <span class="token operator">=</span> item<span class="token punctuation">[</span><span class="token string">'raw_key'</span><span class="token punctuation">]</span> <span class="token operator">=</span> item<span class="token punctuation">[</span><span class="token string">'year'</span><span class="token punctuation">]</span> <span class="token operator">+</span> item<span class="token punctuation">[</span><span class="token string">'area'</span><span class="token punctuation">]</span> <span class="token operator">+</span> item<span class="token punctuation">[</span><span class="token string">'college'</span><span class="token punctuation">]</span> <span class="token operator">+</span> item<span class="token punctuation">[</span><span class="token string">'major'</span><span class="token punctuation">]</span>
+        col2<span class="token punctuation">.</span>update_many<span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">'raw_key'</span><span class="token punctuation">:</span> raw_key<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">'$set'</span><span class="token punctuation">:</span> dict<span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">,</span> upsert<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
 
-if __name__ == '__main__':
-    st = int(sys.argv[1])
-    ed = int(sys.argv[2])
-    process_num = int(sys.argv[3])
-    x = int((ed-st)/process_num)
-    for i in range(0, process_num):
-        multiprocessing.Process(target=worker, args=(st+x*i, x)).start()
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    st <span class="token operator">=</span> int<span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    ed <span class="token operator">=</span> int<span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    process_num <span class="token operator">=</span> int<span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    x <span class="token operator">=</span> int<span class="token punctuation">(</span><span class="token punctuation">(</span>ed<span class="token operator">-</span>st<span class="token punctuation">)</span><span class="token operator">/</span>process_num<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> process_num<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        multiprocessing<span class="token punctuation">.</span>Process<span class="token punctuation">(</span>target<span class="token operator">=</span>worker<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>st<span class="token operator">+</span>x<span class="token operator">*</span>i<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1074,7 +1072,7 @@ if __name__ == '__main__':
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">68k</span>&nbsp;字
+                class="white-color">85.7k</span>&nbsp;字
             
             
             

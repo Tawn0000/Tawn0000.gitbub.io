@@ -449,6 +449,10 @@
                                 <span class="chip bg-color">Scripts</span>
                             </a>
                         
+                            <a href="/tags/Web-Crawler/">
+                                <span class="chip bg-color">Web Crawler</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -459,6 +463,10 @@
                         
                             <a href="/categories/Scripts/" class="post-category">
                                 Scripts
+                            </a>
+                        
+                            <a href="/categories/Scripts/Web-Crawler/" class="post-category">
+                                Web Crawler
                             </a>
                         
                     </div>
@@ -476,7 +484,7 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        901
+                        941
                     </div>
                     
 
@@ -519,8 +527,17 @@
 <li><p>具体实现请看代码</p>
 </li>
 </ol>
+<p>安装需要的包<br>终端输入：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># cv2</span>
+$ pip <span class="token function">install</span> opencv-python
+<span class="token comment" spellcheck="true"># PIL</span>
+$ pip <span class="token function">install</span> pillow
+<span class="token comment" spellcheck="true"># aip</span>
+$ pip <span class="token function">install</span> baidu-aip
+<span class="token comment" spellcheck="true"># skimage</span>
+$ pip <span class="token function">install</span> scikit-image
+<span class="token comment" spellcheck="true"># xxx, 其他比较简单。。。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> cv2
-<span class="token keyword">import</span> pytesseract
 <span class="token keyword">import</span> requests
 <span class="token keyword">import</span> string
 <span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
@@ -550,10 +567,10 @@
         msg <span class="token operator">=</span> self<span class="token punctuation">.</span>client<span class="token punctuation">.</span>basicGeneral<span class="token punctuation">(</span>img<span class="token punctuation">,</span> options<span class="token punctuation">)</span>
         result <span class="token operator">=</span> msg<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'words_result'</span><span class="token punctuation">)</span>    
         <span class="token keyword">if</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            temp <span class="token operator">=</span> result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'words'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            temp <span class="token operator">=</span> result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'words'</span><span class="token punctuation">)</span>
             res <span class="token operator">=</span> <span class="token string">''</span>
             <span class="token keyword">for</span> c <span class="token keyword">in</span> temp<span class="token punctuation">:</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">>=</span> <span class="token string">'0'</span> <span class="token operator">and</span> c <span class="token operator">&lt;=</span> <span class="token string">'9'</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token punctuation">(</span>c <span class="token operator">>=</span> <span class="token string">'A'</span> <span class="token operator">and</span> c <span class="token operator">&lt;=</span> <span class="token string">'Z'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">>=</span> <span class="token string">'0'</span> <span class="token operator">and</span> c <span class="token operator">&lt;=</span> <span class="token string">'9'</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token punctuation">(</span>c <span class="token operator">>=</span> <span class="token string">'A'</span> <span class="token operator">and</span> c <span class="token operator">&lt;=</span> <span class="token string">'Z'</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token punctuation">(</span>c <span class="token operator">>=</span> <span class="token string">'a'</span> <span class="token operator">and</span> c <span class="token operator">&lt;=</span> <span class="token string">'z'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
                     res <span class="token operator">+=</span> c
             <span class="token keyword">return</span> res
         <span class="token keyword">return</span> <span class="token string">''</span>
@@ -666,7 +683,7 @@
 <span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>
     captcha <span class="token operator">=</span> CaptchaIdentify<span class="token punctuation">(</span><span class="token punctuation">)</span>
     url <span class="token operator">=</span> <span class="token string">'xxx'</span><span class="token comment" spellcheck="true"># 图片链接</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>captcha<span class="token punctuation">.</span>recognize_gif_url<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>captcha<span class="token punctuation">.</span>recognize_gif_url<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -941,6 +958,10 @@
                                     Scripts
                                 </a>
                             
+                            <a href="/categories/Scripts/Web-Crawler/" class="post-category">
+                                    Web Crawler
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -951,6 +972,10 @@
                     
                     <a href="/tags/Scripts/">
                         <span class="chip bg-color">Scripts</span>
+                    </a>
+                    
+                    <a href="/tags/Web-Crawler/">
+                        <span class="chip bg-color">Web Crawler</span>
                     </a>
                     
                 </div>
@@ -1162,7 +1187,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">68k</span>&nbsp;字
+                class="white-color">85.7k</span>&nbsp;字
             
             
             
