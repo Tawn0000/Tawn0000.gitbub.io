@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-04-02T15:17:57.036Z</updated>
+  <updated>2020-04-03T01:01:35.886Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://tawn0000.github.io/2020/04/02/greedy-problem-set/"/>
     <id>https://tawn0000.github.io/2020/04/02/greedy-problem-set/</id>
     <published>2020-04-02T08:25:46.000Z</published>
-    <updated>2020-04-02T15:17:57.036Z</updated>
+    <updated>2020-04-03T01:01:35.886Z</updated>
     
     <summary type="html">
     
@@ -36,6 +36,14 @@
     </summary>
     
     
+      <category term="Algorithm" scheme="https://tawn0000.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
+    
+      <category term="Problem Set" scheme="https://tawn0000.github.io/tags/Problem-Set/"/>
+    
+      <category term="Greedy" scheme="https://tawn0000.github.io/tags/Greedy/"/>
     
   </entry>
   
@@ -286,7 +294,7 @@
     <link href="https://tawn0000.github.io/2019/11/08/algorithm-problem-list/"/>
     <id>https://tawn0000.github.io/2019/11/08/algorithm-problem-list/</id>
     <published>2019-11-08T12:59:06.000Z</published>
-    <updated>2020-01-11T10:57:47.394Z</updated>
+    <updated>2020-04-03T01:10:36.387Z</updated>
     
     <summary type="html">
     
@@ -310,6 +318,8 @@
     
       <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
     
+      <category term="Problem Set" scheme="https://tawn0000.github.io/tags/Problem-Set/"/>
+    
   </entry>
   
   <entry>
@@ -317,7 +327,7 @@
     <link href="https://tawn0000.github.io/2019/11/03/daily-new-words/"/>
     <id>https://tawn0000.github.io/2019/11/03/daily-new-words/</id>
     <published>2019-11-03T05:51:36.000Z</published>
-    <updated>2020-02-19T16:47:04.432Z</updated>
+    <updated>2020-04-03T01:10:30.741Z</updated>
     
     <summary type="html">
     
