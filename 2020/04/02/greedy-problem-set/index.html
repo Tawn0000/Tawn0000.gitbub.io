@@ -481,14 +481,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        5.8k
+                        6.3k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        24 分
+                        27 分
                     </div>
                     
                 
@@ -687,7 +687,7 @@ priority_queue<span class="token operator">&lt;</span>P<span class="token punctu
 <span class="token comment" spellcheck="true">//1 3</span>
 <span class="token comment" spellcheck="true">//2 4</span>
 <span class="token comment" spellcheck="true">//4 7</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="3-POJ1700-过河问题"><a href="#3-POJ1700-过河问题" class="headerlink" title="3. POJ1700 过河问题"></a>3. POJ1700 过河问题</h2><p><strong>【题目描述】</strong><br>一群人想用一条船过河，但这条船最多只能载两个人。因此，必须安排某种穿梭安排，以便把船划来划去，让所有的人都能通过。每个人的划船速度不同;两个人一起划船的速度是由较慢一方的速度决定的。你的工作是确定一个策略，尽可能缩短这些人的过河时间。<br><strong>【输入】</strong><br>输入的第一行包含一个整数T (1 &lt;= T &lt;= 20)，即测试用例的数量。然后是T个案例。每种情况的第一行包含N，第二行包含N个整数，给出每个人过河的时间。每个case前面都有一个空行。不会有超过1000人，没有人需要超过100秒才能通过。<br><strong>【输出】</strong><br>对于每个测试用例，打印一行包含所有N个人过河所需的总秒数。</p>
+<h2 id="4-POJ1700-过河问题"><a href="#4-POJ1700-过河问题" class="headerlink" title="4. POJ1700 过河问题"></a>4. POJ1700 过河问题</h2><p><strong>【题目描述】</strong><br>一群人想用一条船过河，但这条船最多只能载两个人。因此，必须安排某种穿梭安排，以便把船划来划去，让所有的人都能通过。每个人的划船速度不同;两个人一起划船的速度是由较慢一方的速度决定的。你的工作是确定一个策略，尽可能缩短这些人的过河时间。<br><strong>【输入】</strong><br>输入的第一行包含一个整数T (1 &lt;= T &lt;= 20)，即测试用例的数量。然后是T个案例。每种情况的第一行包含N，第二行包含N个整数，给出每个人过河的时间。每个case前面都有一个空行。不会有超过1000人，没有人需要超过100秒才能通过。<br><strong>【输出】</strong><br>对于每个测试用例，打印一行包含所有N个人过河所需的总秒数。</p>
 <p><strong>【样例输入】</strong><br>1<br>4<br>1 2 5 10<br><strong>【样例输出】</strong><br>17</p>
 <p><strong>【解析】</strong><br>题目大意：求最快过河的秒数，注意有返程<br>两种贪心策略：<br>1、用速度最快的那个每次将人载过河，再回来载其他的人<br>2、用速度最快的和次快的循环载人，即最快的和次快的先过河，次快的留下，最快的回来，接着最慢和次慢的人过河，次快的回来<br><strong>【代码】</strong></p>
 <pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
@@ -718,7 +718,13 @@ priority_queue<span class="token operator">&lt;</span>P<span class="token punctu
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="5-HDU1338-游戏预测"><a href="#5-HDU1338-游戏预测" class="headerlink" title="5. HDU1338 游戏预测"></a>5. HDU1338 游戏预测</h2><p><strong>【题目描述】</strong><br>假设有M个人，包括你，在玩一个特殊的纸牌游戏。一开始，每个玩家得到N张牌。一张牌的pip是一个正整数，它的最大值是N<em>M。没有两张牌是相同的。在一轮游戏中，每个玩家选择一张牌与其他牌进行比较。拥有最大pip的牌手赢了这一轮，然后下一轮开始。经过N轮后，当每个玩家的所有纸牌都被选中时，赢得最多回合的玩家就是游戏的赢家。<br>给定你在开始时收到的牌，编写一个程序来告诉你在整个游戏中至少可以赢的最大轮数。<br><strong>【输入】</strong><br>输入由几个测试用例组成。每个case的第一行包含两个整数m (2 &lt;= m &lt;= 20)和n (1 &lt;= n &lt;= 50)，分别表示玩家人数和每个玩家在游戏开始时收到的牌数。然后是一行n个正整数，表示你在开始时收到的纸牌的点数。然后是空行来分隔这些情况。<br>输入以带有两个0的行结束。<br><strong>【输出】</strong><br>对于每个测试用例，输出一行由测试用例号和至少在游戏中获胜的轮数组成的代码。<br><em>*【样例输入】</em></em><br>2 5<br>1 7 2 10 9</p>
+<h2 id="5-HDU1338-游戏预测"><a href="#5-HDU1338-游戏预测" class="headerlink" title="5. HDU1338 游戏预测"></a>5. HDU1338 游戏预测</h2><p><strong>【题目描述】</strong></p>
+<p>假设有M个人，包括你，在玩一个特殊的纸牌游戏。一开始，每个玩家得到N张牌。一张牌的pip是一个正整数，它的最大值是N * M。没有两张牌是相同的。在一轮游戏中，每个玩家选择一张牌与其他牌进行比较。拥有最大pip的牌手赢了这一轮，然后下一轮开始。经过N轮后，当每个玩家的所有纸牌都被选中时，赢得最多回合的玩家就是游戏的赢家。<br>给定你在开始时收到的牌，编写一个程序来告诉你在整个游戏中至少可以赢的最大轮数。</p>
+<p><strong>【输入】</strong></p>
+<p>输入由几个测试用例组成。每个case的第一行包含两个整数m (2 &lt;= m &lt;= 20)和n (1 &lt;= n &lt;= 50)，分别表示玩家人数和每个玩家在游戏开始时收到的牌数。然后是一行n个正整数，表示你在开始时收到的纸牌的点数。然后是空行来分隔这些情况。<br>输入以带有两个0的行结束。</p>
+<p><strong>【输出】</strong></p>
+<p>对于每个测试用例，输出一行由测试用例号和至少在游戏中获胜的轮数组成的代码。</p>
+<p><strong>【样例输入】</strong><br>2 5<br>1 7 2 10 9</p>
 <p>6 11<br>62 63 54 66 65 61 57 56 50 53 48</p>
 <p>0 0<br><strong>【样例输出】</strong><br>Case 1: 2<br>Case 2: 4</p>
 <p><strong>【解析】</strong><br>题目大意：求至少能赢的轮数<br>贪心策略：寻找恰好大于自己的数来对战，剩下的都能赢</p>
@@ -839,7 +845,102 @@ priority_queue<span class="token operator">&lt;</span>P<span class="token punctu
 <p><strong>【样例输出】</strong><br>45, 5<br>Number of fish expected: 31</p>
 <p>240, 0, 0, 0<br>Number of fish expected: 480</p>
 <p>115, 10, 50, 35<br>Number of fish expected: 724<br><strong>【解析】</strong><br>题目大意：求h时间内能钓的鱼的最大数目<br>贪心策略：总时间= 钓鱼时间+走路时间. 所以我们枚举约翰最后钓鱼的湖是第i个,然后我们算出他一共花了多少时间走路,那么剩下的就是钓鱼花的时间.<br>求1-i钓的鱼的最大数目，在每单位时间内贪心选择能钓最多的鱼的湖泊，虽然顺序不一样，但是实际并不影响（思考一下）。<br>做法：枚举结束湖泊，预处理出走路时间，用优先队列保存并更新湖泊的状态，从而贪心选择湖泊。</p>
-<p><strong>【代码】</strong><br>暂略</p>
+<p><strong>【代码】</strong></p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstring></span></span>
+
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>h<span class="token punctuation">;</span>
+<span class="token keyword">int</span> f<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> d<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> t<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span> st<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> Node<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> i<span class="token punctuation">,</span>f<span class="token punctuation">,</span>t<span class="token punctuation">;</span>
+    <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">int</span> f<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">int</span> t<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token function">i</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">f</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">t</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">&lt;</span> <span class="token punctuation">(</span><span class="token keyword">const</span> Node <span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token keyword">const</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>f <span class="token operator">==</span> a<span class="token punctuation">.</span>f<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>i <span class="token operator">></span> a<span class="token punctuation">.</span>i<span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token operator">-</span><span class="token operator">></span>f <span class="token operator">&lt;</span> a<span class="token punctuation">.</span>f<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+priority_queue<span class="token operator">&lt;</span>Node<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span>Node<span class="token operator">></span> <span class="token operator">></span> pq<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>cin <span class="token operator">>></span> n<span class="token operator">&amp;&amp;</span> n<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        cin <span class="token operator">>></span> h<span class="token punctuation">;</span>
+        f<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> d<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> t<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> st<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cin <span class="token operator">>></span> f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cin <span class="token operator">>></span> d<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cin <span class="token operator">>></span> t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> st<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> st<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span> <span class="token operator">+</span> t<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 记录最优解，有可能没有鱼，所以初始值需要设置为负数</span>
+        <span class="token keyword">int</span> ret<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//记录答案分钟数</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 记录改方案总鱼数目</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>pq<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> pq<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> i<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> pq<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">Node</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span>f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> ht <span class="token operator">=</span> h<span class="token operator">*</span><span class="token number">12</span><span class="token operator">-</span>st<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//总间隔数</span>
+<span class="token comment" spellcheck="true">//            cout &lt;&lt; ht &lt;&lt; "&amp;&amp;&amp;" &lt;&lt; endl;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span>ht <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                Node tmp <span class="token operator">=</span> pq<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//                cout &lt;&lt; tmp.i &lt;&lt; " " &lt;&lt; tmp.f &lt;&lt; " " &lt;&lt; tmp.t &lt;&lt; endl;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>tmp<span class="token punctuation">.</span>f <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+                pq<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                res <span class="token operator">+</span><span class="token operator">=</span> tmp<span class="token punctuation">.</span>f<span class="token punctuation">;</span>
+                tmp<span class="token punctuation">.</span>f <span class="token operator">-</span><span class="token operator">=</span> d<span class="token punctuation">[</span>tmp<span class="token punctuation">.</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                tmp<span class="token punctuation">.</span>t <span class="token operator">++</span><span class="token punctuation">;</span>
+                pq<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                ht<span class="token operator">--</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//            cout &lt;&lt; res &lt;&lt; " * " &lt;&lt; endl;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>res <span class="token operator">></span> ans<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                ans <span class="token operator">=</span> res<span class="token punctuation">;</span>
+                <span class="token function">memset</span><span class="token punctuation">(</span>ret<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>ret<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span>pq<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    Node tmp <span class="token operator">=</span> pq<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    pq<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    ret<span class="token punctuation">[</span>tmp<span class="token punctuation">.</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> tmp<span class="token punctuation">.</span>t<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//                cout &lt;&lt; ht &lt;&lt; "^^^ " &lt;&lt; ret[1]&lt;&lt; endl;</span>
+                ret<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> ht<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> cout <span class="token operator">&lt;&lt;</span> ret<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">5</span> <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span><span class="token punctuation">;</span>
+        cout <span class="token operator">&lt;&lt;</span> ret<span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token number">5</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Number of fish expected: "</span> <span class="token operator">&lt;&lt;</span> ans <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+        cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 特殊的测试数据</span>
+<span class="token comment" spellcheck="true">//60，0，0</span>
+<span class="token comment" spellcheck="true">//10</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">//3</span>
+<span class="token comment" spellcheck="true">//1</span>
+<span class="token comment" spellcheck="true">//0 76 50</span>
+<span class="token comment" spellcheck="true">//0 30 7</span>
+<span class="token comment" spellcheck="true">//20 13</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">//ans：</span>
+<span class="token comment" spellcheck="true">//60, 0, 0</span>
+<span class="token comment" spellcheck="true">//Number of fish expected: 0</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">//22</span>
+<span class="token comment" spellcheck="true">//12</span>
+<span class="token comment" spellcheck="true">//9 51 13 98 2 88 76 81 95 18 41 56 88 58 28 87 19 79 68 27 79 42</span>
+<span class="token comment" spellcheck="true">//7 13 8 1 2 6 24 19 78 3 38 38 31 44 15 43 12 19 28 8 71 9</span>
+<span class="token comment" spellcheck="true">//4 95 28 58 43 56 24 82 41 75 4 27 99 98 37 64 31 37 56 28 18</span>
+<span class="token comment" spellcheck="true">//</span>
+<span class="token comment" spellcheck="true">//Output:</span>
+<span class="token comment" spellcheck="true">//0, 0, 0, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0</span>
+<span class="token comment" spellcheck="true">//Number of fish expected: 1530</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="9-HDU1789-再次作业"><a href="#9-HDU1789-再次作业" class="headerlink" title="9. HDU1789 再次作业"></a>9. HDU1789 再次作业</h2><p><strong>【题目描述】</strong></p>
 <p>伊格内修斯刚从第30届ACM/ICPC毕业。现在他有很多家庭作业要做。每个老师都给他一个交作业的最后期限。如果伊格内修斯在最后期限后交作业，老师就会降低他的期末考试分数。现在我们假设每个人做作业都要花一天的时间。所以伊格那丢想让你帮他安排作业的顺序，把减少的分数减到最小。</p>
 <p><strong>【输入】</strong></p>
@@ -1120,55 +1221,46 @@ priority_queue<span class="token operator">&lt;</span>P<span class="token punctu
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/02/greedy-problem-set/">
+                <a href="/2020/04/11/some-basic-concepts-of-machine-learning/">
                     <div class="card-image">
                         
-                        <img src="https://tva1.sinaimg.cn/large/00831rSTgy1gdfmbub4kfj30rs0r3wml.jpg" class="responsive-img" alt="Greedy Problem Set">
                         
-                        <span class="card-title">Greedy Problem Set</span>
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Some basic concepts of machine learning">
+                        
+                        <span class="card-title">Some basic concepts of machine learning</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            贪心问题集 1. POJ2376 清洁倒班 2. POJ1328 雷达安装 3. POJ3190 牛栏预订 3. POJ1700 过河问题 5. HDU1338 游戏预测 6. ZOJ2229 乘车上学 7. POJ1456 超级市场 8. POJ1042 钓鱼去了 9. HDU1789 再次作业
+                            机器学习的一些基本概念
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-02
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-11
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Algorithm/" class="post-category">
-                                    Algorithm
+                            <a href="/categories/ML/" class="post-category">
+                                    ML
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Algorithm/">
-                        <span class="chip bg-color">Algorithm</span>
-                    </a>
-                    
-                    <a href="/tags/Problem-Set/">
-                        <span class="chip bg-color">Problem Set</span>
-                    </a>
-                    
-                    <a href="/tags/Greedy/">
-                        <span class="chip bg-color">Greedy</span>
+                    <a href="/tags/ML/">
+                        <span class="chip bg-color">ML</span>
                     </a>
                     
                 </div>
@@ -1389,7 +1481,7 @@ priority_queue<span class="token operator">&lt;</span>P<span class="token punctu
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">94.3k</span>&nbsp;字
+                class="white-color">95k</span>&nbsp;字
             
             
             
