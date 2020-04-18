@@ -464,14 +464,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        556
+                        844
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -546,6 +546,45 @@
 <p><strong>After</strong></p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> Django-x.y.z
 <span class="token function">sudo</span> python setup.py <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="三、项目介绍"><a href="#三、项目介绍" class="headerlink" title="三、项目介绍"></a>三、项目介绍</h2><h3 id="1-新建项目"><a href="#1-新建项目" class="headerlink" title="1. 新建项目"></a>1. 新建项目</h3><p>创建名为testproject的项目<br>注：所有路径不要有中文<br>终端输入</p>
+<pre class="line-numbers language-bash"><code class="language-bash">django-admin.py startproject testproject<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="2-目录层级"><a href="#2-目录层级" class="headerlink" title="2. 目录层级"></a>2. 目录层级</h3><pre class="line-numbers language-tree"><code class="language-tree">testproject
+├── manage.py        :一个命令行工具，可以让我们用多种方式对Django项目进行交互
+└── testproject
+    ├── __init__.py  :一个空文件，它告诉Python这个目录应该被看做一个包
+    ├── asgi.py      :项目与ASGI兼容的Web服务器入口, 3.0以上版本特有
+    ├── settings.py  :项目的配置文件（主要处理文件）
+    ├── urls.py      :项目的url声明 （主要处理文件）
+    └── wsgi.py      :项目与WSGI兼容的Web服务器入口<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3. 启动服务"></a>3. 启动服务</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> testproject <span class="token comment" spellcheck="true"># 切换到我们创建的项目</span>
+$ python manage.py runserver
+……
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-连接数据库"><a href="#4-连接数据库" class="headerlink" title="4. 连接数据库"></a>4. 连接数据库</h3><p><strong>在settings.py 中配置</strong></p>
+<ul>
+<li><p>Django 默认是sqlite数据库</p>
+</li>
+<li><p>配置mongo</p>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> mongoengine <span class="token keyword">import</span> <span class="token operator">*</span>
+database_name <span class="token operator">=</span> <span class="token string">'test'</span>
+MONGO_DATABASE_OPTIONS <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'host'</span><span class="token punctuation">:</span> <span class="token string">'localhost'</span><span class="token punctuation">,</span>
+    <span class="token string">'port'</span><span class="token punctuation">:</span> <span class="token number">27017</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true"># 'username': 'tor_tester',</span>
+    <span class="token comment" spellcheck="true"># 'password': '123456',</span>
+<span class="token punctuation">}</span>
+register_connection<span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> database_name<span class="token punctuation">,</span> <span class="token operator">**</span>MONGO_DATABASE_OPTIONS<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>[参考资料]</strong></p>
+<ul>
+<li><a href="https://www.djangoproject.com/" target="_blank" rel="noopener">Django官网</a></li>
+<li><a href="https://www.runoob.com/django/django-tutorial.html" target="_blank" rel="noopener">Django菜鸟教程</a></li>
+<li><a href="https://www.bilibili.com/video/BV1dW411q7xR?p=2" target="_blank" rel="noopener">千锋python教程：Django基础到实战讲解（精华版）</a></li>
+<li><a href="https://www.cnblogs.com/fengbo1113/p/8547302.html" target="_blank" rel="noopener">Django 千锋培训的学习笔记（1）</a></li>
+</ul>
+<p><strong>[声明]</strong><br>部分资源源自网络，侵删！</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1036,7 +1075,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">95.6k</span>&nbsp;字
+                class="white-color">95.9k</span>&nbsp;字
             
             
             
