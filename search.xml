@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Django Introduction</title>
+      <link href="/2020/04/18/django-introduction/"/>
+      <url>/2020/04/18/django-introduction/</url>
+      
+        <content type="html"><![CDATA[<h2 id="一、设计模式"><a href="#一、设计模式" class="headerlink" title="一、设计模式"></a>一、设计模式</h2><h3 id="1-MVC"><a href="#1-MVC" class="headerlink" title="1. MVC"></a>1. MVC</h3><blockquote><p>一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到<br>一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。<br>MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。<br><strong>核心：解耦</strong></p></blockquote><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdyb3v90vaj30go0dcdh1.jpg" alt="图解"></p><p><strong>编程模式：</strong></p><ul><li><p>Model (模型)</p><ul><li>是应用程序中用于处理应用程序数据逻辑的部分</li><li>通常模型对象负责在数据库中存取数据</li></ul></li><li><p>View (视图)</p><ul><li>是应用程序中处理数据显示的部分</li><li>通常视图是依据模型数据创建的</li></ul></li><li><p>Controller (控制器)</p><ul><li>是应用程序中处理用户交互的部分</li><li>通常控制器负责从视图读取数据，控制用户输入，并向模型发送数据</li></ul></li></ul><p><strong>优点: 降低各功能模块之间的耦合性，方便变更，更容易重构代码，最大程度上实现代码的重用</strong></p><h3 id="2-MTV"><a href="#2-MTV" class="headerlink" title="2. MTV"></a>2. MTV</h3><blockquote><p>本质上与MVC模式没有什么差别，也是各组件之间为了保持松耦合关系，只是定义上有些许不同</p></blockquote><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdybe6ixioj31be0lt7ar.jpg" alt="图解"></p><p><strong>编程模式</strong></p><ul><li><p>Model(模型)</p><ul><li>负责业务对象与数据库的对象(ORM)</li></ul></li><li><p>Template(模版)</p><ul><li>负责如何把页面展示给用户</li></ul></li><li><p>View(视图)</p><ul><li>负责业务逻辑，并在适当的时候调用Model和Template</li></ul></li></ul><p><strong>注意: Django还有一个url分发器，它的作用是将一个个URL的页面请求分发给不同的view处理，view再调用相应的Model和Template</strong></p><h2 id="二、Django安装"><a href="#二、Django安装" class="headerlink" title="二、Django安装"></a>二、Django安装</h2><p><strong>环境：Mac os</strong></p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdycegx22bj30nc094jsm.jpg" alt="python与Django版本对应关系"></p><h3 id="1-pip-安装"><a href="#1-pip-安装" class="headerlink" title="1. pip 安装"></a>1. pip 安装</h3><pre class="line-numbers language-bash"><code class="language-bash">pip <span class="token function">install</span> Django<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="2-下载-git-安装"><a href="#2-下载-git-安装" class="headerlink" title="2. 下载/git 安装"></a>2. 下载/git 安装</h3><p>点击<a href="https://www.djangoproject.com/download/" target="_blank" rel="noopener">下载网址</a>, 左侧有最新版</p><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">tar</span> zxvf Django-x.y.z.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>或者使用git</strong><br>点击<a href="https://github.com/django/django" target="_blank" rel="noopener">https://github.com/django/django</a><br>或者终端输入</p><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/django/django.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>After</strong></p><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> Django-x.y.z<span class="token function">sudo</span> python setup.py <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Django </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Some basic concepts of machine learning</title>
       <link href="/2020/04/11/some-basic-concepts-of-machine-learning/"/>
       <url>/2020/04/11/some-basic-concepts-of-machine-learning/</url>
