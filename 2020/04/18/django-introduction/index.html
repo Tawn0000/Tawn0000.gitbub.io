@@ -464,14 +464,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        844
+                        1.2k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        5 分
                     </div>
                     
                 
@@ -557,15 +557,18 @@
     ├── urls.py      :项目的url声明 （主要处理文件）
     └── wsgi.py      :项目与WSGI兼容的Web服务器入口<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3. 启动服务"></a>3. 启动服务</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> testproject <span class="token comment" spellcheck="true"># 切换到我们创建的项目</span>
-$ python manage.py runserver
+python manage.py runserver
 ……
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="4-连接数据库"><a href="#4-连接数据库" class="headerlink" title="4. 连接数据库"></a>4. 连接数据库</h3><p><strong>在settings.py 中配置</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdyvzi63oij31jm0u07a8.jpg" alt="启动成功界面"></p>
+<h3 id="4-连接数据库"><a href="#4-连接数据库" class="headerlink" title="4. 连接数据库"></a>4. 连接数据库</h3><p><strong>在settings.py 中配置</strong><br><strong>任选一个配置即可</strong></p>
 <ul>
 <li><p>Django 默认是sqlite数据库</p>
 </li>
-<li><p>配置mongo</p>
+<li><p>配置Mysql数据库</p>
+</li>
+<li><p>配置mongo数据库</p>
 </li>
 </ul>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> mongoengine <span class="token keyword">import</span> <span class="token operator">*</span>
@@ -577,12 +580,93 @@ MONGO_DATABASE_OPTIONS <span class="token operator">=</span> <span class="token 
     <span class="token comment" spellcheck="true"># 'password': '123456',</span>
 <span class="token punctuation">}</span>
 register_connection<span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> database_name<span class="token punctuation">,</span> <span class="token operator">**</span>MONGO_DATABASE_OPTIONS<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="5-创建应用"><a href="#5-创建应用" class="headerlink" title="5. 创建应用"></a>5. 创建应用</h3><ul>
+<li>终端输入:</li>
+</ul>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> testproject
+python manage.py startapp myapp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>目录层级：</li>
+</ul>
+<pre class="line-numbers language-tree"><code class="language-tree">testproject
+├── manage.py
+├── myapp
+│   ├── __init__.py
+│   ├── admin.py            :站点配置
+│   ├── apps.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py           :模型
+│   ├── tests.py
+│   └── views.py            :试图
+└── testproject
+    ├── __init__.py
+    ├── __pycache__
+    │   ├── __init__.cpython-36.pyc
+    │   └── settings.cpython-36.pyc
+    ├── asgi.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="6-激活应用"><a href="#6-激活应用" class="headerlink" title="6. 激活应用"></a>6. 激活应用</h3><p><strong>在settings.py文件中，将myapp应用加入到INSTALLED APPS选项中</strong></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Application definition</span>
+INSTALLED_APPS <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'django.contrib.admin'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.auth'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.contenttypes'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.sessions'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.messages'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.staticfiles'</span><span class="token punctuation">,</span>
+    <span class="token string">'myapp'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="7-定义模型"><a href="#7-定义模型" class="headerlink" title="7. 定义模型"></a>7. 定义模型</h3><p><strong>在models.py文件中定义模型, 一个模型对应一张表</strong></p>
+<p><strong>示例：</strong></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> mongoengine
+
+<span class="token keyword">class</span> <span class="token class-name">StudentModel</span><span class="token punctuation">(</span>mongoengine<span class="token punctuation">.</span>Document<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name <span class="token operator">=</span> mongoengine<span class="token punctuation">.</span>StringField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">)</span>
+    age <span class="token operator">=</span> mongoengine<span class="token punctuation">.</span>IntField<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="8-创建视图"><a href="#8-创建视图" class="headerlink" title="8. 创建视图"></a>8. 创建视图</h3><p><strong>在views.py中定义视图</strong></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>shortcuts <span class="token keyword">import</span> render<span class="token punctuation">,</span> HttpResponse
+
+<span class="token comment" spellcheck="true"># Create your views here.</span>
+<span class="token comment" spellcheck="true"># .表示当前包下的models</span>
+<span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> StudentModel
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>views<span class="token punctuation">.</span>generic <span class="token keyword">import</span> View
+
+<span class="token keyword">class</span> <span class="token class-name">Student</span><span class="token punctuation">(</span>View<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">get</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># 增加数据</span>
+        StudentModel<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'张三'</span><span class="token punctuation">,</span> age<span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 查询数据</span>
+        result <span class="token operator">=</span> StudentModel<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>filter<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'张三'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>age<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># # 修改数据</span>
+        <span class="token comment" spellcheck="true"># result = StudentModel.objects.filter(name='张三').first().update(name='李四')</span>
+        <span class="token comment" spellcheck="true"># print(result)</span>
+        <span class="token comment" spellcheck="true"># # 删除数据</span>
+        <span class="token comment" spellcheck="true"># result = StudentModel.objects.filter(name='张三').first().delete()</span>
+        <span class="token comment" spellcheck="true"># print(result)</span>
+        <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span>result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>age<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="9-配置url"><a href="#9-配置url" class="headerlink" title="9. 配置url"></a>9. 配置url</h3><p><strong>在urls.py中配置url</strong></p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>urls <span class="token keyword">import</span> path<span class="token punctuation">,</span> re_path
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
+<span class="token comment" spellcheck="true"># import os</span>
+<span class="token comment" spellcheck="true"># print(os.getcwd())</span>
+<span class="token keyword">from</span> myapp<span class="token punctuation">.</span>views <span class="token keyword">import</span> Student
+
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    re_path<span class="token punctuation">(</span>r<span class="token string">'^admin/'</span><span class="token punctuation">,</span> admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>urls<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    re_path<span class="token punctuation">(</span>r<span class="token string">'^student/$'</span><span class="token punctuation">,</span> Student<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'student'</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="10-刷新界面"><a href="#10-刷新界面" class="headerlink" title="10. 刷新界面"></a>10. 刷新界面</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdyw9zq4nlj30ki0biwfe.jpg" alt="student"></p>
 <p><strong>[参考资料]</strong></p>
 <ul>
 <li><a href="https://www.djangoproject.com/" target="_blank" rel="noopener">Django官网</a></li>
 <li><a href="https://www.runoob.com/django/django-tutorial.html" target="_blank" rel="noopener">Django菜鸟教程</a></li>
 <li><a href="https://www.bilibili.com/video/BV1dW411q7xR?p=2" target="_blank" rel="noopener">千锋python教程：Django基础到实战讲解（精华版）</a></li>
 <li><a href="https://www.cnblogs.com/fengbo1113/p/8547302.html" target="_blank" rel="noopener">Django 千锋培训的学习笔记（1）</a></li>
+<li><a href="https://blog.csdn.net/kuangshp128/article/details/79039366" target="_blank" rel="noopener">django连接mongodb数据库</a></li>
 </ul>
 <p><strong>[声明]</strong><br>部分资源源自网络，侵删！</p>
 <script>
@@ -1075,7 +1159,7 @@ register_connection<span class="token punctuation">(</span><span class="token st
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">95.9k</span>&nbsp;字
+                class="white-color">96.2k</span>&nbsp;字
             
             
             
