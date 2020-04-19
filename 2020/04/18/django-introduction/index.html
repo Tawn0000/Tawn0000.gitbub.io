@@ -464,14 +464,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.2k
+                        1.5k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        6 分
                     </div>
                     
                 
@@ -557,20 +557,30 @@
     ├── urls.py      :项目的url声明 （主要处理文件）
     └── wsgi.py      :项目与WSGI兼容的Web服务器入口<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3. 启动服务"></a>3. 启动服务</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> testproject <span class="token comment" spellcheck="true"># 切换到我们创建的项目</span>
-python manage.py runserver
+python manage.py runserver ip:port
 ……
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>ip:port 不写时默认：<a href="http://127.0.0.1:8000/" target="_blank" rel="noopener">http://127.0.0.1:8000/</a></strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdyvzi63oij31jm0u07a8.jpg" alt="启动成功界面"></p>
 <h3 id="4-连接数据库"><a href="#4-连接数据库" class="headerlink" title="4. 连接数据库"></a>4. 连接数据库</h3><p><strong>在settings.py 中配置</strong><br><strong>任选一个配置即可</strong></p>
 <ul>
 <li><p>Django 默认是sqlite数据库</p>
 </li>
-<li><p>配置Mysql数据库</p>
-</li>
 <li><p>配置mongo数据库</p>
 </li>
 </ul>
+<p>Django 框架的数据库引擎中没有 MongoDB 引擎，配置文件 setting.py 中的 ENGINE 字段只支持常见几种关系型数据库。</p>
+<ul>
+<li>django.db.backends.sqlite3</li>
+<li>django.db.backends.mysql</li>
+<li>django.db.backends.oracle</li>
+<li>django.db.backends.postgresql</li>
+<li>django.db.backends.postgresql_psycopg2</li>
+</ul>
+<p>官方解释: 如果数据库使用 MongoDB，推荐使用 Djongo这个库来做数据库引擎</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> pip <span class="token function">install</span> djongo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>在settings.py 中配置</strong></p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> mongoengine <span class="token keyword">import</span> <span class="token operator">*</span>
 database_name <span class="token operator">=</span> <span class="token string">'test'</span>
 MONGO_DATABASE_OPTIONS <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -579,7 +589,18 @@ MONGO_DATABASE_OPTIONS <span class="token operator">=</span> <span class="token 
     <span class="token comment" spellcheck="true"># 'username': 'tor_tester',</span>
     <span class="token comment" spellcheck="true"># 'password': '123456',</span>
 <span class="token punctuation">}</span>
-register_connection<span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> database_name<span class="token punctuation">,</span> <span class="token operator">**</span>MONGO_DATABASE_OPTIONS<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+register_connection<span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> database_name<span class="token punctuation">,</span> <span class="token operator">**</span>MONGO_DATABASE_OPTIONS<span class="token punctuation">)</span>
+
+DATABASES <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'default'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'ENGINE'</span><span class="token punctuation">:</span> <span class="token string">'djongo'</span><span class="token punctuation">,</span>
+        <span class="token string">'ENFORCE_SCHEMA'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token string">'NAME'</span><span class="token punctuation">:</span> <span class="token string">'test'</span><span class="token punctuation">,</span>
+        <span class="token string">'CLIENT'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'host'</span><span class="token punctuation">:</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="5-创建应用"><a href="#5-创建应用" class="headerlink" title="5. 创建应用"></a>5. 创建应用</h3><ul>
 <li>终端输入:</li>
 </ul>
@@ -660,6 +681,48 @@ urlpatterns <span class="token operator">=</span> <span class="token punctuation
     re_path<span class="token punctuation">(</span>r<span class="token string">'^student/$'</span><span class="token punctuation">,</span> Student<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'student'</span><span class="token punctuation">)</span>
 <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="10-刷新界面"><a href="#10-刷新界面" class="headerlink" title="10. 刷新界面"></a>10. 刷新界面</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdyw9zq4nlj30ki0biwfe.jpg" alt="student"></p>
+<h3 id="11-数据迁移"><a href="#11-数据迁移" class="headerlink" title="11. 数据迁移"></a>11. 数据迁移</h3><ul>
+<li>生成迁移文件<ul>
+<li>执行 <strong>python manage.py makemigrations</strong><br>在migrations目录下生成一个迁移文件，此时数据库中还没有生成数据表</li>
+</ul>
+</li>
+<li>执行迁移<ul>
+<li>执行 <strong>python manage.py migrate</strong>           创建数据表</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-Admin站点管理"><a href="#12-Admin站点管理" class="headerlink" title="12. Admin站点管理"></a>12. Admin站点管理</h3><ul>
+<li><p>概述：</p>
+<ul>
+<li>内容发布：负责添加，修改，删除内容的</li>
+<li>公告访问</li>
+</ul>
+</li>
+<li><p>配置Admin应用：</p>
+<ul>
+<li>在 <strong>settings.py</strong> 文件中的 <strong>INSTALLED_APPS</strong> 中添加 <strong>‘django.contrib.admin’</strong>, —-这条默认是添加好的。</li>
+</ul>
+</li>
+<li><p>创建管理员用户：</p>
+<ul>
+<li>在项目目录下执行 <strong>python manage.py createsuperuser</strong></li>
+<li>依次输入账号名，邮箱，密码即可完成用户创建</li>
+</ul>
+</li>
+<li><p>登陆：<br>  <a href="http://127.0.0.1:8000/admin/" target="_blank" rel="noopener">http://127.0.0.1:8000/admin/</a></p>
+</li>
+<li><p>汉化(可选)：<br>  把 <strong>project/settings.py</strong> 中作如下设定：<br>  <strong>LANGUAGE_CODE = ‘zh-Hans’<br>  TIME_ZONE = ‘Asia/Shanghai’</strong></p>
+</li>
+<li><p>管理数据表：<br><strong>修改 myAPP/admin.py 如下：</strong></p>
+</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
+<span class="token comment" spellcheck="true"># Register your models here.</span>
+<span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> StudentModel
+<span class="token comment" spellcheck="true"># 注册</span>
+admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>register<span class="token punctuation">(</span>StudentModel<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意：使用MongoDB会报错，暂未解决</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdz6k8wwscj322r0u045j.jpg" alt="Admin站点界面"></p>
 <p><strong>[参考资料]</strong></p>
 <ul>
 <li><a href="https://www.djangoproject.com/" target="_blank" rel="noopener">Django官网</a></li>
@@ -667,6 +730,7 @@ urlpatterns <span class="token operator">=</span> <span class="token punctuation
 <li><a href="https://www.bilibili.com/video/BV1dW411q7xR?p=2" target="_blank" rel="noopener">千锋python教程：Django基础到实战讲解（精华版）</a></li>
 <li><a href="https://www.cnblogs.com/fengbo1113/p/8547302.html" target="_blank" rel="noopener">Django 千锋培训的学习笔记（1）</a></li>
 <li><a href="https://blog.csdn.net/kuangshp128/article/details/79039366" target="_blank" rel="noopener">django连接mongodb数据库</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/124189318" target="_blank" rel="noopener">说说 Django 如何优雅地对接 Mongodb</a></li>
 </ul>
 <p><strong>[声明]</strong><br>部分资源源自网络，侵删！</p>
 <script>
@@ -1159,7 +1223,7 @@ urlpatterns <span class="token operator">=</span> <span class="token punctuation
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">96.2k</span>&nbsp;字
+                class="white-color">70.7k</span>&nbsp;字
             
             
             

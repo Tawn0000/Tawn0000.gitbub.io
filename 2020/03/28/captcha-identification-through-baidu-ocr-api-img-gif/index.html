@@ -484,14 +484,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        941
+                        497
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        2 分
                     </div>
                     
                 
@@ -522,168 +522,170 @@
 <h3 id="二、说明"><a href="#二、说明" class="headerlink" title="二、说明"></a>二、说明</h3><ol>
 <li><p>对于单纯的一张验证码图片,,先通过一些简单的图像处理方法处理，如二值化，开运算，然后调用API。<img src="http://search.fang.com/captcha-3d0d30cb941cad4469/captcha-image" alt="img"></p>
 </li>
-<li><p>对于GIP动图验证码，先将gif拆帧，变成多张图片，再对每张图片分别识别，投票决定最后的结果。<img src="http://www.manfen5.com/api/VCode.aspx?id=SYS201910300844276110692994&amp;t=Wed%20Oct%2030%202019%2011:29:54%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4)" alt="gif"></p>
+<li><p>对于GIP动图验证码，先将gif拆帧，变成多张图片，再对每张图片分别识别，投票决定最后的结果。<img src="http://www.manfen5.com/api/VCode.aspx?id=SYS201910300844276110692994&amp;t=Wed%20Oct%2030%202019%2011:29:54%20GMT+0800%20(%E4%B8%AD%E5%9B%BD%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4" alt="gif">)</p>
 </li>
 <li><p>具体实现请看代码</p>
 </li>
 </ol>
 <p>安装需要的包<br>终端输入：</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># cv2</span>
-$ pip <span class="token function">install</span> opencv-python
-<span class="token comment" spellcheck="true"># PIL</span>
-$ pip <span class="token function">install</span> pillow
-<span class="token comment" spellcheck="true"># aip</span>
-$ pip <span class="token function">install</span> baidu-aip
-<span class="token comment" spellcheck="true"># skimage</span>
-$ pip <span class="token function">install</span> scikit-image
-<span class="token comment" spellcheck="true"># xxx, 其他比较简单。。。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h3><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> cv2
-<span class="token keyword">import</span> requests
-<span class="token keyword">import</span> string
-<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
-<span class="token keyword">from</span> io <span class="token keyword">import</span> BytesIO
-<span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
-<span class="token keyword">from</span> aip <span class="token keyword">import</span> AipOcr
-<span class="token keyword">from</span> skimage <span class="token keyword">import</span> measure<span class="token punctuation">,</span> morphology
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash"># cv2
+$ pip install opencv-python
+# PIL
+$ pip install pillow
+# aip
+$ pip install baidu-aip
+# skimage
+$ pip install scikit-image
+# xxx, 其他比较简单。。。
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="三、代码"><a href="#三、代码" class="headerlink" title="三、代码"></a>三、代码</h3><pre class="line-numbers language-lang-python"><code class="language-lang-python">import cv2
+import requests
+import string
+import numpy as np
+from io import BytesIO
+from PIL import Image
+from aip import AipOcr
+from skimage import measure, morphology
 
-<span class="token keyword">class</span> <span class="token class-name">CaptchaIdentify</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+class CaptchaIdentify(object):
 
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 填写自己的应用的 AppID API Key Secret Key</span>
-        APP_ID <span class="token operator">=</span> <span class="token string">'xxx'</span>
-        API_KEY <span class="token operator">=</span> <span class="token string">'xxx'</span>
-        SECRET_KEY <span class="token operator">=</span> <span class="token string">'xxx'</span>
-        self<span class="token punctuation">.</span>client <span class="token operator">=</span> AipOcr<span class="token punctuation">(</span>APP_ID<span class="token punctuation">,</span> API_KEY<span class="token punctuation">,</span> SECRET_KEY<span class="token punctuation">)</span>
+    def __init__(self):
+        # 填写自己的应用的 AppID API Key Secret Key
+        APP_ID = 'xxx'
+        API_KEY = 'xxx'
+        SECRET_KEY = 'xxx'
+        self.client = AipOcr(APP_ID, API_KEY, SECRET_KEY)
 
-    <span class="token comment" spellcheck="true"># 识别图片</span>
-    <span class="token keyword">def</span> <span class="token function">recognize_img</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        img <span class="token operator">=</span> self<span class="token punctuation">.</span>clarify<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
-        img <span class="token operator">=</span> self<span class="token punctuation">.</span>clear<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true">#baidu ocr</span>
-        options <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-        options<span class="token punctuation">[</span><span class="token string">"language_type"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"ENG"</span>
-        success<span class="token punctuation">,</span> encoded_image <span class="token operator">=</span> cv2<span class="token punctuation">.</span>imencode<span class="token punctuation">(</span><span class="token string">'.png'</span><span class="token punctuation">,</span> img<span class="token punctuation">)</span>
-        img <span class="token operator">=</span> encoded_image<span class="token punctuation">.</span>tobytes<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        msg <span class="token operator">=</span> self<span class="token punctuation">.</span>client<span class="token punctuation">.</span>basicGeneral<span class="token punctuation">(</span>img<span class="token punctuation">,</span> options<span class="token punctuation">)</span>
-        result <span class="token operator">=</span> msg<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'words_result'</span><span class="token punctuation">)</span>    
-        <span class="token keyword">if</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            temp <span class="token operator">=</span> result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'words'</span><span class="token punctuation">)</span>
-            res <span class="token operator">=</span> <span class="token string">''</span>
-            <span class="token keyword">for</span> c <span class="token keyword">in</span> temp<span class="token punctuation">:</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">>=</span> <span class="token string">'0'</span> <span class="token operator">and</span> c <span class="token operator">&lt;=</span> <span class="token string">'9'</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token punctuation">(</span>c <span class="token operator">>=</span> <span class="token string">'A'</span> <span class="token operator">and</span> c <span class="token operator">&lt;=</span> <span class="token string">'Z'</span><span class="token punctuation">)</span> <span class="token operator">or</span> <span class="token punctuation">(</span>c <span class="token operator">>=</span> <span class="token string">'a'</span> <span class="token operator">and</span> c <span class="token operator">&lt;=</span> <span class="token string">'z'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    res <span class="token operator">+=</span> c
-            <span class="token keyword">return</span> res
-        <span class="token keyword">return</span> <span class="token string">''</span>
+    # 识别图片
+    def recognize_img(self, img):
+        img = self.clarify(img)
+        img = self.clear(img)
+        #baidu ocr
+        options = {}
+        options["language_type"] = "ENG"
+        success, encoded_image = cv2.imencode('.png', img)
+        img = encoded_image.tobytes()
+        msg = self.client.basicGeneral(img, options)
+        result = msg.get('words_result')    
+        if(len(result) > 0):
+            temp = result[0].get('words')
+            res = ''
+            for c in temp:
+                if (c >= '0' and c <= '9') or (c >= 'A' and c <= 'Z') or (c >= 'a' and c <= 'z'):
+                    res += c
+            return res
+        return ''
 
-    <span class="token comment" spellcheck="true"># 识别动图</span>
-    <span class="token keyword">def</span> <span class="token function">recognize_gif</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> gif<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        vote <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">]</span>
-        res_img <span class="token operator">=</span> None
-        <span class="token keyword">for</span> i<span class="token punctuation">,</span> frame <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>self<span class="token punctuation">.</span>iter_frames<span class="token punctuation">(</span>gif<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            res_img <span class="token operator">=</span> frame
-            img <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>frame<span class="token punctuation">)</span>
-            res <span class="token operator">=</span> self<span class="token punctuation">.</span>recognize_img<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
-            <span class="token keyword">if</span> len<span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">:</span>
-                <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    vote<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> res<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+    # 识别动图
+    def recognize_gif(self, gif):
+        vote = ["", "", "", ""]
+        res_img = None
+        for i, frame in enumerate(self.iter_frames(gif)):
+            res_img = frame
+            img = np.array(frame)
+            res = self.recognize_img(img)
+            if len(res) == 4:
+                for i in range(4):
+                    vote[i] += res[i]
 
-        res <span class="token operator">=</span> <span class="token string">''</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> vote<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
-                res <span class="token operator">+=</span> max<span class="token punctuation">(</span>string<span class="token punctuation">.</span>digits <span class="token operator">+</span> string<span class="token punctuation">.</span>ascii_uppercase<span class="token punctuation">,</span> key<span class="token operator">=</span>vote<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>count<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> res<span class="token punctuation">,</span> res_img
+        res = ''
+        for i in range(4):
+            if vote[i]:
+                res += max(string.digits + string.ascii_uppercase, key=vote[i].count)
+        return res, res_img
 
-    <span class="token comment" spellcheck="true"># gif2png</span>
-    <span class="token keyword">def</span> <span class="token function">iter_frames</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> gif<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            i<span class="token operator">=</span> <span class="token number">0</span>
-            <span class="token keyword">while</span> <span class="token number">1</span><span class="token punctuation">:</span>
-                gif<span class="token punctuation">.</span>seek<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
-                imframe <span class="token operator">=</span> gif<span class="token punctuation">.</span>copy<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token keyword">if</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                    palette <span class="token operator">=</span> imframe<span class="token punctuation">.</span>getpalette<span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token keyword">else</span><span class="token punctuation">:</span>
-                    imframe<span class="token punctuation">.</span>putpalette<span class="token punctuation">(</span>palette<span class="token punctuation">)</span>
-                <span class="token keyword">yield</span> imframe
-                i <span class="token operator">+=</span> <span class="token number">1</span>
-        <span class="token keyword">except</span> EOFError<span class="token punctuation">:</span>
-            <span class="token keyword">pass</span>
+    # gif2png
+    def iter_frames(self, gif):
+        try:
+            i= 0
+            while 1:
+                gif.seek(i)
+                imframe = gif.copy()
+                if i == 0:
+                    palette = imframe.getpalette()
+                else:
+                    imframe.putpalette(palette)
+                yield imframe
+                i += 1
+        except EOFError:
+            pass
 
-    <span class="token comment" spellcheck="true"># 初步处理图片</span>
-    <span class="token keyword">def</span> <span class="token function">clarify</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> src<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        gray <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>src<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_GRAY2BGR<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 二值化</span>
-        gray <span class="token operator">=</span> cv2<span class="token punctuation">.</span>cvtColor<span class="token punctuation">(</span>gray<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>COLOR_BGR2GRAY<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 二值化</span>
-        ret<span class="token punctuation">,</span> binary <span class="token operator">=</span> cv2<span class="token punctuation">.</span>threshold<span class="token punctuation">(</span>src<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">255</span><span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>THRESH_BINARY_INV <span class="token operator">|</span> cv2<span class="token punctuation">.</span>THRESH_OTSU<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 过滤浅色</span>
-        kernel <span class="token operator">=</span> cv2<span class="token punctuation">.</span>getStructuringElement<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>MORPH_RECT<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        binary <span class="token operator">=</span> cv2<span class="token punctuation">.</span>morphologyEx<span class="token punctuation">(</span>binary<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>MORPH_OPEN<span class="token punctuation">,</span> kernel<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"># 开运算</span>
-        kernel <span class="token operator">=</span> cv2<span class="token punctuation">.</span>getStructuringElement<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>MORPH_RECT<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        binary <span class="token operator">=</span> cv2<span class="token punctuation">.</span>morphologyEx<span class="token punctuation">(</span>binary<span class="token punctuation">,</span> cv2<span class="token punctuation">.</span>MORPH_OPEN<span class="token punctuation">,</span> kernel<span class="token punctuation">)</span>
-        cv2<span class="token punctuation">.</span>bitwise_not<span class="token punctuation">(</span>binary<span class="token punctuation">,</span> binary<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> binary
+    # 初步处理图片
+    def clarify(self, src):
+        gray = cv2.cvtColor(src, cv2.COLOR_GRAY2BGR)  # 二值化
+        gray = cv2.cvtColor(gray, cv2.COLOR_BGR2GRAY)  # 二值化
+        ret, binary = cv2.threshold(src, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)  # 过滤浅色
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 2))
+        binary = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)   # 开运算
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 3))
+        binary = cv2.morphologyEx(binary, cv2.MORPH_OPEN, kernel)
+        cv2.bitwise_not(binary, binary)
+        return binary
 
-    <span class="token comment" spellcheck="true"># 一个简单处理干扰线的方法</span>
-    <span class="token keyword">def</span> <span class="token function">clear</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        fx <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
-        fy <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span>
-        h <span class="token operator">=</span> img<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
-        w <span class="token operator">=</span> img<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-        data <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span>w<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>h<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">for</span> j <span class="token keyword">in</span> range<span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">:</span>
-                count <span class="token operator">=</span> <span class="token number">1</span>
-                num <span class="token operator">=</span> <span class="token number">0</span>
-                <span class="token keyword">for</span> k <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-                    ix <span class="token operator">=</span> i <span class="token operator">+</span> fx<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
-                    iy <span class="token operator">=</span> j <span class="token operator">+</span> fy<span class="token punctuation">[</span>k<span class="token punctuation">]</span>
-                    <span class="token keyword">if</span> ix <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> ix <span class="token operator">&lt;</span> h <span class="token operator">and</span> iy <span class="token operator">>=</span> <span class="token number">0</span> <span class="token operator">and</span> iy <span class="token operator">&lt;</span> w<span class="token punctuation">:</span>
-                        count <span class="token operator">+=</span> <span class="token number">1</span>
-                        <span class="token keyword">if</span> img<span class="token punctuation">[</span>ix<span class="token punctuation">]</span><span class="token punctuation">[</span>iy<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                            num <span class="token operator">+=</span> <span class="token number">1</span>
-                <span class="token keyword">if</span> num <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token punctuation">:</span>
-                    data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">255</span>
-        <span class="token keyword">return</span> data
+    # 一个简单处理干扰线的方法
+    def clear(self, img):
+        fx = [0, 0, 0, 1, -1]
+        fy = [0, 1, -1, 0, 0]
+        h = img.shape[0]
+        w = img.shape[1]
+        data = np.zeros((h,w))
+        for i in range(h):
+            for j in range(w):
+                count = 1
+                num = 0
+                for k in range(5):
+                    ix = i + fx[k]
+                    iy = j + fy[k]
+                    if ix >= 0 and ix < h and iy >= 0 and iy < w:
+                        count += 1
+                        if img[ix][iy] == 0:
+                            num += 1
+                if num <= 3:
+                    data[i][j] = 255
+        return data
 
-    <span class="token comment" spellcheck="true"># 下载动图</span>
-    <span class="token keyword">def</span> <span class="token function">download</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> l<span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token triple-quoted-string string">'''
+    # 下载动图
+    def download(self, l, r):
+        '''
         https://stackoverflow.com/questions/39534830/how-to-download-this-gifdynamic-by-python
-        '''</span>
-        url <span class="token operator">=</span> <span class="token string">'xxx'</span> <span class="token comment" spellcheck="true"># 图片链接</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">with</span> open<span class="token punctuation">(</span><span class="token string">'captcha/%d.gif'</span><span class="token punctuation">,</span> <span class="token string">'wb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>content<span class="token punctuation">)</span>
+        '''
+        url = 'xxx' # 图片链接
+        for i in range(1, r):
+            with open('captcha/%d.gif', 'wb') as f:
+                f.write(requests.get(url).content)
 
-    <span class="token keyword">def</span> <span class="token function">test_img</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        captcha <span class="token operator">=</span> CaptchaIdentify<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        img <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string">'img/stdoutput1.png'</span><span class="token punctuation">)</span>
-        img <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
-        ans <span class="token operator">=</span> captcha<span class="token punctuation">.</span>recognize_img<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span>
+    def test_img(self):
+        captcha = CaptchaIdentify()
+        img = Image.open('img/stdoutput1.png')
+        img = np.array(img)
+        ans = captcha.recognize_img(img)
+        print(ans)
 
-    <span class="token keyword">def</span> <span class="token function">test_gif</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        captcha <span class="token operator">=</span> CaptchaIdentify<span class="token punctuation">(</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>tight_layout<span class="token punctuation">(</span>pad<span class="token operator">=</span><span class="token number">1.08</span><span class="token punctuation">,</span> h_pad<span class="token operator">=</span><span class="token number">1.5</span><span class="token punctuation">,</span> w_pad<span class="token operator">=</span>None<span class="token punctuation">,</span> rect<span class="token operator">=</span>None<span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>axis<span class="token punctuation">(</span><span class="token string">'off'</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            gif <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span><span class="token string">'captcha/%d.gif'</span> <span class="token operator">%</span> i<span class="token punctuation">)</span>
-            ax <span class="token operator">=</span> plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
-            ans<span class="token punctuation">,</span> img <span class="token operator">=</span> captcha<span class="token punctuation">.</span>recognize_gif<span class="token punctuation">(</span>gif<span class="token punctuation">)</span>
-            ax<span class="token punctuation">.</span>set_title<span class="token punctuation">(</span>ans<span class="token punctuation">)</span>
-            plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'%2d:'</span> <span class="token operator">%</span> i <span class="token operator">+</span> ans<span class="token punctuation">)</span>
+    def test_gif(self):
+        captcha = CaptchaIdentify()
+        plt.tight_layout(pad=1.08, h_pad=1.5, w_pad=None, rect=None)
+        plt.axis('off')
+        for i in range(50):
+            gif = Image.open('captcha/%d.gif' % i)
+            ax = plt.subplot(25, 2, i+1)
+            ans, img = captcha.recognize_gif(gif)
+            ax.set_title(ans)
+            plt.imshow(img)
+            print('%2d:' % i + ans)
 
-    <span class="token keyword">def</span> <span class="token function">recognize_gif_url</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> url<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        url <span class="token operator">=</span> <span class="token string">'xxx'</span><span class="token comment" spellcheck="true"># 图片链接</span>
-        res<span class="token punctuation">,</span> img <span class="token operator">=</span> captcha<span class="token punctuation">.</span>recognize_gif<span class="token punctuation">(</span>Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>BytesIO<span class="token punctuation">(</span>requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>content<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">#         plt.imshow(img)</span>
-<span class="token comment" spellcheck="true">#         plt.axis('off')</span>
-        <span class="token keyword">return</span> res
+    def recognize_gif_url(self, url):
+        url = 'xxx'# 图片链接
+        res, img = captcha.recognize_gif(Image.open(BytesIO(requests.get(url).content)))
+#         plt.imshow(img)
+#         plt.axis('off')
+        return res
 
 
-<span class="token keyword">if</span> __name__<span class="token operator">==</span><span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    captcha <span class="token operator">=</span> CaptchaIdentify<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    url <span class="token operator">=</span> <span class="token string">'xxx'</span><span class="token comment" spellcheck="true"># 图片链接</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>captcha<span class="token punctuation">.</span>recognize_gif_url<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+if __name__=='__main__':
+    captcha = CaptchaIdentify()
+    url = 'xxx'# 图片链接
+    print(captcha.recognize_gif_url(url))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1184,7 +1186,7 @@ $ pip <span class="token function">install</span> scikit-image
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">96.2k</span>&nbsp;字
+                class="white-color">70.7k</span>&nbsp;字
             
             
             
