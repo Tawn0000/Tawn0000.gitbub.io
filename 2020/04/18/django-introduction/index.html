@@ -464,14 +464,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.5k
+                        1.7k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        6 分
+                        7 分
                     </div>
                     
                 
@@ -641,6 +641,7 @@ INSTALLED_APPS <span class="token operator">=</span> <span class="token punctuat
     <span class="token string">'myapp'</span><span class="token punctuation">,</span>
 <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="7-定义模型"><a href="#7-定义模型" class="headerlink" title="7. 定义模型"></a>7. 定义模型</h3><p><strong>在models.py文件中定义模型, 一个模型对应一张表</strong></p>
+<p><strong>ORM：Object Relational Mapping 对象关系映射</strong></p>
 <p><strong>示例：</strong></p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> mongoengine
 
@@ -723,6 +724,36 @@ urlpatterns <span class="token operator">=</span> <span class="token punctuation
 admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>register<span class="token punctuation">(</span>StudentModel<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>注意：使用MongoDB会报错，暂未解决</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdz6k8wwscj322r0u045j.jpg" alt="Admin站点界面"></p>
+<h3 id="13-模板配置"><a href="#13-模板配置" class="headerlink" title="13. 模板配置"></a>13. 模板配置</h3><p><strong>两种</strong></p>
+<ul>
+<li><p>在App中进行模板配置</p>
+<ul>
+<li>只需在App的根目录创建templates文件夹即可</li>
+<li>如果想让代码自动提示，我们应该标记文件夹为模板文件夹</li>
+</ul>
+</li>
+<li><p>在项目目录中进行模板配置</p>
+<ul>
+<li>需要在项目目录中创建templates文件夹并标记</li>
+<li>需要在settings中进行注册</li>
+<li>在开发中使用第二种</li>
+<li>模板可以继承，复用</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-路由优化配置"><a href="#14-路由优化配置" class="headerlink" title="14. 路由优化配置"></a>14. 路由优化配置</h3><ul>
+<li>项目如果逻辑过于复杂，可以进行拆分</li>
+<li>拆分为多个App.</li>
+<li>继续拆分路由器</li>
+<li>urls<ul>
+<li>在App中创建自己的urls</li>
+<li>urlpatterns 路由规则列表</li>
+<li>在根urls中进行子路由的包含</li>
+<li>子路由使用</li>
+<li>根路由规则+子路由的规则</li>
+</ul>
+</li>
+</ul>
 <p><strong>[参考资料]</strong></p>
 <ul>
 <li><a href="https://www.djangoproject.com/" target="_blank" rel="noopener">Django官网</a></li>
@@ -975,43 +1006,57 @@ admin<span class="token punctuation">.</span>site<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/18/django-introduction/">
+                <a href="/2020/04/23/mst-problem-set/">
                     <div class="card-image">
                         
-                        <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdybklw4muj30zk0m8n47.jpg" class="responsive-img" alt="Django Introduction">
+                        <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ge8s1i0e66j31900u0tlv.jpg" class="responsive-img" alt="MST Problem Set">
                         
-                        <span class="card-title">Django Introduction</span>
+                        <span class="card-title">MST Problem Set</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Django是一个开放源代码的Web应用框架，由Pathon写成. 初次发布于2005年7月，并于2008年9月发布了第一个正式版本1.0
+                            最小生成树问题集
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-18
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-23
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Tawn
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Algorithm/" class="post-category">
+                                    Algorithm
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Django/">
-                        <span class="chip bg-color">Django</span>
+                    <a href="/tags/Graph-Theory/">
+                        <span class="chip bg-color">Graph Theory</span>
+                    </a>
+                    
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
+                    </a>
+                    
+                    <a href="/tags/Problem-Set/">
+                        <span class="chip bg-color">Problem Set</span>
+                    </a>
+                    
+                    <a href="/tags/MST/">
+                        <span class="chip bg-color">MST</span>
                     </a>
                     
                 </div>
@@ -1223,7 +1268,7 @@ admin<span class="token punctuation">.</span>site<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">70.7k</span>&nbsp;字
+                class="white-color">97.7k</span>&nbsp;字
             
             
             
