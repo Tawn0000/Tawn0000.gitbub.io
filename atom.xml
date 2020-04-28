@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-04-27T16:13:26.903Z</updated>
+  <updated>2020-04-28T08:51:38.550Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://tawn0000.github.io/2020/04/23/mst-problem-set/"/>
     <id>https://tawn0000.github.io/2020/04/23/mst-problem-set/</id>
     <published>2020-04-23T10:14:52.000Z</published>
-    <updated>2020-04-27T16:13:26.903Z</updated>
+    <updated>2020-04-28T08:51:38.550Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;h2 id=&quot;1-POJ-3723-Conscription&quot;&gt;&lt;a href=&quot;#1-POJ-3723-Conscription&quot; class=&quot;headerlink&quot; title=&quot;1. POJ 3723    Conscription&quot;&gt;&lt;/a&gt;1. POJ 3723 
+          &lt;h2 id=&quot;1-POJ-3723-Conscription&quot;&gt;&lt;a href=&quot;#1-POJ-3723-Conscription&quot; class=&quot;headerlink&quot; title=&quot;1. POJ 3723    Conscription&quot;&gt;&lt;/a&gt;&lt;a
         
       
     
@@ -39,13 +39,11 @@
       <category term="Algorithm" scheme="https://tawn0000.github.io/categories/Algorithm/"/>
     
     
-      <category term="Graph Theory" scheme="https://tawn0000.github.io/tags/Graph-Theory/"/>
-    
       <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
     
       <category term="Problem Set" scheme="https://tawn0000.github.io/tags/Problem-Set/"/>
     
-      <category term="MST" scheme="https://tawn0000.github.io/tags/MST/"/>
+      <category term="Greedy" scheme="https://tawn0000.github.io/tags/Greedy/"/>
     
   </entry>
   
@@ -106,7 +104,7 @@
     <link href="https://tawn0000.github.io/2020/04/02/greedy-problem-set/"/>
     <id>https://tawn0000.github.io/2020/04/02/greedy-problem-set/</id>
     <published>2020-04-02T08:25:46.000Z</published>
-    <updated>2020-04-13T09:18:16.973Z</updated>
+    <updated>2020-04-27T16:26:47.668Z</updated>
     
     <summary type="html">
     
