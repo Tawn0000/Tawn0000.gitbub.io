@@ -8,7 +8,7 @@
     <meta name="baidu-site-verification" content="Yo66Ak5SKh">
     <meta name="google-site-verification" content="Yo66Ak5SKh">
     <meta name="description" content="一直感觉树状数组用处比较小而且局限、因为最基本的用法就是单点更新和区间求和、但是线段树也能做，只不过代码长一点，但是仔细的去了解了一下树状数组以后发现有很多很赞的地方值得学习。
-代码模板单点更新、区间求和for(int x = i; x ">
+代码模板单点更新、区间求和for(int x = i; x &amp;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -481,14 +481,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        100
+                        1.7k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        8 分
                     </div>
                     
                 
@@ -505,34 +505,29 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>一直感觉树状数组用处比较小而且局限、因为最基本的用法就是单点更新和区间求和、但是线段树也能做，只不过代码长一点，但是仔细的去了解了一下树状数组以后发现有很多很赞的地方值得学习。</p>
-<h2 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h2><h3 id="单点更新、区间求和"><a href="#单点更新、区间求和" class="headerlink" title="单点更新、区间求和"></a>单点更新、区间求和</h3><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">for(int x = i; x <= n; x += x&-x) c[x] ++; //a[i]单点更新加一
-for(int x = r; x ; x -= x&-x) res += c[x]; //求前缀[0,r]
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h2><h3 id="单点更新、区间求和"><a href="#单点更新、区间求和" class="headerlink" title="单点更新、区间求和"></a>单点更新、区间求和</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> i<span class="token punctuation">;</span> x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">++</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//a[i]单点更新加一</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> r<span class="token punctuation">;</span> x <span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> res <span class="token operator">+</span><span class="token operator">=</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//求前缀[0,r]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="区间更新、单点查询"><a href="#区间更新、单点查询" class="headerlink" title="区间更新、单点查询"></a>区间更新、单点查询</h3><ul>
 <li>对于操作C L R t ：在区间L-R上每个值增加t </li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">for(int x = L; x <= n; x += x&-x) b[x] += t;
-for(int x = R+1; x <= n; x += x&-x) b[x] -= t;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> L<span class="token punctuation">;</span> x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> t<span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> R<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> t<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <ul>
 <li>对于操作Q i   :查询当前a[i]的值</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">int res = a[i];
-for(int x = i; x ; x -= x&-x)  res += b[x];
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> res <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> i<span class="token punctuation">;</span> x <span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span>  res <span class="token operator">+</span><span class="token operator">=</span> b<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="区间更新、区间查询"><a href="#区间更新、区间查询" class="headerlink" title="区间更新、区间查询"></a>区间更新、区间查询</h3><ul>
 <li>对于操作 C L R t    : 对于数组a[n] 区间L-R都增加 t</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">for(int x = L; x <= n; x += x&-x) b[x] += t, c[x] += L*t;
-for(int x = R+1; x <= n; x += x&-x) b[x] -= t, c[x] -= (R+1)*t;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> L<span class="token punctuation">;</span> x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> t<span class="token punctuation">,</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> L<span class="token operator">*</span>t<span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> R<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> t<span class="token punctuation">,</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> <span class="token punctuation">(</span>R<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>t<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <ul>
 <li>对于操作 Q L R : 查询数组a[n] 区间L-R的和</li>
 </ul>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">int res = s[r] - s[l-1];
-for(int x = R; x ; x -= x&-x) res += (R+1)*b[x]-c[x];
-for(int x = L-1; x ; x -= x&-x) res -= L*b[x] - c[x];
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> res <span class="token operator">=</span> s<span class="token punctuation">[</span>r<span class="token punctuation">]</span> <span class="token operator">-</span> s<span class="token punctuation">[</span>l<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> R<span class="token punctuation">;</span> x <span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> res <span class="token operator">+</span><span class="token operator">=</span> <span class="token punctuation">(</span>R<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>b<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">-</span>c<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> L<span class="token number">-1</span><span class="token punctuation">;</span> x <span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> res <span class="token operator">-</span><span class="token operator">=</span> L<span class="token operator">*</span>b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><p><a href="http://www.cnblogs.com/zybgmzl/p/6894426.html?utm_source=itdadao&amp;utm_medium=referral" target="_blank" rel="noopener">树状数组基础详解入口</a></p>
 <p>下图中:</p>
 <p>红色表示树状数组c[i]所覆盖a[n]中的范围 ,其中树状的某一项所覆盖的长度为lowbit(x) = x&amp;-x ,<br>即 c[x] = a[x-(x&amp;-x)+1]+…+a[x]</p>
@@ -540,15 +535,15 @@ for(int x = L-1; x ; x -= x&-x) res -= L*b[x] - c[x];
 <p>绿色表示当需要查询某一个区间和时，需要求的两个前缀和及其各自需要通过树状数组的哪些项来进行a[n]的前缀和求和</p>
 <p><img src="https://img-blog.csdnimg.cn/20190507222001213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Rhd24wMDAw,size_16,color_FFFFFF,t_70" alt="树状数组结构图"></p>
 <h3 id="单点修改、区间查询"><a href="#单点修改、区间查询" class="headerlink" title="单点修改、区间查询"></a>单点修改、区间查询</h3><p>a[n]: 表示原来的数组，即我们题目中需要修改需要查询的数组<br>c[n]: 用来维护a[x]的后缀和(长度为lowbit(x) = x&amp;-x)的树状数组</p>
-<p>C i t  —-&gt;  a[i] 增加t  —-&gt;  在c[n]上操作</p>
+<p>C i t  —&gt;  a[i] 增加t  —&gt;  在c[n]上操作</p>
 <p>for(int x = i; x &lt;= n; x += x&amp;-x) c[x] += t;</p>
-<p>Q L R —-&gt; 求a[L] + a[L+1] + … + a[R] —-&gt; 在c[n]上操作</p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">int res = 0;
-for(int x = R; x; x -= x&-x) res += c[x];
-for(int x = L-1; x; x -= x&-x) res -= c[x];
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>Q L R —&gt; 求a[L] + a[L+1] + … + a[R] —&gt; 在c[n]上操作</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> R<span class="token punctuation">;</span> x<span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> res <span class="token operator">+</span><span class="token operator">=</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> L<span class="token number">-1</span><span class="token punctuation">;</span> x<span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> res <span class="token operator">-</span><span class="token operator">=</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="区间修改、单点查询"><a href="#区间修改、单点查询" class="headerlink" title="区间修改、单点查询"></a>区间修改、单点查询</h3><ul>
-<li>a[n]: 原来的数组  设a[0] = 0</li>
+<li><p>a[n]: 原来的数组  设a[0] = 0</p>
+</li>
 <li><p>d[n]: 差分数组  d[i] = a[i]-a[i-1] :   d[1] = a[1]-a[0], d[2] = a[2]-a[1] </p>
 </li>
 <li><p>b[n]:  用来维护d[x]的后缀和(长度为lowbit(x) = x&amp;-x)的树状数组</p>
@@ -557,109 +552,104 @@ for(int x = L-1; x; x -= x&-x) res -= c[x];
 <pre><code>Sd[n] = d[1] + d[2] + d[3] + ...+ d[n]
         = a[1]-a[0] + a[2]-a[1] + a[3]-a[2]+...+a[n-1]-a[n-2] + a[n]-a[n-1]
         = a[n] - a[0]
-        = a[n]
-</code></pre><p>即  $ a<em>{n} = \sum</em>{i=1}^{n} d_{i} $</p>
+        = a[n]</code></pre><p>即  $ a_{n} = \sum_{i=1}^{n} d_{i} $</p>
 <ul>
 <li>区间修改</li>
 </ul>
-<p>L R t —-&gt; a[L] - a[R] 每一项都加t  —-&gt;   因为 d[i] = a[i] - a[i-1]，所以我们使用d[n]的变化来存储a[n]的变化<br>—-&gt;  d[R+1] = a[R+1] - a[R] : d[n]数组变化为 ： d[R+1] = d[R+1] - t;<br>—-&gt;  对于 L &lt; k &lt;= R ： d[k] = a[k] - a[k-1]: 因为a[k] 和 a[k-1] 都加了t,所以d[k] 不变<br>—-&gt;  d[L]   = a[L] - a[L-1] : d[n]数组变化为 ：d[L] = d[L] + t</p>
-<p> —-&gt; d[R+1]  减少t —-&gt; 在b[n]上操作<br> —-&gt; d[L]       增加t —-&gt; 在b[n]上操作</p>
+<p>L R t —&gt; a[L] - a[R] 每一项都加t  —&gt;   因为 d[i] = a[i] - a[i-1]，所以我们使用d[n]的变化来存储a[n]的变化<br>—&gt;  d[R+1] = a[R+1] - a[R] : d[n]数组变化为 ： d[R+1] = d[R+1] - t;<br>—&gt;  对于 L &lt; k &lt;= R ： d[k] = a[k] - a[k-1]: 因为a[k] 和 a[k-1] 都加了t,所以d[k] 不变<br>—&gt;  d[L]   = a[L] - a[L-1] : d[n]数组变化为 ：d[L] = d[L] + t</p>
+<p> —&gt; d[R+1]  减少t —&gt; 在b[n]上操作<br> —&gt; d[L]       增加t —&gt; 在b[n]上操作</p>
 <p>即在b[n]上进行两个单点更新操作</p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">for(int x = R+1; x <= n; x += x&-x)  b[x] -= t;
-for(int x = L; x <= n; x += x &-x)   b[x] += t;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> R<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span>  b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> t<span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> L<span class="token punctuation">;</span> x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x <span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span>   b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> t<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <ul>
 <li>单点查询</li>
 </ul>
-<p>i  —-&gt; 求 a[i] = d[1] + d[2] + … d[n] —-&gt; 在b[n]上求和操作</p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">int res = a[i];
-for(int x = i; x ; x -= x & -x) res += b[x];
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>i  —&gt; 求 a[i] = d[1] + d[2] + … d[n] —&gt; 在b[n]上求和操作</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> res <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> i<span class="token punctuation">;</span> x <span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x <span class="token operator">&amp;</span> <span class="token operator">-</span>x<span class="token punctuation">)</span> res <span class="token operator">+</span><span class="token operator">=</span> b<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="区间修改、区间查询"><a href="#区间修改、区间查询" class="headerlink" title="区间修改、区间查询"></a>区间修改、区间查询</h3><ul>
-<li>a[n]: 原来的数组  设a[0] = 0</li>
+<li><p>a[n]: 原来的数组  设a[0] = 0</p>
+</li>
 <li><p>d[n]: 差分数组  d[i] = a[i]-a[i-1] : d[1] = a[1]-a[0], d[2] = a[2]-a[1] </p>
 </li>
 <li><p>b[n]:  用来维护d[x]的后缀和(长度为lowbit(x) = x&amp;-x)</p>
 </li>
-<li>c[n]:  用来维护e[x] = x*d[x]的后缀和(长度为lowbit(x) = x&amp;-x)</li>
+<li><p>c[n]:  用来维护e[x] = x*d[x]的后缀和(长度为lowbit(x) = x&amp;-x)</p>
+</li>
 </ul>
 <p>求 a[1] + a[2] + a[3] +…+ a[n] =?</p>
 <pre><code>原式 = sd[1] + sd[2] + sd[3] + sd[4] + ... + sd[n]  
      = d[1]  + d[1]+d[2] + ... +(d[1] + d[2] + d[3] + ... d[n])  
      = n * d[1] + (n-1) * d[2] +...+ 1 * d[n]  
-     = (n+1)(d[1]+d[2]+..+d[n]) - (1*d[1] + 2*d[2] + ... + n*d[n])
-</code></pre><p>即在b[n]上进行一个区间求和操作和在c[n]上进行一个区间求和操作即可</p>
-<p>即：<br>$ \because a[i] = \sum<em>{j=1}^{i}d[j] $<br>$ \therefore \sum</em>{i=1}^{n}a[i] = \sum<em>{i=1}^{n}\sum</em>{j=1}^{i}d[j] = \sum<em>{i=1}^{n}(n-i+1) <em> d[i] = n </em> \sum</em>{i=1}^{n} d[i] - \sum_{i=1}^{n}i*d[i] $</p>
+     = (n+1)(d[1]+d[2]+..+d[n]) - (1*d[1] + 2*d[2] + ... + n*d[n])   </code></pre><p>即在b[n]上进行一个区间求和操作和在c[n]上进行一个区间求和操作即可</p>
+<p>即：<br>$ \because a[i] = \sum_{j=1}^{i}d[j] $<br>$ \therefore \sum_{i=1}^{n}a[i] = \sum_{i=1}^{n}\sum_{j=1}^{i}d[j] = \sum_{i=1}^{n}(n-i+1) <em> d[i] = n </em> \sum_{i=1}^{n} d[i] - \sum_{i=1}^{n}i*d[i] $</p>
 <ul>
 <li>区间修改</li>
 </ul>
 <p>C L R t </p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">for(int x = L; x <= n; x += x&-x) b[x] += t, c[x] += L*t;
-//为什么这里是L*t ?而不是x*t ? 因为我们是在维护e[L]增加L*t,即T=L*t
-for(int x = R+1; x <= n; x += x&-x) b[x] -= t, c[x] -= (R+1)*t;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> L<span class="token punctuation">;</span> x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> t<span class="token punctuation">,</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> L<span class="token operator">*</span>t<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//为什么这里是L*t ?而不是x*t ? 因为我们是在维护e[L]增加L*t,即T=L*t</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> R<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span> x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> t<span class="token punctuation">,</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> <span class="token punctuation">(</span>R<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>t<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>区间查询</li>
 </ul>
 <p>Q L R</p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">int res = s[r] - s[l-1];
-for(int x = R; x ; x -= x&-x) res += (R+1)*b[x]-c[x];
-for(int x = L-1; x ; x -= x&-x) res -= L*b[x] - c[x];
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> res <span class="token operator">=</span> s<span class="token punctuation">[</span>r<span class="token punctuation">]</span> <span class="token operator">-</span> s<span class="token punctuation">[</span>l<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> R<span class="token punctuation">;</span> x <span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> res <span class="token operator">+</span><span class="token operator">=</span> <span class="token punctuation">(</span>R<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>b<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">-</span>c<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> L<span class="token number">-1</span><span class="token punctuation">;</span> x <span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> res <span class="token operator">-</span><span class="token operator">=</span> L<span class="token operator">*</span>b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p>例题： <a href="http://poj.org/problem?id=3468" target="_blank" rel="noopener">POJ 3468 A Simple Problem with Intergers</a></p>
-<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include<iostream>
-#include<cstdio>
-#include<cstring>
-using namespace std;
-const int maxn = 1e5+100;
-const int INF = 0x3f3f3f3f;
-typedef long long LL;
-typedef pair<int,int> P;
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstdio></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cstring></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">1e5</span><span class="token operator">+</span><span class="token number">100</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> INF <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> LL<span class="token punctuation">;</span>
+<span class="token keyword">typedef</span> pair<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span><span class="token keyword">int</span><span class="token operator">></span> P<span class="token punctuation">;</span>
 
-#define PI 3.1415926
-#define sc(x)  scanf("%d",&x)
-#define pf(x)  printf("%d",x)
-#define pfn(x) printf("%d\n",x)
-#define pfs(x) printf("%d ",x)
-#define rep(n) for(int i = 0; i < n; i++)
-#define per(n) for(int i = n-1; i >= 0; i--)
-#define mem(a,x) memset(a,x,sizeof(a))
+<span class="token macro property">#<span class="token directive keyword">define</span> PI 3.1415926</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> sc(x)  scanf("%d",&amp;x)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> pf(x)  printf("%d",x)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> pfn(x) printf("%d\n",x)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> pfs(x) printf("%d ",x)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> rep(n) for(int i = 0; i &lt; n; i++)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> per(n) for(int i = n-1; i >= 0; i--)</span>
+<span class="token macro property">#<span class="token directive keyword">define</span> mem(a,x) memset(a,x,sizeof(a))</span>
 
-int n,q;
-LL b[maxn],c[maxn],s[maxn];
-int a[maxn];
+<span class="token keyword">int</span> n<span class="token punctuation">,</span>q<span class="token punctuation">;</span>
+LL b<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span>c<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span>s<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-int main()
-{
-  sc(n),sc(q);
-  mem(s,0LL);
-  rep(n) {sc(a[i+1]);s[i+1] = s[i] + a[i+1];}
-  mem(b,0LL);
-  mem(c,0LL);
-  rep(q)
-  {
-    char key[2];
-    int l,r,d;
-    scanf("%s%d%d",key,&l,&r);
-    if(key[0] == 'C')
-    {
-      sc(d);
-      for(int x = l;x <= n; x += x&-x) {b[x] += d; c[x] += l * d;}
-      for(int x = r+1;x <= n; x += x&-x) {b[x] -= d; c[x] -= (r+1) * d;}
-    }
-    else
-    {
-      LL res = s[r]-s[l-1];
-      //res = sum(r) - sum(l-1)   
-      //s[x] = ssb[i] = (x+1)sb[i] - isb[i] = (x+1)sb[i] - sc[i];
-      for(int x = r; x ; x -= x&-x)  res += ((r+1) * b[x] - c[x]);
-      for(int x = l-1; x ; x -= x&-x) res -= (l * b[x] - c[x]);
-      printf("%lld\n",res);
-    }
-  }
-    return 0;
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token function">sc</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">sc</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">mem</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span><span class="token number">0LL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">rep</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token function">sc</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>s<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> s<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> a<span class="token punctuation">[</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+  <span class="token function">mem</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span><span class="token number">0LL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">mem</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span><span class="token number">0LL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">rep</span><span class="token punctuation">(</span>q<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">char</span> key<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> l<span class="token punctuation">,</span>r<span class="token punctuation">,</span>d<span class="token punctuation">;</span>
+    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%s%d%d"</span><span class="token punctuation">,</span>key<span class="token punctuation">,</span><span class="token operator">&amp;</span>l<span class="token punctuation">,</span><span class="token operator">&amp;</span>r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>key<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'C'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+      <span class="token function">sc</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> l<span class="token punctuation">;</span>x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> d<span class="token punctuation">;</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">+</span><span class="token operator">=</span> l <span class="token operator">*</span> d<span class="token punctuation">;</span><span class="token punctuation">}</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> r<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>x <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> x <span class="token operator">+</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> d<span class="token punctuation">;</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span><span class="token operator">=</span> <span class="token punctuation">(</span>r<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> d<span class="token punctuation">;</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+      LL res <span class="token operator">=</span> s<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token operator">-</span>s<span class="token punctuation">[</span>l<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//res = sum(r) - sum(l-1)   </span>
+      <span class="token comment" spellcheck="true">//s[x] = ssb[i] = (x+1)sb[i] - isb[i] = (x+1)sb[i] - sc[i];</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> r<span class="token punctuation">;</span> x <span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span>  res <span class="token operator">+</span><span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>r<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> x <span class="token operator">=</span> l<span class="token number">-1</span><span class="token punctuation">;</span> x <span class="token punctuation">;</span> x <span class="token operator">-</span><span class="token operator">=</span> x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">)</span> res <span class="token operator">-</span><span class="token operator">=</span> <span class="token punctuation">(</span>l <span class="token operator">*</span> b<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">-</span> c<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%lld\n"</span><span class="token punctuation">,</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1172,7 +1162,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">74k</span>&nbsp;字
+                class="white-color">104.8k</span>&nbsp;字
             
             
             
