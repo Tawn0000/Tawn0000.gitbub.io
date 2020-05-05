@@ -1,0 +1,2072 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="The Shortest Paths Problem Set, Tawn&#39;s blog">
+    <meta name="baidu-site-verification" content="Yo66Ak5SKh">
+    <meta name="google-site-verification" content="Yo66Ak5SKh">
+    <meta name="description" content="1. HDU1548 一个奇怪的电梯【题目描述】
+有个奇怪的电梯。电梯可以根据您的需要在每一层进行停留，每一层都有一个数字Ki(0 &amp;lt;= Ki &amp;lt;= N)。电梯只有两个按钮:向上和向下。当你在第i层时，如果你按下“向上”按钮，你">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>The Shortest Paths Problem Set | Tawn&#39;s blog</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/medias/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.jpeg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Tawn's blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.jpeg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Tawn's blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+<li class="m-nav-item">
+			
+				<a href="/" class="waves-effect waves-light">
+					
+					<i class="fa-fw fas fa-home"></i>
+					
+					首页
+				</a>
+          
+        </li>
+        
+<li class="m-nav-item">
+			
+				<a href="/tags" class="waves-effect waves-light">
+					
+					<i class="fa-fw fas fa-tags"></i>
+					
+					标签
+				</a>
+          
+        </li>
+        
+<li class="m-nav-item">
+			
+				<a href="/categories" class="waves-effect waves-light">
+					
+					<i class="fa-fw fas fa-bookmark"></i>
+					
+					分类
+				</a>
+          
+        </li>
+        
+<li class="m-nav-item">
+			
+				<a href="/archives" class="waves-effect waves-light">
+					
+					<i class="fa-fw fas fa-archive"></i>
+					
+					归档
+				</a>
+          
+        </li>
+        
+<li class="m-nav-item">
+			
+				<a href="/about" class="waves-effect waves-light">
+					
+					<i class="fa-fw fas fa-user-circle"></i>
+					
+					关于
+				</a>
+          
+        </li>
+        
+<li class="m-nav-item">
+			
+				<a href="/contact" class="waves-effect waves-light">
+					
+					<i class="fa-fw fas fa-comments"></i>
+					
+					留言板
+				</a>
+          
+        </li>
+        
+<li class="m-nav-item">
+			
+				<a href="/friends" class="waves-effect waves-light">
+					
+					<i class="fa-fw fas fa-address-book"></i>
+					
+					友情链接
+				</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Tawn0000/Tawn0000.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Tawn0000/Tawn0000.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        The Shortest Paths Problem Set
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Algorithm/">
+                                <span class="chip bg-color">Algorithm</span>
+                            </a>
+                        
+                            <a href="/tags/Problem-Set/">
+                                <span class="chip bg-color">Problem Set</span>
+                            </a>
+                        
+                            <a href="/tags/Shortest-Paths/">
+                                <span class="chip bg-color">Shortest Paths</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Algorithm/" class="post-category">
+                                Algorithm
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-05-05
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        1.3k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        6 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="1-HDU1548-一个奇怪的电梯"><a href="#1-HDU1548-一个奇怪的电梯" class="headerlink" title="1. HDU1548 一个奇怪的电梯"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1548" target="_blank" rel="noopener">1. HDU1548 一个奇怪的电梯</a></h2><p><strong>【题目描述】</strong></p>
+<p>有个奇怪的电梯。电梯可以根据您的需要在每一层进行停留，每一层都有一个数字Ki(0 &lt;= Ki &lt;= N)。电梯只有两个按钮:向上和向下。当你在第i层时，如果你按下“向上”按钮，你就会爬上第i层。同样的，如果你按下“向下”按钮，你就会向下走到i+Ki层，同样的，如果你按下“向下”按钮，你就会向下走到i+Ki层。e，你去i-Ki层。当然，层数不能比N大，也不能比1小。例如，有一栋5层的建筑，k1 = 3, k2 = 3,k3 = 1,k4 = 2, k5 = 5。从1楼开始，你可以按“上”键，然后你就可以上4楼了，如果你按“下”键，电梯就做不到，因为它不能下到-2楼，你知道，-2楼是不存在的。<br>问题来了:当你在A层，你想去B层，他至少要按几次“上”或“下”键?</p>
+<p><strong>【输入】</strong></p>
+<p>输入由几个测试用例组成。，每个测试用例包含两行。<br>第一行包含三个整数N,A,B (1 &lt;= N,A,B &lt;= 200)，描述上述，第二行包含N个整数k1,k2，…kn。<br>单个0表示输入的结束。</p>
+<p><strong>【输出】</strong></p>
+<p>对于每一个输入输出接口，当你在A层，你想要去B层时，你需要按下按钮的次数最少。如果你不能到达B层，打印 “-1”。</p>
+<p><strong>【样例输入】</strong></p>
+<p>5 1 5<br>3 3 1 2 5<br>0</p>
+<p><strong>【样例输出】</strong></p>
+<p>3</p>
+<p><strong>【解析】</strong></p>
+<p>以层为点，以电梯上下为边建边，边权为1。 所以此题可以用Dijkstra也可以用BFS。注意边不能到达1以下，n以上。</p>
+<p><strong>【代码】</strong></p>
+<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">// BFS
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+typedef pair <int,int> P;
+const int maxn = 200+10;
+int N;
+int A,B;
+int a[maxn];
+bool vis[maxn];
+
+int bfs()
+{
+    queue <P> Q;
+    Q.push(P(A,0));
+    memset(vis,false,maxn);
+    vis[A] = true;
+
+    while(!Q.empty())
+    {
+        P t = Q.front();
+        Q.pop();
+        if(t.first == B)  return t.second;
+        vis[t.first] = true;
+        int up = t.first + a[t.first];
+        int down = t.first - a[t.first];
+        if(up <= N && !vis[up])   Q.push(P(up,t.second+1));
+        if(down > 0&& !vis[down]) Q.push(P(down,t.second+1));
+    }
+   return -1;
+}
+
+int main()
+{
+  while(scanf("%d",&N) && N)
+  {
+      scanf("%d%d",&A,&B);
+      for(int i = 1; i <= N; i++)
+        scanf("%d",&a[i]);
+      printf("%d\n",bfs());
+  }
+  return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//Dijkstra
+#include<bits/stdc++.h>
+
+#define INF 0x3f3f3f
+const int MAXN = 1e3 + 5;
+using namespace std;
+typedef pair<int,int> p;
+priority_queue< p,vector<p>,greater<p> > q;
+int n,a,b,i,d[MAXN],k[MAXN];
+int dij(int n,int a,int b){
+    while(!q.empty()){
+        q.pop();
+    }
+    memset(d,INF,sizeof(d));
+    d[a]=0;
+    q.push(p(0,a));
+    while(!q.empty()){
+        p x=q.top();
+        q.pop();
+        int dist=x.first,u=x.second;
+        if(u==b){
+            return d[u];
+        }
+        if(d[u]<dist) continue;
+        int up=u+k[u];
+        int down=u-k[u];
+    //    cout << u << " " << up << " " << down << endl;
+        if(up<=n&&d[up]>d[u]+1){
+            d[up]=d[u]+1;
+            q.push(p(d[up],up));
+        }
+        if(down>=1&&d[down]>d[u]+1){
+            d[down]=d[u]+1;
+            q.push(p(d[down],down));
+        }
+    }
+    return -1;
+}
+int main(){
+    while(1){
+        cin>>n;
+        if(n==0) break;
+        cin>>a>>b;
+        for(int i=1;i<=n;i++){
+            cin>>k[i];
+        }
+        cout<<dij(n,a,b)<<endl;
+        // for(int i = 1; i <= n; i++)
+        //    cout << d[i] << endl;
+    //    return 0;
+    }
+    return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="2-HDU2544-最短路"><a href="#2-HDU2544-最短路" class="headerlink" title="2. HDU2544 最短路"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2544" target="_blank" rel="noopener">2. HDU2544 最短路</a></h2><p><strong>【题目描述】</strong></p>
+<p>在每年的校赛里，所有进入决赛的同学都会获得一件很漂亮的t-shirt。但是每当我们的工作人员把上百件的衣服从商店运回到赛场的时候，却是非常累的！所以现在他们想要寻找最短的从商店到赛场的路线，你可以帮助他们吗？</p>
+<p><strong>【输入】</strong></p>
+<p>输入包括多组数据。每组数据第一行是两个整数N、M（N&lt;=100，M&lt;=10000），N表示成都的大街上有几个路口，标号为1的路口是商店所在地，标号为N的路口是赛场所在地，M则表示在成都有几条路。N=M=0表示输入结束。接下来M行，每行包括3个整数A，B，C（1&lt;=A,B&lt;=N,1&lt;=C&lt;=1000）,表示在路口A与路口B之间有一条路，我们的工作人员需要C分钟的时间走过这条路。<br>输入保证至少存在1条商店到赛场的路线。</p>
+<p><strong>【输出】</strong></p>
+<p>对于每组输入，输出一行，表示工作人员从商店走到赛场的最短时间</p>
+<p><strong>【样例输入】</strong></p>
+<p>2 1<br>1 2 3<br>3 3<br>1 2 5<br>2 3 5<br>3 1 2<br>0 0</p>
+<p><strong>【样例输出】</strong></p>
+<p>3<br>2</p>
+<p><strong>【解析】</strong></p>
+<p>模版题，数据也比较水，一个用来练习最短路的模版们</p>
+<p><strong>【代码】</strong></p>
+<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//Dijkstra
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+typedef pair <int,int> P;
+const int maxn = 100+10;
+const int INF = 0x3f3f3f3f;
+int n,m;
+int d[maxn];
+
+struct edge
+{
+    int to,cost;
+    edge(int u = 0,int d = 0) : to(u),cost(d) {}
+};
+
+vector <edge> G[maxn];
+
+void dijkstra()
+{
+    memset(d,INF,sizeof(d));
+    d[1] = 0;
+    priority_queue < P,vector<P>,greater<P> >  Q;//P.first 是距离，.P.second 是顶点
+    Q.push(P(0,1));
+    while(!Q.empty())
+    {
+        P x = Q.top();
+        Q.pop();
+        int dist = x.first;
+        int u = x.second;
+
+        if(d[u] < dist) continue;//排除u相同时, dist不同的情况。
+        for(int i = 0; i < G[u].size(); i++)
+        {
+            edge e = G[u][i];
+            if(d[e.to] > d[u] + e.cost)
+            {
+                d[e.to] = d[u]+ e.cost;
+                Q.push(P(d[e.to],e.to));
+            }
+        }
+    }
+    return ;
+}
+
+void input()
+{
+    for(int i = 0; i <= n; i++ )
+        G[i].clear();
+    for(int i = 0; i < m; i++)
+    {
+      int u,v,dist;
+      scanf("%d%d%d",&u,&v,&dist);
+      G[u].push_back(edge(v,dist));
+      G[v].push_back(edge(u,dist));
+    }
+}
+
+int main()
+{
+    while(scanf("%d%d",&n,&m) && (n || m))
+    {
+        input();
+        dijkstra();
+        printf("%d\n",d[n]);
+     }
+    return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//Spfa
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+typedef pair <int,int> P;
+const int maxn = 100+10;
+const int maxm = 1e4 + 100;
+const int INF = 0x3f3f3f3f;
+int n,m;
+int d[maxn];
+int cnt[maxn];
+bool inq[maxn];
+struct edge
+{
+    int to,cost;
+};
+
+vector <edge> G[maxn];
+
+bool Spfa()
+{
+    memset(d,INF,sizeof(d));
+    memset(cnt,0,sizeof(cnt));
+    memset(inq,false,sizeof(inq));
+    queue <int> Q;
+    Q.push(1);
+    d[1] = 0;
+    cnt[1] = 1;
+    inq[1] = true;
+    while(!Q.empty())
+    {
+        int t = Q.front();
+        Q.pop();
+        inq[t] = false;
+        for(int i = 0; i < G[t].size(); i++)
+        {
+            edge e = G[t][i];
+            if(d[e.to] > d[t] + e.cost)
+            {
+                d[e.to] = d[t] + e.cost;
+                if(!inq[e.to]) {
+                    if(++cnt[e.to] > n)  return false;
+                    Q.push(e.to);
+                    inq[e.to] = true;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+int main()
+{
+    while(scanf("%d%d",&n,&m)&& n && m)
+    {
+
+        for(int i = 1; i <= n; i++)  G[i].clear();
+        for(int i = 1; i <= m; i++)
+        {
+            int u,v,dist;
+            scanf("%d%d%d",&u,&v,&dist);
+            edge e1,e2;
+            e1.to = v, e1.cost = dist;
+            e2.to = u, e2.cost = dist;
+            G[u].push_back(e1);
+            G[v].push_back(e2);
+        }
+        if(Spfa())
+        printf("%d\n",d[n]);
+    }
+    return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//Floyd
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+typedef pair <int,int> P;
+const int maxn = 100+10;
+const int maxm = 1e4 + 100;
+const int INF = 0x3f3f3f3f;
+int n,m;
+int mp[maxn][maxn];
+
+void Floyd()
+{
+    for(int k = 1; k <= n; k++)
+        for(int i = 1; i <= n; i++)
+          for(int j = 1; j <= n; j++)
+               mp[i][j] = min(mp[i][j],mp[i][k]+mp[k][j]);
+}
+
+int main()
+{
+    while(scanf("%d%d",&n,&m)&& n && m)
+    {
+        memset(mp,INF,sizeof(mp));
+        int j = 1;
+        for(int i = 1; i <= m; i++)
+        {
+            int u,v,dist;
+            scanf("%d%d%d",&u,&v,&dist);
+            mp[u][v] = dist;
+            mp[v][u] = dist;
+        }
+        Floyd();
+        printf("%d\n",mp[1][n]);
+    }
+    return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">//Bellman_Ford
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+typedef pair <int,int> P;
+const int maxn = 100+10;
+const int maxm = 1e4 + 100;
+const int INF = 0x3f3f3f3f;
+int n,m;
+int d[maxn];
+
+struct edge {
+  int from,to,cost;
+};
+
+edge es[maxm*2];
+
+void Bellman_Ford()
+{
+    memset(d,INF,sizeof(d));
+    d[1] = 0;
+    for(int i = 1; i < n; i++)
+    {
+        for(int j = 1; j <= 2*m; j++)
+        {
+            edge e = es[j];
+            if(d[e.from] < INF && d[e.to] > d[e.from] + e.cost)  d[e.to] = d[e.from] + e.cost;
+        }
+    }
+}
+
+int main()
+{
+    while(scanf("%d%d",&n,&m)&& n && m)
+    {
+        int j = 1;
+        for(int i = 1; i <= m; i++)
+        {
+            int u,v,dist;
+            scanf("%d%d%d",&u,&v,&dist);
+            edge e1,e2;
+            e1.from = u,e1.to = v,e1.cost = dist;
+            e2.from = v,e2.to = u,e2.cost = dist;
+            es[j++] = e1;
+            es[j++] = e2;
+        }
+        Bellman_Ford();
+        printf("%d\n",d[n]);
+    }
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="3-HDU3790-最短路径问题"><a href="#3-HDU3790-最短路径问题" class="headerlink" title="3. HDU3790 最短路径问题"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3790" target="_blank" rel="noopener">3. HDU3790 最短路径问题</a></h2><p><strong>【题目描述】</strong></p>
+<p>给你n个点，m条无向边，每条边都有长度d和花费p，给你起点s终点t，要求输出起点到终点的最短距离及其花费，如果最短距离有多条路线，则输出花费最少的。</p>
+<p><strong>【输入】</strong></p>
+<p>输入n,m，点的编号是1~n,然后是m行，每行4个数 a,b,d,p，表示a和b之间有一条边，且其长度为d，花费为p。最后一行是两个数 s,t;起点s，终点。n和m为0时输入结束。<br>(1&lt;n&lt;=1000, 0&lt;m&lt;100000, s != t)</p>
+<p><strong>【输出】</strong></p>
+<p>输出 一行有两个数， 最短距离及其花费。</p>
+<p><strong>【样例输入】</strong></p>
+<p>3 2<br>1 2 5 6<br>2 3 4 5<br>1 3<br>0 0</p>
+<p><strong>【样例输出】</strong></p>
+<p>9 11</p>
+<p><strong>【解析】</strong></p>
+<p>最短距离 + 花费的问题，先优先满足距离，然后考虑花费，具体操作详见代码</p>
+<p><strong>【代码】</strong></p>
+<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long LL;
+const int INF = 0x3f3f3f3f;
+const int maxn = 1e3+10;
+const int maxm = 1e5+100;
+int n,m,s,t;
+struct P
+{
+    int u,d,c;
+    P (int x, int y, int z) : u(x), d(y), c(z) {}
+    bool operator >  (const P &a) const
+    {
+        if(this -> d != a.d)  return this->d > a.d;
+        else                  return this->c > a.c;
+    }
+};
+
+struct edge {
+   int to,dist,cost;
+   edge (int u,int d,int c) : to(u),dist(d),cost(c) {}
+};
+
+vector <edge> G[maxn];
+void input()
+{
+    for(int i = 1; i <= n; i++) G[i].clear();
+   for(int i = 0; i < m; i++)
+   {
+       int u,v,d,c;
+       scanf("%d%d%d%d",&u,&v,&d,&c);
+       G[u].push_back(edge(v,d,c));
+       G[v].push_back(edge(u,d,c));
+   }
+   scanf("%d%d",&s,&t);
+}
+
+int d[maxn];
+int c[maxn];
+
+void dijkstra()
+{
+   priority_queue < P, vector <P> ,greater<P> > Q;
+   Q.push(P(s,0,0));
+   memset(d,INF,sizeof(d));
+   memset(c,INF,sizeof(c));
+   d[s] = 0;
+   c[s] = 0;
+   while(!Q.empty())
+   {
+       P temp = Q.top();
+       Q.pop();
+       int u = temp.u;
+       int dist = temp.d;
+       int cost = temp.c;
+
+       if(d[u] < dist) continue;
+       for(int i = 0; i < G[u].size(); i++)
+       {
+           edge e = G[u][i];
+           if(d[e.to] > d[u] + e.dist ||(d[e.to] == d[u] + e.dist && c[e.to] > c[u] + e.cost))
+           {
+               d[e.to] = d[u] + e.dist;
+               c[e.to] = c[u] + e.cost;
+               Q.push(P(e.to,d[e.to],c[e.to]));
+           }
+       }
+   }
+   return ;
+}
+
+void output()
+{
+    printf("%d %d\n",d[t],c[t]);
+}
+
+int main()
+{
+  while(scanf("%d%d",&n,&m) && n && m)
+  {
+  input();
+  dijkstra();
+  output();
+  }
+  return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="4-HDU-2066-一个人的旅行"><a href="#4-HDU-2066-一个人的旅行" class="headerlink" title="4. HDU 2066 一个人的旅行"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2066" target="_blank" rel="noopener">4. HDU 2066 一个人的旅行</a></h2><p><strong>【题目描述】</strong></p>
+<p>虽然草儿是个路痴（就是在杭电待了一年多，居然还会在校园里迷路的人，汗~),但是草儿仍然很喜欢旅行，因为在旅途中 会遇见很多人（白马王子，^0^），很多事，还能丰富自己的阅历，还可以看美丽的风景……草儿想去很多地方，她想要去东京铁塔看夜景，去威尼斯看电影，去阳明山上看海芋，去纽约纯粹看雪景，去巴黎喝咖啡写信，去北京探望孟姜女……眼看寒假就快到了，这么一大段时间，可不能浪费啊，一定要给自己好好的放个假，可是也不能荒废了训练啊，所以草儿决定在要在最短的时间去一个自己想去的地方！因为草儿的家在一个小镇上，没有火车经过，所以她只能去邻近的城市坐火车（好可怜啊~）</p>
+<p><strong>【输入】</strong></p>
+<p>输入数据有多组，每组的第一行是三个整数T，S和D，表示有T条路，和草儿家相邻的城市的有S个，草儿想去的地方有D个；<br>接着有T行，每行有三个整数a，b，time,表示a,b城市之间的车程是time小时；(1=&lt;(a,b)&lt;=1000;a,b 之间可能有多条路)<br>接着的第T+1行有S个数，表示和草儿家相连的城市；<br>接着的第T+2行有D个数，表示草儿想去地方。</p>
+<p><strong>【输出】</strong></p>
+<p>输出草儿能去某个喜欢的城市的最短时间。</p>
+<p><strong>【样例输入】</strong></p>
+<p>6 2 3<br>1 3 5<br>1 4 7<br>2 8 12<br>3 8 4<br>4 9 12<br>9 10 2<br>1 2<br>8 9 10</p>
+<p><strong>【样例输出】</strong></p>
+<p>9 11</p>
+<p><strong>【解析】</strong></p>
+<p>此题看起来是多对多，但是实际上还是1对多的单源最短路问题，只需要把S集合的点都连向一个共同的起点S，权值为0，这样跑最短路模版即可。</p>
+<p><strong>【代码】</strong></p>
+<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+
+using namespace std;
+typedef pair<int,int> P;
+const int INF = 0x3f3f3f3f;
+const int maxn = 1000+10;
+
+int n = maxn-1,T,S,D;
+int d[maxn];
+
+struct edge
+{
+   int to,time;
+   edge (int u,int c) : to(u),time(c) {}
+};
+
+vector <edge> G[maxn];
+
+void input()
+{
+    for(int i = 0; i <= maxn; i++) G[i].clear();
+    for(int i = 1; i <= T; i++)
+    {
+      int a,b,time;
+      scanf("%d%d%d",&a,&b,&time);
+      G[a].push_back(edge(b,time));
+      G[b].push_back(edge(a,time));
+    }
+    for(int i = 1; i <= S; i++)
+    {
+        int s1;
+        scanf("%d",&s1);
+        G[0].push_back(edge(s1,0));
+    }
+    for(int i = 1; i <= D; i++)
+    {
+        int d1;
+        scanf("%d",&d1);
+        G[d1].push_back(edge(n,0));
+    }
+}
+
+void dijkstra()
+{
+    priority_queue <P, vector<P>,greater<P> > Q;
+    Q.push(P(0,0));
+    memset(d,INF,sizeof(d));
+    d[0] = 0;
+    while(!Q.empty())
+    {
+        P x = Q.top();
+        Q.pop();
+        int u = x.second;
+        int time = x.first;
+        if(d[u] < time) continue;
+        for(int i = 0; i < G[u].size(); i++)
+        {
+            edge e = G[u][i];
+            if(d[e.to] > d[u] + e.time)
+            {
+                d[e.to] = d[u] + e.time;
+                Q.push(P(d[e.to],e.to));
+            }
+        }
+    }
+    return ;
+}
+
+void output()
+{
+    printf("%d\n",d[n]);
+}
+
+int main()
+{
+    while(~scanf("%d%d%d",&T,&S,&D))
+    {
+    input();
+    dijkstra();
+    output();
+    }
+    return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="5-HDU2112-HDU-Today"><a href="#5-HDU2112-HDU-Today" class="headerlink" title="5. HDU2112 HDU Today"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2112" target="_blank" rel="noopener">5. HDU2112 HDU Today</a></h2><p><strong>【题目描述】</strong><br>经过锦囊相助，海东集团终于度过了危机，从此，HDU的发展就一直顺风顺水，到了2050年，集团已经相当规模了，据说进入了钱江肉丝经济开发区500强。这时候，XHD夫妇也退居了二线，并在风景秀美的诸暨市浬浦镇陶姚村买了个房子，开始安度晚年了。<br>这样住了一段时间，徐总对当地的交通还是不太了解。有时很郁闷，想去一个地方又不知道应该乘什么公交车，在什么地方转车，在什么地方下车（其实徐总自己有车，却一定要与民同乐，这就是徐总的性格）。<br>徐总经常会问蹩脚的英文问路：“Can you help me?”。看着他那迷茫而又无助的眼神，热心的你能帮帮他吗？<br>请帮助他用最短的时间到达目的地（假设每一路公交车都只在起点站和终点站停，而且随时都会开）。</p>
+<p><strong>【输入】</strong></p>
+<p>输入数据有多组，每组的第一行是公交车的总数N(0&lt;=N&lt;=10000)；<br>第二行有徐总的所在地start，他的目的地end；<br>接着有n行，每行有站名s，站名e，以及从s到e的时间整数t(0&lt;t&lt;100)(每个地名是一个长度不超过30的字符串)。<br>note：一组数据中地名数不会超过150个。<br>如果N==-1，表示输入结束。</p>
+<p><strong>【输出】</strong></p>
+<p>如果徐总能到达目的地，输出最短的时间；否则，输出“-1”。</p>
+<p><strong>【样例输入】</strong></p>
+<p>6<br>xiasha westlake<br>xiasha station 60<br>xiasha ShoppingCenterofHangZhou 30<br>station westlake 20<br>ShoppingCenterofHangZhou supermarket 10<br>xiasha supermarket 50<br>supermarket westlake 10<br>-1</p>
+<p><strong>【样例输出】</strong></p>
+<p>50</p>
+<p><strong>【解析】</strong></p>
+<p>模版题</p>
+<p><strong>【代码】</strong></p>
+<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+
+using namespace std;
+typedef pair<int,int> P;
+const int INF = 0x3f3f3f3f;
+const int maxn = 150+10;
+int n,v = maxn -1;
+int d[maxn];
+
+map <string,int> mp;
+
+struct edge
+{
+    int to,time;
+    edge (int x, int y) : to(x),time(y) {}
+};
+
+vector <edge> G[maxn];
+
+bool input()
+{
+    bool t = true;
+    for(int i = 0; i < maxn; i++) G[i].clear();
+    mp.clear();
+    string st,ed;
+    cin >>  st >> ed;
+    if(st == ed) t = false;
+    mp[st] = 0,mp[ed] = v;
+    int j = 1;
+    for(int i = 1; i <= n; i++)
+    {
+        int time;
+        cin >> st >> ed;
+        scanf("%d",&time);
+        if(mp.count(st) == 0)  mp[st] = j++;
+        if(mp.count(ed) == 0)  mp[ed] = j++;
+        G[mp[st]].push_back(edge(mp[ed],time));
+        G[mp[ed]].push_back(edge(mp[st],time));
+    }
+    return t;
+}
+
+void dijkstra()
+{
+    memset(d,INF,sizeof(d));
+    priority_queue <P, vector <P>, greater <P> > Q;
+    Q.push(P(0,0));
+    d[0] = 0;
+    while(!Q.empty())
+    {
+        P x = Q.top();
+        Q.pop();
+        int u = x.second;
+        int time = x.first;
+        if(d[u] < time) continue;
+        for(int i = 0; i < G[u].size(); i++)
+        {
+            edge e = G[u][i];
+            if(d[e.to] > d[u] + e.time)
+            {
+                d[e.to] = d[u] + e.time;
+                Q.push(P(d[e.to],e.to));
+            }
+        }
+    }
+    return ;
+}
+
+void output()
+{
+    if(d[v] == INF)
+        printf("-1\n");
+    else
+    printf("%d\n",d[v]);
+}
+
+int main()
+{
+    while(scanf("%d",&n) && n != -1)
+    {
+    if(!input()) {printf("0\n");continue;}
+    dijkstra();
+    output();
+    }
+    return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="5-HDU1874-畅通工程续"><a href="#5-HDU1874-畅通工程续" class="headerlink" title="5. HDU1874 畅通工程续"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1874" target="_blank" rel="noopener">5. HDU1874 畅通工程续</a></h2><p><strong>【题目描述】</strong></p>
+<p>某省自从实行了很多年的畅通工程计划后，终于修建了很多路。不过路多了也不好，每次要从一个城镇到另一个城镇时，都有许多种道路方案可以选择，而某些方案要比另一些方案行走的距离要短很多。这让行人很困扰。</p>
+<p>现在，已知起点和终点，请你计算出要从起点到终点，最短需要行走多少距离。</p>
+<p><strong>【输入】</strong></p>
+<p>本题目包含多组数据，请处理到文件结束。<br>每组数据第一行包含两个正整数N和M(0&lt;N&lt;200,0&lt;M&lt;1000)，分别代表现有城镇的数目和已修建的道路的数目。城镇分别以0～N-1编号。<br>接下来是M行道路信息。每一行有三个整数A,B,X(0&lt;=A,B&lt;N,A!=B,0&lt;X&lt;10000),表示城镇A和城镇B之间有一条长度为X的双向道路。<br>再接下一行有两个整数S,T(0&lt;=S,T&lt;N)，分别代表起点和终点。</p>
+<p><strong>【输出】</strong></p>
+<p>对于每组数据，请在一行里输出最短需要行走的距离。如果不存在从S到T的路线，就输出-1.</p>
+<p><strong>【样例输入】</strong></p>
+<p>对于每组数据，请在一行里输出最短需要行走的距离。如果不存在从S到T的路线，就输出-1.</p>
+<p><strong>【样例输出】</strong></p>
+<p>2<br>-1</p>
+<p><strong>【解析】</strong></p>
+<p>模版题</p>
+<p><strong>【代码】</strong></p>
+<pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+
+using namespace std;
+typedef pair <int,int> P;
+typedef long long LL;
+const int INF = 0x3f3f3f3f;
+const int maxn = 200+10;
+const int maxm = 1000+10;
+
+int n,m,st,ed;
+int d[maxn];
+struct edge {
+    int to,time;
+    edge (int x, int y) : to(x),time(y) {}
+};
+
+vector <edge> G[maxn];
+
+void input()
+{
+    for(int i = 0; i <= n; i++) G[i].clear();
+    for(int i = 1; i <= m; i++)
+    {
+        int u,v,time;
+        scanf("%d%d%d",&u,&v,&time);
+        G[u].push_back(edge(v,time));
+        G[v].push_back(edge(u,time));
+    }
+    scanf("%d%d",&st,&ed);
+}
+
+void dijkstra()
+{
+    memset(d,INF,sizeof(d));
+    priority_queue < P, vector <P>, greater<P> > Q;
+    Q.push(P(0,st));
+    d[st] = 0;
+    while(!Q.empty())
+    {
+        P x = Q.top();
+        Q.pop();
+        int u = x.second;
+        int time = x.first;
+        if(d[u] < time) continue;
+        for(int i = 0; i < G[u].size(); i++)
+        {
+            edge e = G[u][i];
+            if(d[e.to] > d[u] + e.time)
+            {
+                d[e.to] = d[u] + e.time;
+                Q.push(P(d[e.to],e.to));
+            }
+        }
+    }
+    return ;
+}
+
+void output()
+{
+    if(d[ed] == INF)
+        printf("-1\n");
+    else
+        printf("%d\n",d[ed]);
+}
+
+int main()
+{
+    while(~scanf("%d%d",&n,&m))
+    {
+        input();
+        dijkstra();
+        output();
+    }
+    return 0;
+}
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<!-- ## []()
+
+**【题目描述】**
+
+
+**【输入】**
+
+
+
+**【输出】**
+
+
+**【样例输入】**
+
+
+**【样例输出】**
+
+
+**【解析】**
+
+**【代码】**
+```cpp
+
+```
+## []()
+
+**【题目描述】**
+
+
+**【输入】**
+
+
+
+**【输出】**
+
+
+**【样例输入】**
+
+
+**【样例输出】**
+
+
+**【解析】**
+
+**【代码】**
+```cpp
+
+```
+## []()
+
+**【题目描述】**
+
+
+**【输入】**
+
+
+
+**【输出】**
+
+
+**【样例输入】**
+
+
+**【样例输出】**
+
+
+**【解析】**
+
+**【代码】**
+```cpp
+
+``` -->
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+            <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.88rem;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-large waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <a  href="/2020/05/05/the-shortest-paths-problem-set/">
+                    《The Shortest Paths Problem Set》
+            </a> 由
+            <a href="https://tawn0000.github.io">
+                Tawn
+            </a> 采用
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '9b2dceab86d562ce258d',
+        clientSecret: '9a0857633d4464fb3e7bfc46b63e9b87b1184844',
+        repo: 'tawn0000.github.io',
+        owner: 'tawn0000',
+        admin: "tawn0000",
+        id: '2020-05-05T15-04-58',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/05/05/the-shortest-paths-problem-set/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="The Shortest Paths Problem Set">
+                        
+                        <span class="card-title">The Shortest Paths Problem Set</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            1. HDU1548 一个奇怪的电梯【题目描述】
+有个奇怪的电梯。电梯可以根据您的需要在每一层进行停留，每一层都有一个数字Ki(0 &lt;= Ki &lt;= N)。电梯只有两个按钮:向上和向下。当你在第i层时，如果你按下“向上”按钮，你
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Algorithm/" class="post-category">
+                                    Algorithm
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
+                    </a>
+                    
+                    <a href="/tags/Problem-Set/">
+                        <span class="chip bg-color">Problem Set</span>
+                    </a>
+                    
+                    <a href="/tags/Shortest-Paths/">
+                        <span class="chip bg-color">Shortest Paths</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/23/mst-problem-set/">
+                    <div class="card-image">
+                        
+                        <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ge8s1i0e66j31900u0tlv.jpg" class="responsive-img" alt="MST Problem Set">
+                        
+                        <span class="card-title">MST Problem Set</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            最小生成树问题集 1. POJ 3723 Conscription 2. POJ 2377 Bad Cowtractors 3. HDU 4253 Two Famous Companies 4. FZU 2254 英语考试 5. POJ 1182 食物链 6. POJ 2236 Wireless Network
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Algorithm/" class="post-category">
+                                    Algorithm
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Algorithm/">
+                        <span class="chip bg-color">Algorithm</span>
+                    </a>
+                    
+                    <a href="/tags/Problem-Set/">
+                        <span class="chip bg-color">Problem Set</span>
+                    </a>
+                    
+                    <a href="/tags/Greedy/">
+                        <span class="chip bg-color">Greedy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: Tawn's blog<br />'
+            + '作者: Tawn<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">年份</span>
+            <a href="https://tawn0000.github.io" target="_blank">Tawn</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">74k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    window.setTimeout("siteTime()", 1000);
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "09";
+                    var startDate = "26";
+                    var startHour = "16";
+                    var startMinute = "35";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Tawn0000" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:291534867@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="https://twitter.com/Tawn09412753" class="tooltipped" target="_blank" data-tooltip="关注我的Twitter: https://twitter.com/Tawn09412753" data-position="top" data-delay="50">
+        <i class="fab fa-twitter"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=291534867" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 291534867" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+    <a href="https://m.weibo.cn/profile/5683612140" class="tooltipped" target="_blank" data-tooltip="关注我的微博: https://m.weibo.cn/profile/5683612140" data-position="top" data-delay="50">
+        <i class="fab fa-weibo"></i>
+    </a>
+
+
+
+    <a href="https://www.zhihu.com/people/tawn-57/activities" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/tawn-57/activities" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: ""
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+
+</body>
+
+</html>

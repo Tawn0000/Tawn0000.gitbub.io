@@ -481,7 +481,7 @@ lxhgww最近迷上了一款游戏，在游戏里，他拥有很多的装备，�
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        682
+                        673
                     </div>
                     
 
@@ -520,71 +520,71 @@ lxhgww最近迷上了一款游戏，在游戏里，他拥有很多的装备，�
 <p><strong>【测试网站】</strong></p>
 <p><a href="https://www.luogu.org/problemnew/show/P1640" target="_blank" rel="noopener">luoguP1640</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>二分图最大匹配变形，使用匈牙利算法，左边为武器属性，右边为武器编号，根据武器的属性进行建边，然后从1到属性最大值开始找增广路，若没找到则break,因为武器属性必须连续。</p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+using namespace std;
 
-<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">1000000</span> <span class="token operator">+</span> <span class="token number">10</span><span class="token punctuation">;</span>
+const int maxn = 1000000 + 10;
 
-<span class="token keyword">bool</span> vis<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> line<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> h<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> tot <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+bool vis[maxn];
+int line[maxn];
+int h[maxn];
+int tot = 0;
 
-<span class="token keyword">struct</span> edge<span class="token punctuation">{</span>
-  <span class="token keyword">int</span> to<span class="token punctuation">,</span>next<span class="token punctuation">;</span>
-  <span class="token function">edge</span><span class="token punctuation">(</span><span class="token keyword">int</span> to <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">int</span> next <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">to</span><span class="token punctuation">(</span>to<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span>next<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span>es<span class="token punctuation">[</span>maxn<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+struct edge{
+  int to,next;
+  edge(int to = 0, int next = 0) : to(to), next(next) {}
+}es[maxn*2];
 
-<span class="token keyword">void</span> <span class="token function">add_edge</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
- es<span class="token punctuation">[</span>tot<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">edge</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span>h<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- h<span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> tot<span class="token operator">++</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+void add_edge(int u, int v)
+{
+ es[tot] = edge(v,h[u]);
+ h[u] = tot++;
+}
 
-<span class="token keyword">bool</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span><span class="token keyword">int</span> n<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> h<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token operator">~</span>i <span class="token punctuation">;</span> i <span class="token operator">=</span> es<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>next<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> v <span class="token operator">=</span> es<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>to<span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>vis<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-        vis<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>line<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">||</span> <span class="token function">dfs</span><span class="token punctuation">(</span>line<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>line<span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> u<span class="token punctuation">;</span><span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+bool dfs(int u,int n)
+{
+    for(int i = h[u]; ~i ; i = es[i].next)
+    {
+        int v = es[i].to;
+        if(!vis[v])
+        {
+        vis[v] = true;
+        if(line[v] == -1 || dfs(line[v],n))
+        {line[v] = u;return true;}
+        }
+    }
+    return false;
+}
 
-<span class="token keyword">int</span> <span class="token function">Max_match</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span><span class="token keyword">int</span> p<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> all <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token function">memset</span><span class="token punctuation">(</span>line<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> p<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//属性从1开始</span>
-    <span class="token punctuation">{</span>
-        <span class="token function">memset</span><span class="token punctuation">(</span>vis<span class="token punctuation">,</span><span class="token boolean">false</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>vis<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">dfs</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span> all<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token keyword">else</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> all<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+int Max_match(int n,int p)
+{
+    int all = 0;
+    memset(line,-1,sizeof(line));
+    for(int i = 1; i < p; i++)//属性从1开始
+    {
+        memset(vis,false,sizeof(vis));
+        if(dfs(i,n)) all++;
+        else break;
+    }
+    return all;
+}
 
-<span class="token keyword">int</span> n<span class="token punctuation">;</span>
+int n;
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">memset</span><span class="token punctuation">(</span>h<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> a<span class="token punctuation">,</span>b<span class="token punctuation">;</span>
-    <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">,</span><span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">add_edge</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token function">add_edge</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token function">Max_match</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span><span class="token number">10001</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>ans<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+int main()
+{
+  scanf("%d",&n);
+  memset(h,-1,sizeof(h));
+  for(int i = 0; i < n; i++)
+  {
+    int a,b;
+    scanf("%d%d",&a,&b);
+    add_edge(a,i);add_edge(b,i);
+  }
+  int ans = Max_match(n,10001);
+  printf("%d\n",ans);
+  return 0;
+}
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -1106,7 +1106,7 @@ lxhgww最近迷上了一款游戏，在游戏里，他拥有很多的装备，�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">103.5k</span>&nbsp;字
+                class="white-color">74k</span>&nbsp;字
             
             
             
