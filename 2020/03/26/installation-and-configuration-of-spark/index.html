@@ -476,14 +476,14 @@ JDK全称Java SE Development kit(JDK)，即java开发工具包，是Oracle提供
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        3.3k
+                        3.2k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        14 分
+                        13 分
                     </div>
                     
                 
@@ -504,65 +504,69 @@ JDK全称Java SE Development kit(JDK)，即java开发工具包，是Oracle提供
 </blockquote>
 <h3 id="一、安装JDK"><a href="#一、安装JDK" class="headerlink" title="一、安装JDK"></a>一、安装JDK</h3><blockquote>
 <p>JDK全称Java SE Development kit(JDK)，即java开发工具包，是Oracle提供的一套用于开发java应用程序的开发包，它提供编译，运行java程序所需要的各种工具和资源，包括java编译器，java运行时环境，以及常用的java类库等。</p>
-</blockquote>
-<blockquote>
 <p>JRE   Java Runtime Environment(JRE) Java运行环境</p>
-</blockquote>
-<blockquote>
 <p>JVM  Java Virtual Machine Java虚拟机，JRE包含JVM。JVM是运行java程序的核心虚拟机，还需要其他的类加载器，字节码校验器，以及大量的基础类库。JRM除了包含JVM之外，还包含运行java程序的其它环境支持。</p>
 </blockquote>
 <h4 id="1-下载JDK安装包"><a href="#1-下载JDK安装包" class="headerlink" title="1. 下载JDK安装包"></a>1. 下载JDK安装包</h4><p>前往<a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank" rel="noopener">官网</a><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd7673qsnzj31z40ta42y.jpg" alt="官网界面"><br>点击 <strong>JDK Download</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd76ed6n6kj31kg0u0qb6.jpg" alt="选择对应的版本"><br>会提示需要登陆：可以使用下面这个账号和密码，（注：转载的，但是找不到原贴了）</p>
 <ul>
-<li>账号：<a href="mailto:2696671285@qq.com" target="_blank" rel="noopener">2696671285@qq.com</a></li>
+<li>账号：2696671285@qq.com</li>
 <li>密码：Oracle123<br>下载完成直接按提示安装即可</li>
 </ul>
 <h4 id="2-配置环境变量"><a href="#2-配置环境变量" class="headerlink" title="2. 配置环境变量"></a>2. 配置环境变量</h4><p>打开Mac终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ vim ~/.bash_profile
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ vim ~/.bash_profile
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在其中加入以下环境变量，注意自己的JDK安装路径，主要是版本可能不同<br>如果复制粘贴格式乱了可以考虑用vim的paste模式： <strong>esc -&gt; :set paste -&gt; ente</strong><br>退出保存 <strong>esc -&gt; :wq -&gt; enter</strong><br>输入：<strong>source ~/.bash_profile</strong> 或者重启系统 使新新增的环境变量生效<br>可以键入 <strong>echo $PATH</strong> 查看是否添加成功</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby"><span class="token constant">JAVA_HOME</span><span class="token operator">=</span><span class="token operator">/</span><span class="token constant">Library</span><span class="token operator">/</span><span class="token constant">Java</span><span class="token operator">/</span><span class="token constant">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token number">.8</span><span class="token punctuation">.</span>0_241<span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token constant">Contents</span><span class="token operator">/</span><span class="token constant">Home</span>
-<span class="token constant">CLASSPAHT</span><span class="token operator">=</span><span class="token punctuation">.</span><span class="token punctuation">:</span><span class="token variable">$JAVA_HOME</span><span class="token operator">/</span>lib<span class="token operator">/</span>dt<span class="token punctuation">.</span>jar<span class="token punctuation">:</span><span class="token variable">$JAVA_HOME</span><span class="token operator">/</span>lib<span class="token operator">/</span>tools<span class="token punctuation">.</span>jar
-<span class="token constant">PATH</span><span class="token operator">=</span><span class="token variable">$JAVA_HOME</span><span class="token operator">/</span>bin<span class="token punctuation">:</span><span class="token variable">$PATH</span>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
+CLASSPAHT=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+PATH=$JAVA_HOME/bin:$PATH
 
-export <span class="token constant">JAVA_HOME</span>
-export <span class="token constant">CLASS_PATH</span>
-export <span class="token constant">PATH</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+export JAVA_HOME
+export CLASS_PATH
+export PATH
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="3-检查安装环境"><a href="#3-检查安装环境" class="headerlink" title="3. 检查安装环境"></a>3. 检查安装环境</h4><p>终端输入：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ java -version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ java -version
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>输出：</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby">java version <span class="token string">"1.8.0_241"</span>
-<span class="token function">Java</span><span class="token punctuation">(</span><span class="token constant">TM</span><span class="token punctuation">)</span> <span class="token constant">SE</span> <span class="token constant">Runtime</span> <span class="token function">Environment</span> <span class="token punctuation">(</span>build <span class="token number">1.8</span><span class="token punctuation">.</span>0_241<span class="token operator">-</span>b07<span class="token punctuation">)</span>
-<span class="token constant">Java</span> <span class="token function">HotSpot</span><span class="token punctuation">(</span><span class="token constant">TM</span><span class="token punctuation">)</span> <span class="token number">64</span><span class="token operator">-</span><span class="token constant">Bit</span> <span class="token constant">Server</span> <span class="token function">VM</span> <span class="token punctuation">(</span>build <span class="token number">25.241</span><span class="token operator">-</span>b07<span class="token punctuation">,</span> mixed mode<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">java version "1.8.0_241"
+Java(TM) SE Runtime Environment (build 1.8.0_241-b07)
+Java HotSpot(TM) 64-Bit Server VM (build 25.241-b07, mixed mode)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="二、安装Scala"><a href="#二、安装Scala" class="headerlink" title="二、安装Scala"></a>二、安装Scala</h3><blockquote>
 <p>Scala 是一门多范式（multi-paradigm）的编程语言，设计初衷是要集成面向对象编程和函数式编程的各种特性。<br>Scala 运行在Java虚拟机上，并兼容现有的Java程序。<br>Scala 源代码被编译成Java字节码，所以它可以运行于JVM之上，并可以调用现有的Java类库。<br>所以请预先安装好Java环境</p>
 </blockquote>
 <h4 id="1-brew安装"><a href="#1-brew安装" class="headerlink" title="1. brew安装"></a>1. brew安装</h4><p>有多种方法安装，首先尝试一下 <strong>brew</strong> 安装，如果没有安装brew, 参考<a href="https://www.cnblogs.com/yaogengzhu/p/10833285.html" target="_blank" rel="noopener">安装brew</a><br>打开Mac终端输入</p>
-<pre class="line-numbers language-vim"><code class="language-vim">$ brew install scala<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-vim"><code class="language-lang-vim">$ brew install scala
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如果一直停在 <strong>Updating Homebrew…</strong>, 可以使用Control + C 暂时停止其更新<br>注意：brew安装后会自动设置环境变量，所以不用再手动设置环境变量 -&gt;<a href="https://www.jianshu.com/p/529b7558a6e0" target="_blank" rel="noopener">Homebrew安装Packages是否需要另外设置环境变量PATH?</a></p>
 <h4 id="2-手动安装"><a href="#2-手动安装" class="headerlink" title="2. 手动安装"></a>2. 手动安装</h4><p>如果brew 安装不上可以手动下载安装<br><a href="https://www.scala-lang.org/download/" target="_blank" rel="noopener">Scala官网 下载</a></p>
 <ul>
 <li>下载 Scala 二进制包解压缩文件包然后移动到自己指定的安装位置</li>
 <li>配置环境变量 在 <strong>~/.bash_profile</strong> 中加入下列路径（根据自己的安装路径修改）步骤同上, 最后不能忘记终端运行 <strong>source ~/.bash_profile</strong></li>
 </ul>
-<pre class="line-numbers language-ruby"><code class="language-ruby">export <span class="token constant">PATH</span><span class="token operator">=</span><span class="token string">"$PATH:/usr/local/share/scala/bin"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">export PATH="$PATH:/usr/local/share/scala/bin"
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h4 id="3-检查安装"><a href="#3-检查安装" class="headerlink" title="3. 检查安装"></a>3. 检查安装</h4><ul>
 <li>检查版本</li>
 </ul>
 <p>终端输入：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ scala -version
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ scala -version
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>输出：</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby"><span class="token constant">Scala</span> code runner version <span class="token number">2.13</span><span class="token punctuation">.</span><span class="token number">1</span> <span class="token operator">--</span> <span class="token constant">Copyright</span> <span class="token number">2002</span><span class="token operator">-</span><span class="token number">2019</span><span class="token punctuation">,</span> <span class="token constant">LAMP</span><span class="token operator">/</span><span class="token constant">EPFL</span> <span class="token keyword">and</span> <span class="token constant">Lightbend</span><span class="token punctuation">,</span> <span class="token constant">Inc</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">Scala code runner version 2.13.1 -- Copyright 2002-2019, LAMP/EPFL and Lightbend, Inc.
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>测试环境：</li>
 </ul>
 <p>终端输入：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ scala<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ scala
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>输出：</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby"><span class="token constant">Welcome</span> to <span class="token constant">Scala</span> <span class="token number">2.13</span><span class="token punctuation">.</span><span class="token function">1</span> <span class="token punctuation">(</span><span class="token constant">Java</span> <span class="token function">HotSpot</span><span class="token punctuation">(</span><span class="token constant">TM</span><span class="token punctuation">)</span> <span class="token number">64</span><span class="token operator">-</span><span class="token constant">Bit</span> <span class="token constant">Server</span> <span class="token constant">VM</span><span class="token punctuation">,</span> <span class="token constant">Java</span> <span class="token number">1.8</span><span class="token punctuation">.</span>0_241<span class="token punctuation">)</span><span class="token punctuation">.</span>
-<span class="token constant">Type</span> <span class="token keyword">in</span> expressions <span class="token keyword">for</span> evaluation<span class="token punctuation">.</span> <span class="token constant">Or</span> try <span class="token symbol">:help</span><span class="token punctuation">.</span>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">Welcome to Scala 2.13.1 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_241).
+Type in expressions for evaluation. Or try :help.
 
-scala<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+scala>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="三、配置sshd"><a href="#三、配置sshd" class="headerlink" title="三、配置sshd"></a>三、配置sshd</h3><blockquote>
 <ul>
 <li>sshd为secure shell的简称；SSH为建立在应用层基础上的安全协议。SSH是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议</li>
@@ -584,22 +588,26 @@ scala<span class="token operator">></span><span aria-hidden="true" class="line-n
 </ul>
 </blockquote>
 <p><strong>在mac终端依次执行以下命令</strong></p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ ssh-keygen -t dsa -P <span class="token string">''</span> -f ~/.ssh/id_dsa
-$ <span class="token function">cat</span> ~/.ssh/id_dsa.pub <span class="token operator">>></span> ~/.ssh/authorized_keys
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
+$ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 mac 启动sshd
-$ <span class="token function">sudo</span> launchctl load -w /System/Library/LaunchDaemons/ssh.plist
+$ sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
 查看启动
-$ <span class="token function">sudo</span> launchctl list <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ssh</span>
+$ sudo launchctl list | grep ssh
 输出- 0 com.openssh.sshd 表示启动成功
 停止sshd服务
-$ <span class="token function">sudo</span> launchctl unload -w /System/Library/LaunchDaemons/ssh.plist<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+$ sudo launchctl unload -w /System/Library/LaunchDaemons/ssh.plist
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>测试ssh免密码登录</strong></p>
 <p>终端输入：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">ssh</span> localhost<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ ssh localhost
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>输出：</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby"><span class="token constant">Last</span> login<span class="token punctuation">:</span> <span class="token constant">Thu</span> <span class="token constant">Mar</span> <span class="token number">26</span> <span class="token number">12</span><span class="token punctuation">:</span><span class="token number">00</span><span class="token punctuation">:</span><span class="token number">09</span> <span class="token number">2020</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">Last login: Thu Mar 26 12:00:09 2020
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如果输出：</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby">ssh<span class="token punctuation">:</span> connect to host localhost port <span class="token number">22</span><span class="token punctuation">:</span> <span class="token constant">Connection</span> refused<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">ssh: connect to host localhost port 22: Connection refused
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>则需要打开mac远程登陆功能： System Preferences -&gt; Sharing -&gt; 勾选Remote Login</p>
 <p><strong>解释：</strong></p>
 <ul>
@@ -612,141 +620,155 @@ $ <span class="token function">sudo</span> launchctl unload -w /System/Library/L
 </blockquote>
 <p><strong>Spark 有预装hadoop的包和不预装的包， 如果安装spark可以先跳过hadoop的安装试一下</strong></p>
 <h4 id="1-brew安装-1"><a href="#1-brew安装-1" class="headerlink" title="1. brew安装"></a>1. brew安装</h4><p>如果没有安装brew, 参考<a href="https://www.cnblogs.com/yaogengzhu/p/10833285.html" target="_blank" rel="noopener">安装brew</a><br>终端输入：</p>
-<pre class="line-numbers language-bash"><code class="language-bash">brew <span class="token function">install</span> Hadoop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">brew install Hadoop
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>brew 安装不需要手动配置环境，同上。</p>
 <h4 id="2-手动安装-1"><a href="#2-手动安装-1" class="headerlink" title="2. 手动安装"></a>2. 手动安装</h4><p>brew安装不成功可以采用手动安装<br><a href="http://hadoop.apache.org/releases.html" target="_blank" rel="noopener">官网下载安装包</a><br>binary是编译好的可以直接使用，source是还没编译过的源代码，需要自行编译。这里我们下载binary就好。<br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd7hm461sxj31lq0u04c6.jpg" alt="下载界面"></p>
 <p><strong>配置环境变量</strong></p>
 <p>打开Mac终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ vim ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ vim ~/.bash_profile
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在其中输入，退出保存</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby">$ export <span class="token constant">HADOOP_HOME</span><span class="token operator">=</span> 安装的位置，如<span class="token punctuation">:</span> <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token constant">Cellar</span><span class="token operator">/</span>hadoop<span class="token operator">/</span><span class="token number">3.2</span><span class="token punctuation">.</span>1_1
-$ export <span class="token constant">PATH</span><span class="token operator">=</span><span class="token variable">$PATH</span><span class="token punctuation">:</span><span class="token variable">$HADOOP_HOME</span><span class="token operator">/</span>bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">$ export HADOOP_HOME= 安装的位置，如: /usr/local/Cellar/hadoop/3.2.1_1
+$ export PATH=$PATH:$HADOOP_HOME/bin
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">source</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ source ~/.bash_profile
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>使环境配置生效</p>
 <h4 id="3-Hadoop配置"><a href="#3-Hadoop配置" class="headerlink" title="3.Hadoop配置"></a>3.Hadoop配置</h4><p><strong>/usr/local/Cellar/hadoop/3.2.1_1/libexec/etc/hadoop</strong> 目录下添加下列内容</p>
 <ul>
 <li>core-site.xml</li>
 </ul>
-<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
-     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>hadoop.tmp.dir<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
-     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>file:/usr/local/Cellar/hadoop/3.2.1.1/libexec/tmp<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
-     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>fs.defaultFS<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
-     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>hdfs://localhost:9000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-xml"><code class="language-lang-xml"><configuration>
+  <property>
+     <name>hadoop.tmp.dir</name>
+     <value>file:/usr/local/Cellar/hadoop/3.2.1.1/libexec/tmp</value>
+  </property>
+  <property>
+     <name>fs.defaultFS</name>
+     <value>hdfs://localhost:9000</value>
+  </property>
+</configuration>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>hadoop-env.sh</li>
 </ul>
-<pre class="line-numbers language-jsx"><code class="language-jsx"># 配置Hadoop使用的JDK版本，注意不要使用jdk1<span class="token number">.9</span><span class="token punctuation">,</span> 高版本会有问题
-<span class="token keyword">export</span> JAVA_HOME<span class="token operator">=</span><span class="token operator">/</span>Library<span class="token operator">/</span>Java<span class="token operator">/</span>JavaVirtualMachines<span class="token operator">/</span>jdk1<span class="token number">.8</span><span class="token punctuation">.</span>0_241<span class="token punctuation">.</span>jdk<span class="token operator">/</span>Contents<span class="token operator">/</span>Home
+<pre class="line-numbers language-lang-jsx"><code class="language-lang-jsx"># 配置Hadoop使用的JDK版本，注意不要使用jdk1.9, 高版本会有问题
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
 
  # 增加导出
-<span class="token keyword">export</span> HADOOP_OPTS<span class="token operator">=</span><span class="token string">"-Djava.library.path=${HADOOP_HOME}/lib/native"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+export HADOOP_OPTS="-Djava.library.path=${HADOOP_HOME}/lib/native"
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>hdfs-site.xml</li>
 </ul>
-<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>dfs.permissions.enabled<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>false<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
-         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>dfs.replication<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
-         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>dfs.http.address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>localhost:50070<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
+<pre class="line-numbers language-lang-xml"><code class="language-lang-xml"><configuration>
+    <property>
+        <name>dfs.permissions.enabled</name>
+        <value>false</value>
+    </property>
+    <property>
+         <name>dfs.replication</name>
+         <value>1</value>
+  </property>
+    <property>
+                <name>dfs.http.address</name>
+                <value>localhost:50070</value>
+    </property>
 
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
-         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>dfs.namenode.name.dir<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
-         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>file:/usr/local/Cellar/hadoop/3.2.1.1/libexec/tmp/dfs/name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
-         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>dfs.namenode.data.dir<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
-         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>file:/usr/local/Cellar/hadoop/3.2.1.1/libexec/tmp/dfs/data<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <property>
+         <name>dfs.namenode.name.dir</name>
+         <value>file:/usr/local/Cellar/hadoop/3.2.1.1/libexec/tmp/dfs/name</value>
+  </property>
+  <property>
+         <name>dfs.namenode.data.dir</name>
+         <value>file:/usr/local/Cellar/hadoop/3.2.1.1/libexec/tmp/dfs/data</value>
+  </property>
+</configuration>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>mapred-site.xml</li>
 </ul>
-<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>mapreduce.framework.name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>yarn<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-xml"><code class="language-lang-xml"><configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+</configuration>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>yarn-site.xml</li>
 </ul>
-<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>property</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">></span></span>yarn.nodemanager.aux-services<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>value</span><span class="token punctuation">></span></span>mapreduce_shuffle<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>value</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>property</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-xml"><code class="language-lang-xml"><configuration>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+</configuration>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="4-hadoop启动"><a href="#4-hadoop启动" class="headerlink" title="4. hadoop启动"></a>4. hadoop启动</h4><ul>
 <li>查看安装版本</li>
 </ul>
 <p>终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ hadoop version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ hadoop version
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>输出</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby"><span class="token number">2020</span><span class="token operator">-</span><span class="token number">03</span><span class="token operator">-</span><span class="token number">26</span> <span class="token number">18</span><span class="token punctuation">:</span><span class="token number">43</span><span class="token punctuation">:</span><span class="token number">14</span><span class="token punctuation">,</span><span class="token number">830</span> <span class="token constant">DEBUG</span> util<span class="token punctuation">.</span><span class="token constant">VersionInfo</span><span class="token punctuation">:</span> version<span class="token punctuation">:</span> <span class="token number">3.2</span><span class="token punctuation">.</span><span class="token number">1</span>
-<span class="token constant">Hadoop</span> <span class="token number">3.2</span><span class="token punctuation">.</span><span class="token number">1</span>
-<span class="token constant">Source</span> code repository https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>gitbox<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>org<span class="token operator">/</span>repos<span class="token operator">/</span>asf<span class="token operator">/</span>hadoop<span class="token punctuation">.</span>git <span class="token operator">-</span>r b3cbbb467e22ea829b3808f4b7b01d07e0bf3842
-<span class="token constant">Compiled</span> by rohithsharmaks on <span class="token number">2019</span><span class="token operator">-</span><span class="token number">09</span><span class="token operator">-</span>10T15<span class="token punctuation">:</span>56Z
-<span class="token constant">Compiled</span> with protoc <span class="token number">2.5</span><span class="token punctuation">.</span><span class="token number">0</span>
-<span class="token constant">From</span> source with checksum 776eaf9eee9c0ffc370bcbc1888737
-<span class="token constant">This</span> command was run using <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token constant">Cellar</span><span class="token operator">/</span>hadoop<span class="token operator">/</span><span class="token number">3.2</span><span class="token punctuation">.</span>1_1<span class="token operator">/</span>libexec<span class="token operator">/</span>share<span class="token operator">/</span>hadoop<span class="token operator">/</span>common<span class="token operator">/</span>hadoop<span class="token operator">-</span>common<span class="token number">-3.2</span><span class="token punctuation">.</span><span class="token number">1</span><span class="token punctuation">.</span>jar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">2020-03-26 18:43:14,830 DEBUG util.VersionInfo: version: 3.2.1
+Hadoop 3.2.1
+Source code repository https://gitbox.apache.org/repos/asf/hadoop.git -r b3cbbb467e22ea829b3808f4b7b01d07e0bf3842
+Compiled by rohithsharmaks on 2019-09-10T15:56Z
+Compiled with protoc 2.5.0
+From source with checksum 776eaf9eee9c0ffc370bcbc1888737
+This command was run using /usr/local/Cellar/hadoop/3.2.1_1/libexec/share/hadoop/common/hadoop-common-3.2.1.jar
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>格式化hdfs</li>
 </ul>
 <p>终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">cd</span> /usr/local/Cellar/hadoop/3.2.1_1
-<span class="token comment" spellcheck="true"># 然后格式化文件系统</span>
-$ bin/hdfs namenode -format<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ cd /usr/local/Cellar/hadoop/3.2.1_1
+# 然后格式化文件系统
+$ bin/hdfs namenode -format
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p><strong>如果不成功，检查一下前面的环境配置</strong><br><strong>只需要格式化一次，如果需要再次格式化</strong></p>
 <ul>
 <li>启动</li>
 </ul>
 <p>终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">cd</span> /usr/local/Cellar/hadoop/3.2.1_1
-<span class="token comment" spellcheck="true"># 启动NameNode和DataNode的守护进程</span>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ cd /usr/local/Cellar/hadoop/3.2.1_1
+# 启动NameNode和DataNode的守护进程
 $ sbin/start-dfs.sh
-<span class="token comment" spellcheck="true"># 启动ResourceManager和NodeManager的守护进程</span>
+# 启动ResourceManager和NodeManager的守护进程
 $ sbin/start-yarn.sh
-<span class="token comment" spellcheck="true"># 启动所有进程</span>
+# 启动所有进程
 $ sbin/start-all.sh
-<span class="token comment" spellcheck="true"># 停止所有进程</span>
-$ sbin/stop-all.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 停止所有进程
+$ sbin/stop-all.sh
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="4-检查安装"><a href="#4-检查安装" class="headerlink" title="4. 检查安装"></a>4. 检查安装</h4><ul>
 <li>终端输入： <strong>jps</strong></li>
 </ul>
 <p>输出：</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby"><span class="token number">54401</span> <span class="token constant">NodeManager</span>
-<span class="token number">54305</span> <span class="token constant">ResourceManager</span>
-<span class="token number">54067</span> <span class="token constant">SecondaryNameNode</span>
-<span class="token number">53747</span> <span class="token constant">NameNode</span>
-<span class="token number">53933</span> <span class="token constant">DataNode</span>
-<span class="token number">66062</span> <span class="token constant">Jps</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">54401 NodeManager
+54305 ResourceManager
+54067 SecondaryNameNode
+53747 NameNode
+53933 DataNode
+66062 Jps
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>查看Hadoop集群的信息<br><a href="http://localhost:8088" target="_blank" rel="noopener">http://localhost:8088</a></li>
-<li>查看hadoop集群运行情况<br><a href="http://localhost:50070" target="_blank" rel="noopener">http://localhost:50070</a></li>
+<li>查看hadoop集群运行情况<br><a href="http://localhost:50070" target="_blank" rel="noopener">http://localhost:50070</a><br><strong>如果有问题，请检查前面的hadoop配置，如果有问题-&gt;停止所有进程-&gt;删除hdfs-site.xml中设置的两个文件夹-&gt;重新进行hdfs格式化-&gt;重新启动</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd7j0kbfqsj31mz0u0gwf.jpg" alt="Hadoop集群的信息"><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd7j1tprgmj31ed0u0k0r.jpg" alt="hadoop集群运行情况"></li>
 </ul>
-<p><strong>如果有问题，请检查前面的hadoop配置，如果有问题-&gt;停止所有进程-&gt;删除hdfs-site.xml中设置的两个文件夹-&gt;重新进行hdfs格式化-&gt;重新启动</strong><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd7j0kbfqsj31mz0u0gwf.jpg" alt="Hadoop集群的信息"><br><img src="https://tva1.sinaimg.cn/large/00831rSTly1gd7j1tprgmj31ed0u0k0r.jpg" alt="hadoop集群运行情况"></p>
 <h3 id="五、安装Spark-amp-pyspark"><a href="#五、安装Spark-amp-pyspark" class="headerlink" title="五、安装Spark&amp;pyspark"></a>五、安装Spark&amp;pyspark</h3><h4 id="1-brew安装-2"><a href="#1-brew安装-2" class="headerlink" title="1.brew安装"></a>1.brew安装</h4><p>如果没有安装brew, 参考<a href="https://www.cnblogs.com/yaogengzhu/p/10833285.html" target="_blank" rel="noopener">安装brew</a></p>
 <p>终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ brew <span class="token function">install</span> apache-spark
-<span class="token comment" spellcheck="true"># 检测是否安装成功，启动spark</span>
-<span class="token function">cd</span> /usr/local/Cellar/apache-spark/1.3.0/bin/
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ brew install apache-spark
+# 检测是否安装成功，启动spark
+cd /usr/local/Cellar/apache-spark/1.3.0/bin/
 ./spark-shell
-<span class="token comment" spellcheck="true"># 或者直接输入</span>
-spark-shell<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+# 或者直接输入
+spark-shell
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="2-手动安装-2"><a href="#2-手动安装-2" class="headerlink" title="2. 手动安装"></a>2. 手动安装</h4><p>如果brew安装不了，可以手动安装</p>
 <ul>
 <li><p>官网下载安装包,<a href="http://spark.apache.org/downloads.html" target="_blank" rel="noopener">传送门</a><br>根据是否预装了hadoop选择相应版本 参见：<a href="https://blog.csdn.net/yoshubom/article/details/104598483" target="_blank" rel="noopener">Spark 下载版本间的区别</a></p>
@@ -757,50 +779,57 @@ spark-shell<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 </li>
 </ul>
 <p>打开Mac终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ vim ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ vim ~/.bash_profile
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在其中输入，退出保存</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby">$ export <span class="token constant">SPARK_HOME</span><span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span>spark
-$ export <span class="token constant">PATH</span><span class="token operator">=</span><span class="token variable">$PATH</span><span class="token punctuation">:</span><span class="token variable">$HADOOP_HOME</span><span class="token operator">/</span>bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">$ export SPARK_HOME=/usr/local/spark
+$ export PATH=$PATH:$HADOOP_HOME/bin
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">source</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ source ~/.bash_profile
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>使环境配置生效</p>
-<h4 id="3-Spark配置"><a href="#3-Spark配置" class="headerlink" title="3. Spark配置"></a>3. Spark配置</h4><pre class="line-numbers language-ruby"><code class="language-ruby"><span class="token comment" spellcheck="true"># 打开自己的安装路径，如果是brew安装的应该会在/usr/local/Cellar/下</span>
-$ cd <span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token constant">Cellar</span><span class="token operator">/</span>apache<span class="token operator">-</span>spark<span class="token operator">/</span><span class="token number">2.4</span><span class="token punctuation">.</span><span class="token number">5</span><span class="token operator">/</span>libexec<span class="token operator">/</span>conf
-$ cp spark<span class="token operator">-</span>env<span class="token punctuation">.</span>sh<span class="token punctuation">.</span>template spark<span class="token operator">-</span>env<span class="token punctuation">.</span>sh
-$ vim spark<span class="token operator">-</span>env<span class="token punctuation">.</span>sh
-<span class="token comment" spellcheck="true"># 添加如下内容</span>
-<span class="token comment" spellcheck="true"># 根据自己的安装路径更改</span>
-export <span class="token constant">JAVA_HOME</span><span class="token operator">=</span><span class="token operator">/</span><span class="token constant">Library</span><span class="token operator">/</span><span class="token constant">Java</span><span class="token operator">/</span><span class="token constant">JavaVirtualMachines</span><span class="token operator">/</span>jdk1<span class="token number">.8</span><span class="token punctuation">.</span>0_241<span class="token punctuation">.</span>jdk<span class="token operator">/</span><span class="token constant">Contents</span><span class="token operator">/</span><span class="token constant">Home</span>
-export <span class="token constant">SCALA_HOME</span><span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token constant">Cellar</span><span class="token operator">/</span>scala<span class="token operator">/</span><span class="token number">2.13</span><span class="token punctuation">.</span>1_1
-export <span class="token constant">HADOOP_CONF_DIR</span><span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token constant">Cellar</span><span class="token operator">/</span>hadoop<span class="token operator">/</span><span class="token number">3.2</span><span class="token punctuation">.</span>1_1<span class="token operator">/</span>libexec<span class="token operator">/</span>etc<span class="token operator">/</span>hadoop
-export <span class="token constant">SPARK_MASTER_IP</span><span class="token operator">=</span>localhost
-export <span class="token constant">SPARK_LOCAL_IP</span><span class="token operator">=</span>localhost
-export <span class="token constant">SPARK_WORKER_CORES</span><span class="token operator">=</span><span class="token number">2</span>
-export <span class="token constant">SPARK_WORKER_MEMORY</span><span class="token operator">=</span>2g
+<h4 id="3-Spark配置"><a href="#3-Spark配置" class="headerlink" title="3. Spark配置"></a>3. Spark配置</h4><pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby"># 打开自己的安装路径，如果是brew安装的应该会在/usr/local/Cellar/下
+$ cd /usr/local/Cellar/apache-spark/2.4.5/libexec/conf
+$ cp spark-env.sh.template spark-env.sh
+$ vim spark-env.sh
+# 添加如下内容
+# 根据自己的安装路径更改
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_241.jdk/Contents/Home
+export SCALA_HOME=/usr/local/Cellar/scala/2.13.1_1
+export HADOOP_CONF_DIR=/usr/local/Cellar/hadoop/3.2.1_1/libexec/etc/hadoop
+export SPARK_MASTER_IP=localhost
+export SPARK_LOCAL_IP=localhost
+export SPARK_WORKER_CORES=2
+export SPARK_WORKER_MEMORY=2g
 
-$ cp slaves<span class="token punctuation">.</span>template slaves<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+$ cp slaves.template slaves
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="4-检查安装-1"><a href="#4-检查安装-1" class="headerlink" title="4. 检查安装"></a>4. 检查安装</h4><ul>
 <li>启动shell</li>
 </ul>
 <p>打开Mac终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">spark-shell<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">spark-shell
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>启动Spark</li>
 </ul>
 <p>打开Mac终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">cd</span> /usr/local/Cellar/apache-spark/2.4.5/libexec
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ cd /usr/local/Cellar/apache-spark/2.4.5/libexec
 $ sbin/start-all.sh
-<span class="token comment" spellcheck="true"># 查看JPS</span>
-$ jps<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+# 查看JPS
+$ jps
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>输出,多了一个Master，worker进程</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby"><span class="token number">54401</span> <span class="token constant">NodeManager</span>
-<span class="token number">54305</span> <span class="token constant">ResourceManager</span>
-<span class="token number">54067</span> <span class="token constant">SecondaryNameNode</span>
-<span class="token number">53747</span> <span class="token constant">NameNode</span>
-<span class="token number">68269</span> <span class="token constant">Jps</span>
-<span class="token number">68221</span> <span class="token constant">Master</span>
-<span class="token number">53933</span> <span class="token constant">DataNode</span>
-<span class="token number">68252</span> <span class="token constant">Worker</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">54401 NodeManager
+54305 ResourceManager
+54067 SecondaryNameNode
+53747 NameNode
+68269 Jps
+68221 Master
+53933 DataNode
+68252 Worker
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><p>查看执行状态</p>
 <ul>
@@ -809,38 +838,44 @@ $ jps<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
 </ul>
 <p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd7lstejkhj31mf0u0ai3.jpg" alt="spark 集群运行情况"></p>
 <!-- ![]() -->
-
 </li>
 </ul>
 <h4 id="5-安装pyspark"><a href="#5-安装pyspark" class="headerlink" title="5. 安装pyspark"></a>5. 安装pyspark</h4><p>mac 终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ pip <span class="token function">install</span> --upgrade pyspark -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host mirrors.aliyun.com<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ pip install --upgrade pyspark -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host mirrors.aliyun.com
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>输出</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby"><span class="token constant">Looking</span> <span class="token keyword">in</span> indexes<span class="token punctuation">:</span> https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>pypi<span class="token punctuation">.</span>tuna<span class="token punctuation">.</span>tsinghua<span class="token punctuation">.</span>edu<span class="token punctuation">.</span>cn<span class="token operator">/</span>simple
-<span class="token constant">Requirement</span> already up<span class="token operator">-</span>to<span class="token operator">-</span>date<span class="token punctuation">:</span> pyspark <span class="token keyword">in</span> <span class="token operator">/</span><span class="token constant">Users</span><span class="token regex">/tawn/</span><span class="token punctuation">.</span>pyenv<span class="token operator">/</span>versions<span class="token operator">/</span><span class="token number">3.6</span><span class="token punctuation">.</span><span class="token number">8</span><span class="token operator">/</span>lib<span class="token operator">/</span>python3<span class="token number">.6</span><span class="token operator">/</span>site<span class="token operator">-</span><span class="token function">packages</span> <span class="token punctuation">(</span><span class="token number">2.4</span><span class="token punctuation">.</span><span class="token number">5</span><span class="token punctuation">)</span>
-<span class="token constant">Requirement</span> already satisfied<span class="token punctuation">,</span> skipping upgrade<span class="token punctuation">:</span> py4j<span class="token operator">==</span><span class="token number">0.10</span><span class="token punctuation">.</span><span class="token number">7</span> <span class="token keyword">in</span> <span class="token operator">/</span><span class="token constant">Users</span><span class="token regex">/tawn/</span><span class="token punctuation">.</span>pyenv<span class="token operator">/</span>versions<span class="token operator">/</span><span class="token number">3.6</span><span class="token punctuation">.</span><span class="token number">8</span><span class="token operator">/</span>lib<span class="token operator">/</span>python3<span class="token number">.6</span><span class="token operator">/</span>site<span class="token operator">-</span><span class="token function">packages</span> <span class="token punctuation">(</span>from pyspark<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token number">0.10</span><span class="token punctuation">.</span><span class="token number">7</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Requirement already up-to-date: pyspark in /Users/tawn/.pyenv/versions/3.6.8/lib/python3.6/site-packages (2.4.5)
+Requirement already satisfied, skipping upgrade: py4j==0.10.7 in /Users/tawn/.pyenv/versions/3.6.8/lib/python3.6/site-packages (from pyspark) (0.10.7)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>如果报错：ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.<br>可以先尝试:</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">sudo</span> pip <span class="token function">install</span> --upgrade pip
-$ <span class="token function">sudo</span> pip <span class="token function">install</span> --upgrade setuptools<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ sudo pip install --upgrade pip
+$ sudo pip install --upgrade setuptools
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>如果报错：ERROR: Could not find a version that satisfies the requirement pypandoc<br>单独安装pypandoc</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ pip <span class="token function">install</span> pypandoc
-$ pip <span class="token function">install</span> --upgrade pyspark -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host mirrors.aliyun.com<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ pip install pypandoc
+$ pip install --upgrade pyspark -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host mirrors.aliyun.com
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h4 id="6-pyspark-启动jupyter"><a href="#6-pyspark-启动jupyter" class="headerlink" title="6. pyspark 启动jupyter"></a>6. pyspark 启动jupyter</h4><p>在 .bash_profile 中加入以下内容</p>
-<pre class="line-numbers language-ruby"><code class="language-ruby">export <span class="token constant">SPARK_HOME</span><span class="token operator">=</span><span class="token operator">/</span>usr<span class="token operator">/</span>local<span class="token operator">/</span><span class="token constant">Cellar</span><span class="token operator">/</span>apache<span class="token operator">-</span>spark<span class="token operator">/</span><span class="token number">2.4</span><span class="token punctuation">.</span><span class="token number">5</span><span class="token operator">/</span>libexec
-export <span class="token constant">PATH</span><span class="token operator">=</span><span class="token variable">$SPARK_HOME</span><span class="token operator">/</span>bin<span class="token punctuation">:</span><span class="token variable">$PATH</span>
+<pre class="line-numbers language-lang-ruby"><code class="language-lang-ruby">export SPARK_HOME=/usr/local/Cellar/apache-spark/2.4.5/libexec
+export PATH=$SPARK_HOME/bin:$PATH
 
-export <span class="token constant">PYSPARK_DRIVER_PYTHON</span><span class="token operator">=</span>jupyter
-export <span class="token constant">PYSPARK_DRIVER_PYTHON_OPTS</span><span class="token operator">=</span><span class="token string">"notebook"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+export PYSPARK_DRIVER_PYTHON=jupyter
+export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>终端输入</p>
-<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">source</span> ~/.bash_profile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">$ source ~/.bash_profile
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>使环境配置生效</p>
 <p>demo</p>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># $ pyspark</span>
-<span class="token comment" spellcheck="true"># 会自动启动jupyter notebook</span>
-<span class="token comment" spellcheck="true"># 新建一个交互脚本，输入</span>
-myRDD <span class="token operator">=</span> sc<span class="token punctuation">.</span>parallelize<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token string">'Rose'</span><span class="token punctuation">,</span> <span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'joey'</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-myRDD<span class="token punctuation">.</span>take<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">#输出</span>
-<span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token string">'Rose'</span><span class="token punctuation">,</span> <span class="token number">19</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'joey'</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># $ pyspark
+# 会自动启动jupyter notebook
+# 新建一个交互脚本，输入
+myRDD = sc.parallelize([('Rose', 19), ['joey', 18]])
+myRDD.take(2)
+#输出
+[('Rose', 19), ['joey', 18]]
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>[参考资料]</strong></p>
 <ul>
 <li><a href="https://www.jianshu.com/p/5a46a3193ca0" target="_blank" rel="noopener">Spark 安装和配置</a></li>
@@ -859,12 +894,11 @@ myRDD<span class="token punctuation">.</span>take<span class="token punctuation"
 <li><a href="https://www.cnblogs.com/mfrbuaa/p/4743105.html" target="_blank" rel="noopener">hadoop出现namenode running as process 18472. Stop it first.</a></li>
 <li><a href="http://codingxiaxw.cn/2016/12/06/59-mac-hadoop/" target="_blank" rel="noopener">『 Hadoop 』mac下Hadoop的安装与使用</a></li>
 <li><a href="http://codingxiaxw.cn/2016/12/07/60-mac-spark/" target="_blank" rel="noopener">『 Spark 』mac下Spark的安装与使用</a></li>
-<li><a href="https://www.cnblogs.com/little-YTMM/p/6238847.html" target="_blank" rel="noopener">Spark学习（一） – Spark安装及简介</a></li>
+<li><a href="https://www.cnblogs.com/little-YTMM/p/6238847.html" target="_blank" rel="noopener">Spark学习（一） — Spark安装及简介</a></li>
 <li><a href="https://blog.csdn.net/yoshubom/article/details/104598483" target="_blank" rel="noopener">Spark 下载版本间的区别</a></li>
 <li><a href="https://blog.csdn.net/qq_37189082/article/details/97658103" target="_blank" rel="noopener">安装tldr出错ERROR:…python setup.py egg_info Check</a></li>
-<li><a href="https://blog.csdn.net/qq_35374722/article/details/103319220" target="_blank" rel="noopener">ERROR: xxxx setup.py egg_info xxxs for fullxx</a></li>
+<li><a href="https://blog.csdn.net/qq_35374722/article/details/103319220" target="_blank" rel="noopener">ERROR: xxxx setup.py egg_info xxxs for fullxx</a><br><strong>[声明]</strong><br>部分资源源自网络，侵删！</li>
 </ul>
-<p><strong>[声明]</strong><br>部分资源源自网络，侵删！</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1358,7 +1392,7 @@ myRDD<span class="token punctuation">.</span>take<span class="token punctuation"
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">114.3k</span>&nbsp;字
+                class="white-color">76.4k</span>&nbsp;字
             
             
             
