@@ -538,36 +538,29 @@
 <p><strong>注意: Django还有一个url分发器，它的作用是将一个个URL的页面请求分发给不同的view处理，view再调用相应的Model和Template</strong></p>
 <h2 id="二、Django安装"><a href="#二、Django安装" class="headerlink" title="二、Django安装"></a>二、Django安装</h2><p><strong>环境：Mac os</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdycegx22bj30nc094jsm.jpg" alt="python与Django版本对应关系"></p>
-<h3 id="1-pip-安装"><a href="#1-pip-安装" class="headerlink" title="1. pip 安装"></a>1. pip 安装</h3><pre class="line-numbers language-lang-bash"><code class="language-lang-bash">pip install Django
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="1-pip-安装"><a href="#1-pip-安装" class="headerlink" title="1. pip 安装"></a>1. pip 安装</h3><pre class="line-numbers language-bash"><code class="language-bash">pip <span class="token function">install</span> Django<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="2-下载-git-安装"><a href="#2-下载-git-安装" class="headerlink" title="2. 下载/git 安装"></a>2. 下载/git 安装</h3><p>点击<a href="https://www.djangoproject.com/download/" target="_blank" rel="noopener">下载网址</a>, 左侧有最新版</p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">tar zxvf Django-x.y.z.tar.gz
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">tar</span> zxvf Django-x.y.z.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>或者使用git</strong><br>点击<a href="https://github.com/django/django" target="_blank" rel="noopener">https://github.com/django/django</a><br>或者终端输入</p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">git clone https://github.com/django/django.git
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/django/django.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>After</strong></p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">cd Django-x.y.z
-sudo python setup.py install
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> Django-x.y.z
+<span class="token function">sudo</span> python setup.py <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="三、项目介绍"><a href="#三、项目介绍" class="headerlink" title="三、项目介绍"></a>三、项目介绍</h2><h3 id="1-新建项目"><a href="#1-新建项目" class="headerlink" title="1. 新建项目"></a>1. 新建项目</h3><p>创建名为testproject的项目<br>注：所有路径不要有中文<br>终端输入</p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">django-admin.py startproject testproject
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="2-目录层级"><a href="#2-目录层级" class="headerlink" title="2. 目录层级"></a>2. 目录层级</h3><pre class="line-numbers language-lang-tree"><code class="language-lang-tree">testproject
+<pre class="line-numbers language-bash"><code class="language-bash">django-admin.py startproject testproject<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="2-目录层级"><a href="#2-目录层级" class="headerlink" title="2. 目录层级"></a>2. 目录层级</h3><pre class="line-numbers language-tree"><code class="language-tree">testproject
 ├── manage.py        :一个命令行工具，可以让我们用多种方式对Django项目进行交互
 └── testproject
     ├── __init__.py  :一个空文件，它告诉Python这个目录应该被看做一个包
     ├── asgi.py      :项目与ASGI兼容的Web服务器入口, 3.0以上版本特有
     ├── settings.py  :项目的配置文件（主要处理文件）
     ├── urls.py      :项目的url声明 （主要处理文件）
-    └── wsgi.py      :项目与WSGI兼容的Web服务器入口
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3. 启动服务"></a>3. 启动服务</h3><pre class="line-numbers language-lang-bash"><code class="language-lang-bash">cd testproject # 切换到我们创建的项目
+    └── wsgi.py      :项目与WSGI兼容的Web服务器入口<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3. 启动服务"></a>3. 启动服务</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> testproject <span class="token comment" spellcheck="true"># 切换到我们创建的项目</span>
 python manage.py runserver ip:port
 ……
 Starting development server at http://127.0.0.1:8000/
-Quit the server with CONTROL-C.
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Quit the server with CONTROL-C.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>ip:port 不写时默认：<a href="http://127.0.0.1:8000/" target="_blank" rel="noopener">http://127.0.0.1:8000/</a></strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdyvzi63oij31jm0u07a8.jpg" alt="启动成功界面"></p>
 <h3 id="4-连接数据库"><a href="#4-连接数据库" class="headerlink" title="4. 连接数据库"></a>4. 连接数据库</h3><p><strong>在settings.py 中配置</strong><br><strong>任选一个配置即可</strong></p>
@@ -586,40 +579,37 @@ Quit the server with CONTROL-C.
 <li>django.db.backends.postgresql_psycopg2</li>
 </ul>
 <p>官方解释: 如果数据库使用 MongoDB，推荐使用 Djongo这个库来做数据库引擎</p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">sudo pip install djongo
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> pip <span class="token function">install</span> djongo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>在settings.py 中配置</strong></p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">from mongoengine import *
-database_name = 'test'
-MONGO_DATABASE_OPTIONS = {
-    'host': 'localhost',
-    'port': 27017,
-    # 'username': 'tor_tester',
-    # 'password': '123456',
-}
-register_connection('default', database_name, **MONGO_DATABASE_OPTIONS)
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> mongoengine <span class="token keyword">import</span> <span class="token operator">*</span>
+database_name <span class="token operator">=</span> <span class="token string">'test'</span>
+MONGO_DATABASE_OPTIONS <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'host'</span><span class="token punctuation">:</span> <span class="token string">'localhost'</span><span class="token punctuation">,</span>
+    <span class="token string">'port'</span><span class="token punctuation">:</span> <span class="token number">27017</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true"># 'username': 'tor_tester',</span>
+    <span class="token comment" spellcheck="true"># 'password': '123456',</span>
+<span class="token punctuation">}</span>
+register_connection<span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> database_name<span class="token punctuation">,</span> <span class="token operator">**</span>MONGO_DATABASE_OPTIONS<span class="token punctuation">)</span>
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'ENFORCE_SCHEMA': True,
-        'NAME': 'test',
-        'CLIENT': {
-            'host': '127.0.0.1',
-        }
-    }
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+DATABASES <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'default'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'ENGINE'</span><span class="token punctuation">:</span> <span class="token string">'djongo'</span><span class="token punctuation">,</span>
+        <span class="token string">'ENFORCE_SCHEMA'</span><span class="token punctuation">:</span> <span class="token boolean">True</span><span class="token punctuation">,</span>
+        <span class="token string">'NAME'</span><span class="token punctuation">:</span> <span class="token string">'test'</span><span class="token punctuation">,</span>
+        <span class="token string">'CLIENT'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'host'</span><span class="token punctuation">:</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="5-创建应用"><a href="#5-创建应用" class="headerlink" title="5. 创建应用"></a>5. 创建应用</h3><ul>
 <li>终端输入:</li>
 </ul>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">cd testproject
-python manage.py startapp myapp
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> testproject
+python manage.py startapp myapp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <ul>
 <li>目录层级：</li>
 </ul>
-<pre class="line-numbers language-lang-tree"><code class="language-lang-tree">testproject
+<pre class="line-numbers language-tree"><code class="language-tree">testproject
 ├── manage.py
 ├── myapp
 │   ├── __init__.py
@@ -638,64 +628,59 @@ python manage.py startapp myapp
     ├── asgi.py
     ├── settings.py
     ├── urls.py
-    └── wsgi.py
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    └── wsgi.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="6-激活应用"><a href="#6-激活应用" class="headerlink" title="6. 激活应用"></a>6. 激活应用</h3><p><strong>在settings.py文件中，将myapp应用加入到INSTALLED APPS选项中</strong></p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python"># Application definition
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'myapp',
-]
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Application definition</span>
+INSTALLED_APPS <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token string">'django.contrib.admin'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.auth'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.contenttypes'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.sessions'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.messages'</span><span class="token punctuation">,</span>
+    <span class="token string">'django.contrib.staticfiles'</span><span class="token punctuation">,</span>
+    <span class="token string">'myapp'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="7-定义模型"><a href="#7-定义模型" class="headerlink" title="7. 定义模型"></a>7. 定义模型</h3><p><strong>在models.py文件中定义模型, 一个模型对应一张表</strong></p>
 <p><strong>ORM：Object Relational Mapping 对象关系映射</strong></p>
 <p><strong>示例：</strong></p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">import mongoengine
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> mongoengine
 
-class StudentModel(mongoengine.Document):
-    name = mongoengine.StringField(max_length=16)
-    age = mongoengine.IntField(default=0)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">class</span> <span class="token class-name">StudentModel</span><span class="token punctuation">(</span>mongoengine<span class="token punctuation">.</span>Document<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name <span class="token operator">=</span> mongoengine<span class="token punctuation">.</span>StringField<span class="token punctuation">(</span>max_length<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">)</span>
+    age <span class="token operator">=</span> mongoengine<span class="token punctuation">.</span>IntField<span class="token punctuation">(</span>default<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="8-创建视图"><a href="#8-创建视图" class="headerlink" title="8. 创建视图"></a>8. 创建视图</h3><p><strong>在views.py中定义视图</strong></p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">from django.shortcuts import render, HttpResponse
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>shortcuts <span class="token keyword">import</span> render<span class="token punctuation">,</span> HttpResponse
 
-# Create your views here.
-# .表示当前包下的models
-from .models import StudentModel
-from django.views.generic import View
+<span class="token comment" spellcheck="true"># Create your views here.</span>
+<span class="token comment" spellcheck="true"># .表示当前包下的models</span>
+<span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> StudentModel
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>views<span class="token punctuation">.</span>generic <span class="token keyword">import</span> View
 
-class Student(View):
-    def get(self, request):
-        # 增加数据
-        StudentModel.objects.create(name='张三', age= 18)
-        # 查询数据
-        result = StudentModel.objects.filter(name='张三')
-        print(result[0].age)
-        # # 修改数据
-        # result = StudentModel.objects.filter(name='张三').first().update(name='李四')
-        # print(result)
-        # # 删除数据
-        # result = StudentModel.objects.filter(name='张三').first().delete()
-        # print(result)
-        return HttpResponse(result[0].age)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">class</span> <span class="token class-name">Student</span><span class="token punctuation">(</span>View<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">get</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># 增加数据</span>
+        StudentModel<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>create<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'张三'</span><span class="token punctuation">,</span> age<span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># 查询数据</span>
+        result <span class="token operator">=</span> StudentModel<span class="token punctuation">.</span>objects<span class="token punctuation">.</span>filter<span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">'张三'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>age<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># # 修改数据</span>
+        <span class="token comment" spellcheck="true"># result = StudentModel.objects.filter(name='张三').first().update(name='李四')</span>
+        <span class="token comment" spellcheck="true"># print(result)</span>
+        <span class="token comment" spellcheck="true"># # 删除数据</span>
+        <span class="token comment" spellcheck="true"># result = StudentModel.objects.filter(name='张三').first().delete()</span>
+        <span class="token comment" spellcheck="true"># print(result)</span>
+        <span class="token keyword">return</span> HttpResponse<span class="token punctuation">(</span>result<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>age<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="9-配置url"><a href="#9-配置url" class="headerlink" title="9. 配置url"></a>9. 配置url</h3><p><strong>在urls.py中配置url</strong></p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">from django.urls import path, re_path
-from django.contrib import admin
-# import os
-# print(os.getcwd())
-from myapp.views import Student
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>urls <span class="token keyword">import</span> path<span class="token punctuation">,</span> re_path
+<span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
+<span class="token comment" spellcheck="true"># import os</span>
+<span class="token comment" spellcheck="true"># print(os.getcwd())</span>
+<span class="token keyword">from</span> myapp<span class="token punctuation">.</span>views <span class="token keyword">import</span> Student
 
-urlpatterns = [
-    re_path(r'^admin/', admin.site.urls),
-    re_path(r'^student/$', Student.as_view(), name='student')
-]
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+urlpatterns <span class="token operator">=</span> <span class="token punctuation">[</span>
+    re_path<span class="token punctuation">(</span>r<span class="token string">'^admin/'</span><span class="token punctuation">,</span> admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>urls<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    re_path<span class="token punctuation">(</span>r<span class="token string">'^student/$'</span><span class="token punctuation">,</span> Student<span class="token punctuation">.</span>as_view<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'student'</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="10-刷新界面"><a href="#10-刷新界面" class="headerlink" title="10. 刷新界面"></a>10. 刷新界面</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdyw9zq4nlj30ki0biwfe.jpg" alt="student"></p>
 <h3 id="11-数据迁移"><a href="#11-数据迁移" class="headerlink" title="11. 数据迁移"></a>11. 数据迁移</h3><ul>
 <li>生成迁移文件<ul>
@@ -716,7 +701,7 @@ urlpatterns = [
 </li>
 <li><p>配置Admin应用：</p>
 <ul>
-<li>在 <strong>settings.py</strong> 文件中的 <strong>INSTALLED_APPS</strong> 中添加 <strong>‘django.contrib.admin’</strong>, ——这条默认是添加好的。</li>
+<li>在 <strong>settings.py</strong> 文件中的 <strong>INSTALLED_APPS</strong> 中添加 <strong>‘django.contrib.admin’</strong>, —-这条默认是添加好的。</li>
 </ul>
 </li>
 <li><p>创建管理员用户：</p>
@@ -732,12 +717,11 @@ urlpatterns = [
 <li><p>管理数据表：<br><strong>修改 myAPP/admin.py 如下：</strong></p>
 </li>
 </ul>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">from django.contrib import admin
-# Register your models here.
-from .models import StudentModel
-# 注册
-admin.site.register(StudentModel)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> django<span class="token punctuation">.</span>contrib <span class="token keyword">import</span> admin
+<span class="token comment" spellcheck="true"># Register your models here.</span>
+<span class="token keyword">from</span> <span class="token punctuation">.</span>models <span class="token keyword">import</span> StudentModel
+<span class="token comment" spellcheck="true"># 注册</span>
+admin<span class="token punctuation">.</span>site<span class="token punctuation">.</span>register<span class="token punctuation">(</span>StudentModel<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>注意：使用MongoDB会报错，暂未解决</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdz6k8wwscj322r0u045j.jpg" alt="Admin站点界面"></p>
 <h3 id="13-模板配置"><a href="#13-模板配置" class="headerlink" title="13. 模板配置"></a>13. 模板配置</h3><p><strong>两种</strong></p>
@@ -1280,7 +1264,7 @@ admin.site.register(StudentModel)
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">76.4k</span>&nbsp;字
+                class="white-color">114.3k</span>&nbsp;字
             
             
             

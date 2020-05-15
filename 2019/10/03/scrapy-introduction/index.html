@@ -478,14 +478,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.3k
+                        3.5k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        15 分
                     </div>
                     
                 
@@ -555,220 +555,217 @@
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
-import datetime
-import scrapy
-from mySpider_crawl.items import ItcastItem
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
+<span class="token keyword">import</span> datetime
+<span class="token keyword">import</span> scrapy
+<span class="token keyword">from</span> mySpider_crawl<span class="token punctuation">.</span>items <span class="token keyword">import</span> ItcastItem
 
-class ItcastSpider(scrapy.Spider):
-    name = 'itcast'
-    allowed_domains = ['xxx1.com','xxx2.com']
-    start_urls = ['start.com/xxx']
+<span class="token keyword">class</span> <span class="token class-name">ItcastSpider</span><span class="token punctuation">(</span>scrapy<span class="token punctuation">.</span>Spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    name <span class="token operator">=</span> <span class="token string">'itcast'</span>
+    allowed_domains <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'xxx1.com'</span><span class="token punctuation">,</span><span class="token string">'xxx2.com'</span><span class="token punctuation">]</span>
+    start_urls <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'start.com/xxx'</span><span class="token punctuation">]</span>
 
-    def start_requests(self):
-        url = 'xxx'
-        yield scrapy.Request(url=url, callback=self.parse)
+    <span class="token keyword">def</span> <span class="token function">start_requests</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        url <span class="token operator">=</span> <span class="token string">'xxx'</span>
+        <span class="token keyword">yield</span> scrapy<span class="token punctuation">.</span>Request<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span> callback<span class="token operator">=</span>self<span class="token punctuation">.</span>parse<span class="token punctuation">)</span>
 
-    def parse(self, response):
-        item = ItcastItem()
-        item['raw_key'] = response.url  # 被爬取网站的主键
-        item['domain'] = 'xxx1.com'  # 被爬网站的标识
-        item['url'] = response.url  # 爬取url
-        item['category'] = 'list'  # 页面类别,列表页or详情页
-        item['html'] = response.text
-        item['scraped_time'] = str(datetime.datetime.now())
-        yield item
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">def</span> <span class="token function">parse</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        item <span class="token operator">=</span> ItcastItem<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        item<span class="token punctuation">[</span><span class="token string">'raw_key'</span><span class="token punctuation">]</span> <span class="token operator">=</span> response<span class="token punctuation">.</span>url  <span class="token comment" spellcheck="true"># 被爬取网站的主键</span>
+        item<span class="token punctuation">[</span><span class="token string">'domain'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'xxx1.com'</span>  <span class="token comment" spellcheck="true"># 被爬网站的标识</span>
+        item<span class="token punctuation">[</span><span class="token string">'url'</span><span class="token punctuation">]</span> <span class="token operator">=</span> response<span class="token punctuation">.</span>url  <span class="token comment" spellcheck="true"># 爬取url</span>
+        item<span class="token punctuation">[</span><span class="token string">'category'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'list'</span>  <span class="token comment" spellcheck="true"># 页面类别,列表页or详情页</span>
+        item<span class="token punctuation">[</span><span class="token string">'html'</span><span class="token punctuation">]</span> <span class="token operator">=</span> response<span class="token punctuation">.</span>text
+        item<span class="token punctuation">[</span><span class="token string">'scraped_time'</span><span class="token punctuation">]</span> <span class="token operator">=</span> str<span class="token punctuation">(</span>datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">yield</span> item<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="2-items-py"><a href="#2-items-py" class="headerlink" title="2. items.py"></a>2. items.py</h3><ul>
 <li>Field: 通过定义类型为 scrapy.Field 的类属性来定义一个 Item</li>
 </ul>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">from scrapy import Item, Field
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> scrapy <span class="token keyword">import</span> Item<span class="token punctuation">,</span> Field
 
-class ItcastItem(Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    raw_key = Field() # 被爬取网站的主键
-    domain = Field() # 被爬网站的标识
-    url = Field() # 爬取url
-    category = Field()  # 页面类别,列表页or详情页
-    html = Field()
-    scraped_time = Field()
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">class</span> <span class="token class-name">ItcastItem</span><span class="token punctuation">(</span>Item<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># define the fields for your item here like:</span>
+    <span class="token comment" spellcheck="true"># name = scrapy.Field()</span>
+    raw_key <span class="token operator">=</span> Field<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 被爬取网站的主键</span>
+    domain <span class="token operator">=</span> Field<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 被爬网站的标识</span>
+    url <span class="token operator">=</span> Field<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 爬取url</span>
+    category <span class="token operator">=</span> Field<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 页面类别,列表页or详情页</span>
+    html <span class="token operator">=</span> Field<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    scraped_time <span class="token operator">=</span> Field<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="3-settings-py"><a href="#3-settings-py" class="headerlink" title="3. settings.py"></a>3. settings.py</h3><ul>
 <li>scrapy框架配置文件，控制各项参数和配置</li>
 <li>以下内容转载自<a href="https://www.cnblogs.com/longyunfeigu/p/9494408.html" target="_blank" rel="noopener">龙云飞谷:scrapy的配置文件settings</a></li>
 </ul>
 <p>详见<a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/topics/settings.html" target="_blank" rel="noopener">官方文档</a></p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">#==>第一部分：基本配置<===
-#1、项目名称，默认的USER_AGENT由它来构成，也作为日志记录的日志名
-BOT_NAME = 'Amazon'
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true">#==>第一部分：基本配置&lt;===</span>
+<span class="token comment" spellcheck="true">#1、项目名称，默认的USER_AGENT由它来构成，也作为日志记录的日志名</span>
+BOT_NAME <span class="token operator">=</span> <span class="token string">'Amazon'</span>
 
-#2、爬虫应用路径
-SPIDER_MODULES = ['Amazon.spiders']
-NEWSPIDER_MODULE = 'Amazon.spiders'
+<span class="token comment" spellcheck="true">#2、爬虫应用路径</span>
+SPIDER_MODULES <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Amazon.spiders'</span><span class="token punctuation">]</span>
+NEWSPIDER_MODULE <span class="token operator">=</span> <span class="token string">'Amazon.spiders'</span>
 
-#3、客户端User-Agent请求头
-#USER_AGENT = 'Amazon (+http://www.yourdomain.com)'
+<span class="token comment" spellcheck="true">#3、客户端User-Agent请求头</span>
+<span class="token comment" spellcheck="true">#USER_AGENT = 'Amazon (+http://www.yourdomain.com)'</span>
 
-#4、是否遵循爬虫协议
-# Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+<span class="token comment" spellcheck="true">#4、是否遵循爬虫协议</span>
+<span class="token comment" spellcheck="true"># Obey robots.txt rules</span>
+ROBOTSTXT_OBEY <span class="token operator">=</span> <span class="token boolean">True</span>
 
-#5、是否支持cookie，cookiejar进行操作cookie，默认开启
-#COOKIES_ENABLED = False
+<span class="token comment" spellcheck="true">#5、是否支持cookie，cookiejar进行操作cookie，默认开启</span>
+<span class="token comment" spellcheck="true">#COOKIES_ENABLED = False</span>
 
-#6、Telnet用于查看当前爬虫的信息，操作爬虫等...使用telnet ip port ，然后通过命令操作
-#TELNETCONSOLE_ENABLED = False
-#TELNETCONSOLE_HOST = '127.0.0.1'
-#TELNETCONSOLE_PORT = [6023,]
+<span class="token comment" spellcheck="true">#6、Telnet用于查看当前爬虫的信息，操作爬虫等...使用telnet ip port ，然后通过命令操作</span>
+<span class="token comment" spellcheck="true">#TELNETCONSOLE_ENABLED = False</span>
+<span class="token comment" spellcheck="true">#TELNETCONSOLE_HOST = '127.0.0.1'</span>
+<span class="token comment" spellcheck="true">#TELNETCONSOLE_PORT = [6023,]</span>
 
-#7、Scrapy发送HTTP请求默认使用的请求头
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
-
-
-
-#===>第二部分：并发与延迟<===
-#1、下载器总共最大处理的并发请求数,默认值16
-#CONCURRENT_REQUESTS = 32
-
-#2、每个域名能够被执行的最大并发请求数目，默认值8
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
-
-#3、能够被单个IP处理的并发请求数，默认值0，代表无限制，需要注意两点
-#I、如果不为零，那CONCURRENT_REQUESTS_PER_DOMAIN将被忽略，即并发数的限制是按照每个IP来计算，而不是每个域名
-#II、该设置也影响DOWNLOAD_DELAY，如果该值不为零，那么DOWNLOAD_DELAY下载延迟是限制每个IP而不是每个域
-#CONCURRENT_REQUESTS_PER_IP = 16
-
-#4、如果没有开启智能限速，这个值就代表一个规定死的值，代表对同一网址延迟请求的秒数
-#DOWNLOAD_DELAY = 3
+<span class="token comment" spellcheck="true">#7、Scrapy发送HTTP请求默认使用的请求头</span>
+<span class="token comment" spellcheck="true">#DEFAULT_REQUEST_HEADERS = {</span>
+<span class="token comment" spellcheck="true">#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',</span>
+<span class="token comment" spellcheck="true">#   'Accept-Language': 'en',</span>
+<span class="token comment" spellcheck="true">#}</span>
 
 
 
-#===>第三部分：智能限速/自动节流：AutoThrottle extension<===
-#一：介绍
-from scrapy.contrib.throttle import AutoThrottle #http://scrapy.readthedocs.io/en/latest/topics/autothrottle.html#topics-autothrottle
+<span class="token comment" spellcheck="true">#===>第二部分：并发与延迟&lt;===</span>
+<span class="token comment" spellcheck="true">#1、下载器总共最大处理的并发请求数,默认值16</span>
+<span class="token comment" spellcheck="true">#CONCURRENT_REQUESTS = 32</span>
+
+<span class="token comment" spellcheck="true">#2、每个域名能够被执行的最大并发请求数目，默认值8</span>
+<span class="token comment" spellcheck="true">#CONCURRENT_REQUESTS_PER_DOMAIN = 16</span>
+
+<span class="token comment" spellcheck="true">#3、能够被单个IP处理的并发请求数，默认值0，代表无限制，需要注意两点</span>
+<span class="token comment" spellcheck="true">#I、如果不为零，那CONCURRENT_REQUESTS_PER_DOMAIN将被忽略，即并发数的限制是按照每个IP来计算，而不是每个域名</span>
+<span class="token comment" spellcheck="true">#II、该设置也影响DOWNLOAD_DELAY，如果该值不为零，那么DOWNLOAD_DELAY下载延迟是限制每个IP而不是每个域</span>
+<span class="token comment" spellcheck="true">#CONCURRENT_REQUESTS_PER_IP = 16</span>
+
+<span class="token comment" spellcheck="true">#4、如果没有开启智能限速，这个值就代表一个规定死的值，代表对同一网址延迟请求的秒数</span>
+<span class="token comment" spellcheck="true">#DOWNLOAD_DELAY = 3</span>
+
+
+
+<span class="token comment" spellcheck="true">#===>第三部分：智能限速/自动节流：AutoThrottle extension&lt;===</span>
+<span class="token comment" spellcheck="true">#一：介绍</span>
+<span class="token keyword">from</span> scrapy<span class="token punctuation">.</span>contrib<span class="token punctuation">.</span>throttle <span class="token keyword">import</span> AutoThrottle <span class="token comment" spellcheck="true">#http://scrapy.readthedocs.io/en/latest/topics/autothrottle.html#topics-autothrottle</span>
 设置目标：
-1、比使用默认的下载延迟对站点更好
-2、自动调整scrapy到最佳的爬取速度，所以用户无需自己调整下载延迟到最佳状态。用户只需要定义允许最大并发的请求，剩下的事情由该扩展组件自动完成
+<span class="token number">1</span>、比使用默认的下载延迟对站点更好
+<span class="token number">2</span>、自动调整scrapy到最佳的爬取速度，所以用户无需自己调整下载延迟到最佳状态。用户只需要定义允许最大并发的请求，剩下的事情由该扩展组件自动完成
 
 
-#二：如何实现？
-在Scrapy中，下载延迟是通过计算建立TCP连接到接收到HTTP包头(header)之间的时间来测量的。
-注意，由于Scrapy可能在忙着处理spider的回调函数或者无法下载，因此在合作的多任务环境下准确测量这些延迟是十分苦难的。 不过，这些延迟仍然是对Scrapy(甚至是服务器)繁忙程度的合理测量，而这扩展就是以此为前提进行编写的。
+<span class="token comment" spellcheck="true">#二：如何实现？</span>
+在Scrapy中，下载延迟是通过计算建立TCP连接到接收到HTTP包头<span class="token punctuation">(</span>header<span class="token punctuation">)</span>之间的时间来测量的。
+注意，由于Scrapy可能在忙着处理spider的回调函数或者无法下载，因此在合作的多任务环境下准确测量这些延迟是十分苦难的。 不过，这些延迟仍然是对Scrapy<span class="token punctuation">(</span>甚至是服务器<span class="token punctuation">)</span>繁忙程度的合理测量，而这扩展就是以此为前提进行编写的。
 
 
-#三：限速算法
+<span class="token comment" spellcheck="true">#三：限速算法</span>
 自动限速算法基于以下规则调整下载延迟
-#1、spiders开始时的下载延迟是基于AUTOTHROTTLE_START_DELAY的值
-#2、当收到一个response，对目标站点的下载延迟=收到响应的延迟时间/AUTOTHROTTLE_TARGET_CONCURRENCY
-#3、下一次请求的下载延迟就被设置成：对目标站点下载延迟时间和过去的下载延迟时间的平均值
-#4、没有达到200个response则不允许降低延迟
-#5、下载延迟不能变的比DOWNLOAD_DELAY更低或者比AUTOTHROTTLE_MAX_DELAY更高
+<span class="token comment" spellcheck="true">#1、spiders开始时的下载延迟是基于AUTOTHROTTLE_START_DELAY的值</span>
+<span class="token comment" spellcheck="true">#2、当收到一个response，对目标站点的下载延迟=收到响应的延迟时间/AUTOTHROTTLE_TARGET_CONCURRENCY</span>
+<span class="token comment" spellcheck="true">#3、下一次请求的下载延迟就被设置成：对目标站点下载延迟时间和过去的下载延迟时间的平均值</span>
+<span class="token comment" spellcheck="true">#4、没有达到200个response则不允许降低延迟</span>
+<span class="token comment" spellcheck="true">#5、下载延迟不能变的比DOWNLOAD_DELAY更低或者比AUTOTHROTTLE_MAX_DELAY更高</span>
 
-#四：配置使用
-#开启True，默认False
-AUTOTHROTTLE_ENABLED = True
-#起始的延迟
-AUTOTHROTTLE_START_DELAY = 5
-#最小延迟
-DOWNLOAD_DELAY = 3
-#最大延迟
-AUTOTHROTTLE_MAX_DELAY = 10
-#每秒并发请求数的平均值，不能高于 CONCURRENT_REQUESTS_PER_DOMAIN或CONCURRENT_REQUESTS_PER_IP，调高了则吞吐量增大强奸目标站点，调低了则对目标站点更加”礼貌“
-#每个特定的时间点，scrapy并发请求的数目都可能高于或低于该值，这是爬虫视图达到的建议值而不是硬限制
-AUTOTHROTTLE_TARGET_CONCURRENCY = 16.0
-#调试
-AUTOTHROTTLE_DEBUG = True
-CONCURRENT_REQUESTS_PER_DOMAIN = 16
-CONCURRENT_REQUESTS_PER_IP = 16
-
-
-
-#===>第四部分：爬取深度与爬取方式<===
-#1、爬虫允许的最大深度，可以通过meta查看当前深度；0表示无深度
-# DEPTH_LIMIT = 3
-
-#2、爬取时，0表示深度优先Lifo(默认)；1表示广度优先FiFo
-
-# 后进先出，深度优先
-# DEPTH_PRIORITY = 0
-# SCHEDULER_DISK_QUEUE = 'scrapy.squeue.PickleLifoDiskQueue'
-# SCHEDULER_MEMORY_QUEUE = 'scrapy.squeue.LifoMemoryQueue'
-# 先进先出，广度优先
-
-# DEPTH_PRIORITY = 1
-# SCHEDULER_DISK_QUEUE = 'scrapy.squeue.PickleFifoDiskQueue'
-# SCHEDULER_MEMORY_QUEUE = 'scrapy.squeue.FifoMemoryQueue'
-
-
-#3、调度器队列
-# SCHEDULER = 'scrapy.core.scheduler.Scheduler'
-# from scrapy.core.scheduler import Scheduler
-
-#4、访问URL去重
-# DUPEFILTER_CLASS = 'step8_king.duplication.RepeatUrl'
+<span class="token comment" spellcheck="true">#四：配置使用</span>
+<span class="token comment" spellcheck="true">#开启True，默认False</span>
+AUTOTHROTTLE_ENABLED <span class="token operator">=</span> <span class="token boolean">True</span>
+<span class="token comment" spellcheck="true">#起始的延迟</span>
+AUTOTHROTTLE_START_DELAY <span class="token operator">=</span> <span class="token number">5</span>
+<span class="token comment" spellcheck="true">#最小延迟</span>
+DOWNLOAD_DELAY <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token comment" spellcheck="true">#最大延迟</span>
+AUTOTHROTTLE_MAX_DELAY <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token comment" spellcheck="true">#每秒并发请求数的平均值，不能高于 CONCURRENT_REQUESTS_PER_DOMAIN或CONCURRENT_REQUESTS_PER_IP，调高了则吞吐量增大强奸目标站点，调低了则对目标站点更加”礼貌“</span>
+<span class="token comment" spellcheck="true">#每个特定的时间点，scrapy并发请求的数目都可能高于或低于该值，这是爬虫视图达到的建议值而不是硬限制</span>
+AUTOTHROTTLE_TARGET_CONCURRENCY <span class="token operator">=</span> <span class="token number">16.0</span>
+<span class="token comment" spellcheck="true">#调试</span>
+AUTOTHROTTLE_DEBUG <span class="token operator">=</span> <span class="token boolean">True</span>
+CONCURRENT_REQUESTS_PER_DOMAIN <span class="token operator">=</span> <span class="token number">16</span>
+CONCURRENT_REQUESTS_PER_IP <span class="token operator">=</span> <span class="token number">16</span>
 
 
 
-#===>第五部分：中间件、Pipelines、扩展<===
-#1、Enable or disable spider middlewares
-# See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'Amazon.middlewares.AmazonSpiderMiddleware': 543,
-#}
+<span class="token comment" spellcheck="true">#===>第四部分：爬取深度与爬取方式&lt;===</span>
+<span class="token comment" spellcheck="true">#1、爬虫允许的最大深度，可以通过meta查看当前深度；0表示无深度</span>
+<span class="token comment" spellcheck="true"># DEPTH_LIMIT = 3</span>
 
-#2、Enable or disable downloader middlewares
-# See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {
-   # 'Amazon.middlewares.DownMiddleware1': 543,
-}
+<span class="token comment" spellcheck="true">#2、爬取时，0表示深度优先Lifo(默认)；1表示广度优先FiFo</span>
 
-#3、Enable or disable extensions
-# See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
-#EXTENSIONS = {
-#    'scrapy.extensions.telnet.TelnetConsole': None,
-#}
+<span class="token comment" spellcheck="true"># 后进先出，深度优先</span>
+<span class="token comment" spellcheck="true"># DEPTH_PRIORITY = 0</span>
+<span class="token comment" spellcheck="true"># SCHEDULER_DISK_QUEUE = 'scrapy.squeue.PickleLifoDiskQueue'</span>
+<span class="token comment" spellcheck="true"># SCHEDULER_MEMORY_QUEUE = 'scrapy.squeue.LifoMemoryQueue'</span>
+<span class="token comment" spellcheck="true"># 先进先出，广度优先</span>
 
-#4、Configure item pipelines
-# See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   # 'Amazon.pipelines.CustomPipeline': 200,
-}
+<span class="token comment" spellcheck="true"># DEPTH_PRIORITY = 1</span>
+<span class="token comment" spellcheck="true"># SCHEDULER_DISK_QUEUE = 'scrapy.squeue.PickleFifoDiskQueue'</span>
+<span class="token comment" spellcheck="true"># SCHEDULER_MEMORY_QUEUE = 'scrapy.squeue.FifoMemoryQueue'</span>
 
 
+<span class="token comment" spellcheck="true">#3、调度器队列</span>
+<span class="token comment" spellcheck="true"># SCHEDULER = 'scrapy.core.scheduler.Scheduler'</span>
+<span class="token comment" spellcheck="true"># from scrapy.core.scheduler import Scheduler</span>
 
-#===>第六部分：缓存<===
-"""
+<span class="token comment" spellcheck="true">#4、访问URL去重</span>
+<span class="token comment" spellcheck="true"># DUPEFILTER_CLASS = 'step8_king.duplication.RepeatUrl'</span>
+
+
+
+<span class="token comment" spellcheck="true">#===>第五部分：中间件、Pipelines、扩展&lt;===</span>
+<span class="token comment" spellcheck="true">#1、Enable or disable spider middlewares</span>
+<span class="token comment" spellcheck="true"># See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html</span>
+<span class="token comment" spellcheck="true">#SPIDER_MIDDLEWARES = {</span>
+<span class="token comment" spellcheck="true">#    'Amazon.middlewares.AmazonSpiderMiddleware': 543,</span>
+<span class="token comment" spellcheck="true">#}</span>
+
+<span class="token comment" spellcheck="true">#2、Enable or disable downloader middlewares</span>
+<span class="token comment" spellcheck="true"># See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html</span>
+DOWNLOADER_MIDDLEWARES <span class="token operator">=</span> <span class="token punctuation">{</span>
+   <span class="token comment" spellcheck="true"># 'Amazon.middlewares.DownMiddleware1': 543,</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">#3、Enable or disable extensions</span>
+<span class="token comment" spellcheck="true"># See http://scrapy.readthedocs.org/en/latest/topics/extensions.html</span>
+<span class="token comment" spellcheck="true">#EXTENSIONS = {</span>
+<span class="token comment" spellcheck="true">#    'scrapy.extensions.telnet.TelnetConsole': None,</span>
+<span class="token comment" spellcheck="true">#}</span>
+
+<span class="token comment" spellcheck="true">#4、Configure item pipelines</span>
+<span class="token comment" spellcheck="true"># See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html</span>
+ITEM_PIPELINES <span class="token operator">=</span> <span class="token punctuation">{</span>
+   <span class="token comment" spellcheck="true"># 'Amazon.pipelines.CustomPipeline': 200,</span>
+<span class="token punctuation">}</span>
+
+
+
+<span class="token comment" spellcheck="true">#===>第六部分：缓存&lt;===</span>
+<span class="token triple-quoted-string string">"""
 1. 启用缓存
     目的用于将已经发送的请求或相应缓存下来，以便以后使用
 
     from scrapy.downloadermiddlewares.httpcache import HttpCacheMiddleware
     from scrapy.extensions.httpcache import DummyPolicy
     from scrapy.extensions.httpcache import FilesystemCacheStorage
-"""
-# 是否启用缓存策略
-# HTTPCACHE_ENABLED = True
+"""</span>
+<span class="token comment" spellcheck="true"># 是否启用缓存策略</span>
+<span class="token comment" spellcheck="true"># HTTPCACHE_ENABLED = True</span>
 
-# 缓存策略：所有请求均缓存，下次在请求直接访问原来的缓存即可
-# HTTPCACHE_POLICY = "scrapy.extensions.httpcache.DummyPolicy"
-# 缓存策略：根据Http响应头：Cache-Control、Last-Modified 等进行缓存的策略
-# HTTPCACHE_POLICY = "scrapy.extensions.httpcache.RFC2616Policy"
+<span class="token comment" spellcheck="true"># 缓存策略：所有请求均缓存，下次在请求直接访问原来的缓存即可</span>
+<span class="token comment" spellcheck="true"># HTTPCACHE_POLICY = "scrapy.extensions.httpcache.DummyPolicy"</span>
+<span class="token comment" spellcheck="true"># 缓存策略：根据Http响应头：Cache-Control、Last-Modified 等进行缓存的策略</span>
+<span class="token comment" spellcheck="true"># HTTPCACHE_POLICY = "scrapy.extensions.httpcache.RFC2616Policy"</span>
 
-# 缓存超时时间
-# HTTPCACHE_EXPIRATION_SECS = 0
+<span class="token comment" spellcheck="true"># 缓存超时时间</span>
+<span class="token comment" spellcheck="true"># HTTPCACHE_EXPIRATION_SECS = 0</span>
 
-# 缓存保存路径
-# HTTPCACHE_DIR = 'httpcache'
+<span class="token comment" spellcheck="true"># 缓存保存路径</span>
+<span class="token comment" spellcheck="true"># HTTPCACHE_DIR = 'httpcache'</span>
 
-# 缓存忽略的Http状态码
-# HTTPCACHE_IGNORE_HTTP_CODES = []
+<span class="token comment" spellcheck="true"># 缓存忽略的Http状态码</span>
+<span class="token comment" spellcheck="true"># HTTPCACHE_IGNORE_HTTP_CODES = []</span>
 
-# 缓存存储的插件
-# HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment" spellcheck="true"># 缓存存储的插件</span>
+<span class="token comment" spellcheck="true"># HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="4-middlewares-py"><a href="#4-middlewares-py" class="headerlink" title="4. middlewares.py"></a>4. middlewares.py</h3><blockquote>
 <p>中间件分为下载器中间件和spider中间件</p>
 </blockquote>
@@ -777,25 +774,24 @@ ITEM_PIPELINES = {
 <ul>
 <li>下载器中间件用于处理scrapy的request和response的钩子框架，可以全局的修改一些参数，如代理ip，header。</li>
 <li>使用下载器中间件时必须激活这个中间件，方法是在settings.py文件中设置DOWNLOADER_MIDDLEWARES这个字典，格式类似如下：</li>
-<li>数字越小，越靠近引擎，数字越大越靠近下载器，所以数字越小的，process_request()优先处理；数字越大的，process_response()优先处理；关闭设为None即可<pre class="line-numbers language-lang-python"><code class="language-lang-python"># scrapy 自带默认下载中间件
-DOWNLOADER_MIDDLEWARES = {
-{
-'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware': 100,
-'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware': 300,
-'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware': 350,
-'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware': 400,
-'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': 500,
-'scrapy.downloadermiddlewares.retry.RetryMiddleware': 550,
-'scrapy.downloadermiddlewares.ajaxcrawl.AjaxCrawlMiddleware': 560,
-'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware': 580,
-'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 590,
-'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': 600,
-'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 700,
-'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 750,
-'scrapy.downloadermiddlewares.stats.DownloaderStats': 850,
-'scrapy.downloadermiddlewares.httpcache.HttpCacheMiddleware': 900,
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<li>数字越小，越靠近引擎，数字越大越靠近下载器，所以数字越小的，process_request()优先处理；数字越大的，process_response()优先处理；关闭设为None即可<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># scrapy 自带默认下载中间件</span>
+DOWNLOADER_MIDDLEWARES <span class="token operator">=</span> <span class="token punctuation">{</span>
+<span class="token punctuation">{</span>
+<span class="token string">'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware'</span><span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware'</span><span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware'</span><span class="token punctuation">:</span> <span class="token number">350</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware'</span><span class="token punctuation">:</span> <span class="token number">400</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware'</span><span class="token punctuation">:</span> <span class="token number">500</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.retry.RetryMiddleware'</span><span class="token punctuation">:</span> <span class="token number">550</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.ajaxcrawl.AjaxCrawlMiddleware'</span><span class="token punctuation">:</span> <span class="token number">560</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware'</span><span class="token punctuation">:</span> <span class="token number">580</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware'</span><span class="token punctuation">:</span> <span class="token number">590</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.redirect.RedirectMiddleware'</span><span class="token punctuation">:</span> <span class="token number">600</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.cookies.CookiesMiddleware'</span><span class="token punctuation">:</span> <span class="token number">700</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware'</span><span class="token punctuation">:</span> <span class="token number">750</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.stats.DownloaderStats'</span><span class="token punctuation">:</span> <span class="token number">850</span><span class="token punctuation">,</span>
+<span class="token string">'scrapy.downloadermiddlewares.httpcache.HttpCacheMiddleware'</span><span class="token punctuation">:</span> <span class="token number">900</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 </li>
@@ -803,118 +799,116 @@ DOWNLOADER_MIDDLEWARES = {
 <ul>
 <li>使用spider中间件时必须激活这个中间件，方法是在settings.py文件中设置SPIDER_MIDDLEWARES这个字典</li>
 <li>spider中间件用于处理response及spider生成的item和Request</li>
-<li>数字越小越靠近引擎，process_spider_input()优先处理，数字越大越靠近spider，process_spider_output()优先处理,关闭用None<pre class="line-numbers language-lang-python"><code class="language-lang-python"># scrapy 自带默认spider中间件
-SPIDER_MIDDLEWARES_BASE =
-{
-  'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware': 50,
-  'scrapy.spidermiddlewares.offsite.OffsiteMiddleware': 500,
-  'scrapy.spidermiddlewares.referer.RefererMiddleware': 700,
-  'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware': 800,
-  'scrapy.spidermiddlewares.depth.DepthMiddleware': 900,
-}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<li>数字越小越靠近引擎，process_spider_input()优先处理，数字越大越靠近spider，process_spider_output()优先处理,关闭用None<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># scrapy 自带默认spider中间件</span>
+SPIDER_MIDDLEWARES_BASE <span class="token operator">=</span>
+<span class="token punctuation">{</span>
+  <span class="token string">'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware'</span><span class="token punctuation">:</span> <span class="token number">50</span><span class="token punctuation">,</span>
+  <span class="token string">'scrapy.spidermiddlewares.offsite.OffsiteMiddleware'</span><span class="token punctuation">:</span> <span class="token number">500</span><span class="token punctuation">,</span>
+  <span class="token string">'scrapy.spidermiddlewares.referer.RefererMiddleware'</span><span class="token punctuation">:</span> <span class="token number">700</span><span class="token punctuation">,</span>
+  <span class="token string">'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware'</span><span class="token punctuation">:</span> <span class="token number">800</span><span class="token punctuation">,</span>
+  <span class="token string">'scrapy.spidermiddlewares.depth.DepthMiddleware'</span><span class="token punctuation">:</span> <span class="token number">900</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 详见 <a href="https://yq.aliyun.com/articles/629849?utm_content=m_1000014304" target="_blank" rel="noopener">Scrapy详解之中间件（Middleware）</a></li>
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">import requests
-from scrapy import signals
-from scrapy.exceptions import NotConfigured
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> requests
+<span class="token keyword">from</span> scrapy <span class="token keyword">import</span> signals
+<span class="token keyword">from</span> scrapy<span class="token punctuation">.</span>exceptions <span class="token keyword">import</span> NotConfigured
 
-class ItcastSpiderMiddleware(object):
-    # Not all methods need to be defined. If a method is not defined,
-    # scrapy acts as if the spider middleware does not modify the
-    # passed objects.
-
-    @classmethod
-    def from_crawler(cls, crawler):
-        # This method is used by Scrapy to create your spiders.
-        s = cls()
-        crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
-        return s
-
-    def process_spider_input(self, response, spider):
-        # Called for each response that goes through the spider
-        # middleware and into the spider.
-
-        # Should return None or raise an exception.
-        return None
-
-    def process_spider_output(self, response, result, spider):
-        # Called with the results returned from the Spider, after
-        # it has processed the response.
-
-        # Must return an iterable of Request, dict or Item objects.
-        for i in result:
-            yield i
-
-    def process_spider_exception(self, response, exception, spider):
-        # Called when a spider or process_spider_input() method
-        # (from other spider middleware) raises an exception.
-
-        # Should return either None or an iterable of Request, dict
-        # or Item objects.
-        pass
-
-    def process_start_requests(self, start_requests, spider):
-        # Called with the start requests of the spider, and works
-        # similarly to the process_spider_output() method, except
-        # that it doesn’t have a response associated.
-
-        # Must return only requests (not items).
-        for r in start_requests:
-            yield r
-
-    def spider_opened(self, spider):
-        spider.logger.info('Spider opened: %s' % spider.name)
-
-
-class ItcastCrawlDownloaderMiddleware(object):
-    # Not all methods need to be defined. If a method is not defined,
-    # scrapy acts as if the downloader middleware does not modify the
-    # passed objects.
+<span class="token keyword">class</span> <span class="token class-name">ItcastSpiderMiddleware</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># Not all methods need to be defined. If a method is not defined,</span>
+    <span class="token comment" spellcheck="true"># scrapy acts as if the spider middleware does not modify the</span>
+    <span class="token comment" spellcheck="true"># passed objects.</span>
 
     @classmethod
-    def from_crawler(cls, crawler):
-        # This method is used by Scrapy to create your spiders.
-        s = cls()
-        crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
-        return s
+    <span class="token keyword">def</span> <span class="token function">from_crawler</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> crawler<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># This method is used by Scrapy to create your spiders.</span>
+        s <span class="token operator">=</span> cls<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        crawler<span class="token punctuation">.</span>signals<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>s<span class="token punctuation">.</span>spider_opened<span class="token punctuation">,</span> signal<span class="token operator">=</span>signals<span class="token punctuation">.</span>spider_opened<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> s
 
-    def process_request(self, request, spider):
-        # Called for each request that goes through the downloader
-        # middleware.
+    <span class="token keyword">def</span> <span class="token function">process_spider_input</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> response<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># Called for each response that goes through the spider</span>
+        <span class="token comment" spellcheck="true"># middleware and into the spider.</span>
 
-        # Must either:
-        # - return None: continue processing this request
-        # - or return a Response object
-        # - or return a Request object
-        # - or raise IgnoreRequest: process_exception() methods of
-        #   installed downloader middleware will be called
-        return None
+        <span class="token comment" spellcheck="true"># Should return None or raise an exception.</span>
+        <span class="token keyword">return</span> None
 
-    def process_response(self, request, response, spider):
-        # Called with the response returned from the downloader.
+    <span class="token keyword">def</span> <span class="token function">process_spider_output</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> response<span class="token punctuation">,</span> result<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># Called with the results returned from the Spider, after</span>
+        <span class="token comment" spellcheck="true"># it has processed the response.</span>
 
-        # Must either;
-        # - return a Response object
-        # - return a Request object
-        # - or raise IgnoreRequest
-        return response
+        <span class="token comment" spellcheck="true"># Must return an iterable of Request, dict or Item objects.</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> result<span class="token punctuation">:</span>
+            <span class="token keyword">yield</span> i
 
-    def process_exception(self, request, exception, spider):
-        # Called when a download handler or a process_request()
-        # (from other downloader middleware) raises an exception.
+    <span class="token keyword">def</span> <span class="token function">process_spider_exception</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> response<span class="token punctuation">,</span> exception<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># Called when a spider or process_spider_input() method</span>
+        <span class="token comment" spellcheck="true"># (from other spider middleware) raises an exception.</span>
 
-        # Must either:
-        # - return None: continue processing this exception
-        # - return a Response object: stops process_exception() chain
-        # - return a Request object: stops process_exception() chain
-        pass
+        <span class="token comment" spellcheck="true"># Should return either None or an iterable of Request, dict</span>
+        <span class="token comment" spellcheck="true"># or Item objects.</span>
+        <span class="token keyword">pass</span>
 
-    def spider_opened(self, spider):
-        spider.logger.info('Spider opened: %s' % spider.name)
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">def</span> <span class="token function">process_start_requests</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> start_requests<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># Called with the start requests of the spider, and works</span>
+        <span class="token comment" spellcheck="true"># similarly to the process_spider_output() method, except</span>
+        <span class="token comment" spellcheck="true"># that it doesn’t have a response associated.</span>
+
+        <span class="token comment" spellcheck="true"># Must return only requests (not items).</span>
+        <span class="token keyword">for</span> r <span class="token keyword">in</span> start_requests<span class="token punctuation">:</span>
+            <span class="token keyword">yield</span> r
+
+    <span class="token keyword">def</span> <span class="token function">spider_opened</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        spider<span class="token punctuation">.</span>logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">'Spider opened: %s'</span> <span class="token operator">%</span> spider<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">ItcastCrawlDownloaderMiddleware</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># Not all methods need to be defined. If a method is not defined,</span>
+    <span class="token comment" spellcheck="true"># scrapy acts as if the downloader middleware does not modify the</span>
+    <span class="token comment" spellcheck="true"># passed objects.</span>
+
+    @classmethod
+    <span class="token keyword">def</span> <span class="token function">from_crawler</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> crawler<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># This method is used by Scrapy to create your spiders.</span>
+        s <span class="token operator">=</span> cls<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        crawler<span class="token punctuation">.</span>signals<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>s<span class="token punctuation">.</span>spider_opened<span class="token punctuation">,</span> signal<span class="token operator">=</span>signals<span class="token punctuation">.</span>spider_opened<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> s
+
+    <span class="token keyword">def</span> <span class="token function">process_request</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># Called for each request that goes through the downloader</span>
+        <span class="token comment" spellcheck="true"># middleware.</span>
+
+        <span class="token comment" spellcheck="true"># Must either:</span>
+        <span class="token comment" spellcheck="true"># - return None: continue processing this request</span>
+        <span class="token comment" spellcheck="true"># - or return a Response object</span>
+        <span class="token comment" spellcheck="true"># - or return a Request object</span>
+        <span class="token comment" spellcheck="true"># - or raise IgnoreRequest: process_exception() methods of</span>
+        <span class="token comment" spellcheck="true">#   installed downloader middleware will be called</span>
+        <span class="token keyword">return</span> None
+
+    <span class="token keyword">def</span> <span class="token function">process_response</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> response<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># Called with the response returned from the downloader.</span>
+
+        <span class="token comment" spellcheck="true"># Must either;</span>
+        <span class="token comment" spellcheck="true"># - return a Response object</span>
+        <span class="token comment" spellcheck="true"># - return a Request object</span>
+        <span class="token comment" spellcheck="true"># - or raise IgnoreRequest</span>
+        <span class="token keyword">return</span> response
+
+    <span class="token keyword">def</span> <span class="token function">process_exception</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> exception<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># Called when a download handler or a process_request()</span>
+        <span class="token comment" spellcheck="true"># (from other downloader middleware) raises an exception.</span>
+
+        <span class="token comment" spellcheck="true"># Must either:</span>
+        <span class="token comment" spellcheck="true"># - return None: continue processing this exception</span>
+        <span class="token comment" spellcheck="true"># - return a Response object: stops process_exception() chain</span>
+        <span class="token comment" spellcheck="true"># - return a Request object: stops process_exception() chain</span>
+        <span class="token keyword">pass</span>
+
+    <span class="token keyword">def</span> <span class="token function">spider_opened</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        spider<span class="token punctuation">.</span>logger<span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">'Spider opened: %s'</span> <span class="token operator">%</span> spider<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="4-pipelines-py"><a href="#4-pipelines-py" class="headerlink" title="4. pipelines.py"></a>4. pipelines.py</h3><p>pipeline 的功能：</p>
 <ul>
 <li>验证爬取的数据(检查item包含某些字段，比如说name字段)</li>
@@ -922,28 +916,27 @@ class ItcastCrawlDownloaderMiddleware(object):
 <li>将爬取结果保存到文件或者数据库中</li>
 </ul>
 <p>详见：<a href="https://www.cnblogs.com/wzjbg/p/6507564.html" target="_blank" rel="noopener">爬虫框架Scrapy之Item Pipeline</a></p>
-<pre class="line-numbers language-lang-python"><code class="language-lang-python">import something
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> something
 
-class ItcastPipeline(object):
-    def __init__(self):    
-        # 可选实现，做参数初始化等
-        # doing something
+<span class="token keyword">class</span> <span class="token class-name">ItcastPipeline</span><span class="token punctuation">(</span>object<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>    
+        <span class="token comment" spellcheck="true"># 可选实现，做参数初始化等</span>
+        <span class="token comment" spellcheck="true"># doing something</span>
 
-    def process_item(self, item, spider):
-        # item (Item 对象) – 被爬取的item
-        # spider (Spider 对象) – 爬取该item的spider
-        # 这个方法必须实现，每个item pipeline组件都需要调用该方法，
-        # 这个方法必须返回一个 Item 对象，被丢弃的item将不会被之后的pipeline组件所处理。
-        return item
+    <span class="token keyword">def</span> <span class="token function">process_item</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> item<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># item (Item 对象) – 被爬取的item</span>
+        <span class="token comment" spellcheck="true"># spider (Spider 对象) – 爬取该item的spider</span>
+        <span class="token comment" spellcheck="true"># 这个方法必须实现，每个item pipeline组件都需要调用该方法，</span>
+        <span class="token comment" spellcheck="true"># 这个方法必须返回一个 Item 对象，被丢弃的item将不会被之后的pipeline组件所处理。</span>
+        <span class="token keyword">return</span> item
 
-    def open_spider(self, spider):
-        # spider (Spider 对象) – 被开启的spider
-        # 可选实现，当spider被开启时，这个方法被调用。
+    <span class="token keyword">def</span> <span class="token function">open_spider</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># spider (Spider 对象) – 被开启的spider</span>
+        <span class="token comment" spellcheck="true"># 可选实现，当spider被开启时，这个方法被调用。</span>
 
-    def close_spider(self, spider):
-        # spider (Spider 对象) – 被关闭的spider
-        # 可选实现，当spider被关闭时，这个方法被调用
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">def</span> <span class="token function">close_spider</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> spider<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># spider (Spider 对象) – 被关闭的spider</span>
+        <span class="token comment" spellcheck="true"># 可选实现，当spider被关闭时，这个方法被调用</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p> 【声明】：本文部分内容源自Scrapy<a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/tutorial.html" target="_blank" rel="noopener">官网</a> , <a href="https://www.runoob.com/w3cnote/scrapy-detail.html" target="_blank" rel="noopener">菜鸟教程</a>侵删。</p>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -1450,7 +1443,7 @@ class ItcastPipeline(object):
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">76.4k</span>&nbsp;字
+                class="white-color">114.3k</span>&nbsp;字
             
             
             

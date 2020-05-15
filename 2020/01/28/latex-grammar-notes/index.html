@@ -478,7 +478,7 @@ Hello World !
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        981
+                        1k
                     </div>
                     
 
@@ -501,173 +501,155 @@ Hello World !
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-建立文档"><a href="#1-建立文档" class="headerlink" title="1. 建立文档"></a>1. 建立文档</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">% hello.tex
-\documentclass[a4paper]{zcpaper}
-\usepackage{multicol}
-\begin{document}
+                <h2 id="1-建立文档"><a href="#1-建立文档" class="headerlink" title="1. 建立文档"></a>1. 建立文档</h2><pre class="line-numbers language-latex"><code class="language-latex"><span class="token comment" spellcheck="true">% hello.tex</span>
+<span class="token function selector">\documentclass</span><span class="token punctuation">[</span>a4paper<span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token keyword">zcpaper</span><span class="token punctuation">}</span>
+<span class="token function selector">\usepackage</span><span class="token punctuation">{</span><span class="token keyword">multicol</span><span class="token punctuation">}</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">document</span><span class="token punctuation">}</span>
 Hello World !
-\end{document}
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">document</span><span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>在latex中%号表示注释</li>
-<li>用 \ 开始的字母串来表示一个命令</li>
-<li>的 \documentclass 是 LATEX 文档的基本命令，用于指明文档类。</li>
+<li>用 \\ 开始的字母串来表示一个命令</li>
+<li>的 \\documentclass 是 LATEX 文档的基本命令，用于指明文档类。</li>
 <li>命令后面用花括号 {} 包含的内容是该命令的参数，必不可少。</li>
 <li>命令后用方括号 [] 包含的内容是该命令的选项，选项可以省略，省略时必需连同方括号也去掉。如果选项省略，将会使用默认值。</li>
-<li>的 \usepackage 命令也是 LATEX 的基本命令，用于载入 LATEX 宏包。</li>
+<li>的 \\usepackage 命令也是 LATEX 的基本命令，用于载入 LATEX 宏包。</li>
 </ul>
-<h2 id="2-建立环境"><a href="#2-建立环境" class="headerlink" title="2. 建立环境"></a>2. 建立环境</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\begin{large}
-\end{large}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="2-建立环境"><a href="#2-建立环境" class="headerlink" title="2. 建立环境"></a>2. 建立环境</h2><pre class="line-numbers language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">large</span><span class="token punctuation">}</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">large</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <ul>
 <li>$\begin{}, \end{}$ 表示建立环境，如列表环境：无序列表（itemize）、<br>有序列表（enumerate）和描述列表（description）</li>
 </ul>
-<pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\begin{itemize}
-\item 无编号的列表
-\item 带编号的列表
-\item 带标签的列表
-\end{itemize}
-\begin{enumerate}
-\item 无编号的列表
-\item 带编号的列表
-\item 带标签的列表
-\end{enumerate}
-\begin{description}
-\item[无序列表] 无编号的列表。
-\item[有序列表] 带编号的列表。
-\item[描述列表] 带标签的列表。
-\end{description}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">itemize</span><span class="token punctuation">}</span>
+<span class="token function selector">\item</span> 无编号的列表
+<span class="token function selector">\item</span> 带编号的列表
+<span class="token function selector">\item</span> 带标签的列表
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">itemize</span><span class="token punctuation">}</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">enumerate</span><span class="token punctuation">}</span>
+<span class="token function selector">\item</span> 无编号的列表
+<span class="token function selector">\item</span> 带编号的列表
+<span class="token function selector">\item</span> 带标签的列表
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">enumerate</span><span class="token punctuation">}</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">description</span><span class="token punctuation">}</span>
+<span class="token function selector">\item</span><span class="token punctuation">[</span>无序列表<span class="token punctuation">]</span> 无编号的列表。
+<span class="token function selector">\item</span><span class="token punctuation">[</span>有序列表<span class="token punctuation">]</span> 带编号的列表。
+<span class="token function selector">\item</span><span class="token punctuation">[</span>描述列表<span class="token punctuation">]</span> 带标签的列表。
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">description</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/01/28/mIvZL5UVgQcbzsJ.png" alt="效果"></p>
-<h2 id="3-多列排版"><a href="#3-多列排版" class="headerlink" title="3. 多列排版"></a>3. 多列排版</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\begin{multicols}{2}
-\end{multicols}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="4-加粗居中"><a href="#4-加粗居中" class="headerlink" title="4. 加粗居中"></a>4. 加粗居中</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">% 加粗
-\textbf{Hello World!}
-% 加粗
-{\bfseries Hello World!}
-% 居中
-\begin{center}
+<h2 id="3-多列排版"><a href="#3-多列排版" class="headerlink" title="3. 多列排版"></a>3. 多列排版</h2><pre class="line-numbers language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">multicols</span><span class="token punctuation">}</span><span class="token punctuation">{</span>2<span class="token punctuation">}</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">multicols</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="4-加粗居中"><a href="#4-加粗居中" class="headerlink" title="4. 加粗居中"></a>4. 加粗居中</h2><pre class="line-numbers language-latex"><code class="language-latex"><span class="token comment" spellcheck="true">% 加粗</span>
+<span class="token function selector">\textbf</span><span class="token punctuation">{</span>Hello World!<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">% 加粗</span>
+<span class="token punctuation">{</span><span class="token function selector">\bfseries</span> Hello World!<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">% 居中</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">center</span><span class="token punctuation">}</span>
 Hello World!
-\end{center}
-% 居中
-\centering{Hello World!}
-% 加粗并居中
-\centering{\textbf{Hello World!}}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="5-罗马数字"><a href="#5-罗马数字" class="headerlink" title="5. 罗马数字"></a>5. 罗马数字</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\textbf{\large{\uppercase\expandafter{\romannumeral 1}}}
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="6-空格缩进"><a href="#6-空格缩进" class="headerlink" title="6. 空格缩进"></a>6. 空格缩进</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">% 空格
-\quad
-% 缩进
-\indent
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">center</span><span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">% 居中</span>
+<span class="token function selector">\centering</span><span class="token punctuation">{</span>Hello World!<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">% 加粗并居中</span>
+<span class="token function selector">\centering</span><span class="token punctuation">{</span><span class="token function selector">\textbf</span><span class="token punctuation">{</span>Hello World!<span class="token punctuation">}</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="5-罗马数字"><a href="#5-罗马数字" class="headerlink" title="5. 罗马数字"></a>5. 罗马数字</h2><pre class="line-numbers language-latex"><code class="language-latex"><span class="token function selector">\textbf</span><span class="token punctuation">{</span><span class="token function selector">\large</span><span class="token punctuation">{</span><span class="token function selector">\uppercase</span><span class="token function selector">\expandafter</span><span class="token punctuation">{</span><span class="token function selector">\romannumeral</span> 1<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="6-空格缩进"><a href="#6-空格缩进" class="headerlink" title="6. 空格缩进"></a>6. 空格缩进</h2><pre class="line-numbers language-latex"><code class="language-latex"><span class="token comment" spellcheck="true">% 空格</span>
+<span class="token function selector">\quad</span>
+<span class="token comment" spellcheck="true">% 缩进</span>
+<span class="token function selector">\indent</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="7-添加表格"><a href="#7-添加表格" class="headerlink" title="7. 添加表格"></a>7. 添加表格</h2><ul>
-<li>\multirow \multicol \hline \cline 可以用来合并行或者列</li>
-<li>\resizebox{200pt}{150pt}{} 用来调整表格大小</li>
+<li>\\multirow \\multicol \\hline \\cline 可以用来合并行或者列</li>
+<li>\\resizebox{200pt}{150pt}{} 用来调整表格大小</li>
 </ul>
-<pre class="line-numbers language-lang-latex"><code class="language-lang-latex">% \usepackage{multirow}
-% \usepackage{multicol}
+<pre class="line-numbers language-latex"><code class="language-latex"><span class="token comment" spellcheck="true">% \usepackage{multirow}</span>
+<span class="token comment" spellcheck="true">% \usepackage{multicol}</span>
 
-\begin{table}[H]
-%添加表格
-\begin{center}
-\caption{输入层数据源信息}
-\resizebox{200pt}{150pt}{
-\begin{tabular}{ccc}
-\toprule  %添加表格头部粗线
-\toprule  %添加表格头部粗线
-字段名& 字段数据& 标记 \\
-\midrule  %添加表格中横线
-房子代码& 1010088440& \\
-\multirow{2}{*}{姓名} &  Run Qian Qiu\\
-                        & Jia Yuan \\
-年代& 2006 \\
-\multirow{2}{*}{学校数量} & \multirow{2}{*}{12} & 北京大学, \\ & & 61 幼儿园, 海淀小学... \\
-\multirow{2}{*}{设施数量} & \multirow{2}{*}{2} & 颐和园, \\ & & 百望山森林公园...\\
-...& ...& ... \\
-公交站数量 & 17 & 328路公交车...\\
-地铁数量 & 1 & 马连贵地铁\\
-地理位置 & 5 & 五环至六环\\
-X & 116.269981...& \\
-Y & 40.0336799...& \\
-房价 & 84533 &单位: 元/平方\\
-\bottomrule %添加表格底部粗线
-\end{tabular}
-}
-\end{center}
-\end{table}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">table</span><span class="token punctuation">}</span><span class="token punctuation">[</span>H<span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true">%添加表格</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">center</span><span class="token punctuation">}</span>
+<span class="token function selector">\caption</span><span class="token punctuation">{</span>输入层数据源信息<span class="token punctuation">}</span>
+<span class="token function selector">\resizebox</span><span class="token punctuation">{</span>200pt<span class="token punctuation">}</span><span class="token punctuation">{</span>150pt<span class="token punctuation">}</span><span class="token punctuation">{</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">tabular</span><span class="token punctuation">}</span><span class="token punctuation">{</span>ccc<span class="token punctuation">}</span>
+<span class="token function selector">\toprule</span>  <span class="token comment" spellcheck="true">%添加表格头部粗线</span>
+<span class="token function selector">\toprule</span>  <span class="token comment" spellcheck="true">%添加表格头部粗线</span>
+字段名<span class="token punctuation">&amp;</span> 字段数据<span class="token punctuation">&amp;</span> 标记 <span class="token function selector">\\</span>
+<span class="token function selector">\midrule</span>  <span class="token comment" spellcheck="true">%添加表格中横线</span>
+房子代码<span class="token punctuation">&amp;</span> 1010088440<span class="token punctuation">&amp;</span> <span class="token function selector">\\</span>
+<span class="token function selector">\multirow</span><span class="token punctuation">{</span>2<span class="token punctuation">}</span><span class="token punctuation">{</span>*<span class="token punctuation">}</span><span class="token punctuation">{</span>姓名<span class="token punctuation">}</span> <span class="token punctuation">&amp;</span>  Run Qian Qiu<span class="token function selector">\\</span>
+                        <span class="token punctuation">&amp;</span> Jia Yuan <span class="token function selector">\\</span>
+年代<span class="token punctuation">&amp;</span> 2006 <span class="token function selector">\\</span>
+<span class="token function selector">\multirow</span><span class="token punctuation">{</span>2<span class="token punctuation">}</span><span class="token punctuation">{</span>*<span class="token punctuation">}</span><span class="token punctuation">{</span>学校数量<span class="token punctuation">}</span> <span class="token punctuation">&amp;</span> <span class="token function selector">\multirow</span><span class="token punctuation">{</span>2<span class="token punctuation">}</span><span class="token punctuation">{</span>*<span class="token punctuation">}</span><span class="token punctuation">{</span>12<span class="token punctuation">}</span> <span class="token punctuation">&amp;</span> 北京大学, <span class="token function selector">\\</span> <span class="token punctuation">&amp;</span> <span class="token punctuation">&amp;</span> 61 幼儿园, 海淀小学... <span class="token function selector">\\</span>
+<span class="token function selector">\multirow</span><span class="token punctuation">{</span>2<span class="token punctuation">}</span><span class="token punctuation">{</span>*<span class="token punctuation">}</span><span class="token punctuation">{</span>设施数量<span class="token punctuation">}</span> <span class="token punctuation">&amp;</span> <span class="token function selector">\multirow</span><span class="token punctuation">{</span>2<span class="token punctuation">}</span><span class="token punctuation">{</span>*<span class="token punctuation">}</span><span class="token punctuation">{</span>2<span class="token punctuation">}</span> <span class="token punctuation">&amp;</span> 颐和园, <span class="token function selector">\\</span> <span class="token punctuation">&amp;</span> <span class="token punctuation">&amp;</span> 百望山森林公园...<span class="token function selector">\\</span>
+...<span class="token punctuation">&amp;</span> ...<span class="token punctuation">&amp;</span> ... <span class="token function selector">\\</span>
+公交站数量 <span class="token punctuation">&amp;</span> 17 <span class="token punctuation">&amp;</span> 328路公交车...<span class="token function selector">\\</span>
+地铁数量 <span class="token punctuation">&amp;</span> 1 <span class="token punctuation">&amp;</span> 马连贵地铁<span class="token function selector">\\</span>
+地理位置 <span class="token punctuation">&amp;</span> 5 <span class="token punctuation">&amp;</span> 五环至六环<span class="token function selector">\\</span>
+X <span class="token punctuation">&amp;</span> 116.269981...<span class="token punctuation">&amp;</span> <span class="token function selector">\\</span>
+Y <span class="token punctuation">&amp;</span> 40.0336799...<span class="token punctuation">&amp;</span> <span class="token function selector">\\</span>
+房价 <span class="token punctuation">&amp;</span> 84533 <span class="token punctuation">&amp;</span>单位: 元/平方<span class="token function selector">\\</span>
+<span class="token function selector">\bottomrule</span> <span class="token comment" spellcheck="true">%添加表格底部粗线</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">tabular</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">center</span><span class="token punctuation">}</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">table</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/01/29/WNHKebSn9ohl4XZ.png" alt="效果图"></p>
 <h2 id="8-添加公式"><a href="#8-添加公式" class="headerlink" title="8. 添加公式"></a>8. 添加公式</h2><ul>
-<li>\eqno{((1))} 添加公式标号</li>
+<li>\\eqno{((1))} 添加公式标号</li>
 <li><a href="https://www.jianshu.com/p/df2792fc9c9f" target="_blank" rel="noopener">latex特殊字符汇总</a></li>
 </ul>
-<pre class="line-numbers language-lang-latex"><code class="language-lang-latex">$$x = \frac{x-\mu}{\sigma^2}\eqno{(1)}$$
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<script type="math/tex; mode=display">x = \frac{x-\mu}{\sigma^2}  \quad \quad (1)</script><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">$$
+<pre class="line-numbers language-latex"><code class="language-latex"><span class="token equation string">$$</span>x = <span class="token function selector">\frac</span><span class="token punctuation">{</span>x-<span class="token function selector">\mu</span><span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token function selector">\sigma</span>^2<span class="token punctuation">}</span><span class="token function selector">\eqno</span><span class="token punctuation">{</span>(1)<span class="token punctuation">}</span><span class="token equation string">$$</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>$$x = \frac{x-\mu}{\sigma^2}  \quad \quad (1) $$</p>
+<pre class="line-numbers language-latex"><code class="language-latex"><span class="token equation string">$$</span>
 f(x) =
-\begin{cases}
-1 & x > 0  \\
-0 & x \leq 0\\
-\end{cases}
-\eqno{(2)}
-$$
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<script type="math/tex; mode=display">
-f(x) =
-\begin{cases}
-1 & x > 0\\\\
-0 & x \leq 0
-\end{cases}
-\quad \quad (2)</script><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">$$i_t = g\big(W_{xi} x_t + W_{hi} h_{t-1} + b_i\big) \eqno{(3)}$$
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<script type="math/tex; mode=display">i_t = g\big(W_{xi} x_t + W_{hi} h_{t-1} + b_i\big) \quad \quad (3)</script><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\begin{gather*}
-Z_t = \varphi_1Z_{t-1} + \varphi_2Z_{t-2} + \varphi_{p}Z_{t-p} \\
-+ \alpha_t - \theta_1\alpha_{t-1} - ... - \theta_q\alpha_{t-q}
-\eqno{(4)}
-\end{gather*}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<script type="math/tex; mode=display">
-Z_t = \varphi_1Z_{t-1} + \varphi_2Z_{t-2} + \varphi_{p}Z_{t-p} \\\\
-+\alpha_t - \theta_1\alpha_{t-1} - ... - \theta_q\alpha_{t-q} \quad(4)</script><h2 id="9-添加图片"><a href="#9-添加图片" class="headerlink" title="9. 添加图片"></a>9. 添加图片</h2><pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\begin{figure}[H] %H表示图强制在下面，想设置浮动环境用htp
-    \centering  %插入的图片居中表示
-    \includegraphics[scale=0.9]{pic/Relationship between location and housing price.png} %插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下,相对路径
-    \caption{位置与房价的关系}  %图片的名称
-%     \label{fig2}
-\end{figure}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">cases</span><span class="token punctuation">}</span>
+1 <span class="token punctuation">&amp;</span> x > 0  <span class="token function selector">\\</span>
+0 <span class="token punctuation">&amp;</span> x <span class="token function selector">\leq</span> 0<span class="token function selector">\\</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">cases</span><span class="token punctuation">}</span>
+<span class="token function selector">\eqno</span><span class="token punctuation">{</span>(2)<span class="token punctuation">}</span>
+<span class="token equation string">$$</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>$$<br>f(x) =<br>\begin{cases}<br>1 &amp; x &gt; 0\\\<br>0 &amp; x \leq 0<br>\end{cases}<br>\quad \quad (2)$$</p>
+<pre class="line-numbers language-latex"><code class="language-latex"><span class="token equation string">$$</span>i_t = g<span class="token function selector">\big</span>(W_<span class="token punctuation">{</span>xi<span class="token punctuation">}</span> x_t + W_<span class="token punctuation">{</span>hi<span class="token punctuation">}</span> h_<span class="token punctuation">{</span>t-1<span class="token punctuation">}</span> + b_i<span class="token function selector">\big</span>) <span class="token function selector">\eqno</span><span class="token punctuation">{</span>(3)<span class="token punctuation">}</span><span class="token equation string">$$</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>$$i_t = g\big(W_{xi} x_t + W_{hi} h_{t-1} + b_i\big) \quad \quad (3)$$</p>
+<pre class="line-numbers language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">gather*</span><span class="token punctuation">}</span><span class="token equation string">
+Z_t = <span class="token equation-command regex">\varphi</span>_1Z_{t-1} + <span class="token equation-command regex">\varphi</span>_2Z_{t-2} + <span class="token equation-command regex">\varphi</span>_{p}Z_{t-p} <span class="token equation-command regex">\\</span>
++ <span class="token equation-command regex">\alpha</span>_t - <span class="token equation-command regex">\theta</span>_1<span class="token equation-command regex">\alpha</span>_{t-1} - ... - <span class="token equation-command regex">\theta</span>_q<span class="token equation-command regex">\alpha</span>_{t-q}
+<span class="token equation-command regex">\eqno</span>{(4)}
+</span><span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">gather*</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>$$<br>Z_t = \varphi_1Z_{t-1} + \varphi_2Z_{t-2} + \varphi_{p}Z_{t-p} \\\<br>+\alpha_t - \theta_1\alpha_{t-1} - … - \theta_q\alpha_{t-q} \quad(4)$$</p>
+<h2 id="9-添加图片"><a href="#9-添加图片" class="headerlink" title="9. 添加图片"></a>9. 添加图片</h2><pre class="line-numbers language-latex"><code class="language-latex"><span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">figure</span><span class="token punctuation">}</span><span class="token punctuation">[</span>H<span class="token punctuation">]</span> <span class="token comment" spellcheck="true">%H表示图强制在下面，想设置浮动环境用htp</span>
+    <span class="token function selector">\centering</span>  <span class="token comment" spellcheck="true">%插入的图片居中表示</span>
+    <span class="token function selector">\includegraphics</span><span class="token punctuation">[</span>scale=0.9<span class="token punctuation">]</span><span class="token punctuation">{</span>pic/Relationship between location and housing price.png<span class="token punctuation">}</span> <span class="token comment" spellcheck="true">%插入的图，包括JPG,PNG,PDF,EPS等，放在源文件目录下,相对路径</span>
+    <span class="token function selector">\caption</span><span class="token punctuation">{</span>位置与房价的关系<span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">%图片的名称</span>
+<span class="token comment" spellcheck="true">%     \label{fig2}</span>
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">figure</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2020/01/29/7oMmRnjP4LONTIg.png" alt="效果图"></p>
 <h2 id="10-参考文献"><a href="#10-参考文献" class="headerlink" title="10. 参考文献"></a>10. 参考文献</h2><ul>
 <li><a href="https://blog.csdn.net/beta_2187/article/details/79994441" target="_blank" rel="noopener">LaTeX中的参考文献</a></li>
 </ul>
-<pre class="line-numbers language-lang-latex"><code class="language-lang-latex">% 引用： \cite{1}
-\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}  % 引用
-\begin{thebibliography}{3}%宽度
-\small
-\bibitem{1} xxx
-\bibitem{2} xxx
-\bibitem{3} xxx
-\end{thebibliography}
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-latex"><code class="language-latex"><span class="token comment" spellcheck="true">% 引用： \cite{1}</span>
+<span class="token function selector">\newcommand</span><span class="token punctuation">{</span><span class="token function selector">\upcite</span><span class="token punctuation">}</span><span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token function selector">\textsuperscript</span><span class="token punctuation">{</span><span class="token function selector">\textsuperscript</span><span class="token punctuation">{</span><span class="token function selector">\cite</span><span class="token punctuation">{</span><span class="token keyword">#1</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">% 引用</span>
+<span class="token function selector">\begin</span><span class="token punctuation">{</span><span class="token keyword">thebibliography</span><span class="token punctuation">}</span><span class="token punctuation">{</span>3<span class="token punctuation">}</span><span class="token comment" spellcheck="true">%宽度</span>
+<span class="token function selector">\small</span>
+<span class="token function selector">\bibitem</span><span class="token punctuation">{</span>1<span class="token punctuation">}</span> xxx
+<span class="token function selector">\bibitem</span><span class="token punctuation">{</span>2<span class="token punctuation">}</span> xxx
+<span class="token function selector">\bibitem</span><span class="token punctuation">{</span>3<span class="token punctuation">}</span> xxx
+<span class="token function selector">\end</span><span class="token punctuation">{</span><span class="token keyword">thebibliography</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="11-页眉页脚"><a href="#11-页眉页脚" class="headerlink" title="11.页眉页脚"></a>11.页眉页脚</h2><ul>
 <li><a href="https://blog.csdn.net/robertchenguangzhi/article/details/48187119" target="_blank" rel="noopener">LATEX中的页眉设置术语</a></li>
 <li><a href="https://blog.csdn.net/zhangyunfei_happy/article/details/44460903" target="_blank" rel="noopener">在LATEX中设置页眉页脚以及页码</a></li>
 </ul>
-<pre class="line-numbers language-lang-latex"><code class="language-lang-latex">\usepackage{lastpage}%获得总页数
+<pre class="line-numbers language-latex"><code class="language-latex"><span class="token function selector">\usepackage</span><span class="token punctuation">{</span><span class="token keyword">lastpage</span><span class="token punctuation">}</span><span class="token comment" spellcheck="true">%获得总页数</span>
 
-\pagestyle{fancy}
-% \lhead{xxx}
-% \chead{xxx}
-% \rhead{xxx}
-% \lfoot{xxx}
-% \cfoot{xxx}
-% \rfoot{xxx}
-\renewcommand{\headrulewidth}{0pt}%改为0pt即可去掉页眉下面的横线
-\renewcommand{\footrulewidth}{0pt}%改为0pt即可去掉页脚上面的横线
+<span class="token function selector">\pagestyle</span><span class="token punctuation">{</span>fancy<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">% \lhead{xxx}</span>
+<span class="token comment" spellcheck="true">% \chead{xxx}</span>
+<span class="token comment" spellcheck="true">% \rhead{xxx}</span>
+<span class="token comment" spellcheck="true">% \lfoot{xxx}</span>
+<span class="token comment" spellcheck="true">% \cfoot{xxx}</span>
+<span class="token comment" spellcheck="true">% \rfoot{xxx}</span>
+<span class="token function selector">\renewcommand</span><span class="token punctuation">{</span><span class="token function selector">\headrulewidth</span><span class="token punctuation">}</span><span class="token punctuation">{</span>0pt<span class="token punctuation">}</span><span class="token comment" spellcheck="true">%改为0pt即可去掉页眉下面的横线</span>
+<span class="token function selector">\renewcommand</span><span class="token punctuation">{</span><span class="token function selector">\footrulewidth</span><span class="token punctuation">}</span><span class="token punctuation">{</span>0pt<span class="token punctuation">}</span><span class="token comment" spellcheck="true">%改为0pt即可去掉页脚上面的横线</span>
 
-\cfoot{\thepage\ / \pageref{LastPage}}%当前页 of 总页数
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function selector">\cfoot</span><span class="token punctuation">{</span><span class="token function selector">\thepage</span><span class="token function selector">\ </span>/ <span class="token function selector">\pageref</span><span class="token punctuation">{</span>LastPage<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token comment" spellcheck="true">%当前页 of 总页数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1183,7 +1165,7 @@ Z_t = \varphi_1Z_{t-1} + \varphi_2Z_{t-2} + \varphi_{p}Z_{t-p} \\\\
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">76.4k</span>&nbsp;字
+                class="white-color">114.3k</span>&nbsp;字
             
             
             
