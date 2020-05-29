@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-05-14T09:05:44.820Z</updated>
+  <updated>2020-05-29T07:19:14.255Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Segment Tree Problem Set</title>
+    <link href="https://tawn0000.github.io/2020/05/29/segment-tree-problem-set/"/>
+    <id>https://tawn0000.github.io/2020/05/29/segment-tree-problem-set/</id>
+    <published>2020-05-29T05:44:06.000Z</published>
+    <updated>2020-05-29T07:19:14.255Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-HDU1166-敌兵布阵&quot;&gt;&lt;a href=&quot;#1-HDU1166-敌兵布阵&quot; class=&quot;headerlink&quot; title=&quot;1. HDU1166 敌兵布阵&quot;&gt;&lt;/a&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://tawn0000.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
+    
+      <category term="Problem Set" scheme="https://tawn0000.github.io/tags/Problem-Set/"/>
+    
+      <category term="Data Structure" scheme="https://tawn0000.github.io/tags/Data-Structure/"/>
+    
+      <category term="Segment Tree" scheme="https://tawn0000.github.io/tags/Segment-Tree/"/>
+    
+  </entry>
   
   <entry>
     <title>The Shortest Paths Problem Set</title>
@@ -54,7 +87,7 @@
     <link href="https://tawn0000.github.io/2020/04/23/mst-problem-set/"/>
     <id>https://tawn0000.github.io/2020/04/23/mst-problem-set/</id>
     <published>2020-04-23T10:14:52.000Z</published>
-    <updated>2020-04-30T10:39:52.988Z</updated>
+    <updated>2020-05-29T05:50:38.945Z</updated>
     
     <summary type="html">
     
@@ -76,7 +109,7 @@
     
       <category term="Problem Set" scheme="https://tawn0000.github.io/tags/Problem-Set/"/>
     
-      <category term="Greedy" scheme="https://tawn0000.github.io/tags/Greedy/"/>
+      <category term="MST" scheme="https://tawn0000.github.io/tags/MST/"/>
     
   </entry>
   
@@ -278,9 +311,9 @@
       <category term="Algorithm" scheme="https://tawn0000.github.io/categories/Algorithm/"/>
     
     
-      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="https://tawn0000.github.io/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
     
   </entry>
   
@@ -328,7 +361,7 @@
       
         
         
-          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-latex&quot;&gt;&lt;code
+          &lt;h2 id=&quot;1-建立文档&quot;&gt;&lt;a href=&quot;#1-建立文档&quot; class=&quot;headerlink&quot; title=&quot;1. 建立文档&quot;&gt;&lt;/a&gt;1. 建立文档&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-lang-latex&quot;&gt;&lt;code
         
       
     
@@ -588,34 +621,6 @@
       <category term="tools" scheme="https://tawn0000.github.io/tags/tools/"/>
     
       <category term="Jupyter Notebook" scheme="https://tawn0000.github.io/tags/Jupyter-Notebook/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Some websites for loading files to generate a link</title>
-    <link href="https://tawn0000.github.io/2019/10/16/some-websites-for-loading-files-to-generate-a-link/"/>
-    <id>https://tawn0000.github.io/2019/10/16/some-websites-for-loading-files-to-generate-a-link/</id>
-    <published>2019-10-16T01:00:28.000Z</published>
-    <updated>2020-01-11T10:57:47.400Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;图片&quot;&gt;&lt;a href=&quot;#图片&quot; class=&quot;headerlink&quot; title=&quot;图片&quot;&gt;&lt;/a&gt;图片&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;SM.MS&lt;br&gt;&lt;a href=&quot;https://sm.ms/&quot; target=&quot;_blank&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Others" scheme="https://tawn0000.github.io/categories/Others/"/>
-    
-    
-      <category term="tools" scheme="https://tawn0000.github.io/tags/tools/"/>
     
   </entry>
   

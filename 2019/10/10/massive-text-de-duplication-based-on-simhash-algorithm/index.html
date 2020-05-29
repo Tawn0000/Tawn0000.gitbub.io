@@ -493,14 +493,14 @@ simhash主要流程是：
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.1k
+                        462
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        1 分
                     </div>
                     
                 
@@ -542,177 +542,183 @@ simhash主要流程是：
 <li><p>jieba分词使用参考资料:<br><a href="https://blog.csdn.net/sinat_34022298/article/details/75943272" target="_blank" rel="noopener">Python的jieba分词及TF-IDF和TextRank 算法提取关键字</a></p>
 </li>
 </ul>
-<p>  优化tips：<br>    - 数据插入mongo可采用批量插入(insert_many)提高速度<br>    - 对于短文本的数据效果不太好，可能会导致map中key=0的链表长度过长，可以进行一下特判<br>    - 可以采用两个进程并发进行hash去重和数据持久化<br>    - 数据实在太大并且冗余度过高的情况下可以批量跑，等数据量降下来在全量</p>
-<p>  一个不是很确定且暂未实现的优化：<br>    在将64位的hash值划分成4段时，建立四个hash_map, 然后依次对应存储由各自段对应所得的hash_value链表</p>
+<p>  优化tips：</p>
+<pre><code>- 数据插入mongo可采用批量插入(insert_many)提高速度
+- 对于短文本的数据效果不太好，可能会导致map中key=0的链表长度过长，可以进行一下特判
+- 可以采用两个进程并发进行hash去重和数据持久化
+- 数据实在太大并且冗余度过高的情况下可以批量跑，等数据量降下来在全量
+</code></pre><p>  一个不是很确定且暂未实现的优化：<br>    在将64位的hash值划分成4段时，建立四个hash_map, 然后依次对应存储由各自段对应所得的hash_value链表</p>
 <h3 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h3><ul>
 <li><strong>simhash</strong></li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
-<span class="token keyword">from</span> jieba <span class="token keyword">import</span> lcut<span class="token punctuation">,</span> analyse
+<pre class="line-numbers language-lang-python"><code class="language-lang-python"># -*- coding: utf-8 -*-
+from jieba import lcut, analyse
 
-<span class="token keyword">def</span> <span class="token function">count_diff_str</span><span class="token punctuation">(</span>str1<span class="token punctuation">,</span> str2<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    res <span class="token operator">=</span> <span class="token number">0</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>min<span class="token punctuation">(</span>len<span class="token punctuation">(</span>str1<span class="token punctuation">)</span><span class="token punctuation">,</span>len<span class="token punctuation">(</span>str2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> str1<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">!=</span> str2<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
-            res <span class="token operator">+=</span> <span class="token number">1</span>
-    <span class="token keyword">return</span> res
+def count_diff_str(str1, str2):
+    res = 0
+    for i in range(min(len(str1),len(str2))):
+        if str1[i] != str2[i]:
+            res += 1
+    return res
 
-<span class="token keyword">def</span> <span class="token function">count_diff_int</span><span class="token punctuation">(</span>value1<span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    res <span class="token operator">=</span> <span class="token number">0</span>
-    value <span class="token operator">=</span> value1 <span class="token operator">^</span> value2
-    x <span class="token operator">=</span> <span class="token number">1</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> x <span class="token operator">&amp;</span> value <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            res <span class="token operator">+=</span> <span class="token number">1</span>
-        x <span class="token operator">&lt;&lt;</span><span class="token operator">=</span> <span class="token number">1</span>
-    <span class="token keyword">return</span> res
+def count_diff_int(value1, value2):
+    res = 0
+    value = value1 ^ value2
+    x = 1
+    for i in range(64):
+        if x & value != 0:
+            res += 1
+        x <<= 1
+    return res
 
-<span class="token keyword">def</span> <span class="token function">simhash_</span><span class="token punctuation">(</span>sentence<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    keywords <span class="token operator">=</span> analyse<span class="token punctuation">.</span>extract_tags<span class="token punctuation">(</span>sentence<span class="token punctuation">,</span> topK<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">,</span> withWeight<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-    value_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-    <span class="token keyword">for</span> item <span class="token keyword">in</span> keywords<span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># print(item[0],item[1])</span>
-        value <span class="token operator">=</span> hash<span class="token punctuation">(</span>item<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        x <span class="token operator">=</span> <span class="token number">1</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            <span class="token keyword">if</span> x <span class="token operator">&amp;</span> value <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-                value_list<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-=</span> item<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                value_list<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> item<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
-            x <span class="token operator">&lt;&lt;</span><span class="token operator">=</span> <span class="token number">1</span>
-    value_str <span class="token operator">=</span> <span class="token string">''</span>
-    value_int <span class="token operator">=</span> <span class="token number">0</span>
-    x <span class="token operator">=</span> <span class="token number">1</span>
-    <span class="token keyword">for</span> item <span class="token keyword">in</span> value_list<span class="token punctuation">:</span>
-        <span class="token keyword">if</span> item <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
-            value_str <span class="token operator">+=</span> <span class="token string">'1'</span>
-            value_int <span class="token operator">|</span><span class="token operator">=</span> x
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            value_str <span class="token operator">+=</span> <span class="token string">'0'</span>
-        x <span class="token operator">&lt;&lt;</span><span class="token operator">=</span> <span class="token number">1</span>
+def simhash_(sentence):
+    keywords = analyse.extract_tags(sentence, topK=30, withWeight=True)
+    value_list = [0 for i in range(64)]
+    for item in keywords:
+        # print(item[0],item[1])
+        value = hash(item[0])
+        x = 1
+        for i in range(64):
+            if x & value == 0:
+                value_list[i] -= item[1]
+            else:
+                value_list[i] += item[1]
+            x <<= 1
+    value_str = ''
+    value_int = 0
+    x = 1
+    for item in value_list:
+        if item > 0:
+            value_str += '1'
+            value_int |= x
+        else:
+            value_str += '0'
+        x <<= 1
 
-    <span class="token keyword">return</span> value_str<span class="token punctuation">,</span> value_int
+    return value_str, value_int
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><strong>去重</strong></li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> pymongo
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">import pymongo
 
-MONGO_CONNECT <span class="token operator">=</span> <span class="token string">'xxx'</span> <span class="token comment" spellcheck="true"># mongo uri</span>
-MONGO_DBS <span class="token operator">=</span> <span class="token string">'xxx'</span> <span class="token comment" spellcheck="true"># mongo database name</span>
-MONGO_SOURCE_COLLECTION <span class="token operator">=</span> <span class="token string">'xxx'</span> <span class="token comment" spellcheck="true"># mongo source collectiton name</span>
-MONGO_TARGET_COLLECTION <span class="token operator">=</span> <span class="token string">'xxx'</span> <span class="token comment" spellcheck="true"># mongo target collectiton name</span>
-THRESHOLD <span class="token operator">=</span> <span class="token number">3</span>  <span class="token comment" spellcheck="true"># 局部敏感 hash 阈值， 小于这个值视为相同或者大面积重复</span>
+MONGO_CONNECT = 'xxx' # mongo uri
+MONGO_DBS = 'xxx' # mongo database name
+MONGO_SOURCE_COLLECTION = 'xxx' # mongo source collectiton name
+MONGO_TARGET_COLLECTION = 'xxx' # mongo target collectiton name
+THRESHOLD = 3  # 局部敏感 hash 阈值， 小于这个值视为相同或者大面积重复
 
-<span class="token comment" spellcheck="true"># 初步清洗一下文本，不用清洗可以略过</span>
-<span class="token keyword">def</span> <span class="token function">clean_ques</span><span class="token punctuation">(</span>ques_txt<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 初步清理从MongoDB上download的题目信息，主要是去掉一些css/html样式</span>
-    <span class="token comment" spellcheck="true"># txt = txt.decode('utf-8')</span>
-    tmp <span class="token operator">=</span> <span class="token number">0</span>
-    res <span class="token operator">=</span> <span class="token string">""</span>
-    <span class="token keyword">for</span> ch <span class="token keyword">in</span> ques_txt<span class="token punctuation">:</span>
-        <span class="token keyword">if</span> ch <span class="token operator">==</span> <span class="token string">'&lt;'</span><span class="token punctuation">:</span>
-            tmp <span class="token operator">=</span> tmp <span class="token operator">+</span> <span class="token number">1</span>
-            <span class="token keyword">continue</span>
-        <span class="token keyword">elif</span> ch <span class="token operator">==</span> <span class="token string">'>'</span><span class="token punctuation">:</span>
-            tmp <span class="token operator">=</span> tmp <span class="token operator">-</span> <span class="token number">1</span>
-            <span class="token keyword">continue</span>
-        <span class="token keyword">elif</span> tmp <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            res <span class="token operator">=</span> res <span class="token operator">+</span> ch
-    res <span class="token operator">=</span> res<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"&amp;nbsp;"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span>
-    res <span class="token operator">=</span> res<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">"\r\n"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span>
-    res <span class="token operator">=</span> res<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span> res<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">"收录："</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-    <span class="token keyword">return</span> res
+# 初步清洗一下文本，不用清洗可以略过
+def clean_ques(ques_txt):
+    # 初步清理从MongoDB上download的题目信息，主要是去掉一些css/html样式
+    # txt = txt.decode('utf-8')
+    tmp = 0
+    res = ""
+    for ch in ques_txt:
+        if ch == '<':
+            tmp = tmp + 1
+            continue
+        elif ch == '>':
+            tmp = tmp - 1
+            continue
+        elif tmp == 0:
+            res = res + ch
+    res = res.replace("&nbsp;", "")
+    res = res.replace("\r\n", "")
+    res = res[0: res.find("收录：")]
+    return res
 
-<span class="token comment" spellcheck="true"># 二进制的str转十进制的int</span>
-<span class="token keyword">def</span> <span class="token function">str2int</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    res <span class="token operator">=</span> <span class="token number">0</span>
-    x <span class="token operator">=</span> <span class="token number">1</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'1'</span><span class="token punctuation">:</span>
-            res <span class="token operator">|</span><span class="token operator">=</span> x
-        x <span class="token operator">&lt;&lt;</span><span class="token operator">=</span> <span class="token number">1</span>
-    <span class="token keyword">return</span> res
+# 二进制的str转十进制的int
+def str2int(data):
+    res = 0
+    x = 1
+    for i in range(len(data)):
+        if data[i] == '1':
+            res |= x
+        x <<= 1
+    return res
 
-<span class="token comment" spellcheck="true"># 十进制的int转二进制的str</span>
-<span class="token keyword">def</span> <span class="token function">int2str</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    res <span class="token operator">=</span> <span class="token string">''</span>
-    x <span class="token operator">=</span> <span class="token number">1</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">if</span> x <span class="token operator">&amp;</span> data <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            res <span class="token operator">+=</span> <span class="token string">'0'</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            res <span class="token operator">+=</span> <span class="token string">'1'</span>
-        x <span class="token operator">&lt;&lt;</span><span class="token operator">=</span> <span class="token number">1</span>
-    <span class="token keyword">return</span> res
+# 十进制的int转二进制的str
+def int2str(data):
+    res = ''
+    x = 1
+    for i in range(64):
+        if x & data == 0:
+            res += '0'
+        else:
+            res += '1'
+        x <<= 1
+    return res
 
 
-hash_map <span class="token operator">=</span> dict<span class="token punctuation">(</span><span class="token punctuation">)</span>
+hash_map = dict()
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+if __name__ == '__main__':
 
-    repeated_count <span class="token operator">=</span> <span class="token number">0</span>
-    count <span class="token operator">=</span> <span class="token number">0</span>
-    client <span class="token operator">=</span> pymongo<span class="token punctuation">.</span>MongoClient<span class="token punctuation">(</span>MONGO_CONNECT<span class="token punctuation">)</span>
-    db <span class="token operator">=</span> client<span class="token punctuation">[</span>MONGO_DBS<span class="token punctuation">]</span>
-    source_col <span class="token operator">=</span> db<span class="token punctuation">[</span>MONGO_SOURCE_COLLECTION<span class="token punctuation">]</span>
-    target_col <span class="token operator">=</span> db<span class="token punctuation">[</span>MONGO_TARGET_COLLECTION<span class="token punctuation">]</span>
-    sum_count <span class="token operator">=</span> source_col<span class="token punctuation">.</span>count<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 小规模测试时加limit, 正式时去掉limit</span>
-    source_cursor <span class="token operator">=</span> source_col<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>limit<span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+    repeated_count = 0
+    count = 0
+    client = pymongo.MongoClient(MONGO_CONNECT)
+    db = client[MONGO_DBS]
+    source_col = db[MONGO_SOURCE_COLLECTION]
+    target_col = db[MONGO_TARGET_COLLECTION]
+    sum_count = source_col.count()
+    # 小规模测试时加limit, 正式时去掉limit
+    source_cursor = source_col.find().limit(1000)
 
-    <span class="token comment" spellcheck="true"># print(source_col.count())</span>
-    <span class="token keyword">for</span> item <span class="token keyword">in</span> source_cursor<span class="token punctuation">:</span>
-        count <span class="token operator">+=</span> <span class="token number">1</span>
-        <span class="token keyword">if</span> count <span class="token operator">%</span> <span class="token number">100000</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"count: "</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"rate of progress: "</span><span class="token punctuation">,</span> <span class="token string">"%.2f%%"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>count<span class="token operator">/</span>sum_count<span class="token operator">*</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        ques <span class="token operator">=</span> clean_ques<span class="token punctuation">(</span>item<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># print(ques)</span>
-        old_id <span class="token operator">=</span> item<span class="token punctuation">[</span><span class="token string">'_id'</span><span class="token punctuation">]</span>
-        hash_value_str<span class="token punctuation">,</span> hash_value_int <span class="token operator">=</span> simhash_<span class="token punctuation">(</span>ques<span class="token punctuation">)</span>
-        flag <span class="token operator">=</span> <span class="token boolean">True</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            key <span class="token operator">=</span> str2int<span class="token punctuation">(</span>hash_value_str<span class="token punctuation">[</span>i<span class="token operator">*</span><span class="token number">16</span><span class="token punctuation">:</span>i<span class="token operator">*</span><span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">16</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-            content_list <span class="token operator">=</span> hash_map<span class="token punctuation">.</span>get<span class="token punctuation">(</span>key<span class="token punctuation">,</span> None<span class="token punctuation">)</span>
-            <span class="token keyword">if</span> <span class="token operator">not</span> content_list<span class="token punctuation">:</span>
-                new_list <span class="token operator">=</span> <span class="token punctuation">[</span>hash_value_int<span class="token punctuation">]</span>
-                hash_map<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> new_list
-            <span class="token keyword">elif</span> <span class="token operator">not</span> flag<span class="token punctuation">:</span>
-                content_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>hash_value_int<span class="token punctuation">)</span>
-                hash_map<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> content_list
-            <span class="token keyword">else</span><span class="token punctuation">:</span>
-                <span class="token keyword">for</span> item <span class="token keyword">in</span> content_list<span class="token punctuation">:</span>
-                    <span class="token keyword">if</span> count_diff_int<span class="token punctuation">(</span>item<span class="token punctuation">,</span> hash_value_int<span class="token punctuation">)</span> <span class="token operator">&lt;</span> THRESHOLD<span class="token punctuation">:</span>
-                        flag <span class="token operator">=</span> <span class="token boolean">False</span>
-                        <span class="token keyword">break</span>
-                <span class="token keyword">if</span> <span class="token operator">not</span> flag<span class="token punctuation">:</span>
-                    content_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>hash_value_int<span class="token punctuation">)</span>
-                    hash_map<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> content_list
-        <span class="token keyword">if</span> flag<span class="token punctuation">:</span>
-            data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'ques'</span><span class="token punctuation">:</span> ques<span class="token punctuation">,</span> <span class="token string">'old_id'</span><span class="token punctuation">:</span> old_id<span class="token punctuation">,</span> <span class="token string">'hash_value'</span><span class="token punctuation">:</span> str<span class="token punctuation">(</span>hash_value_int<span class="token punctuation">)</span><span class="token punctuation">}</span>
-            target_col<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            repeated_count <span class="token operator">+=</span> <span class="token number">1</span>
+    # print(source_col.count())
+    for item in source_cursor:
+        count += 1
+        if count % 100000 == 0:
+            print("count: ", count)
+            print("rate of progress: ", "%.2f%%" % (count/sum_count*100))
+        ques = clean_ques(item['data'])
+        # print(ques)
+        old_id = item['_id']
+        hash_value_str, hash_value_int = simhash_(ques)
+        flag = True
+        for i in range(4):
+            key = str2int(hash_value_str[i*16:i*(i+1)*16])
+            content_list = hash_map.get(key, None)
+            if not content_list:
+                new_list = [hash_value_int]
+                hash_map[key] = new_list
+            elif not flag:
+                content_list.append(hash_value_int)
+                hash_map[key] = content_list
+            else:
+                for item in content_list:
+                    if count_diff_int(item, hash_value_int) < THRESHOLD:
+                        flag = False
+                        break
+                if not flag:
+                    content_list.append(hash_value_int)
+                    hash_map[key] = content_list
+        if flag:
+            data = {'ques': ques, 'old_id': old_id, 'hash_value': str(hash_value_int)}
+            target_col.insert(data)
+        else:
+            repeated_count += 1
 
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"total documents: "</span><span class="token punctuation">,</span> sum_count<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"total count: "</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"repeated count: "</span><span class="token punctuation">,</span> repeated_count<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"valid count: "</span><span class="token punctuation">,</span> count <span class="token operator">-</span> repeated_count<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"valid rate: "</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token operator">-</span> repeated_count<span class="token operator">/</span>count<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"repeated rate: "</span><span class="token punctuation">,</span> repeated_count<span class="token operator">/</span>count<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    print("total documents: ", sum_count)
+    print("total count: ", count)
+    print("repeated count: ", repeated_count)
+    print("valid count: ", count - repeated_count)
+    print("valid rate: ", 1 - repeated_count/count)
+    print("repeated rate: ", repeated_count/count)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><strong>simhash test</strong></li>
 </ul>
-<pre class="line-numbers language-python"><code class="language-python">sentence1 <span class="token operator">=</span> <span class="token string">"I don't like the first one．I like _________．（　　）A．twoB．secondC．the second "</span>
-sentence2 <span class="token operator">=</span> <span class="token string">'To stay awake， he coffee and ordered _______．（　　）A．．otherC．the othersD．another           '</span>
+<pre class="line-numbers language-lang-python"><code class="language-lang-python">sentence1 = "I don't like the first one．I like _________．（　　）A．twoB．secondC．the second "
+sentence2 = 'To stay awake， he coffee and ordered _______．（　　）A．．otherC．the othersD．another           '
 
-str1<span class="token punctuation">,</span> _ <span class="token operator">=</span> simhash_<span class="token punctuation">(</span>sentence1<span class="token punctuation">)</span>
-str2<span class="token punctuation">,</span> _ <span class="token operator">=</span> simhash_<span class="token punctuation">(</span>sentence2<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>str1<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>str2<span class="token punctuation">)</span>
+str1, _ = simhash_(sentence1)
+str2, _ = simhash_(sentence2)
+print(str1)
+print(str2)
 
-<span class="token keyword">print</span><span class="token punctuation">(</span>count_diff_str<span class="token punctuation">(</span>str1<span class="token punctuation">,</span> str2<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+print(count_diff_str(str1, str2))
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1215,7 +1221,7 @@ str2<span class="token punctuation">,</span> _ <span class="token operator">=</s
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">115.5k</span>&nbsp;字
+                class="white-color">78.8k</span>&nbsp;字
             
             
             
