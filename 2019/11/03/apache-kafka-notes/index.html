@@ -513,7 +513,7 @@
 <li><p>发布-订阅（pub-sub)<br>消息保存在主题中，消费者可以订阅一个或者多个主题的消息，发布者和订阅者</p>
 </li>
 </ul>
-<p><img src="https://i.loli.net/2019/11/03/3DyicoCmYGgAa5x.png" alt="点对点"><img src="https://i.loli.net/2019/11/03/V9BcRuNbTqarZ6X.png" alt="发布-订阅"></p>
+<p><img src="https://i.loli.net/2019/11/03/3DyicoCmYGgAa5x.png" alt="点对点">)<img src="https://i.loli.net/2019/11/03/V9BcRuNbTqarZ6X.png" alt="发布-订阅"></p>
 <h3 id="1-2-Kafka"><a href="#1-2-Kafka" class="headerlink" title="1.2 Kafka"></a>1.2 Kafka</h3><blockquote>
 <ul>
 <li>Kafka 是一个分布式发布 - 订阅消息系统,</li>
@@ -625,12 +625,10 @@
 </ul>
 <h2 id="五、安装"><a href="#五、安装" class="headerlink" title="五、安装"></a>五、安装</h2><h3 id="Mac-环境"><a href="#Mac-环境" class="headerlink" title="Mac 环境"></a>Mac 环境</h3><ol>
 <li><p>JDK8 环境安装</p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">brew cask install homebrew/cask-versions/adoptopenjdk8
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">brew cask <span class="token function">install</span> homebrew/cask-versions/adoptopenjdk8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>kafka 安装</p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">brew install kafka
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">brew <span class="token function">install</span> kafka<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>安装会依赖zookeeper。<br>安装目录：/usr/local/Cellar/kafka/2.3.1</p>
 </li>
 <li><p>配置文件位置：/usr/local/etc/kafka</p>
@@ -640,15 +638,12 @@
 </ul>
 </li>
 <li><p>启动zookeeper:</p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>启动kafka:</p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">kafka-server-start /usr/local/etc/kafka/server.properties
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">kafka-server-start /usr/local/etc/kafka/server.properties<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><strong>可以zookeeper和kafka一起启动</strong></p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties & kafka-server-start /usr/local/etc/kafka/server.properties
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties <span class="token operator">&amp;</span> kafka-server-start /usr/local/etc/kafka/server.properties<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p>本地测试</p>
 <blockquote>
@@ -657,24 +652,20 @@
 <ul>
 <li>创建topic : 使用单个分区和只有一个副本创建一个名为“test”的主题</li>
 </ul>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic <span class="token function">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>查看创建的topic</li>
 </ul>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">kafka-topics --list --zookeeper localhost:2181
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">kafka-topics --list --zookeeper localhost:2181<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>生产消息</li>
 </ul>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">kafka-console-producer --broker-list localhost:9092 --topic test
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">kafka-console-producer --broker-list localhost:9092 --topic <span class="token function">test</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>消费消息</li>
 </ul>
 <p>新开一个terminal window 输入下方命令，然后再生产窗口输入消息</p>
-<pre class="line-numbers language-lang-bash"><code class="language-lang-bash">kafka-console-consumer --bootstrap-server localhost:9092 --topic test --from-beginning
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">kafka-console-consumer --bootstrap-server localhost:9092 --topic <span class="token function">test</span> --from-beginning<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2019/11/04/A9mjxtc7sGUL8Sh.png" alt="生产-消费"></p>
 </li>
 </ol>
@@ -686,8 +677,9 @@
 <li><a href="https://blog.csdn.net/yuan_xw/article/details/51210954" target="_blank" rel="noopener">Kafka教程(一)Kafka入门教程</a></li>
 <li><a href="https://juejin.im/post/5d315daee51d4556bb4cd45a" target="_blank" rel="noopener">Kafka基本架构和原理（学习点）</a></li>
 <li><a href="https://www.jianshu.com/p/1f6387d18989" target="_blank" rel="noopener">mac 安装kafka</a></li>
-<li><a href="https://pykafka.readthedocs.io/en/latest/#" target="_blank" rel="noopener">PyKafka官方文档</a><br><strong>[声明]</strong><br>资源源自网络，侵删！</li>
+<li><a href="https://pykafka.readthedocs.io/en/latest/#" target="_blank" rel="noopener">PyKafka官方文档</a></li>
 </ul>
+<p><strong>[声明]</strong><br>资源源自网络，侵删！</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1192,7 +1184,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">78.8k</span>&nbsp;字
+                class="white-color">119.8k</span>&nbsp;字
             
             
             
