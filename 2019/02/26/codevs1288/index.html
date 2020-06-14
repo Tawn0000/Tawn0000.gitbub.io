@@ -477,14 +477,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        730
+                        533
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        2 分
                     </div>
                     
                 
@@ -513,59 +513,59 @@
 <p><strong>【测试网站】</strong></p>
 <p><a href="http://codevs.cn/problem/1288/" target="_blank" rel="noopener">codevs1288</a></p>
 <h2 id="二、题目分析"><a href="#二、题目分析" class="headerlink" title="二、题目分析"></a>二、题目分析</h2><p>题目意思为给定一个单位分数，拆分为几个单位分数之和，要求不能有相同的单位分数，且个数最少。当个数相同的，最小的分数最大的方案为最优。<br>所以可以从小到大枚举个数，然后dfs搜索，即迭代加深搜索。<br>需要注意的是，需要剪枝，<br>1.枚举分母时由于受分数大小限制，所以分母有下限。<br>2.枚举分母是由于总个数确定maxd，当前已枚举的个数确定d,所以剩余个数确定maxd-d+1,<br>所以分母有上限，(maxd-d+1)x(1/i) &gt; x/y  </p>
-<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;bits/stdc++.h></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> INF <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token keyword">int</span> maxn <span class="token operator">=</span> <span class="token number">2000</span><span class="token punctuation">;</span>
-<span class="token keyword">typedef</span> <span class="token keyword">long</span> <span class="token keyword">long</span> LL<span class="token punctuation">;</span>
+<h2 id="三、代码示例"><a href="#三、代码示例" class="headerlink" title="三、代码示例"></a>三、代码示例</h2><pre class="line-numbers language-lang-cpp"><code class="language-lang-cpp">#include <bits/stdc++.h>
+using namespace std;
+const int INF = 0x3f3f3f3f;
+const int maxn = 2000;
+typedef long long LL;
 
-<span class="token keyword">int</span> maxd <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-LL ans<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">,</span>cur<span class="token punctuation">[</span>maxn<span class="token punctuation">]</span><span class="token punctuation">;</span>
+int maxd = 0;
+LL ans[maxn],cur[maxn];
 
-LL <span class="token function">gcd</span><span class="token punctuation">(</span>LL a<span class="token punctuation">,</span> LL b<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> b <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">?</span> a <span class="token operator">:</span> <span class="token function">gcd</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span>a<span class="token operator">%</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-<span class="token keyword">int</span> <span class="token function">st</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">)</span> <span class="token keyword">if</span><span class="token punctuation">(</span>y <span class="token operator">&lt;=</span> x<span class="token operator">*</span>i<span class="token punctuation">)</span><span class="token keyword">return</span> i<span class="token punctuation">;</span><span class="token punctuation">}</span>
+LL gcd(LL a, LL b) { return b == 0 ? a : gcd(b,a%b);}
+int st(int x, int y) {for(int i = 2; ; i++ ) if(y <= x*i)return i;}
 
-<span class="token keyword">bool</span> <span class="token function">check</span><span class="token punctuation">(</span><span class="token keyword">int</span> d<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>ans<span class="token punctuation">[</span>d<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>ans<span class="token punctuation">[</span>d<span class="token punctuation">]</span> <span class="token operator">></span> cur<span class="token punctuation">[</span>d<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+bool check(int d)
+{
+  if(ans[d] == -1) return true;
+  if(ans[d] > cur[d]) return true;
+  return false;
+}
 
-<span class="token keyword">bool</span> <span class="token function">idfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> d<span class="token punctuation">,</span> <span class="token keyword">int</span> mind<span class="token punctuation">,</span> LL x<span class="token punctuation">,</span> LL y<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//mind 最小的分母</span>
-<span class="token punctuation">{</span>
-  <span class="token keyword">bool</span> ok <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>d <span class="token operator">==</span> maxd<span class="token punctuation">)</span>
-  <span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>y<span class="token operator">%</span>x <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    cur<span class="token punctuation">[</span>d<span class="token punctuation">]</span> <span class="token operator">=</span> y<span class="token operator">/</span>x<span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">check</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> d<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>  ans<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> cur<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">int</span> s <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>mind<span class="token punctuation">,</span><span class="token function">st</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//分母下界</span>
-  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> s<span class="token punctuation">;</span> <span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
-   <span class="token punctuation">{</span>
-     <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>maxd<span class="token operator">-</span>d<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span>y <span class="token operator">&lt;=</span> x<span class="token operator">*</span>i<span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//剪枝优化</span>
-     cur<span class="token punctuation">[</span>d<span class="token punctuation">]</span> <span class="token operator">=</span> i<span class="token punctuation">;</span>
-     LL xx <span class="token operator">=</span> x<span class="token operator">*</span>i<span class="token operator">-</span>y<span class="token punctuation">;</span> LL yy <span class="token operator">=</span> y<span class="token operator">*</span>i<span class="token punctuation">;</span> LL g <span class="token operator">=</span> <span class="token function">gcd</span><span class="token punctuation">(</span>xx<span class="token punctuation">,</span>yy<span class="token punctuation">)</span><span class="token punctuation">;</span>
-     <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">idfs</span><span class="token punctuation">(</span>d<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>xx<span class="token operator">/</span>g<span class="token punctuation">,</span>yy<span class="token operator">/</span>g<span class="token punctuation">)</span><span class="token punctuation">)</span> ok <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-   <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> ok<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+bool idfs(int d, int mind, LL x, LL y) //mind 最小的分母
+{
+  bool ok = false;
+  if(d == maxd)
+  {
+    if(y%x != 0) return false;
+    cur[d] = y/x;
+    if(check(d))
+    for(int i = 1; i <= d; i++)  ans[i] = cur[i];
+    return true;
+  }
+  int s = max(mind,st(x,y));  //分母下界
+  for(int i = s; ;i++)
+   {
+     if((maxd-d+1)*y <= x*i) break; //剪枝优化
+     cur[d] = i;
+     LL xx = x*i-y; LL yy = y*i; LL g = gcd(xx,yy);
+     if(idfs(d+1,i+1,xx/g,yy/g)) ok = true;
+   }
+  return ok;
+}
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-  LL x<span class="token punctuation">,</span>y<span class="token punctuation">;</span>
-  <span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%lld%lld"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>x<span class="token punctuation">,</span><span class="token operator">&amp;</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">if</span><span class="token punctuation">(</span>y<span class="token operator">%</span>x <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>y<span class="token operator">/</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-  <span class="token keyword">int</span> s <span class="token operator">=</span> <span class="token function">st</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token function">memset</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">++</span>maxd<span class="token punctuation">)</span>  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">idfs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>s<span class="token punctuation">,</span>x<span class="token punctuation">,</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
-  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> maxd<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%lld%c"</span><span class="token punctuation">,</span> ans<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> i <span class="token operator">==</span> maxd<span class="token operator">?</span> <span class="token string">'\n'</span> <span class="token operator">:</span> <span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+int main()
+{
+  LL x,y;
+  scanf("%lld%lld",&x,&y);
+  if(y%x == 0) {printf("%d\n",y/x);return 0;}
+  int s = st(x,y);
+  memset(ans,-1,sizeof(ans));
+  while(++maxd)  if(idfs(1,s,x,y)) break;
+  for(int i = 1; i <= maxd; i++)
+    printf("%lld%c", ans[i], i == maxd? '\n' : ' ');
+  return 0;
+}
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -1077,7 +1077,7 @@ Speakless很早就想出国，现在他已经考完了所有需要的考试，�
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">123.1k</span>&nbsp;字
+                class="white-color">76.6k</span>&nbsp;字
             
             
             

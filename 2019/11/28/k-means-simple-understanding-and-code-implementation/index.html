@@ -484,7 +484,7 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        819
+                        818
                     </div>
                     
 
@@ -531,68 +531,69 @@
 <li>每次选择一个簇一分为二，选取簇的依据取决于其是否能最大程度降低SSE即选取聚类后SSE最小的一个簇进行划分。</li>
 <li>直至有k个簇</li>
 </ul>
-<h2 id="四、Kmeans-Code"><a href="#四、Kmeans-Code" class="headerlink" title="四、Kmeans Code"></a>四、Kmeans Code</h2><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
-<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
-<span class="token keyword">import</span> scipy<span class="token punctuation">.</span>io <span class="token keyword">as</span> scio
-<span class="token comment" spellcheck="true"># %matplotlib inline</span>
+<h2 id="四、Kmeans-Code"><a href="#四、Kmeans-Code" class="headerlink" title="四、Kmeans Code"></a>四、Kmeans Code</h2><pre class="line-numbers language-lang-python"><code class="language-lang-python">import numpy as np
+import matplotlib.pyplot as plt
+import scipy.io as scio
+# %matplotlib inline
 
-<span class="token keyword">def</span> <span class="token function">K_Means</span><span class="token punctuation">(</span>X<span class="token punctuation">,</span> sp<span class="token punctuation">,</span> K<span class="token punctuation">)</span><span class="token punctuation">:</span>
+def K_Means(X, sp, K):
 
-    <span class="token comment" spellcheck="true"># 计算临近点</span>
-    <span class="token keyword">def</span> <span class="token function">near</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        dis <span class="token operator">=</span> <span class="token punctuation">[</span>np<span class="token punctuation">.</span>sum<span class="token punctuation">(</span>np<span class="token punctuation">.</span>square<span class="token punctuation">(</span>x<span class="token operator">-</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> sp<span class="token punctuation">]</span>
-        <span class="token keyword">return</span> dis<span class="token punctuation">.</span>index<span class="token punctuation">(</span>min<span class="token punctuation">(</span>dis<span class="token punctuation">)</span><span class="token punctuation">)</span>   
-    <span class="token comment" spellcheck="true"># 打印结果</span>
-    <span class="token keyword">def</span> <span class="token function">print_result</span><span class="token punctuation">(</span>sp_list<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true">#打印中心点迭代轨迹</span>
-        sp_list <span class="token operator">=</span> <span class="token punctuation">[</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> sp_list<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">for</span> k <span class="token keyword">in</span> range<span class="token punctuation">(</span>K<span class="token punctuation">)</span><span class="token punctuation">]</span>
-        <span class="token keyword">for</span> k <span class="token keyword">in</span> range<span class="token punctuation">(</span>K<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>sp_list<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> sp_list<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'k->'</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">'type{}'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    # 计算临近点
+    def near(p):
+        dis = [np.sum(np.square(x-p)) for x in sp]
+        return dis.index(min(dis))   
+    # 打印结果
+    def print_result(sp_list):
+        #打印中心点迭代轨迹
+        sp_list = [np.array([x[k] for x in sp_list]) for k in range(K)]
+        for k in range(K):
+            plt.plot(sp_list[k][:,0], sp_list[k][:,1], 'k->', label='type{}'.format(k))
 
-        <span class="token comment" spellcheck="true">#分类打印其他点</span>
-        p_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">for</span> k <span class="token keyword">in</span> range<span class="token punctuation">(</span>K<span class="token punctuation">)</span><span class="token punctuation">]</span>
-        <span class="token keyword">for</span> p <span class="token keyword">in</span> X<span class="token punctuation">:</span>
-            i <span class="token operator">=</span> near<span class="token punctuation">(</span>p<span class="token punctuation">)</span>            
-            p_list<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>p<span class="token punctuation">)</span>
-        p_list <span class="token operator">=</span> <span class="token punctuation">[</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> p_list<span class="token punctuation">]</span>
+        #分类打印其他点
+        p_list = [[] for k in range(K)]
+        for p in X:
+            i = near(p)            
+            p_list[i].append(p)
+        p_list = [np.array(x) for x in p_list]
 
-        color <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'r'</span><span class="token punctuation">,</span><span class="token string">'g'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">]</span>    
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>K<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>p_list<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> p_list<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>color<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span><span class="token string">'o'</span><span class="token punctuation">)</span>
+        color = ['r','g','b']    
+        for i in range(K):
+            plt.plot(p_list[i][:,0], p_list[i][:,1],color[i]+'o')
 
-        plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'K-Means Result'</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'X'</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Y'</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span>
-        plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        plt.title('K-Means Result')
+        plt.xlabel('X')
+        plt.ylabel('Y')
+        plt.legend('123')
+        plt.show()
 
-    <span class="token comment" spellcheck="true"># 迭代中心点</span>
-    sp_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-    sp_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>sp<span class="token punctuation">)</span>
-    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-        count <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>K<span class="token punctuation">)</span>
-        sp_t <span class="token operator">=</span> np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span>K<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> p <span class="token keyword">in</span> X<span class="token punctuation">:</span>
-            i <span class="token operator">=</span> near<span class="token punctuation">(</span>p<span class="token punctuation">)</span>            
-            count<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
-            sp_t<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> p
-        sp_t <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span>sp_t<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">/</span>count<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>K<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-        SSE <span class="token operator">=</span> np<span class="token punctuation">.</span>sum<span class="token punctuation">(</span>np<span class="token punctuation">.</span>square<span class="token punctuation">(</span>sp<span class="token operator">-</span>sp_t<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token keyword">if</span> SSE <span class="token operator">&lt;</span> <span class="token number">0.001</span><span class="token punctuation">:</span>
-            <span class="token keyword">break</span>
-        sp <span class="token operator">=</span> sp_t
-        sp_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>sp<span class="token punctuation">)</span>
-    print_result<span class="token punctuation">(</span>sp_list<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'聚类中心:'</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> p <span class="token keyword">in</span> sp<span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">','</span><span class="token punctuation">)</span>
+    # 迭代中心点
+    sp_list = []
+    sp_list.append(sp)
+    while True:
+        count = np.zeros(K)
+        sp_t = np.zeros((K,2))
+        for p in X:
+            i = near(p)            
+            count[i] += 1
+            sp_t[i] += p
+        sp_t = np.array([sp_t[i]/count[i] for i in range(K)])
+        SSE = np.sum(np.square(sp-sp_t))
+        if SSE < 0.001:
+            break
+        sp = sp_t
+        sp_list.append(sp)
+    print_result(sp_list)
+    print('聚类中心:')
+    for p in sp:
+        print(p, end=',')
 
-<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
-    data <span class="token operator">=</span> scio<span class="token punctuation">.</span>loadmat<span class="token punctuation">(</span><span class="token string">'ex7data2.mat'</span><span class="token punctuation">)</span>
-    X <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token string">'X'</span><span class="token punctuation">]</span>
-    K <span class="token operator">=</span> <span class="token number">3</span>
-    sp <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># starting point</span>
-    K_Means<span class="token punctuation">(</span>X<span class="token punctuation">,</span> sp<span class="token punctuation">,</span> K<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+if __name__ == '__main__':
+    data = scio.loadmat('ex7data2.mat')
+    X = data['X']
+    K = 3
+    sp = np.array([[3, 3], [6, 2], [8, 5]]) # starting point
+    K_Means(X, sp, K)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="https://i.loli.net/2019/11/28/gWQ9ZO6CwVMrA34.png" alt="kmeans聚类结果"></p>
 <p><strong>K为3聚类中心</strong>: [1.95399466 5.02557006],[3.04367119 1.01541041],[6.03366736 3.00052511]</p>
 <p>[测试数据下载地址]： <a href="https://uploader.shimo.im/f/7cTjEl5cRAINXBO8.mat?attname=ex7data2.mat&amp;download" target="_blank" rel="noopener">ex7data2.mat</a><br>[参考资料]：<a href="https://www.cnblogs.com/pinard/p/6164214.html" target="_blank" rel="noopener">K-Means聚类算法原理</a></p>
@@ -1109,7 +1110,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">123.1k</span>&nbsp;字
+                class="white-color">76.6k</span>&nbsp;字
             
             
             
