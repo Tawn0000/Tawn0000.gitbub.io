@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-06-03T07:56:07.097Z</updated>
+  <updated>2020-07-21T06:57:14.878Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Monotone Queue Problem Set</title>
+    <link href="https://tawn0000.github.io/2020/07/21/monotone-queue-problem-set/"/>
+    <id>https://tawn0000.github.io/2020/07/21/monotone-queue-problem-set/</id>
+    <published>2020-07-21T06:35:36.000Z</published>
+    <updated>2020-07-21T06:57:14.878Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;1-luoguP3957-跳房子&quot;&gt;&lt;a href=&quot;#1-luoguP3957-跳房子&quot; class=&quot;headerlink&quot; title=&quot;1. luoguP3957 跳房子&quot;&gt;&lt;/a&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Segment Tree Problem Set</title>
@@ -591,36 +614,6 @@
       <category term="vim" scheme="https://tawn0000.github.io/tags/vim/"/>
     
       <category term="multiprocessing" scheme="https://tawn0000.github.io/tags/multiprocessing/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>The ways to convert Jupyter(.ipynb) to Python(.py), HTML(.html), Markdown(.md) or PDF(.pdf)</title>
-    <link href="https://tawn0000.github.io/2019/10/18/the-ways-to-convert-jupyter-ipynb-to-python-py-html-html-markdown-md-or-pdf-pdf/"/>
-    <id>https://tawn0000.github.io/2019/10/18/the-ways-to-convert-jupyter-ipynb-to-python-py-html-html-markdown-md-or-pdf-pdf/</id>
-    <published>2019-10-18T06:38:53.000Z</published>
-    <updated>2020-01-11T10:57:47.401Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;nbconvert&quot;&gt;&lt;a href=&quot;#nbconvert&quot; class=&quot;headerlink&quot; title=&quot;nbconvert&quot;&gt;&lt;/a&gt;nbconvert&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;首先我们需要安装ipython 和 nbconvert
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Python" scheme="https://tawn0000.github.io/categories/Python/"/>
-    
-    
-      <category term="tools" scheme="https://tawn0000.github.io/tags/tools/"/>
-    
-      <category term="Jupyter Notebook" scheme="https://tawn0000.github.io/tags/Jupyter-Notebook/"/>
     
   </entry>
   
