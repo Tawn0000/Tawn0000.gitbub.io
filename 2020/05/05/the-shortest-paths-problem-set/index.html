@@ -1565,7 +1565,7 @@ vector <span class="token operator">&lt;</span><span class="token keyword">int</
 <h2 id="10-HDU1546-Idiomatic-Phrases-Game"><a href="#10-HDU1546-Idiomatic-Phrases-Game" class="headerlink" title="10. HDU1546 Idiomatic Phrases Game"></a><a href="http://acm.hdu.edu.cn/showproblem.php?pid=1546" target="_blank" rel="noopener">10. HDU1546 Idiomatic Phrases Game</a></h2><p><strong>【题目描述】</strong><br>汤姆正在玩一个叫习语游戏的游戏。成语由几个汉字组成，有一定的含义。这个游戏将给汤姆两个习语。他应该建立一个习语列表，列表以给定的两个习语开始和结束。对于相邻的两个习语，前一个习语的最后一个汉字应与后一个习语的第一个汉字相同。对于每一次，Tom都有一个字典，他必须从中挑选成语，字典中的每个习语都有一个值，表示Tom需要多长时间才能在最终列表中找到下一个合适的习语。现在你被要求写一个程序来计算最短的时间，汤姆会给你习语字典。<br><strong>【输入】</strong><br>输入由几个测试用例组成。每个测试用例都包含一个习语字典。字典由整型N (0 &lt; N &lt; 1000)在一行中启动。下面是N行。每一行包含一个整数T (Tom计算所需的时间)和一个习语。一个习语由几个汉字组成(至少三个)，一个汉字由四个十六进制的数字组成(即注意，字典中的第一个和最后一个习语是游戏中的源习语和目标习语。输入结果是N = 0。不要处理这种情况。<br><strong>【输出】</strong><br>每种情况一行。输出一个整数，表示时间最短。如果列表不能构建，请输出-1。<br><strong>【样例输入】</strong><br>5<br>5 12345978ABCD2341<br>5 23415608ACBD3412<br>7 34125678AEFD4123<br>15 23415673ACC34123<br>4 41235673FBCD2156<br>2<br>20 12345678ABCD<br>30 DCBF5432167D<br>0<br><strong>【样例输出】</strong><br>17<br>-1<br><strong>【解析】</strong></p>
 <ul>
 <li>对于所有习语，都用map映射标号</li>
-<li>两两习语检查，首位四字符是否相同，相同则建边。</li>
+<li>两两习语检查，首尾四字符是否相同，相同则建边。</li>
 <li>跑单源最短路</li>
 </ul>
 <p><strong>【代码】</strong></p>
