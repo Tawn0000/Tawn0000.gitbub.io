@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-07-29T12:57:14.523Z</updated>
+  <updated>2020-09-16T09:05:23.668Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL Problems Set</title>
+    <link href="https://tawn0000.github.io/2020/09/16/sql-problems-set/"/>
+    <id>https://tawn0000.github.io/2020/09/16/sql-problems-set/</id>
+    <published>2020-09-15T16:22:21.000Z</published>
+    <updated>2020-09-16T09:05:23.668Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;一些SQL操作，使用MYSQL语句&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;175-组合两个表&quot;&gt;&lt;a href=&quot;#175-组合两个表&quot; class=&quot;headerlink&quot; title=&quot;175. 组合两个表&quot;&gt;&lt;/a&gt;175.
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Data Base" scheme="https://tawn0000.github.io/categories/Data-Base/"/>
+    
+    
+      <category term="Data Base" scheme="https://tawn0000.github.io/tags/Data-Base/"/>
+    
+  </entry>
   
   <entry>
     <title>Monotone Queue Problem Set</title>
@@ -342,9 +372,9 @@
       <category term="Algorithm" scheme="https://tawn0000.github.io/categories/Algorithm/"/>
     
     
-      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
-    
       <category term="Leetcode" scheme="https://tawn0000.github.io/tags/Leetcode/"/>
+    
+      <category term="Algorithm" scheme="https://tawn0000.github.io/tags/Algorithm/"/>
     
   </entry>
   
@@ -588,40 +618,6 @@
       <category term="IELTS" scheme="https://tawn0000.github.io/tags/IELTS/"/>
     
       <category term="English" scheme="https://tawn0000.github.io/tags/English/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Useful Articles</title>
-    <link href="https://tawn0000.github.io/2019/10/18/useful-articles/"/>
-    <id>https://tawn0000.github.io/2019/10/18/useful-articles/</id>
-    <published>2019-10-18T07:23:03.000Z</published>
-    <updated>2020-01-30T15:23:30.060Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;资源&quot;&gt;&lt;a href=&quot;#资源&quot; class=&quot;headerlink&quot; title=&quot;资源&quot;&gt;&lt;/a&gt;资源&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Others" scheme="https://tawn0000.github.io/categories/Others/"/>
-    
-    
-      <category term="Latex" scheme="https://tawn0000.github.io/tags/Latex/"/>
-    
-      <category term="htop" scheme="https://tawn0000.github.io/tags/htop/"/>
-    
-      <category term="vim" scheme="https://tawn0000.github.io/tags/vim/"/>
-    
-      <category term="multiprocessing" scheme="https://tawn0000.github.io/tags/multiprocessing/"/>
     
   </entry>
   
