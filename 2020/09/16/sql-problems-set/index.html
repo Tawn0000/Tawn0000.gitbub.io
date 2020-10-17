@@ -478,14 +478,14 @@ Leetcode175. 组合两个表表1: Person
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        3.9k
+                        4.5k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        18 分
+                        20 分
                     </div>
                     
                 
@@ -523,15 +523,12 @@ PersonId 是上表主键
 | City        | varchar |
 | State       | varchar |
 +-------------+---------+
-AddressId 是上表主键
-</code></pre><p>编写一个 SQL 查询，满足条件：无论 person 是否有地址信息，都需要基于上述两表提供 person 的以下信息： </p>
+AddressId 是上表主键</code></pre><p>编写一个 SQL 查询，满足条件：无论 person 是否有地址信息，都需要基于上述两表提供 person 的以下信息： </p>
 <p>FirstName, LastName, City, State</p>
 <p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">Select FirstName, LastName, City, State from Person left join Address
-on Person.PersonId = Address.PersonId;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">Select FirstName, LastName, City, State from Person left join Address using(PersonId);
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">Select</span> FirstName<span class="token punctuation">,</span> LastName<span class="token punctuation">,</span> City<span class="token punctuation">,</span> State <span class="token keyword">from</span> Person <span class="token keyword">left</span> <span class="token keyword">join</span> Address
+<span class="token keyword">on</span> Person<span class="token punctuation">.</span>PersonId <span class="token operator">=</span> Address<span class="token punctuation">.</span>PersonId<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">Select</span> FirstName<span class="token punctuation">,</span> LastName<span class="token punctuation">,</span> City<span class="token punctuation">,</span> State <span class="token keyword">from</span> Person <span class="token keyword">left</span> <span class="token keyword">join</span> Address <span class="token keyword">using</span><span class="token punctuation">(</span>PersonId<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/combine-two-tables" target="_blank" rel="noopener">https://leetcode-cn.com/problems/combine-two-tables</a></p>
 <h3 id="176-第二高的薪水"><a href="#176-第二高的薪水" class="headerlink" title="176. 第二高的薪水"></a>176. 第二高的薪水</h3><p>编写一个 SQL 查询，获取 Employee 表中第二高的薪水（Salary） 。</p>
 <pre><code>+----+--------+
@@ -540,19 +537,16 @@ on Person.PersonId = Address.PersonId;
 | 1  | 100    |
 | 2  | 200    |
 | 3  | 300    |
-+----+--------+
-</code></pre><p>例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。</p>
++----+--------+</code></pre><p>例如上述 Employee 表，SQL查询应该返回 200 作为第二高的薪水。如果不存在第二高的薪水，那么查询应返回 null。</p>
 <pre><code>+---------------------+
 | SecondHighestSalary |
 +---------------------+
 | 200                 |
-+---------------------+
-</code></pre><p><strong>code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># 因为需要处理不足设为NULL的情况，所以使用临时表
-Select (Select distinct Salary from Employee
-order by Salary desc
-limit 1 offset 1) as SecondHighestSalary;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
++---------------------+</code></pre><p><strong>code</strong></p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 因为需要处理不足设为NULL的情况，所以使用临时表</span>
+<span class="token keyword">Select</span> <span class="token punctuation">(</span><span class="token keyword">Select</span> <span class="token keyword">distinct</span> Salary <span class="token keyword">from</span> Employee
+<span class="token keyword">order</span> <span class="token keyword">by</span> Salary <span class="token keyword">desc</span>
+<span class="token keyword">limit</span> <span class="token number">1</span> <span class="token keyword">offset</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">as</span> SecondHighestSalary<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/second-highest-salary" target="_blank" rel="noopener">https://leetcode-cn.com/problems/second-highest-salary</a></p>
 <h3 id="177-第N高的薪水"><a href="#177-第N高的薪水" class="headerlink" title="177. 第N高的薪水"></a>177. 第N高的薪水</h3><p>编写一个 SQL 查询，获取 Employee 表中第 n 高的薪水（Salary）。</p>
 <pre><code>+----+--------+
@@ -561,73 +555,67 @@ limit 1 offset 1) as SecondHighestSalary;
 | 1  | 100    |
 | 2  | 200    |
 | 3  | 300    |
-+----+--------+
-</code></pre><p>例如上述 Employee 表，n = 2 时，应返回第二高的薪水 200。如果不存在第 n 高的薪水，那么查询应返回 null。</p>
++----+--------+</code></pre><p>例如上述 Employee 表，n = 2 时，应返回第二高的薪水 200。如果不存在第 n 高的薪水，那么查询应返回 null。</p>
 <pre><code>+------------------------+
 | getNthHighestSalary(2) |
 +------------------------+
 | 200                    |
-+------------------------+
-</code></pre><p><strong>Code</strong></p>
++------------------------+</code></pre><p><strong>Code</strong></p>
 <ul>
 <li>单表查询</li>
 </ul>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
-BEGIN
-  Set N := N-1;
-  RETURN (
-      # Write your MySQL query statement below.
-      Select distinct Salary from Employee
-      order by Salary desc
-      limit 1 offset N
-  );
-END
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># 速度比distinct快
-CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
-BEGIN
-  Set N := N-1;
-  RETURN (
-      # Write your MySQL query statement below.
-      Select  Salary from Employee
-      group by Salary
-      order by Salary desc
-      limit 1 offset N
-  );
-END
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">FUNCTION</span> getNthHighestSalary<span class="token punctuation">(</span>N <span class="token keyword">INT</span><span class="token punctuation">)</span> <span class="token keyword">RETURNS</span> <span class="token keyword">INT</span>
+<span class="token keyword">BEGIN</span>
+  <span class="token keyword">Set</span> N :<span class="token operator">=</span> N<span class="token number">-1</span><span class="token punctuation">;</span>
+  <span class="token keyword">RETURN</span> <span class="token punctuation">(</span>
+      <span class="token comment" spellcheck="true"># Write your MySQL query statement below.</span>
+      <span class="token keyword">Select</span> <span class="token keyword">distinct</span> Salary <span class="token keyword">from</span> Employee
+      <span class="token keyword">order</span> <span class="token keyword">by</span> Salary <span class="token keyword">desc</span>
+      <span class="token keyword">limit</span> <span class="token number">1</span> <span class="token keyword">offset</span> N
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 速度比distinct快</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">FUNCTION</span> getNthHighestSalary<span class="token punctuation">(</span>N <span class="token keyword">INT</span><span class="token punctuation">)</span> <span class="token keyword">RETURNS</span> <span class="token keyword">INT</span>
+<span class="token keyword">BEGIN</span>
+  <span class="token keyword">Set</span> N :<span class="token operator">=</span> N<span class="token number">-1</span><span class="token punctuation">;</span>
+  <span class="token keyword">RETURN</span> <span class="token punctuation">(</span>
+      <span class="token comment" spellcheck="true"># Write your MySQL query statement below.</span>
+      <span class="token keyword">Select</span>  Salary <span class="token keyword">from</span> Employee
+      <span class="token keyword">group</span> <span class="token keyword">by</span> Salary
+      <span class="token keyword">order</span> <span class="token keyword">by</span> Salary <span class="token keyword">desc</span>
+      <span class="token keyword">limit</span> <span class="token number">1</span> <span class="token keyword">offset</span> N
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>子查询</li>
 </ul>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># 速度比前两个更慢
-CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
-BEGIN
-  RETURN (
-      # Write your MySQL query statement below.
-      Select distinct e.Salary
-      from Employee e
-      where (select count(distinct Salary)
-             from Employee
-             where Salary > e.Salary
-              ) = N-1
-  );
-END
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 速度比前两个更慢</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">FUNCTION</span> getNthHighestSalary<span class="token punctuation">(</span>N <span class="token keyword">INT</span><span class="token punctuation">)</span> <span class="token keyword">RETURNS</span> <span class="token keyword">INT</span>
+<span class="token keyword">BEGIN</span>
+  <span class="token keyword">RETURN</span> <span class="token punctuation">(</span>
+      <span class="token comment" spellcheck="true"># Write your MySQL query statement below.</span>
+      <span class="token keyword">Select</span> <span class="token keyword">distinct</span> <span class="token number">e</span><span class="token punctuation">.</span>Salary
+      <span class="token keyword">from</span> Employee <span class="token number">e</span>
+      <span class="token keyword">where</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> Salary<span class="token punctuation">)</span>
+             <span class="token keyword">from</span> Employee
+             <span class="token keyword">where</span> Salary <span class="token operator">></span> <span class="token number">e</span><span class="token punctuation">.</span>Salary
+              <span class="token punctuation">)</span> <span class="token operator">=</span> N<span class="token number">-1</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>自连接</li>
 </ul>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
-BEGIN
-  RETURN (
-      # Write your MySQL query statement below.
-      Select e1.Salary
-      from Employee e1 join Employee e2
-      on e1.Salary <= e2.Salary
-      group by e1.Salary
-      having  count(distinct e2.Salary) = N
-  );
-END
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">FUNCTION</span> getNthHighestSalary<span class="token punctuation">(</span>N <span class="token keyword">INT</span><span class="token punctuation">)</span> <span class="token keyword">RETURNS</span> <span class="token keyword">INT</span>
+<span class="token keyword">BEGIN</span>
+  <span class="token keyword">RETURN</span> <span class="token punctuation">(</span>
+      <span class="token comment" spellcheck="true"># Write your MySQL query statement below.</span>
+      <span class="token keyword">Select</span> <span class="token number">e1</span><span class="token punctuation">.</span>Salary
+      <span class="token keyword">from</span> Employee <span class="token number">e1</span> <span class="token keyword">join</span> Employee <span class="token number">e2</span>
+      <span class="token keyword">on</span> <span class="token number">e1</span><span class="token punctuation">.</span>Salary <span class="token operator">&lt;=</span> <span class="token number">e2</span><span class="token punctuation">.</span>Salary
+      <span class="token keyword">group</span> <span class="token keyword">by</span> <span class="token number">e1</span><span class="token punctuation">.</span>Salary
+      <span class="token keyword">having</span>  <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> <span class="token number">e2</span><span class="token punctuation">.</span>Salary<span class="token punctuation">)</span> <span class="token operator">=</span> N
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><a href="https://leetcode-cn.com/problems/nth-highest-salary/solution/mysql-zi-ding-yi-bian-liang-by-luanz/" target="_blank" rel="noopener">6种方案诠释MySQL通用查询策略</a></li>
 </ul>
@@ -643,8 +631,7 @@ END
 | 4  | 3.85  |
 | 5  | 4.00  |
 | 6  | 3.65  |
-+----+-------+
-</code></pre><p>例如，根据上述给定的 Scores 表，你的查询应该返回（按分数从高到低排列）：</p>
++----+-------+</code></pre><p>例如，根据上述给定的 Scores 表，你的查询应该返回（按分数从高到低排列）：</p>
 <pre><code>+-------+------+
 | Score | Rank |
 +-------+------+
@@ -654,22 +641,19 @@ END
 | 3.65  | 3    |
 | 3.65  | 3    |
 | 3.50  | 4    |
-+-------+------+
-</code></pre><p>重要提示：对于 MySQL 解决方案，如果要转义用作列名的保留字，可以在关键字之前和之后使用撇号。例如  `Rank`</p>
++-------+------+</code></pre><p>重要提示：对于 MySQL 解决方案，如果要转义用作列名的保留字，可以在关键字之前和之后使用撇号。例如  `Rank`</p>
 <p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select a.Score as Score,
-(select count(distinct b.Score) from Scores b where b.Score >= a.Score) as 'Rank'
-from Scores a
-order by a.Score desc
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># 窗口函数 >= mysql 8.0: rank() dense_rank() row_number()  对于4 5 5 5 6 分别为：
-# 1 2 2 2 5 rank()
-# 1 2 2 2 3 dense_rank()
-# 1 2 3 4 5 row_number()
-select Score,
-dense_rank() over(order by Score desc) as 'Rank'
-from Scores;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token number">a</span><span class="token punctuation">.</span>Score <span class="token keyword">as</span> Score<span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> <span class="token number">b</span><span class="token punctuation">.</span>Score<span class="token punctuation">)</span> <span class="token keyword">from</span> Scores <span class="token number">b</span> <span class="token keyword">where</span> <span class="token number">b</span><span class="token punctuation">.</span>Score <span class="token operator">>=</span> <span class="token number">a</span><span class="token punctuation">.</span>Score<span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token string">'Rank'</span>
+<span class="token keyword">from</span> Scores <span class="token number">a</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">a</span><span class="token punctuation">.</span>Score <span class="token keyword">desc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 窗口函数 >= mysql 8.0: rank() dense_rank() row_number()  对于4 5 5 5 6 分别为：</span>
+<span class="token comment" spellcheck="true"># 1 2 2 2 5 rank()</span>
+<span class="token comment" spellcheck="true"># 1 2 2 2 3 dense_rank()</span>
+<span class="token comment" spellcheck="true"># 1 2 3 4 5 row_number()</span>
+<span class="token keyword">select</span> Score<span class="token punctuation">,</span>
+dense_rank<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">order</span> <span class="token keyword">by</span> Score <span class="token keyword">desc</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token string">'Rank'</span>
+<span class="token keyword">from</span> Scores<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/rank-scores" target="_blank" rel="noopener">https://leetcode-cn.com/problems/rank-scores</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="180-连续出现的数字"><a href="#180-连续出现的数字" class="headerlink" title="180. 连续出现的数字"></a>180. 连续出现的数字</h3><p>编写一个 SQL 查询，查找所有至少连续出现三次的数字。</p>
 <pre><code>+----+-----+
@@ -682,27 +666,23 @@ from Scores;
 | 5  |  1  |
 | 6  |  2  |
 | 7  |  2  |
-+----+-----+
-</code></pre><p>例如，给定上面的 Logs 表， 1 是唯一连续出现至少三次的数字。</p>
++----+-----+</code></pre><p>例如，给定上面的 Logs 表， 1 是唯一连续出现至少三次的数字。</p>
 <pre><code>+-----------------+
 | ConsecutiveNums |
 +-----------------+
 | 1               |
-+-----------------+
-</code></pre><p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select distinct l1.Num as ConsecutiveNums
-from Logs l1, Logs l2, Logs l3
-where
-        l1.Id = l2.Id-1
-        and l2.Id = l3.Id-1
-        and l1.Num = l2.Num
-        and l2.Num = l3.Num;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># 窗口函数 lead(), 偏差函数, 上移  lag() 下移，同样可用
-select distinct c.Num as ConsecutiveNums
-from ( select Num, lead(Num, 1) over() as Num1, lead(Num, 2) over() as Num2 from Logs ) as c
-where c.Num = c.Num1 and c.Num = c.Num2;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
++-----------------+</code></pre><p><strong>Code</strong></p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token keyword">distinct</span> l1<span class="token punctuation">.</span>Num <span class="token keyword">as</span> ConsecutiveNums
+<span class="token keyword">from</span> Logs l1<span class="token punctuation">,</span> Logs l2<span class="token punctuation">,</span> Logs l3
+<span class="token keyword">where</span>
+        l1<span class="token punctuation">.</span>Id <span class="token operator">=</span> l2<span class="token punctuation">.</span>Id<span class="token number">-1</span>
+        <span class="token operator">and</span> l2<span class="token punctuation">.</span>Id <span class="token operator">=</span> l3<span class="token punctuation">.</span>Id<span class="token number">-1</span>
+        <span class="token operator">and</span> l1<span class="token punctuation">.</span>Num <span class="token operator">=</span> l2<span class="token punctuation">.</span>Num
+        <span class="token operator">and</span> l2<span class="token punctuation">.</span>Num <span class="token operator">=</span> l3<span class="token punctuation">.</span>Num<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 窗口函数 lead(), 偏差函数, 上移  lag() 下移，同样可用</span>
+<span class="token keyword">select</span> <span class="token keyword">distinct</span> <span class="token number">c</span><span class="token punctuation">.</span>Num <span class="token keyword">as</span> ConsecutiveNums
+<span class="token keyword">from</span> <span class="token punctuation">(</span> <span class="token keyword">select</span> Num<span class="token punctuation">,</span> lead<span class="token punctuation">(</span>Num<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> Num1<span class="token punctuation">,</span> lead<span class="token punctuation">(</span>Num<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> Num2 <span class="token keyword">from</span> Logs <span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token number">c</span>
+<span class="token keyword">where</span> <span class="token number">c</span><span class="token punctuation">.</span>Num <span class="token operator">=</span> <span class="token number">c</span><span class="token punctuation">.</span>Num1 <span class="token operator">and</span> <span class="token number">c</span><span class="token punctuation">.</span>Num <span class="token operator">=</span> <span class="token number">c</span><span class="token punctuation">.</span>Num2<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/consecutive-numbers" target="_blank" rel="noopener">https://leetcode-cn.com/problems/consecutive-numbers</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="181-超过经理收入的员工"><a href="#181-超过经理收入的员工" class="headerlink" title="181. 超过经理收入的员工"></a>181. 超过经理收入的员工</h3><p>Employee 表包含所有员工，他们的经理也属于员工。每个员工都有一个 Id，此外还有一列对应员工的经理的 Id。</p>
 <pre><code>+----+-------+--------+-----------+
@@ -712,31 +692,26 @@ where c.Num = c.Num1 and c.Num = c.Num2;
 | 2  | Henry | 80000  | 4         |
 | 3  | Sam   | 60000  | NULL      |
 | 4  | Max   | 90000  | NULL      |
-+----+-------+--------+-----------+
-</code></pre><p>给定 Employee 表，编写一个 SQL 查询，该查询可以获取收入超过他们经理的员工的姓名。在上面的表格中，Joe 是唯一一个收入超过他的经理的员工。</p>
++----+-------+--------+-----------+</code></pre><p>给定 Employee 表，编写一个 SQL 查询，该查询可以获取收入超过他们经理的员工的姓名。在上面的表格中，Joe 是唯一一个收入超过他的经理的员工。</p>
 <pre><code>+----------+
 | Employee |
 +----------+
 | Joe      |
-+----------+
-</code></pre><p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># 笛卡尔乘积
-select a.Name as Employee
-from Employee a, Employee b
-where
-      a.ManagerId = b.Id
-      and a.Salary > b.Salary;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># 子查询
-select a.Name as Employee
-from Employee a
-where (select b.Salary from employee b where b.Id = a.ManagerId) < a.Salary;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># 连接
-Select a.Name as Employee
-from Employee a join employee b
-on a.ManagerId = b.Id and a.Salary > b.Salary;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
++----------+</code></pre><p><strong>Code</strong></p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 笛卡尔乘积</span>
+<span class="token keyword">select</span> <span class="token number">a</span><span class="token punctuation">.</span>Name <span class="token keyword">as</span> Employee
+<span class="token keyword">from</span> Employee <span class="token number">a</span><span class="token punctuation">,</span> Employee <span class="token number">b</span>
+<span class="token keyword">where</span>
+      <span class="token number">a</span><span class="token punctuation">.</span>ManagerId <span class="token operator">=</span> <span class="token number">b</span><span class="token punctuation">.</span>Id
+      <span class="token operator">and</span> <span class="token number">a</span><span class="token punctuation">.</span>Salary <span class="token operator">></span> <span class="token number">b</span><span class="token punctuation">.</span>Salary<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 子查询</span>
+<span class="token keyword">select</span> <span class="token number">a</span><span class="token punctuation">.</span>Name <span class="token keyword">as</span> Employee
+<span class="token keyword">from</span> Employee <span class="token number">a</span>
+<span class="token keyword">where</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token number">b</span><span class="token punctuation">.</span>Salary <span class="token keyword">from</span> employee <span class="token number">b</span> <span class="token keyword">where</span> <span class="token number">b</span><span class="token punctuation">.</span>Id <span class="token operator">=</span> <span class="token number">a</span><span class="token punctuation">.</span>ManagerId<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">a</span><span class="token punctuation">.</span>Salary<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 连接</span>
+<span class="token keyword">Select</span> <span class="token number">a</span><span class="token punctuation">.</span>Name <span class="token keyword">as</span> Employee
+<span class="token keyword">from</span> Employee <span class="token number">a</span> <span class="token keyword">join</span> employee <span class="token number">b</span>
+<span class="token keyword">on</span> <span class="token number">a</span><span class="token punctuation">.</span>ManagerId <span class="token operator">=</span> <span class="token number">b</span><span class="token punctuation">.</span>Id <span class="token operator">and</span> <span class="token number">a</span><span class="token punctuation">.</span>Salary <span class="token operator">></span> <span class="token number">b</span><span class="token punctuation">.</span>Salary<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/employees-earning-more-than-their-managers" target="_blank" rel="noopener">https://leetcode-cn.com/problems/employees-earning-more-than-their-managers</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="182-查找重复的电子邮箱"><a href="#182-查找重复的电子邮箱" class="headerlink" title="182. 查找重复的电子邮箱"></a>182. 查找重复的电子邮箱</h3><p>编写一个 SQL 查询，查找 Person 表中所有重复的电子邮箱。</p>
 <p>示例：</p>
@@ -746,30 +721,26 @@ on a.ManagerId = b.Id and a.Salary > b.Salary;
 | 1  | a@b.com |
 | 2  | c@d.com |
 | 3  | a@b.com |
-+----+---------+
-</code></pre><p>根据以上输入，你的查询应返回以下结果：</p>
++----+---------+</code></pre><p>根据以上输入，你的查询应返回以下结果：</p>
 <pre><code>+---------+
 | Email   |
 +---------+
 | a@b.com |
-+---------+
-</code></pre><p>说明：所有电子邮箱都是小写字母。</p>
++---------+</code></pre><p>说明：所有电子邮箱都是小写字母。</p>
 <p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select Email
-from Person
-group by email
-having count(Email) >= 2;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># 临时表
-select Email
-from
-(
-  select Email, count(Email) as Num
-  from Person
-  group by Email
-)as statistic # 临时表必须命名
-where Num >= 2;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> Email
+<span class="token keyword">from</span> Person
+<span class="token keyword">group</span> <span class="token keyword">by</span> email
+<span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span>Email<span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">2</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 临时表</span>
+<span class="token keyword">select</span> Email
+<span class="token keyword">from</span>
+<span class="token punctuation">(</span>
+  <span class="token keyword">select</span> Email<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span>Email<span class="token punctuation">)</span> <span class="token keyword">as</span> Num
+  <span class="token keyword">from</span> Person
+  <span class="token keyword">group</span> <span class="token keyword">by</span> Email
+<span class="token punctuation">)</span><span class="token keyword">as</span> statistic <span class="token comment" spellcheck="true"># 临时表必须命名</span>
+<span class="token keyword">where</span> Num <span class="token operator">>=</span> <span class="token number">2</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>1、where 后不能跟聚合函数，因为where执行顺序大于聚合函数。 where&gt;group by&gt;having&gt;order by</li>
 <li>2、where 子句的作用是在对查询结果进行分组前，将不符合where条件的行去掉，即在分组之前过滤数据，条件中不能包含聚组函数，使用where条件显示特定的行。</li>
@@ -795,32 +766,28 @@ Orders 表：
 +----+------------+
 | 1  | 3          |
 | 2  | 1          |
-+----+------------+
-</code></pre><p>例如给定上述表格，你的查询应返回：</p>
++----+------------+</code></pre><p>例如给定上述表格，你的查询应返回：</p>
 <pre><code>+-----------+
 | Customers |
 +-----------+
 | Henry     |
 | Max       |
-+-----------+
-</code></pre><p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select  Name as Customers
-from Customers
-where not exists
-    (
-        select *
-        from Orders
-        where Orders.CustomerId = Customers.Id   
-    );
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select  Name as Customers
-from Customers
-where Id not in
-    (
-        select Orders.CustomerId
-        from Orders
-    );
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
++-----------+</code></pre><p><strong>Code</strong></p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span>  Name <span class="token keyword">as</span> Customers
+<span class="token keyword">from</span> Customers
+<span class="token keyword">where</span> <span class="token operator">not</span> <span class="token keyword">exists</span>
+    <span class="token punctuation">(</span>
+        <span class="token keyword">select</span> <span class="token operator">*</span>
+        <span class="token keyword">from</span> Orders
+        <span class="token keyword">where</span> Orders<span class="token punctuation">.</span>CustomerId <span class="token operator">=</span> Customers<span class="token punctuation">.</span>Id   
+    <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span>  Name <span class="token keyword">as</span> Customers
+<span class="token keyword">from</span> Customers
+<span class="token keyword">where</span> Id <span class="token operator">not</span> <span class="token operator">in</span>
+    <span class="token punctuation">(</span>
+        <span class="token keyword">select</span> Orders<span class="token punctuation">.</span>CustomerId
+        <span class="token keyword">from</span> Orders
+    <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/customers-who-never-order" target="_blank" rel="noopener">https://leetcode-cn.com/problems/customers-who-never-order</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="184-部门工资最高的员工"><a href="#184-部门工资最高的员工" class="headerlink" title="184. 部门工资最高的员工"></a>184. 部门工资最高的员工</h3><p>Employee 表包含所有员工信息，每个员工有其对应的 Id, salary 和 department Id。</p>
 <pre><code>+----+-------+--------+--------------+
@@ -831,34 +798,30 @@ where Id not in
 | 3  | Henry | 80000  | 2            |
 | 4  | Sam   | 60000  | 2            |
 | 5  | Max   | 90000  | 1            |
-+----+-------+--------+--------------+
-</code></pre><p>Department 表包含公司所有部门的信息。</p>
++----+-------+--------+--------------+</code></pre><p>Department 表包含公司所有部门的信息。</p>
 <pre><code>+----+----------+
 | Id | Name     |
 +----+----------+
 | 1  | IT       |
 | 2  | Sales    |
-+----+----------+
-</code></pre><p>编写一个 SQL 查询，找出每个部门工资最高的员工。对于上述表，您的 SQL 查询应返回以下行（行的顺序无关紧要）。</p>
++----+----------+</code></pre><p>编写一个 SQL 查询，找出每个部门工资最高的员工。对于上述表，您的 SQL 查询应返回以下行（行的顺序无关紧要）。</p>
 <pre><code>+------------+----------+--------+
 | Department | Employee | Salary |
 +------------+----------+--------+
 | IT         | Max      | 90000  |
 | IT         | Jim      | 90000  |
 | Sales      | Henry    | 80000  |
-+------------+----------+--------+
-</code></pre><p>解释：</p>
++------------+----------+--------+</code></pre><p>解释：</p>
 <p>Max 和 Jim 在 IT 部门的工资都是最高的，Henry 在销售部的工资最高。</p>
 <p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">Select Department.Name as Department, Employee.Name as 'Employee', Salary
-from Employee join Department on Employee.DepartmentId = Department.Id
-where (DepartmentId, Salary) in
-            (
-            select DepartmentId, max(Salary)
-            from Employee
-            group by DepartmentId  
-          );
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">Select</span> Department<span class="token punctuation">.</span>Name <span class="token keyword">as</span> Department<span class="token punctuation">,</span> Employee<span class="token punctuation">.</span>Name <span class="token keyword">as</span> <span class="token string">'Employee'</span><span class="token punctuation">,</span> Salary
+<span class="token keyword">from</span> Employee <span class="token keyword">join</span> Department <span class="token keyword">on</span> Employee<span class="token punctuation">.</span>DepartmentId <span class="token operator">=</span> Department<span class="token punctuation">.</span>Id
+<span class="token keyword">where</span> <span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span> Salary<span class="token punctuation">)</span> <span class="token operator">in</span>
+            <span class="token punctuation">(</span>
+            <span class="token keyword">select</span> DepartmentId<span class="token punctuation">,</span> <span class="token function">max</span><span class="token punctuation">(</span>Salary<span class="token punctuation">)</span>
+            <span class="token keyword">from</span> Employee
+            <span class="token keyword">group</span> <span class="token keyword">by</span> DepartmentId  
+          <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/department-highest-salary" target="_blank" rel="noopener">https://leetcode-cn.com/problems/department-highest-salary</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="185-部门工资前三高的所有员工"><a href="#185-部门工资前三高的所有员工" class="headerlink" title="185. 部门工资前三高的所有员工"></a>185. 部门工资前三高的所有员工</h3><p>Employee 表包含所有员工信息，每个员工有其对应的工号 Id，姓名 Name，工资 Salary 和部门编号 DepartmentId 。</p>
 <pre><code>+----+-------+--------+--------------+
@@ -879,8 +842,7 @@ Department 表包含公司所有部门的信息。
 +----+----------+
 | 1  | IT       |
 | 2  | Sales    |
-+----+----------+
-</code></pre><p>编写一个 SQL 查询，找出每个部门获得前三高工资的所有员工。例如，根据上述给定的表，查询结果应返回：</p>
++----+----------+</code></pre><p>编写一个 SQL 查询，找出每个部门获得前三高工资的所有员工。例如，根据上述给定的表，查询结果应返回：</p>
 <pre><code>+------------+----------+--------+
 | Department | Employee | Salary |
 +------------+----------+--------+
@@ -890,34 +852,32 @@ Department 表包含公司所有部门的信息。
 | IT         | Will     | 70000  |
 | Sales      | Henry    | 80000  |
 | Sales      | Sam      | 60000  |
-+------------+----------+--------+
-</code></pre><p>解释：</p>
++------------+----------+--------+</code></pre><p>解释：</p>
 <p>IT 部门中，Max 获得了最高的工资，Randy 和 Joe 都拿到了第二高的工资，Will 的工资排第三。销售部门（Sales）只有两名员工，Henry 的工资最高，Sam 的工资排第二。</p>
 <p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">Select Department.Name as 'Department',  e1.Name as 'Employee', e1.Salary
-from Employee e1 join Department
-on e1.DepartmentId = Department.Id
-where  (
-        Select count(distinct e2.Salary)
-        from Employee e2
-        where e2.DepartmentId = e1.DepartmentId and e2.Salary > e1.Salary
-       ) < 3;
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">Select</span> Department<span class="token punctuation">.</span>Name <span class="token keyword">as</span> <span class="token string">'Department'</span><span class="token punctuation">,</span>  <span class="token number">e1</span><span class="token punctuation">.</span>Name <span class="token keyword">as</span> <span class="token string">'Employee'</span><span class="token punctuation">,</span> <span class="token number">e1</span><span class="token punctuation">.</span>Salary
+<span class="token keyword">from</span> Employee <span class="token number">e1</span> <span class="token keyword">join</span> Department
+<span class="token keyword">on</span> <span class="token number">e1</span><span class="token punctuation">.</span>DepartmentId <span class="token operator">=</span> Department<span class="token punctuation">.</span>Id
+<span class="token keyword">where</span>  <span class="token punctuation">(</span>
+        <span class="token keyword">Select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> <span class="token number">e2</span><span class="token punctuation">.</span>Salary<span class="token punctuation">)</span>
+        <span class="token keyword">from</span> Employee <span class="token number">e2</span>
+        <span class="token keyword">where</span> <span class="token number">e2</span><span class="token punctuation">.</span>DepartmentId <span class="token operator">=</span> <span class="token number">e1</span><span class="token punctuation">.</span>DepartmentId <span class="token operator">and</span> <span class="token number">e2</span><span class="token punctuation">.</span>Salary <span class="token operator">></span> <span class="token number">e1</span><span class="token punctuation">.</span>Salary
+       <span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># 使用窗口函数和子查询
-Select Department.Name as 'Department',  Employee.Name as 'Employee', Salary
-from Employee join Department
-on Employee.DepartmentId = Department.Id
-where (DepartmentId, Salary) in
-    (
-        Select DepartmentId, Salary
-        from (
-                select DepartmentId, Salary,
-                dense_rank() over(partition by DepartmentId order by Salary desc) as 'rank'
-                from Employee
-             ) as t
-        where t.rank <= 3
-    );
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 使用窗口函数和子查询</span>
+<span class="token keyword">Select</span> Department<span class="token punctuation">.</span>Name <span class="token keyword">as</span> <span class="token string">'Department'</span><span class="token punctuation">,</span>  Employee<span class="token punctuation">.</span>Name <span class="token keyword">as</span> <span class="token string">'Employee'</span><span class="token punctuation">,</span> Salary
+<span class="token keyword">from</span> Employee <span class="token keyword">join</span> Department
+<span class="token keyword">on</span> Employee<span class="token punctuation">.</span>DepartmentId <span class="token operator">=</span> Department<span class="token punctuation">.</span>Id
+<span class="token keyword">where</span> <span class="token punctuation">(</span>DepartmentId<span class="token punctuation">,</span> Salary<span class="token punctuation">)</span> <span class="token operator">in</span>
+    <span class="token punctuation">(</span>
+        <span class="token keyword">Select</span> DepartmentId<span class="token punctuation">,</span> Salary
+        <span class="token keyword">from</span> <span class="token punctuation">(</span>
+                <span class="token keyword">select</span> DepartmentId<span class="token punctuation">,</span> Salary<span class="token punctuation">,</span>
+                dense_rank<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">partition</span> <span class="token keyword">by</span> DepartmentId <span class="token keyword">order</span> <span class="token keyword">by</span> Salary <span class="token keyword">desc</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token string">'rank'</span>
+                <span class="token keyword">from</span> Employee
+             <span class="token punctuation">)</span> <span class="token keyword">as</span> t
+        <span class="token keyword">where</span> t<span class="token punctuation">.</span>rank <span class="token operator">&lt;=</span> <span class="token number">3</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/department-top-three-salaries" target="_blank" rel="noopener">https://leetcode-cn.com/problems/department-top-three-salaries</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="196-删除重复的电子邮箱"><a href="#196-删除重复的电子邮箱" class="headerlink" title="196. 删除重复的电子邮箱"></a>196. 删除重复的电子邮箱</h3><p>编写一个 SQL 查询，来删除 Person 表中所有重复的电子邮箱，重复的邮箱里只保留 Id 最小 的那个。</p>
 <pre><code>+----+------------------+
@@ -927,34 +887,30 @@ where (DepartmentId, Salary) in
 | 2  | bob@example.com  |
 | 3  | john@example.com |
 +----+------------------+
-Id 是这个表的主键。
-</code></pre><p>例如，在运行你的查询语句之后，上面的 Person 表应返回以下几行:</p>
+Id 是这个表的主键。</code></pre><p>例如，在运行你的查询语句之后，上面的 Person 表应返回以下几行:</p>
 <pre><code>+----+------------------+
 | Id | Email            |
 +----+------------------+
 | 1  | john@example.com |
 | 2  | bob@example.com  |
-+----+------------------+
-</code></pre><p>提示：</p>
++----+------------------+</code></pre><p>提示：</p>
 <p>执行 SQL 之后，输出是整个 Person 表。<br>使用 delete 语句。</p>
 <p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">Delete p1
-from Person p1, Person p2
-where p1.Id > p2.Id and p1.Email = p2.Email;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># mysql不允许同时对一个表delete和select联合操作 所有中间多加了一个临时表need
-delete
-from Person
-where Id not in
-    (
-        select need.Id
-        from (
-                select min(Id) as Id
-                From Person
-                group by Email
-            )as need
-    );
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">Delete</span> p1
+<span class="token keyword">from</span> Person p1<span class="token punctuation">,</span> Person p2
+<span class="token keyword">where</span> p1<span class="token punctuation">.</span>Id <span class="token operator">></span> p2<span class="token punctuation">.</span>Id <span class="token operator">and</span> p1<span class="token punctuation">.</span>Email <span class="token operator">=</span> p2<span class="token punctuation">.</span>Email<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># mysql不允许同时对一个表delete和select联合操作 所有中间多加了一个临时表need</span>
+<span class="token keyword">delete</span>
+<span class="token keyword">from</span> Person
+<span class="token keyword">where</span> Id <span class="token operator">not</span> <span class="token operator">in</span>
+    <span class="token punctuation">(</span>
+        <span class="token keyword">select</span> need<span class="token punctuation">.</span>Id
+        <span class="token keyword">from</span> <span class="token punctuation">(</span>
+                <span class="token keyword">select</span> <span class="token function">min</span><span class="token punctuation">(</span>Id<span class="token punctuation">)</span> <span class="token keyword">as</span> Id
+                <span class="token keyword">From</span> Person
+                <span class="token keyword">group</span> <span class="token keyword">by</span> Email
+            <span class="token punctuation">)</span><span class="token keyword">as</span> need
+    <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/delete-duplicate-emails" target="_blank" rel="noopener">https://leetcode-cn.com/problems/delete-duplicate-emails</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="197-上升的温度"><a href="#197-上升的温度" class="headerlink" title="197. 上升的温度"></a>197. 上升的温度</h3><p>给定一个 Weather 表，编写一个 SQL 查询，来查找与之前（昨天的）日期相比温度更高的所有日期的 Id。</p>
 <pre><code>+---------+------------------+------------------+
@@ -964,20 +920,17 @@ where Id not in
 |       2 |       2015-01-02 |               25 |
 |       3 |       2015-01-03 |               20 |
 |       4 |       2015-01-04 |               30 |
-+---------+------------------+------------------+
-</code></pre><p>例如，根据上述给定的 Weather 表格，返回如下 Id:</p>
++---------+------------------+------------------+</code></pre><p>例如，根据上述给定的 Weather 表格，返回如下 Id:</p>
 <pre><code>+----+
 | Id |
 +----+
 |  2 |
 |  4 |
-+----+
-</code></pre><p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql"># Datediff(d1, d2) 返回 d1-d2
-select w1.Id
-from Weather w1, Weather w2
-where DateDiff(w1.RecordDate, w2.RecordDate) = 1 and w1.Temperature > w2.Temperature;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
++----+</code></pre><p><strong>Code</strong></p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># Datediff(d1, d2) 返回 d1-d2</span>
+<span class="token keyword">select</span> w1<span class="token punctuation">.</span>Id
+<span class="token keyword">from</span> Weather w1<span class="token punctuation">,</span> Weather w2
+<span class="token keyword">where</span> DateDiff<span class="token punctuation">(</span>w1<span class="token punctuation">.</span>RecordDate<span class="token punctuation">,</span> w2<span class="token punctuation">.</span>RecordDate<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">and</span> w1<span class="token punctuation">.</span>Temperature <span class="token operator">></span> w2<span class="token punctuation">.</span>Temperature<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/rising-temperature" target="_blank" rel="noopener">https://leetcode-cn.com/problems/rising-temperature</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="262-行程和用户"><a href="#262-行程和用户" class="headerlink" title="262. 行程和用户"></a>262. 行程和用户</h3><p>Trips 表中存所有出租车的行程信息。每段行程有唯一键 Id，Client_Id 和 Driver_Id 是 Users 表中 Users_Id 的外键。Status 是枚举类型，枚举成员为 (‘completed’, ‘cancelled_by_driver’, ‘cancelled_by_client’)。</p>
 <pre><code>+----+-----------+-----------+---------+--------------------+----------+
@@ -993,8 +946,7 @@ where DateDiff(w1.RecordDate, w2.RecordDate) = 1 and w1.Temperature > w2.Tempera
 | 8  |     2     |    12     |    12   |     completed      |2013-10-03|
 | 9  |     3     |    10     |    12   |     completed      |2013-10-03|
 | 10 |     4     |    13     |    12   | cancelled_by_driver|2013-10-03|
-+----+-----------+-----------+---------+--------------------+----------+
-</code></pre><p>Users 表存所有用户。每个用户有唯一键 Users_Id。Banned 表示这个用户是否被禁止，Role 则是一个表示（‘client’, ‘driver’, ‘partner’）的枚举类型。</p>
++----+-----------+-----------+---------+--------------------+----------+</code></pre><p>Users 表存所有用户。每个用户有唯一键 Users_Id。Banned 表示这个用户是否被禁止，Role 则是一个表示（‘client’, ‘driver’, ‘partner’）的枚举类型。</p>
 <pre><code>+----------+--------+--------+
 | Users_Id | Banned |  Role  |
 +----------+--------+--------+
@@ -1006,8 +958,7 @@ where DateDiff(w1.RecordDate, w2.RecordDate) = 1 and w1.Temperature > w2.Tempera
 |    11    |   No   | driver |
 |    12    |   No   | driver |
 |    13    |   No   | driver |
-+----------+--------+--------+
-</code></pre><p>写一段 SQL 语句查出 2013年10月1日 至 2013年10月3日 期间非禁止用户的取消率。基于上表，你的 SQL 语句应返回如下结果，取消率（Cancellation Rate）保留两位小数。</p>
++----------+--------+--------+</code></pre><p>写一段 SQL 语句查出 2013年10月1日 至 2013年10月3日 期间非禁止用户的取消率。基于上表，你的 SQL 语句应返回如下结果，取消率（Cancellation Rate）保留两位小数。</p>
 <p>取消率的计算方式如下：(被司机或乘客取消的非禁止用户生成的订单数量) / (非禁止用户生成的订单总数)</p>
 <pre><code>+------------+-------------------+
 |     Day    | Cancellation Rate |
@@ -1015,16 +966,14 @@ where DateDiff(w1.RecordDate, w2.RecordDate) = 1 and w1.Temperature > w2.Tempera
 | 2013-10-01 |       0.33        |
 | 2013-10-02 |       0.00        |
 | 2013-10-03 |       0.50        |
-+------------+-------------------+
-</code></pre><p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select t.Request_at as Day, round(avg(t.Status != 'completed'), 2) as 'Cancellation Rate'
-from Trips t join Users u
-on t.Client_Id = u.Users_Id
-    and u.Banned = 'No'
-    and DateDiff(t.Request_at, Date('2013-10-01')) >= 0
-    and DateDiff(t.Request_at, Date('2013-10-03')) <= 0
-group by t.Request_at;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
++------------+-------------------+</code></pre><p><strong>Code</strong></p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> t<span class="token punctuation">.</span>Request_at <span class="token keyword">as</span> Day<span class="token punctuation">,</span> <span class="token function">round</span><span class="token punctuation">(</span><span class="token function">avg</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span><span class="token keyword">Status</span> <span class="token operator">!=</span> <span class="token string">'completed'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token string">'Cancellation Rate'</span>
+<span class="token keyword">from</span> Trips t <span class="token keyword">join</span> Users u
+<span class="token keyword">on</span> t<span class="token punctuation">.</span>Client_Id <span class="token operator">=</span> u<span class="token punctuation">.</span>Users_Id
+    <span class="token operator">and</span> u<span class="token punctuation">.</span>Banned <span class="token operator">=</span> <span class="token string">'No'</span>
+    <span class="token operator">and</span> DateDiff<span class="token punctuation">(</span>t<span class="token punctuation">.</span>Request_at<span class="token punctuation">,</span> <span class="token keyword">Date</span><span class="token punctuation">(</span><span class="token string">'2013-10-01'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">0</span>
+    <span class="token operator">and</span> DateDiff<span class="token punctuation">(</span>t<span class="token punctuation">.</span>Request_at<span class="token punctuation">,</span> <span class="token keyword">Date</span><span class="token punctuation">(</span><span class="token string">'2013-10-03'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">0</span>
+<span class="token keyword">group</span> <span class="token keyword">by</span> t<span class="token punctuation">.</span>Request_at<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/trips-and-users" target="_blank" rel="noopener">https://leetcode-cn.com/problems/trips-and-users</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="595-大的国家"><a href="#595-大的国家" class="headerlink" title="595. 大的国家"></a>595. 大的国家</h3><p>这里有张 World 表</p>
 <pre><code>+-----------------+------------+------------+--------------+---------------+
@@ -1035,8 +984,7 @@ group by t.Request_at;
 | Algeria         | Africa     | 2381741    | 37100000     | 188681000     |
 | Andorra         | Europe     | 468        | 78115        | 3712000       |
 | Angola          | Africa     | 1246700    | 20609294     | 100990000     |
-+-----------------+------------+------------+--------------+---------------+
-</code></pre><p>如果一个国家的面积超过300万平方公里，或者人口超过2500万，那么这个国家就是大国家。</p>
++-----------------+------------+------------+--------------+---------------+</code></pre><p>如果一个国家的面积超过300万平方公里，或者人口超过2500万，那么这个国家就是大国家。</p>
 <p>编写一个SQL查询，输出表中所有大国家的名称、人口和面积。</p>
 <p>例如，根据上表，我们应该输出:</p>
 <pre><code>+--------------+-------------+--------------+
@@ -1044,30 +992,26 @@ group by t.Request_at;
 +--------------+-------------+--------------+
 | Afghanistan  | 25500100    | 652230       |
 | Algeria      | 37100000    | 2381741      |
-+--------------+-------------+--------------+
-</code></pre><p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select name, population, area
-from World
-where area > 3000000 or population > 25000000 ;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
++--------------+-------------+--------------+</code></pre><p><strong>Code</strong></p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> name<span class="token punctuation">,</span> population<span class="token punctuation">,</span> area
+<span class="token keyword">from</span> World
+<span class="token keyword">where</span> area <span class="token operator">></span> <span class="token number">3000000</span> <span class="token operator">or</span> population <span class="token operator">></span> <span class="token number">25000000</span> <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/big-countries" target="_blank" rel="noopener">https://leetcode-cn.com/problems/big-countries</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="596-超过5名学生的课"><a href="#596-超过5名学生的课" class="headerlink" title="596. 超过5名学生的课"></a>596. 超过5名学生的课</h3><p>有一个courses 表 ，有: student (学生) 和 class (课程)。</p>
 <p>请列出所有超过或等于5名学生的课。</p>
 <p>例如,表:</p>
-<p>+————-+——————+<br>| student | class      |<br>+————-+——————+<br>| A       | Math       |<br>| B       | English    |<br>| C       | Math       |<br>| D       | Biology    |<br>| E       | Math       |<br>| F       | Computer   |<br>| G       | Math       |<br>| H       | Math       |<br>| I       | Math       |<br>+————-+——————+<br>应该输出:</p>
-<p>+————-+<br>| class   |<br>+————-+<br>| Math    |<br>+————-+<br>Note:<br>学生在每个课中不应被重复计算。</p>
+<p>+———+————+<br>| student | class      |<br>+———+————+<br>| A       | Math       |<br>| B       | English    |<br>| C       | Math       |<br>| D       | Biology    |<br>| E       | Math       |<br>| F       | Computer   |<br>| G       | Math       |<br>| H       | Math       |<br>| I       | Math       |<br>+———+————+<br>应该输出:</p>
+<p>+———+<br>| class   |<br>+———+<br>| Math    |<br>+———+<br>Note:<br>学生在每个课中不应被重复计算。</p>
 <p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select class
-from courses
-group by class
-having count(distinct student) >= 5
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select temp_table.class
-from (  select class, count(distinct student) as num
-        from courses
-        group by class ) as temp_table
-where temp_table.num >= 5
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> class
+<span class="token keyword">from</span> courses
+<span class="token keyword">group</span> <span class="token keyword">by</span> class
+<span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> student<span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> temp_table<span class="token punctuation">.</span>class
+<span class="token keyword">from</span> <span class="token punctuation">(</span>  <span class="token keyword">select</span> class<span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> student<span class="token punctuation">)</span> <span class="token keyword">as</span> num
+        <span class="token keyword">from</span> courses
+        <span class="token keyword">group</span> <span class="token keyword">by</span> class <span class="token punctuation">)</span> <span class="token keyword">as</span> temp_table
+<span class="token keyword">where</span> temp_table<span class="token punctuation">.</span>num <span class="token operator">>=</span> <span class="token number">5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/classes-more-than-5-students" target="_blank" rel="noopener">https://leetcode-cn.com/problems/classes-more-than-5-students</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="601-体育馆的人流量"><a href="#601-体育馆的人流量" class="headerlink" title="601. 体育馆的人流量"></a>601. 体育馆的人流量</h3><p>X 市建了一个新的体育馆，每日人流量信息被记录在这三列信息中：序号 (id)、日期 (visit_date)、 人流量 (people)。</p>
 <p>请编写一个查询语句，找出人流量的高峰期。高峰期时，至少连续三行记录中的人流量不少于100。</p>
@@ -1083,8 +1027,7 @@ where temp_table.num >= 5
 | 6    | 2017-01-06 | 1455      |
 | 7    | 2017-01-07 | 199       |
 | 8    | 2017-01-08 | 188       |
-+------+------------+-----------+
-</code></pre><p>对于上面的示例数据，输出为：</p>
++------+------------+-----------+</code></pre><p>对于上面的示例数据，输出为：</p>
 <pre><code>+------+------------+-----------+
 | id   | visit_date | people    |
 +------+------------+-----------+
@@ -1092,30 +1035,27 @@ where temp_table.num >= 5
 | 6    | 2017-01-06 | 1455      |
 | 7    | 2017-01-07 | 199       |
 | 8    | 2017-01-08 | 188       |
-+------+------------+-----------+
-</code></pre><p>提示：</p>
++------+------------+-----------+</code></pre><p>提示：</p>
 <p>每天只有一行记录，日期随着 id 的增加而增加。<br>体育馆并不是每天都开放的，所以记录中的日期可能会出现断层。</p>
 <p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select distinct s1.*  
-from stadium s1, stadium s2, stadium s3
-where     ((s1.id - s2.id = 1 and s2.id - s3.id = 1)
-        or (s2.id - s1.id = 1 and s1.id - s3.id = 1)
-        or (s3.id - s2.id = 1 and s2.id - s1.id = 1))
-        and s1.people >= 100 and s2.people >= 100 and s3.people >= 100
-order by s1.id;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select  distinct id, visit_date, people
-from (
-      select id, visit_date, people,
-      lead(people,1) over() as people1, lead(people, 2) over() as people2,
-      lag(people,1) over() as people3, lag(people, 2) over() as people4
-      from stadium
-     )as temp_table
-where     people >= 100
-     and ((people1 >= 100 and people2 >= 100)
-     or   (people3 >= 100 and people4 >= 100)
-     or   (people1 >= 100 and people3 >= 100));
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token keyword">distinct</span> s1<span class="token punctuation">.</span><span class="token operator">*</span>  
+<span class="token keyword">from</span> stadium s1<span class="token punctuation">,</span> stadium s2<span class="token punctuation">,</span> stadium s3
+<span class="token keyword">where</span>     <span class="token punctuation">(</span><span class="token punctuation">(</span>s1<span class="token punctuation">.</span>id <span class="token operator">-</span> s2<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">and</span> s2<span class="token punctuation">.</span>id <span class="token operator">-</span> s3<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token operator">or</span> <span class="token punctuation">(</span>s2<span class="token punctuation">.</span>id <span class="token operator">-</span> s1<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">and</span> s1<span class="token punctuation">.</span>id <span class="token operator">-</span> s3<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token operator">or</span> <span class="token punctuation">(</span>s3<span class="token punctuation">.</span>id <span class="token operator">-</span> s2<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">and</span> s2<span class="token punctuation">.</span>id <span class="token operator">-</span> s1<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token operator">and</span> s1<span class="token punctuation">.</span>people <span class="token operator">>=</span> <span class="token number">100</span> <span class="token operator">and</span> s2<span class="token punctuation">.</span>people <span class="token operator">>=</span> <span class="token number">100</span> <span class="token operator">and</span> s3<span class="token punctuation">.</span>people <span class="token operator">>=</span> <span class="token number">100</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> s1<span class="token punctuation">.</span>id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span>  <span class="token keyword">distinct</span> id<span class="token punctuation">,</span> visit_date<span class="token punctuation">,</span> people
+<span class="token keyword">from</span> <span class="token punctuation">(</span>
+      <span class="token keyword">select</span> id<span class="token punctuation">,</span> visit_date<span class="token punctuation">,</span> people<span class="token punctuation">,</span>
+      lead<span class="token punctuation">(</span>people<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> people1<span class="token punctuation">,</span> lead<span class="token punctuation">(</span>people<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> people2<span class="token punctuation">,</span>
+      lag<span class="token punctuation">(</span>people<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> people3<span class="token punctuation">,</span> lag<span class="token punctuation">(</span>people<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> people4
+      <span class="token keyword">from</span> stadium
+     <span class="token punctuation">)</span><span class="token keyword">as</span> temp_table
+<span class="token keyword">where</span>     people <span class="token operator">>=</span> <span class="token number">100</span>
+     <span class="token operator">and</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>people1 <span class="token operator">>=</span> <span class="token number">100</span> <span class="token operator">and</span> people2 <span class="token operator">>=</span> <span class="token number">100</span><span class="token punctuation">)</span>
+     <span class="token operator">or</span>   <span class="token punctuation">(</span>people3 <span class="token operator">>=</span> <span class="token number">100</span> <span class="token operator">and</span> people4 <span class="token operator">>=</span> <span class="token number">100</span><span class="token punctuation">)</span>
+     <span class="token operator">or</span>   <span class="token punctuation">(</span>people1 <span class="token operator">>=</span> <span class="token number">100</span> <span class="token operator">and</span> people3 <span class="token operator">>=</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/human-traffic-of-stadium" target="_blank" rel="noopener">https://leetcode-cn.com/problems/human-traffic-of-stadium</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
 <h3 id="620-有趣的电影"><a href="#620-有趣的电影" class="headerlink" title="620. 有趣的电影"></a>620. 有趣的电影</h3><p>某城市开了一家新的电影院，吸引了很多人过来看电影。该电影院特别注意用户体验，专门有个 LED显示板做电影推荐，上面公布着影评和相关电影描述。</p>
 <p>作为该电影院的信息部主管，您需要编写一个 SQL查询，找出所有影片描述为非 boring (不无聊) 的并且 id 为奇数 的影片，结果请按等级 rating 排列。</p>
@@ -1128,90 +1068,75 @@ where     people >= 100
 |   3     | irish     |   boring     |   6.2     |
 |   4     | Ice song  |   Fantacy    |   8.6     |
 |   5     | House card|   Interesting|   9.1     |
-+---------+-----------+--------------+-----------+
-</code></pre><p>对于上面的例子，则正确的输出是为：</p>
++---------+-----------+--------------+-----------+</code></pre><p>对于上面的例子，则正确的输出是为：</p>
 <pre><code>+---------+-----------+--------------+-----------+
 |   id    | movie     |  description |  rating   |
 +---------+-----------+--------------+-----------+
 |   5     | House card|   Interesting|   9.1     |
 |   1     | War       |   great 3D   |   8.9     |
-+---------+-----------+--------------+-----------+
-</code></pre><p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select *
-from cinema
-where id % 2 = 1 and description != 'boring'
-order by rating desc
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
++---------+-----------+--------------+-----------+</code></pre><p><strong>Code</strong></p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span>
+<span class="token keyword">from</span> cinema
+<span class="token keyword">where</span> id <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">and</span> description <span class="token operator">!=</span> <span class="token string">'boring'</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> rating <span class="token keyword">desc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>链接：<a href="https://leetcode-cn.com/problems/not-boring-movies" target="_blank" rel="noopener">https://leetcode-cn.com/problems/not-boring-movies</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
-<h2 id="Nowcoder"><a href="#Nowcoder" class="headerlink" title="Nowcoder"></a>Nowcoder</h2><h3 id="SQL1-查找最晚入职员工的所有信息"><a href="#SQL1-查找最晚入职员工的所有信息" class="headerlink" title="SQL1 查找最晚入职员工的所有信息"></a>SQL1 查找最晚入职员工的所有信息</h3><p>题目描述<br>查找最晚入职员工的所有信息，为了减轻入门难度，目前所有的数据里员工入职的日期都不是同一天(sqlite里面的注释为—,mysql为comment)<br>CREATE TABLE <code>employees</code> (<br><code>emp_no</code> int(11) NOT NULL,  — ‘员工编号’<br><code>birth_date</code> date NOT NULL,<br><code>first_name</code> varchar(14) NOT NULL,<br><code>last_name</code> varchar(16) NOT NULL,<br><code>gender</code> char(1) NOT NULL,<br><code>hire_date</code> date NOT NULL,<br>PRIMARY KEY (<code>emp_no</code>));<br>输入描述:<br>无<br>输出描述:</p>
-<div class="table-container">
+<h2 id="Nowcoder"><a href="#Nowcoder" class="headerlink" title="Nowcoder"></a>Nowcoder</h2><h3 id="SQL1-查找最晚入职员工的所有信息"><a href="#SQL1-查找最晚入职员工的所有信息" class="headerlink" title="SQL1 查找最晚入职员工的所有信息"></a>SQL1 查找最晚入职员工的所有信息</h3><p>题目描述<br>查找最晚入职员工的所有信息，为了减轻入门难度，目前所有的数据里员工入职的日期都不是同一天(sqlite里面的注释为–,mysql为comment)<br>CREATE TABLE <code>employees</code> (<br><code>emp_no</code> int(11) NOT NULL,  – ‘员工编号’<br><code>birth_date</code> date NOT NULL,<br><code>first_name</code> varchar(14) NOT NULL,<br><code>last_name</code> varchar(16) NOT NULL,<br><code>gender</code> char(1) NOT NULL,<br><code>hire_date</code> date NOT NULL,<br>PRIMARY KEY (<code>emp_no</code>));<br>输入描述:<br>无<br>输出描述:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">emp_no</th>
-<th style="text-align:center">birth_date</th>
-<th style="text-align:center">first_name</th>
-<th style="text-align:center">last_name    gender</th>
-<th style="text-align:center">hire_date</th>
+<th align="center">emp_no</th>
+<th align="center">birth_date</th>
+<th align="center">first_name</th>
+<th align="center">last_name    gender</th>
+<th align="center">hire_date</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">10008</td>
-<td style="text-align:center">1958-02-19</td>
-<td style="text-align:center">Saniya</td>
-<td style="text-align:center">Kalloufi</td>
-<td style="text-align:center">M</td>
-<td>1994-09-15</td>
+<tbody><tr>
+<td align="center">10008</td>
+<td align="center">1958-02-19</td>
+<td align="center">Saniya</td>
+<td align="center">Kalloufi</td>
+<td align="center">M</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select *
-from employees
-where hire_date =
-    (
-     select max(hire_date)
-     from employees
-    )
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select *
-from employees
-order by hire_date desc
-limit 1
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">where</span> hire_date <span class="token operator">=</span>
+    <span class="token punctuation">(</span>
+     <span class="token keyword">select</span> <span class="token function">max</span><span class="token punctuation">(</span>hire_date<span class="token punctuation">)</span>
+     <span class="token keyword">from</span> employees
+    <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">order</span> <span class="token keyword">by</span> hire_date <span class="token keyword">desc</span>
+<span class="token keyword">limit</span> <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="SQL2-查找入职员工时间排名倒数第三的员工所有信息"><a href="#SQL2-查找入职员工时间排名倒数第三的员工所有信息" class="headerlink" title="SQL2    查找入职员工时间排名倒数第三的员工所有信息"></a>SQL2    查找入职员工时间排名倒数第三的员工所有信息</h3><p>题目描述<br>查找入职员工时间排名倒数第三的员工所有信息，为了减轻入门难度，目前所有的数据里员工入职的日期都不是同一天<br>CREATE TABLE <code>employees</code> (<br><code>emp_no</code> int(11) NOT NULL,<br><code>birth_date</code> date NOT NULL,<br><code>first_name</code> varchar(14) NOT NULL,<br><code>last_name</code> varchar(16) NOT NULL,<br><code>gender</code> char(1) NOT NULL,<br><code>hire_date</code> date NOT NULL,<br>PRIMARY KEY (<code>emp_no</code>));<br>输入描述:<br>无<br>输出描述:</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">emp_no</th>
-<th style="text-align:center">birth_date</th>
-<th style="text-align:center">first_name</th>
-<th style="text-align:center">last_name</th>
-<th style="text-align:center">gender</th>
-<th style="text-align:center">hire_date</th>
+<th align="center">emp_no</th>
+<th align="center">birth_date</th>
+<th align="center">first_name</th>
+<th align="center">last_name</th>
+<th align="center">gender</th>
+<th align="center">hire_date</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">10005</td>
-<td style="text-align:center">1955-01-21</td>
-<td style="text-align:center">Kyoichi</td>
-<td style="text-align:center">Maliniak</td>
-<td style="text-align:center">M</td>
-<td style="text-align:center">1989-09-12</td>
+<tbody><tr>
+<td align="center">10005</td>
+<td align="center">1955-01-21</td>
+<td align="center">Kyoichi</td>
+<td align="center">Maliniak</td>
+<td align="center">M</td>
+<td align="center">1989-09-12</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong>Code</strong></p>
-<pre class="line-numbers language-lang-sql"><code class="language-lang-sql">select *
-from employees
-order by hire_date desc
-limit 1 offset 2
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span>
+<span class="token keyword">from</span> employees
+<span class="token keyword">order</span> <span class="token keyword">by</span> hire_date <span class="token keyword">desc</span>
+<span class="token keyword">limit</span> <span class="token number">1</span> <span class="token keyword">offset</span> <span class="token number">2</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1714,7 +1639,7 @@ limit 1 offset 2
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">124.5k</span>&nbsp;字
+                class="white-color">129.2k</span>&nbsp;字
             
             
             
