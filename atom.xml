@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://tawn0000.github.io/"/>
-  <updated>2020-09-16T16:18:38.702Z</updated>
+  <updated>2020-11-13T15:41:53.378Z</updated>
   <id>https://tawn0000.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Data-Interview Summary</title>
+    <link href="https://tawn0000.github.io/2020/11/13/data-interview-summary/"/>
+    <id>https://tawn0000.github.io/2020/11/13/data-interview-summary/</id>
+    <published>2020-11-13T06:46:46.000Z</published>
+    <updated>2020-11-13T15:41:53.378Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Spark&quot;&gt;&lt;a href=&quot;#Spark&quot; class=&quot;headerlink&quot; title=&quot;Spark&quot;&gt;&lt;/a&gt;Spark&lt;/h2&gt;&lt;h3 id=&quot;Q1-Spark-map、-reduce、-join原理&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>SQL Problems Set</title>
@@ -354,7 +377,7 @@
     <link href="https://tawn0000.github.io/2020/02/08/leetcode-week-contest/"/>
     <id>https://tawn0000.github.io/2020/02/08/leetcode-week-contest/</id>
     <published>2020-02-08T06:04:21.000Z</published>
-    <updated>2020-10-17T07:42:19.792Z</updated>
+    <updated>2020-10-17T08:01:50.832Z</updated>
     
     <summary type="html">
     
@@ -588,36 +611,6 @@
     
     
       <category term="Kafka" scheme="https://tawn0000.github.io/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IELTS Reading</title>
-    <link href="https://tawn0000.github.io/2019/10/18/ielts-reading/"/>
-    <id>https://tawn0000.github.io/2019/10/18/ielts-reading/</id>
-    <published>2019-10-18T15:51:31.000Z</published>
-    <updated>2020-01-14T14:28:37.112Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;The-Economist&quot;&gt;&lt;a href=&quot;#The-Economist&quot; class=&quot;headerlink&quot; title=&quot;The Economist&quot;&gt;&lt;/a&gt;The Economist&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a
-        
-      
-    
-    </summary>
-    
-    
-      <category term="English" scheme="https://tawn0000.github.io/categories/English/"/>
-    
-    
-      <category term="IELTS" scheme="https://tawn0000.github.io/tags/IELTS/"/>
-    
-      <category term="English" scheme="https://tawn0000.github.io/tags/English/"/>
     
   </entry>
   
